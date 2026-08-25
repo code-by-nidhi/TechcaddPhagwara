@@ -197,52 +197,68 @@
 
 /* ----------------------------------------------------------- mega menu -- */
 
+/*
+ * Floating, centered on the viewport rather than anchored under its trigger
+ * — `position: fixed` (not `absolute` off `.nav__item`) is what makes that
+ * possible, since the Courses link is rarely centered in the bar itself.
+ * That detachment is also why `MegaMenu` wires its own `onMouseEnter` /
+ * `onMouseLeave` (see Navbar.tsx) mirroring the `<li>`'s hover-hold — a
+ * `position: fixed` descendant no longer sits inside the trigger's on-screen
+ * box, so the parent's `mouseleave` alone can no longer be trusted to know
+ * the pointer is still "in" the menu.
+ */
 .mega {
-  position: absolute;
-  top: calc(100% + 0.65rem);
+  position: fixed;
+  top: calc(var(--nav-h) + 14px);
   left: 50%;
-  width: min(960px, calc(100vw - 3rem));
-  padding: 1.5rem;
-  border-radius: var(--r-xl);
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid var(--border);
-  box-shadow: var(--sh-xl);
-  backdrop-filter: blur(28px) saturate(1.8);
-  -webkit-backdrop-filter: blur(28px) saturate(1.8);
+  width: 90%;
+  max-width: 1300px;
+  padding: 2.75rem 3rem 0;
+  border-radius: 32px;
+  background: #ffffff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  z-index: 9100;
   opacity: 0;
   visibility: hidden;
-  transform: translate(-50%, 14px) scale(0.985);
+  transform: translate(-50%, 10px);
   transition:
-    opacity 0.34s var(--ease),
-    transform 0.34s var(--ease),
-    visibility 0.34s;
+    opacity 0.24s var(--ease),
+    transform 0.24s var(--ease),
+    visibility 0.24s;
 }
 
 .nav__item.is-open .mega {
   opacity: 1;
   visibility: visible;
-  transform: translate(-50%, 0) scale(1);
+  transform: translate(-50%, 0);
 }
 
-.mega::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: var(--grad-soft);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  opacity: 0.5;
-  pointer-events: none;
+/*
+ * The lighter panels (Internship & Training, After 12th — three short
+ * columns, not Courses' dense four) shrink-to-fit their content instead of
+ * always stretching to the 90%/1300px Courses takes: at that width three
+ * two-to-five-item columns would float in a mostly-empty card.
+ */
+.mega--fit {
+  width: fit-content;
+  min-width: min(660px, 92vw);
+  max-width: min(1200px, 92vw);
+  padding: 2.5rem 2.75rem 0;
 }
 
 .mega__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.4rem 1.2rem;
+  gap: 0 2.25rem;
+  padding-bottom: 2.25rem;
+  /* Programming alone carries 10 links — tall enough on a short laptop
+     screen to run past the viewport. Capped and scrollable rather than
+     spilling under the fold with no way back up; the panel itself stays
+     `overflow: hidden` so its own rounded corners stay clean. */
+  max-height: min(58vh, 480px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 /* Programming | AI & Data
@@ -252,85 +268,105 @@
 @media (max-width: 1024px) {
   .mega__grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.1rem 1.5rem;
+    gap: 1.75rem 2.25rem;
   }
 }
 
-.mega__col-title {
+/* Internship & Training, After 12th — three categories, sized to their own
+   content rather than the Courses grid's four fixed tracks. */
+.mega__grid--3 {
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
+}
+
+@media (max-width: 1024px) {
+  .mega__grid--3 {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
+}
+
+.mega__col {
+  min-width: 0;
+}
+
+.mega__col-head {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.55rem;
-  padding-bottom: 0.55rem;
-  border-bottom: 1px dashed var(--border-strong);
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 1.1rem;
+}
+
+.mega__col-num {
   font-family: var(--font-display);
-  font-size: 0.74rem;
-  font-weight: 800;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
+  font-size: 0.78rem;
+  font-weight: 700;
   color: var(--ink-3);
 }
 
-.mega__col-title::before {
-  content: '';
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--grad);
+.mega__col-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
 }
 
 .mega__link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.5rem 0.6rem;
-  border-radius: 11px;
-  font-size: 0.89rem;
-  font-weight: 600;
+  display: block;
+  padding: 0.42rem 0;
+  font-size: 0.92rem;
+  font-weight: 500;
   color: var(--ink-2);
-  transition: background var(--t-fast), color var(--t-fast), transform var(--t-fast);
+  transition: color 0.2s var(--ease-soft);
 }
 
 .mega__link:hover {
   color: var(--blue-600);
-  background: linear-gradient(100deg, rgba(33, 150, 243, 0.08), rgba(144, 202, 249, 0.06));
-  transform: translateX(4px);
-}
-
-.mega__meta {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--ink-4);
-  transition: color var(--t-fast);
-}
-
-.mega__link:hover .mega__meta {
-  color: var(--violet);
 }
 
 .mega__foot {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
-  margin-top: 1.15rem;
-  padding: 0.95rem 1.15rem;
-  border-radius: var(--r-md);
-  background: linear-gradient(110deg, rgba(33, 150, 243, 0.07), rgba(144, 202, 249, 0.07));
-  border: 1px solid var(--border);
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border-soft);
 }
 
-.mega__foot p {
-  font-size: 0.88rem;
-  color: var(--ink-2);
+.mega__quote {
   margin: 0;
+  max-width: 480px;
 }
 
-.mega__foot b {
-  color: var(--ink);
+.mega__quote p {
+  margin: 0 0 0.3rem;
+  font-size: 0.92rem;
+  font-style: italic;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+
+.mega__quote cite {
+  font-size: 0.82rem;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--ink-4);
+}
+
+.mega__browse {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+  transition: color 0.2s var(--ease-soft), gap 0.2s var(--ease-soft);
+}
+
+.mega__browse:hover {
+  color: var(--blue-600);
+  gap: 0.6rem;
 }
 
 /* ------------------------------------------------------- mobile drawer -- */
@@ -742,73 +778,10 @@
   }
 }
 
-/* ----------------------------------------------------------- mega menu -- */
-
-.mega {
-  /* all but opaque: at 0.94 the hero headline read straight through the panel
-     and competed with the course names */
-  background: linear-gradient(180deg, rgba(9, 29, 88, 0.985), rgba(5, 18, 62, 0.985));
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 30px 70px rgba(2, 8, 30, 0.55);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  /* Programming alone now carries 10 links — tall enough on a short laptop
-     screen to run past the viewport. Capped and scrollable rather than
-     spilling under the fold with no way back up. */
-  max-height: min(78vh, 640px);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-}
-
-.mega__col {
-  min-width: 0;
-}
-
-.mega::before {
-  background: linear-gradient(120deg, rgba(79, 143, 255, 0.55), rgba(147, 197, 253, 0.2));
-  opacity: 0.45;
-}
-
-.mega__col-title {
-  border-bottom-color: rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.55);
-}
-
-.mega__col-title::before {
-  background: linear-gradient(135deg, #2563eb, #3b82f6);
-}
-
-.mega__link {
-  color: rgba(255, 255, 255, 0.82);
-  transition: color 0.3s var(--ease-soft), background 0.3s var(--ease-soft),
-    transform 0.3s var(--ease-soft);
-}
-
-.mega__link:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.07);
-}
-
-.mega__meta {
-  color: rgba(255, 255, 255, 0.45);
-}
-
-.mega__link:hover .mega__meta {
-  color: rgba(147, 197, 253, 0.95);
-}
-
-.mega__foot {
-  background: linear-gradient(110deg, rgba(37, 99, 235, 0.18), rgba(59, 130, 246, 0.1));
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.mega__foot p {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.mega__foot b {
-  color: #ffffff;
-}
+/* The Courses mega menu stays a fixed white panel regardless of the bar's
+   own deep-navy skin (see the base rules above) — it reads as its own
+   floating surface, not an extension of the bar's color. Nothing to layer
+   here. */
 
 /* ------------------------------------------------------- mobile drawer -- */
 

@@ -237,13 +237,35 @@ export default function Navbar() {
                     </a>
 
                     {link.mega && mountedPanels.has(link.label) && (
-                      <MegaMenu onSelect={() => setOpenPanel(null)} />
+                      <MegaMenu
+                        onSelect={() => setOpenPanel(null)}
+                        onNavigate={go}
+                        onMouseEnter={() => holdPanel(link.label)}
+                        onMouseLeave={() => holdPanel(null)}
+                      />
                     )}
-                    {(link.items || link.groups) && mountedPanels.has(link.label) && (
+                    {link.groups && mountedPanels.has(link.label) && (
+                      <GroupedMegaMenu
+                        label={link.label}
+                        groups={link.groups}
+                        quote={link.label === 'Internship & Training' ? MEGA_QUOTE : undefined}
+                        cta={{
+                          label:
+                            link.label === 'Internship & Training'
+                              ? 'See all training formats'
+                              : 'Browse After 12th courses',
+                          href: link.href,
+                        }}
+                        onSelect={() => setOpenPanel(null)}
+                        onNavigate={go}
+                        onMouseEnter={() => holdPanel(link.label)}
+                        onMouseLeave={() => holdPanel(null)}
+                      />
+                    )}
+                    {link.items && !link.groups && mountedPanels.has(link.label) && (
                       <NavDropdown
                         label={link.label}
                         items={link.items}
-                        groups={link.groups}
                         onNavigate={go}
                         onSelect={() => setOpenPanel(null)}
                       />
@@ -544,20 +566,47 @@ function NavDropdown({ label, items, groups, onNavigate, onSelect }: NavDropdown
 
 /* ------------------------------------------------------------- mega menu -- */
 
-interface MegaMenuProps {
-  /** Course links are real routes and `Button` already knows how to get
-      `#contact` home from any page — every trigger here just needs to
-      close the panel afterwards. */
-  onSelect: () => void
+/** The one footer quote every white mega panel shares (Courses, Internship
+    & Training) — kept in one place so it can't drift between them. */
+const MEGA_QUOTE = {
+  text: 'Everybody should learn to program a computer, because it teaches you how to think.',
+  author: 'Steve Jobs',
 }
 
-function MegaMenu({ onSelect }: MegaMenuProps) {
+interface MegaMenuProps {
+  /** Course links are real routes — every trigger here just needs to close
+      the panel afterwards. */
+  onSelect: () => void
+  /** Same hash-aware navigation the rest of the nav uses, for the footer's
+      "Browse all courses" → `#courses`. */
+  onNavigate: (event: MouseEvent<HTMLElement>, href: string) => void
+  /**
+   * The panel is centered on the viewport via `position: fixed` rather than
+   * anchored under its trigger, so on screen it usually sits outside the
+   * `<li>`'s own box — moving the pointer into it would otherwise read as
+   * "left the nav item" and start the close timer. Mirroring the `<li>`'s
+   * own hover-hold here keeps it open while the cursor is over the panel.
+   */
+  onMouseEnter: () => void
+  onMouseLeave: () => void
+}
+
+function MegaMenu({ onSelect, onNavigate, onMouseEnter, onMouseLeave }: MegaMenuProps) {
   return (
-    <div className="mega" role="menu" aria-label="Courses">
-      <div className="mega__grid mega__grid--4">
-        {courseCatalog.map((cat) => (
+    <div
+      className="mega"
+      role="menu"
+      aria-label="Courses"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <div className="mega__grid">
+        {courseCatalog.map((cat, i) => (
           <div key={cat.key} className="mega__col">
-            <h3 className="mega__col-title">{cat.title}</h3>
+            <div className="mega__col-head">
+              <span className="mega__col-num">{String(i + 1).padStart(2, '0')}</span>
+              <h3 className="mega__col-title">{cat.title}</h3>
+            </div>
             {cat.courses.map((course) => (
               <Link
                 key={course.slug}
@@ -566,8 +615,7 @@ function MegaMenu({ onSelect }: MegaMenuProps) {
                 role="menuitem"
                 onClick={onSelect}
               >
-                <span>{course.label}</span>
-                <span className="mega__meta">{course.duration}</span>
+                {course.label}
               </Link>
             ))}
           </div>
@@ -575,12 +623,140 @@ function MegaMenu({ onSelect }: MegaMenuProps) {
       </div>
 
       <div className="mega__foot">
-        <p>
-          <b>Not sure which track fits you?</b> Take a free 20-minute career counselling session.
-        </p>
-        <Button href="#contact" variant="soft" size="sm" arrow onClick={onSelect}>
-          Talk to a counsellor
-        </Button>
+        <blockquote className="mega__quote">
+          <p>“{MEGA_QUOTE.text}”</p>
+          <cite>— {MEGA_QUOTE.author}</cite>
+        </blockquote>
+
+        <a
+          className="mega__browse"
+          href="#courses"
+          onClick={(e) => {
+            onNavigate(e, '#courses')
+            onSelect()
+          }}
+        >
+          Browse all courses
+          <Icon name="arrow" size={16} />
+        </a>
+      </div>
+    </div>
+  )
+}
+
+/* ---------------------------------------------------- grouped mega menu -- */
+
+interface MegaCta {
+  label: string
+  href: string
+}
+
+interface GroupedMegaMenuProps {
+  /** Panel `aria-label` — the triggering link's own label. */
+  label: string
+  /** Internship & Training and After 12th already carry this exact shape
+      for the old compact dropdown (see `data/site.ts`) — reused as-is, just
+      rendered into the wider white panel instead. */
+  groups: NavDropdownGroup[]
+  /** Only Internship & Training carries the shared footer quote; After 12th
+      is CTA-only, per the reference design for each. */
+  quote?: { text: string; author: string }
+  cta: MegaCta
+  onSelect: () => void
+  onNavigate: (event: MouseEvent<HTMLElement>, href: string) => void
+  /** See `MegaMenuProps` above — same fixed-position detachment applies. */
+  onMouseEnter: () => void
+  onMouseLeave: () => void
+}
+
+function GroupedMegaMenu({
+  label,
+  groups,
+  quote,
+  cta,
+  onSelect,
+  onNavigate,
+  onMouseEnter,
+  onMouseLeave,
+}: GroupedMegaMenuProps) {
+  return (
+    <div
+      className="mega mega--fit"
+      role="menu"
+      aria-label={label}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <div className="mega__grid mega__grid--3">
+        {groups.map((group, i) => (
+          <div key={group.title} className="mega__col">
+            <div className="mega__col-head">
+              <span className="mega__col-num">{String(i + 1).padStart(2, '0')}</span>
+              <h3 className="mega__col-title">{group.title}</h3>
+            </div>
+            {group.items.map((item) =>
+              isExternal(item.href) ? (
+                <a
+                  key={item.label}
+                  className="mega__link"
+                  href={item.href}
+                  role="menuitem"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.label}
+                </a>
+              ) : isHashLink(item.href) ? (
+                <a
+                  key={item.label}
+                  className="mega__link"
+                  href={item.href}
+                  role="menuitem"
+                  aria-disabled={isTrigger(item.href) || undefined}
+                  onClick={(e) => {
+                    onNavigate(e, item.href)
+                    onSelect()
+                  }}
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.label}
+                  className="mega__link"
+                  href={item.href}
+                  role="menuitem"
+                  onClick={onSelect}
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div className="mega__foot">
+        {quote ? (
+          <blockquote className="mega__quote">
+            <p>“{quote.text}”</p>
+            <cite>— {quote.author}</cite>
+          </blockquote>
+        ) : (
+          <span />
+        )}
+
+        <a
+          className="mega__browse"
+          href={cta.href}
+          onClick={(e) => {
+            onNavigate(e, cta.href)
+            onSelect()
+          }}
+        >
+          {cta.label}
+          <Icon name="arrow" size={16} />
+        </a>
       </div>
     </div>
   )

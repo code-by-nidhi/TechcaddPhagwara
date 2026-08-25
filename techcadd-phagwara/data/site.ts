@@ -62,6 +62,12 @@ export interface Pillar {
   text: string
 }
 
+/** One tile in the About section's training-duration stat grid. */
+export interface AboutStat {
+  value: string
+  label: string
+}
+
 export interface CourseCategory {
   id: string
   label: string
@@ -326,6 +332,14 @@ export const aboutHighlights: string[] = [
   'ISO certified training centre',
   'Government approved certifications',
   'Live projects with real clients',
+]
+
+/** The 2×2 training-duration grid in the About section. */
+export const aboutStats: AboutStat[] = [
+  { value: '45 Days', label: 'Summer & winter industrial training' },
+  { value: '6 Weeks', label: 'University-mandated training' },
+  { value: '6 Months', label: 'Industrial training with internship' },
+  { value: '9 Months', label: 'Expert track with client-level projects' },
 ]
 
 /* --------------------------------------------------------------- stats -- */

@@ -1,89 +1,75 @@
-import Icon from '@/components/ui/Icon'
 import Button from '@/components/ui/Button'
-import SectionHeading from '@/components/ui/SectionHeading'
-import TiltCard from '@/components/ui/TiltCard'
-import FloatingIcons from '@/components/fx/FloatingIcons'
-import { aboutPillars, aboutHighlights } from '@/data/site'
+import { aboutStats, brand } from '@/data/site'
 
-const DIRECTIONS = ['right', 'left', 'right', 'left'] as const
-
-/** Server Component — only the tilt shells and the CTA button hydrate. */
+/**
+ * Server Component — badge, heading, paragraph, stats and CTAs are all
+ * static HTML; only the two `Button`s hydrate. The image collage is CSS-only
+ * (see the `.about__shot-art` note below), so nothing else in this section
+ * needs the client.
+ */
 export default function About() {
   return (
     <section className="about section" id="about">
-      <FloatingIcons preset="b" />
-
       <div className="shell">
         <div className="about__grid">
-          {/* sticky intro column */}
-          <div className="about__intro">
-            <SectionHeading
-              eyebrow="Why Techcadd"
-              eyebrowIcon="target"
-              title="A training institute built"
-              highlight="for the AI era"
-              lead="We rebuilt every syllabus around how work actually happens now — with copilots, automation and real deadlines. You leave with a portfolio, not just a certificate."
-            />
+          {/* --------------------------------------------------- content */}
+          <div className="about__content">
+            <span className="about__badge">About Us</span>
 
-            <ul className="about__checks">
-              {aboutHighlights.map((item, i) => (
-                <li
-                  className="about__check"
-                  key={item}
-                  data-reveal="left"
-                  data-reveal-delay={200 + i * 80}
-                >
-                  <i>
-                    <Icon name="check" />
-                  </i>
-                  {item}
-                </li>
+            <h2 className="about__heading" data-reveal="up">
+              Two decades of turning students into engineers
+            </h2>
+
+            <p className="about__lead" data-reveal="up" data-reveal-delay="80">
+              We rebuilt every syllabus around how work actually happens now — with copilots,
+              automation and real deadlines. You leave with a portfolio, not just a certificate.
+            </p>
+
+            <div className="about__stats" data-reveal="up" data-reveal-delay="160">
+              {aboutStats.map((stat) => (
+                <div className="about__stat" key={stat.value}>
+                  <b>{stat.value}</b>
+                  <span>{stat.label}</span>
+                </div>
               ))}
-            </ul>
-
-            <div className="about__plate" data-reveal="up" data-reveal-delay="420">
-              <div>
-                <b>2009</b>
-                <span>Established</span>
-              </div>
-              <div>
-                <b>6</b>
-                <span>Branches</span>
-              </div>
-              <div>
-                <b>45+</b>
-                <span>Programs</span>
-              </div>
             </div>
 
-            <div className="about__cta" data-reveal="up" data-reveal-delay="500">
-              <Button href="#journey" variant="ghost" arrow>
-                See how the journey works
+            <div className="about__cta" data-reveal="up" data-reveal-delay="240">
+              <Button href="#courses" arrow>
+                Find your course
               </Button>
+
+              <a className="about__counsellor" href={brand.phoneHref}>
+                <span className="about__counsellor-label">Talk to a counsellor</span>
+                <span className="about__counsellor-phone">{brand.phone}</span>
+              </a>
             </div>
           </div>
 
-          {/* zig-zag pillar rail */}
-          <div className="about__rail">
-            {aboutPillars.map((pillar, i) => (
-              <TiltCard
-                key={pillar.title}
-                className="about__pillar glass"
-                max={5}
-                scale={1.01}
-                reveal={DIRECTIONS[i % DIRECTIONS.length]}
-                revealDelay={i * 110}
-              >
-                <span className="about__pillar-index">{String(i + 1).padStart(2, '0')}</span>
-                <span className="icon-bubble">
-                  <Icon name={pillar.icon} />
-                </span>
-                <div>
-                  <h3>{pillar.title}</h3>
-                  <p>{pillar.text}</p>
-                </div>
-              </TiltCard>
-            ))}
+          {/* ----------------------------------------------------- media */}
+          {/*
+            No campus photography exists in `public/images` yet (only the two
+            logo files) — these three tiles reuse the same generated-gradient
+            stand-in Gallery already relies on for the same reason (see
+            `.shot__art` in showcase.css / `data.site.gallery`). Drop real
+            photos into `public/images` and swap these `<span>`s for
+            `next/image` — same treatment Gallery gives `shot.src` — whenever
+            they're available.
+          */}
+          <div className="about__media" data-reveal="right" data-reveal-delay="120">
+            <figure className="about__shot about__shot--main">
+              <span className="about__shot-art" style={{ '--hue': 218 }} aria-hidden="true" />
+              <span className="about__shot-tag">Team Techcadd</span>
+            </figure>
+
+            <div className="about__media-row">
+              <figure className="about__shot">
+                <span className="about__shot-art" style={{ '--hue': 252 }} aria-hidden="true" />
+              </figure>
+              <figure className="about__shot">
+                <span className="about__shot-art" style={{ '--hue': 200 }} aria-hidden="true" />
+              </figure>
+            </div>
           </div>
         </div>
       </div>
