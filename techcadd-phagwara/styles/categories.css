@@ -9,7 +9,7 @@
   overflow: hidden;
   padding-top: 120px;
   padding-bottom: 120px;
-  background: linear-gradient(160deg, #050f45 0%, #081c70 100%);
+  background: linear-gradient(160deg, #020b3f 0%, #081a63 100%);
   color: #ffffff;
 }
 
@@ -222,38 +222,44 @@
     0 0 44px -6px var(--accent-2);
 }
 
-/* per-theme accent pair, consumed by the wash / mark below */
+/*
+ * Blue-only theme system: every card draws its two accent stops from the
+ * same navy → bright-blue ramp (Dark #020B3F, Surface #081A63, a mid-deep
+ * step, Primary #2563EB, Secondary #3B82F6, a bright tint) — cards read as
+ * distinct by *where* on that ramp they sit and how strong their glow is,
+ * never by hue. No purple, green, orange, pink or cyan left anywhere here.
+ */
 .acard--ai {
-  --accent-1: #7c3aed;
-  --accent-2: #4f46e5;
+  --accent-1: #2563eb;
+  --accent-2: #3b82f6;
 }
 .acard--stack {
-  --accent-1: #2563eb;
-  --accent-2: #1d4ed8;
+  --accent-1: #020b3f;
+  --accent-2: #2563eb;
 }
 .acard--data {
-  --accent-1: #10b981;
-  --accent-2: #059669;
+  --accent-1: #081a63;
+  --accent-2: #3b82f6;
 }
 .acard--security {
-  --accent-1: #9333ea;
-  --accent-2: #7c3aed;
+  --accent-1: #020b3f;
+  --accent-2: #0f2e8f;
 }
 .acard--marketing {
-  --accent-1: #f97316;
-  --accent-2: #ea580c;
+  --accent-1: #2563eb;
+  --accent-2: #5b9bfa;
 }
 .acard--cloud {
-  --accent-1: #6366f1;
-  --accent-2: #4338ca;
+  --accent-1: #081a63;
+  --accent-2: #2563eb;
 }
 .acard--ml {
-  --accent-1: #ec4899;
-  --accent-2: #a855f7;
+  --accent-1: #0f2e8f;
+  --accent-2: #3b82f6;
 }
 .acard--web {
-  --accent-1: #06b6d4;
-  --accent-2: #0891b2;
+  --accent-1: #3b82f6;
+  --accent-2: #5b9bfa;
 }
 
 .acard__glow {

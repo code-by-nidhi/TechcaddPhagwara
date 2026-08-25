@@ -4,13 +4,13 @@
 
 :root {
   /* ---- the palette ----------------------------------------------------
-     #E3F2FD  mist   · #90CAF9  sky
-     #2196F3  azure  · #0D47A1  navy
+     #E3F2FD  mist   · #3B82F6  sky
+     #2563FF  azure  · #04124A  navy
      Every other colour in the system is mixed from these four.          */
   --c-mist: #e3f2fd;
-  --c-sky: #90caf9;
-  --c-azure: #2196f3;
-  --c-navy: #0d47a1;
+  --c-sky: #3B82F6;
+  --c-azure: #2563FF;
+  --c-navy: #04124A;
 
   /* semantic aliases used throughout the components */
   --blue: var(--c-azure);
@@ -30,23 +30,23 @@
   --card-solid: #ffffff;
 
   /* ---- ink (navy-derived, never pure black) ---- */
-  --ink: #06264f;
+  --ink: #04124a;
   --ink-2: #2a5183;
   --ink-3: #587ca8;
   --ink-4: #90aecd;
 
   /* ---- lines ---- */
-  --border: rgba(33, 150, 243, 0.16);
-  --border-strong: rgba(33, 150, 243, 0.28);
-  --border-soft: rgba(33, 150, 243, 0.09);
+  --border: rgba(37, 99, 255, 0.16);
+  --border-strong: rgba(37, 99, 255, 0.28);
+  --border-soft: rgba(37, 99, 255, 0.09);
 
   /* ---- shadows (soft blue glow) ---- */
   --sh-xs: 0 1px 2px rgba(8, 43, 98, 0.04);
-  --sh-sm: 0 4px 14px rgba(33, 150, 243, 0.07);
-  --sh-md: 0 12px 34px rgba(33, 150, 243, 0.1);
-  --sh-lg: 0 24px 60px rgba(33, 150, 243, 0.14);
-  --sh-xl: 0 40px 90px rgba(33, 150, 243, 0.18);
-  --sh-glow: 0 18px 50px rgba(13, 71, 161, 0.22);
+  --sh-sm: 0 4px 14px rgba(37, 99, 255, 0.07);
+  --sh-md: 0 12px 34px rgba(37, 99, 255, 0.1);
+  --sh-lg: 0 24px 60px rgba(37, 99, 255, 0.14);
+  --sh-xl: 0 40px 90px rgba(37, 99, 255, 0.18);
+  --sh-glow: 0 18px 50px rgba(4, 18, 74, 0.22);
 
   /* ---- gradients: every combination of the four palette stops ---- */
   --grad: linear-gradient(120deg, var(--c-navy) 0%, var(--c-azure) 58%, var(--c-sky) 100%);
@@ -64,9 +64,9 @@
     var(--c-navy) 100%
   );
   --grad-mesh:
-    radial-gradient(58% 48% at 12% 8%, rgba(33, 150, 243, 0.22), transparent 62%),
-    radial-gradient(52% 44% at 88% 4%, rgba(144, 202, 249, 0.2), transparent 60%),
-    radial-gradient(46% 40% at 74% 92%, rgba(144, 202, 249, 0.18), transparent 62%);
+    radial-gradient(58% 48% at 12% 8%, rgba(37, 99, 255, 0.22), transparent 62%),
+    radial-gradient(52% 44% at 88% 4%, rgba(59, 130, 246, 0.2), transparent 60%),
+    radial-gradient(46% 40% at 74% 92%, rgba(59, 130, 246, 0.18), transparent 62%);
 
   /* ---- type ---- */
   /* next/font injects --font-jakarta / --font-manrope on <html> (app/layout.tsx).
@@ -179,7 +179,7 @@ p {
 }
 
 ::selection {
-  background: rgba(13, 71, 161, 0.18);
+  background: rgba(4, 18, 74, 0.18);
   color: var(--ink);
 }
 
@@ -267,7 +267,7 @@ p {
   color: #fff;
   font-size: 0.7rem;
   font-style: normal;
-  box-shadow: 0 4px 12px rgba(13, 71, 161, 0.35);
+  box-shadow: 0 4px 12px rgba(4, 18, 74, 0.35);
 }
 
 .sr-only {

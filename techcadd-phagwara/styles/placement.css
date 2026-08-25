@@ -34,7 +34,7 @@
 
 .ring__track {
   fill: none;
-  stroke: rgba(33, 150, 243, 0.1);
+  stroke: rgba(37, 99, 255, 0.1);
   stroke-width: 14;
 }
 
@@ -43,7 +43,7 @@
   stroke: url(#ringGrad);
   stroke-width: 14;
   stroke-linecap: round;
-  filter: drop-shadow(0 6px 18px rgba(13, 71, 161, 0.35));
+  filter: drop-shadow(0 6px 18px rgba(4, 18, 74, 0.35));
   transition: stroke-dashoffset 2.2s var(--ease);
 }
 
@@ -226,7 +226,7 @@
   bottom: 0;
   height: 3px;
   width: 100%;
-  background: rgba(33, 150, 243, 0.1);
+  background: rgba(37, 99, 255, 0.1);
 }
 
 .salary__bar i {

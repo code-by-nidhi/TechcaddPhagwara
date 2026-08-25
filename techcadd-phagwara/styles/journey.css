@@ -35,7 +35,7 @@
 
 .wire__base {
   fill: none;
-  stroke: rgba(33, 150, 243, 0.16);
+  stroke: rgba(37, 99, 255, 0.16);
   stroke-width: 2;
   stroke-linecap: round;
   vector-effect: non-scaling-stroke;
@@ -88,7 +88,7 @@
 
 .wire__particle {
   fill: #fff;
-  filter: drop-shadow(0 0 6px rgba(144, 202, 249, 0.95));
+  filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.95));
 }
 
 /* ---------------------------------------------------------- milestones -- */
@@ -157,7 +157,7 @@
   font-size: clamp(1.2rem, 2vw, 1.55rem);
   background: var(--grad);
   box-shadow:
-    0 16px 40px rgba(33, 150, 243, 0.34),
+    0 16px 40px rgba(37, 99, 255, 0.34),
     inset 0 -8px 18px rgba(8, 43, 98, 0.2),
     inset 0 6px 14px rgba(255, 255, 255, 0.3);
   cursor: pointer;
@@ -183,7 +183,7 @@
   position: absolute;
   inset: -8px;
   border-radius: 50%;
-  border: 2px solid rgba(13, 71, 161, 0.45);
+  border: 2px solid rgba(4, 18, 74, 0.45);
   opacity: 0;
   animation: pulse-ring 2.8s var(--ease-soft) infinite;
   animation-delay: calc(var(--i) * 0.3s);
@@ -191,7 +191,7 @@
 
 .milestone__node:hover {
   transform: scale(1.14) rotate(-8deg);
-  box-shadow: 0 24px 54px rgba(13, 71, 161, 0.5);
+  box-shadow: 0 24px 54px rgba(4, 18, 74, 0.5);
 }
 
 .milestone__node:hover::after {
@@ -303,7 +303,7 @@
   padding: clamp(1.4rem, 3vw, 2.2rem);
   border-radius: var(--r-xl);
   text-align: center;
-  background: linear-gradient(115deg, rgba(33, 150, 243, 0.08), rgba(144, 202, 249, 0.08));
+  background: linear-gradient(115deg, rgba(37, 99, 255, 0.08), rgba(59, 130, 246, 0.08));
   border: 1px solid var(--border);
 }
 

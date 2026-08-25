@@ -5,7 +5,7 @@
 /* ------------------------------------------------------------- buttons -- */
 
 .btn {
-  --btn-glow: rgba(13, 71, 161, 0.34);
+  --btn-glow: rgba(4, 18, 74, 0.34);
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -91,7 +91,7 @@
 }
 
 .btn--primary:hover {
-  box-shadow: 0 18px 44px rgba(13, 71, 161, 0.44);
+  box-shadow: 0 18px 44px rgba(4, 18, 74, 0.44);
 }
 
 /* ghost — glass with gradient border */
@@ -107,18 +107,18 @@
 .btn--ghost:hover {
   color: var(--blue-600);
   border-color: var(--violet);
-  box-shadow: 0 14px 34px rgba(33, 150, 243, 0.18);
+  box-shadow: 0 14px 34px rgba(37, 99, 255, 0.18);
 }
 
 /* soft — tinted */
 .btn--soft {
   color: var(--blue-600);
-  background: rgba(33, 150, 243, 0.08);
+  background: rgba(37, 99, 255, 0.08);
   border: 1px solid var(--border);
 }
 
 .btn--soft:hover {
-  background: rgba(33, 150, 243, 0.13);
+  background: rgba(37, 99, 255, 0.13);
 }
 
 .btn--sm {
@@ -164,7 +164,7 @@
 
 .btn--ghost .btn__spinner,
 .btn--soft .btn__spinner {
-  border-color: rgba(33, 150, 243, 0.25);
+  border-color: rgba(37, 99, 255, 0.25);
   border-top-color: var(--blue);
 }
 
@@ -220,7 +220,7 @@
   padding: 0.32rem 0.78rem;
   border-radius: var(--r-pill);
   border: 1px solid var(--border);
-  background: rgba(33, 150, 243, 0.055);
+  background: rgba(37, 99, 255, 0.055);
   font-family: var(--font-display);
   font-size: 0.74rem;
   font-weight: 700;
@@ -231,14 +231,14 @@
 
 .chip--sky {
   color: #0369a1;
-  background: rgba(144, 202, 249, 0.11);
-  border-color: rgba(144, 202, 249, 0.24);
+  background: rgba(59, 130, 246, 0.11);
+  border-color: rgba(59, 130, 246, 0.24);
 }
 
 .chip--violet {
-  color: #0d47a1;
-  background: rgba(144, 202, 249, 0.11);
-  border-color: rgba(144, 202, 249, 0.24);
+  color: #04124A;
+  background: rgba(59, 130, 246, 0.11);
+  border-color: rgba(59, 130, 246, 0.24);
 }
 
 /* --------------------------------------------------------- icon bubble -- */
@@ -254,7 +254,7 @@
   font-size: 1.42rem;
   color: #fff;
   background: var(--grad);
-  box-shadow: 0 12px 26px rgba(33, 150, 243, 0.28);
+  box-shadow: 0 12px 26px rgba(37, 99, 255, 0.28);
   transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
 }
 
@@ -272,7 +272,7 @@
 *:hover > .icon-bubble,
 *:hover .icon-bubble {
   transform: translateY(-4px) rotate(-7deg) scale(1.06);
-  box-shadow: 0 18px 36px rgba(13, 71, 161, 0.38);
+  box-shadow: 0 18px 36px rgba(4, 18, 74, 0.38);
 }
 
 *:hover .icon-bubble::after {
@@ -286,7 +286,7 @@
 
 .icon-bubble--ghost {
   color: var(--blue);
-  background: rgba(33, 150, 243, 0.09);
+  background: rgba(37, 99, 255, 0.09);
   box-shadow: none;
   border: 1px solid var(--border);
 }
@@ -322,8 +322,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(33, 150, 243, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(33, 150, 243, 0.045) 1px, transparent 1px);
+    linear-gradient(rgba(37, 99, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 255, 0.045) 1px, transparent 1px);
   background-size: 68px 68px;
   mask-image: radial-gradient(ellipse 80% 62% at 50% 32%, #000 20%, transparent 78%);
   -webkit-mask-image: radial-gradient(ellipse 80% 62% at 50% 32%, #000 20%, transparent 78%);
@@ -343,7 +343,7 @@
   height: 460px;
   top: -8%;
   left: -6%;
-  background: radial-gradient(circle, rgba(33, 150, 243, 0.6), transparent 70%);
+  background: radial-gradient(circle, rgba(37, 99, 255, 0.6), transparent 70%);
   animation: drift 21s var(--ease-soft) infinite alternate;
 }
 
@@ -352,7 +352,7 @@
   height: 380px;
   top: 34%;
   right: -8%;
-  background: radial-gradient(circle, rgba(144, 202, 249, 0.5), transparent 70%);
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.5), transparent 70%);
   animation: drift 27s var(--ease-soft) infinite alternate-reverse;
 }
 
@@ -361,7 +361,7 @@
   height: 420px;
   bottom: -10%;
   left: 32%;
-  background: radial-gradient(circle, rgba(144, 202, 249, 0.42), transparent 70%);
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.42), transparent 70%);
   animation: drift 32s var(--ease-soft) infinite alternate;
 }
 
@@ -374,10 +374,10 @@
   height: 46vh;
   background: conic-gradient(
     from 180deg at 50% 50%,
-    rgba(33, 150, 243, 0.09),
-    rgba(144, 202, 249, 0.07),
-    rgba(144, 202, 249, 0.09),
-    rgba(33, 150, 243, 0.09)
+    rgba(37, 99, 255, 0.09),
+    rgba(59, 130, 246, 0.07),
+    rgba(59, 130, 246, 0.09),
+    rgba(37, 99, 255, 0.09)
   );
   filter: blur(72px);
   animation: spin-slow 90s linear infinite;
@@ -392,7 +392,7 @@
   background: linear-gradient(
     180deg,
     transparent,
-    rgba(33, 150, 243, 0.22) 45%,
+    rgba(37, 99, 255, 0.22) 45%,
     transparent
   );
   animation: line-slide 9s var(--ease-soft) infinite;
@@ -463,8 +463,8 @@
   pointer-events: none;
   background: radial-gradient(
     circle,
-    rgba(13, 71, 161, 0.13) 0%,
-    rgba(33, 150, 243, 0.07) 38%,
+    rgba(4, 18, 74, 0.13) 0%,
+    rgba(37, 99, 255, 0.07) 38%,
     transparent 68%
   );
   opacity: 0;
@@ -500,8 +500,8 @@
   width: 42px;
   height: 42px;
   margin: -21px 0 0 -21px;
-  background: rgba(13, 71, 161, 0.16);
-  border: 1px solid rgba(13, 71, 161, 0.4);
+  background: rgba(4, 18, 74, 0.16);
+  border: 1px solid rgba(4, 18, 74, 0.4);
 }
 
 /* --------------------------------------------------- floating actions -- */

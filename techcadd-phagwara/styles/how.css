@@ -116,7 +116,7 @@
   position: absolute;
   z-index: 0;
   pointer-events: none;
-  background: rgba(33, 150, 243, 0.14);
+  background: rgba(37, 99, 255, 0.14);
 }
 
 .how__line-fill {
@@ -210,7 +210,7 @@
   color: #fff;
   font-size: 1.4rem;
   background: var(--grad);
-  box-shadow: 0 14px 30px rgba(33, 150, 243, 0.3);
+  box-shadow: 0 14px 30px rgba(37, 99, 255, 0.3);
 }
 
 .how__title {

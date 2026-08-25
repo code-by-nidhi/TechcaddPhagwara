@@ -178,15 +178,15 @@ export default function Journey() {
             >
               <defs>
                 <linearGradient id="wireGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#2196F3" />
-                  <stop offset="50%" stopColor="#0D47A1" />
-                  <stop offset="100%" stopColor="#90CAF9" />
+                  <stop offset="0%" stopColor="#2563FF" />
+                  <stop offset="50%" stopColor="#04124A" />
+                  <stop offset="100%" stopColor="#3B82F6" />
                 </linearGradient>
 
                 <linearGradient id="flowGrad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="#90CAF9" stopOpacity="0" />
-                  <stop offset="50%" stopColor="#90CAF9" />
-                  <stop offset="100%" stopColor="#90CAF9" stopOpacity="0" />
+                  <stop offset="0%" stopColor="#3B82F6" stopOpacity="0" />
+                  <stop offset="50%" stopColor="#3B82F6" />
+                  <stop offset="100%" stopColor="#3B82F6" stopOpacity="0" />
                 </linearGradient>
 
                 <filter id="wireGlow" x="-60%" y="-60%" width="220%" height="220%">

@@ -34,9 +34,9 @@ export default function SuccessRing() {
       <svg className="ring__svg" viewBox="0 0 300 300" aria-hidden="true">
         <defs>
           <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#2196F3" />
-            <stop offset="55%" stopColor="#0D47A1" />
-            <stop offset="100%" stopColor="#90CAF9" />
+            <stop offset="0%" stopColor="#2563FF" />
+            <stop offset="55%" stopColor="#04124A" />
+            <stop offset="100%" stopColor="#3B82F6" />
           </linearGradient>
         </defs>
         <circle className="ring__track" cx="150" cy="150" r={R} />

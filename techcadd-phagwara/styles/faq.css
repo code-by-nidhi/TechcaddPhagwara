@@ -26,7 +26,7 @@
   margin-top: 2rem;
   padding: 1.1rem 1.25rem;
   border-radius: var(--r-lg);
-  background: linear-gradient(115deg, rgba(33, 150, 243, 0.07), rgba(144, 202, 249, 0.07));
+  background: linear-gradient(115deg, rgba(37, 99, 255, 0.07), rgba(59, 130, 246, 0.07));
   border: 1px solid var(--border);
 }
 
@@ -41,7 +41,7 @@
   font-style: normal;
   color: #fff;
   background: var(--grad);
-  box-shadow: 0 10px 22px rgba(33, 150, 243, 0.28);
+  box-shadow: 0 10px 22px rgba(37, 99, 255, 0.28);
   animation: float-y 4.5s var(--ease-soft) infinite;
 }
 
@@ -138,7 +138,7 @@
   height: 34px;
   flex: none;
   border-radius: 11px;
-  background: rgba(33, 150, 243, 0.08);
+  background: rgba(37, 99, 255, 0.08);
   border: 1px solid var(--border);
   transition: all var(--t-mid);
 }
@@ -175,7 +175,7 @@
   background: var(--grad);
   border-color: transparent;
   transform: rotate(180deg);
-  box-shadow: 0 8px 18px rgba(13, 71, 161, 0.32);
+  box-shadow: 0 8px 18px rgba(4, 18, 74, 0.32);
 }
 
 .qa.is-open .qa__mark::after {

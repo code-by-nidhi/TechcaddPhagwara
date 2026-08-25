@@ -135,13 +135,13 @@
 }
 
 .hero__avatars span:nth-child(2) {
-  background: linear-gradient(135deg, #0d47a1, #90caf9);
+  background: linear-gradient(135deg, #04124A, #3B82F6);
 }
 .hero__avatars span:nth-child(3) {
-  background: linear-gradient(135deg, #90caf9, #2196f3);
+  background: linear-gradient(135deg, #3B82F6, #2563FF);
 }
 .hero__avatars span:nth-child(4) {
-  background: linear-gradient(135deg, #90caf9, #2196f3);
+  background: linear-gradient(135deg, #3B82F6, #2563FF);
 }
 
 .hero__stars {
@@ -207,7 +207,7 @@
   border-radius: 50%;
   background: radial-gradient(
     circle at calc(50% + var(--px) * 18%) calc(50% + var(--py) * 18%),
-    rgba(144, 202, 249, 0.2),
+    rgba(59, 130, 246, 0.2),
     transparent 58%
   );
   filter: blur(28px);
@@ -224,18 +224,18 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1px dashed rgba(33, 150, 243, 0.2);
+  border: 1px dashed rgba(37, 99, 255, 0.2);
 }
 
 .hero__ring--2 {
   inset: 12%;
   border-style: solid;
-  border-color: rgba(144, 202, 249, 0.16);
+  border-color: rgba(59, 130, 246, 0.16);
 }
 
 .hero__ring--3 {
   inset: 24%;
-  border-color: rgba(144, 202, 249, 0.22);
+  border-color: rgba(59, 130, 246, 0.22);
 }
 
 .hero__ring--spin {
@@ -284,7 +284,7 @@
   color: #fff;
   background: var(--grad);
   box-shadow:
-    0 30px 80px rgba(33, 150, 243, 0.4),
+    0 30px 80px rgba(37, 99, 255, 0.4),
     inset 0 -18px 40px rgba(8, 43, 98, 0.22),
     inset 0 14px 30px rgba(255, 255, 255, 0.34);
   transform: translate3d(calc(var(--px) * 16px), calc(var(--py) * 16px), 0);
@@ -298,7 +298,7 @@
   position: absolute;
   inset: -8%;
   border-radius: 50%;
-  border: 1px solid rgba(13, 71, 161, 0.35);
+  border: 1px solid rgba(4, 18, 74, 0.35);
   animation: pulse-ring 3.4s var(--ease-soft) infinite;
 }
 
@@ -513,11 +513,11 @@
 
 .hero {
   /* hero-scoped tokens — nothing outside `.hero` reads these */
-  --h-navy-900: #06164a;
-  --h-navy-800: #081b5c;
+  --h-navy-900: #04124a;
+  --h-navy-800: #081f6b;
   --h-navy-700: #102d8f;
   --h-accent: #3b82f6;
-  --h-electric: #4f8fff;
+  --h-electric: #2563ff;
   --h-sky: #7ab8ff;
 
   --h-ink: #ffffff;
@@ -549,13 +549,7 @@
       rgba(8, 27, 92, 0.6) 46%,
       transparent 76%
     ),
-    linear-gradient(
-      178deg,
-      var(--h-navy-800) 0%,
-      var(--h-navy-700) 34%,
-      var(--h-navy-800) 66%,
-      var(--h-navy-900) 100%
-    );
+    linear-gradient(135deg, #020b3f 0%, #062d8f 50%, #02154f 100%);
   /* a lit hairline where the dark band meets the light page below — an inset
      shadow rather than a border, so it costs no height */
   box-shadow: inset 0 -1px 0 rgba(122, 184, 255, 0.16);
@@ -683,57 +677,65 @@
   color: var(--h-ink);
 }
 
+/* the reference highlights its key phrase in flat accent yellow, not a
+   blue gradient — everything else in the hero is already blue, so this is
+   the one deliberate break in the palette, reserved for this single word. */
 .hero .gradient-text {
-  background: var(--h-grad-text);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 18px rgba(79, 143, 255, 0.45));
+  background: none;
+  font-style: italic;
+  color: #facc15;
+  -webkit-text-fill-color: #facc15;
+  filter: drop-shadow(0 0 18px rgba(250, 204, 21, 0.35));
 }
 
 .hero__swash::after {
-  background: linear-gradient(90deg, var(--h-electric), var(--h-sky));
+  background: linear-gradient(90deg, #facc15, rgba(250, 204, 21, 0.35));
   opacity: 0.55;
-  box-shadow: 0 0 16px rgba(79, 143, 255, 0.75);
+  box-shadow: 0 0 16px rgba(250, 204, 21, 0.5);
 }
 
 .hero__lead {
-  color: var(--h-ink-2);
+  color: #cbd5e1;
 }
 
 .hero__lead b {
-  color: var(--h-ink);
+  color: #ffffff;
 }
 
 /* ------------------------------------------------------------ buttons -- */
 
+/* white pill, dark text — same treatment the navbar's own Book Demo button
+   uses (see `.nav .btn--primary` in navbar.css); a gradient-blue fill here
+   would have far less contrast against the hero's own blue-dominant
+   background than a flat white pill does. */
 .hero .btn--primary {
-  background: var(--h-grad-cta);
-  box-shadow:
-    0 0 38px -6px rgba(59, 130, 246, 0.85),
-    0 14px 30px rgba(4, 14, 48, 0.45);
+  color: #020b3f;
+  background: #ffffff;
+  box-shadow: 0 14px 30px rgba(4, 14, 48, 0.45);
+}
+
+.hero .btn--primary::after {
+  display: none;
 }
 
 .hero .btn--primary:hover {
-  box-shadow:
-    0 0 60px -4px rgba(37, 99, 235, 1),
-    0 18px 40px rgba(4, 14, 48, 0.5);
+  background: #ffffff;
+  box-shadow: 0 18px 40px rgba(4, 14, 48, 0.5);
   transform: translateY(-2px) scale(1.03);
 }
 
 .hero .btn--ghost {
   color: var(--h-ink);
-  background: rgba(20, 46, 116, 0.4);
-  border: 1px solid rgba(120, 180, 255, 0.42);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .hero .btn--ghost:hover {
   color: #fff;
-  border-color: rgba(150, 200, 255, 0.72);
-  background: rgba(30, 70, 165, 0.5);
-  box-shadow: 0 0 34px -6px rgba(79, 143, 255, 0.75);
+  border-color: rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 34px -6px rgba(59, 130, 246, 0.75);
   transform: translateY(-2px) scale(1.02);
 }
 
@@ -775,15 +777,12 @@
 }
 
 .hero__stat b {
-  background: var(--h-grad-text);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 14px rgba(79, 143, 255, 0.4));
+  color: #3b82f6;
+  filter: drop-shadow(0 0 14px rgba(59, 130, 246, 0.4));
 }
 
 .hero__stat span {
-  color: var(--h-ink-3);
+  color: #cbd5e1;
 }
 
 /* ------------------------------------------------- visual / AI circle -- */

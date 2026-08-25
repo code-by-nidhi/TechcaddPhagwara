@@ -1,0 +1,122 @@
+/* ==========================================================================
+   Trust Indicators — three glass cards overlapping the hero's bottom edge
+   ========================================================================== */
+
+.trust {
+  position: relative;
+  z-index: 2;
+  margin-top: -60px;
+}
+
+.trust__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1400px;
+}
+
+.trust__card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  min-height: 110px;
+  padding: 1.25rem 1.6rem;
+  border-radius: 24px;
+  background: rgba(10, 20, 80, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  animation: trust-fade-up 0.7s var(--ease) forwards;
+  animation-delay: calc(var(--i) * 120ms + 150ms);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+
+@keyframes trust-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.trust__card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 28px 54px rgba(0, 0, 0, 0.28),
+    0 0 34px -8px rgba(59, 130, 246, 0.35);
+}
+
+.trust__icon {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  flex: none;
+  border-radius: 16px;
+  color: #020b3f;
+  background: linear-gradient(135deg, #facc15, #eab308);
+}
+
+.trust__title {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.trust__subtitle {
+  margin-top: 0.3rem;
+  font-size: 16px;
+  color: #cbd5e1;
+}
+
+/* ------------------------------------------------------------ responsive -- */
+
+@media (max-width: 991px) {
+  .trust__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .trust {
+    margin-top: -32px;
+  }
+
+  .trust__grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .trust__card {
+    min-height: auto;
+    padding: 1.1rem 1.25rem;
+  }
+
+  .trust__icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .trust__title {
+    font-size: 22px;
+  }
+
+  .trust__subtitle {
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trust__card {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+}
