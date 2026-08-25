@@ -6,6 +6,17 @@ export interface SplitTextProps {
   /** Offsets the stagger index so two SplitTexts in one heading read as one animation. */
   start?: number
   className?: string
+  /**
+   * Set false for a heading that's visible without scrolling (a page hero).
+   * The `.split-text .word > span` rule masks every word below its box
+   * (`translateY(105%)`) *by class*, independent of `data-reveal` — it only
+   * lifts once the reveal observer adds `.is-in`, which it only ever does
+   * for `[data-reveal]` elements. So dropping just the attribute would leave
+   * the mask permanently on; skipping the split-word markup entirely is what
+   * actually renders the heading immediately. Default true keeps the
+   * word-by-word scroll-in animation for headings the visitor scrolls to.
+   */
+  reveal?: boolean
 }
 
 /**
@@ -19,7 +30,10 @@ export default function SplitText({
   as: Tag = 'span',
   start = 0,
   className = '',
+  reveal = true,
 }: SplitTextProps) {
+  if (!reveal) return <Tag className={className}>{text}</Tag>
+
   const words = String(text).split(' ')
 
   return (

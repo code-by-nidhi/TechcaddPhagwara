@@ -18,12 +18,16 @@ const SATELLITES: { icon: IconName; angle: number; radius: number }[] = [
 /**
  * The orbiting hero artwork. Client-side only because it tracks the pointer
  * to publish `--px` / `--py` for the CSS parallax.
+ *
+ * No `data-reveal` here either — it sits beside the hero copy above the
+ * fold, so gating it behind the scroll-reveal observer would leave a blank
+ * gap next to text that's already visible.
  */
 export default function HeroVisual() {
   const visualRef = useMouseParallax<HTMLDivElement>({ damp: 0.08 })
 
   return (
-    <div className="hero__visual" ref={visualRef} data-reveal="scale" data-reveal-delay="220">
+    <div className="hero__visual" ref={visualRef}>
       <div className="hero__orbits">
         <span className="hero__ring hero__ring--spin" />
         <span className="hero__ring hero__ring--2 hero__ring--spin-rev" />

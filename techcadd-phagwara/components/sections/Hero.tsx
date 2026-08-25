@@ -8,6 +8,13 @@ import { heroStats, companies } from '@/data/site'
  * Server Component — the copy, headings and CTAs are all static HTML in the
  * initial response, which is what the crawler and the LCP measurement see.
  * Only the orbit artwork and the counters hydrate.
+ *
+ * None of this content carries `data-reveal`: that attribute is styled
+ * `opacity: 0` until the client-side IntersectionObserver in `useReveal()`
+ * flips on `.is-in`, which means anything wearing it stays invisible until
+ * JS hydrates. Fine for sections the visitor has to scroll to reach, but the
+ * hero is what LCP/FCP measure and what every visitor sees first — it must
+ * paint with the initial HTML, not wait on a scroll-reveal engine.
  */
 export default function Hero() {
   return (
@@ -16,7 +23,7 @@ export default function Hero() {
         <div className="hero__grid">
           {/* --------------------------------------------------------- copy */}
           <div className="hero__copy">
-            <span className="eyebrow hero__badge" data-reveal="up">
+            <span className="eyebrow hero__badge">
               <i>
                 <Icon name="zap" />
               </i>
@@ -24,24 +31,20 @@ export default function Hero() {
             </span>
 
             <h1 className="hero__title">
-              <span className="line" data-reveal="up" data-reveal-delay="80">
-                Learn the skills
-              </span>
-              <span className="line" data-reveal="up" data-reveal-delay="160">
+              <span className="line">Learn the skills</span>
+              <span className="line">
                 that <span className="gradient-text hero__swash">AI can’t replace</span>
               </span>
-              <span className="line" data-reveal="up" data-reveal-delay="240">
-                — and get placed.
-              </span>
+              <span className="line">— and get placed.</span>
             </h1>
 
-            <p className="hero__lead" data-reveal="up" data-reveal-delay="320">
+            <p className="hero__lead">
               Phagwara’s AI-first training institute. Live instructor-led classes,{' '}
               <b>real client projects</b>, GPU-backed AI labs and a placement cell that has moved{' '}
               <b>12,400+ students</b> into tech careers.
             </p>
 
-            <div className="hero__cta" data-reveal="up" data-reveal-delay="400">
+            <div className="hero__cta">
               <Button href="#courses" size="lg" arrow>
                 Explore Programs
               </Button>
@@ -50,7 +53,7 @@ export default function Hero() {
               </Button>
             </div>
 
-            <div className="hero__proof" data-reveal="up" data-reveal-delay="480">
+            <div className="hero__proof">
               <div className="hero__rating">
                 <div className="hero__avatars" aria-hidden="true">
                   <span>AS</span>
@@ -89,7 +92,7 @@ export default function Hero() {
         </div>
 
         {/* ------------------------------------------------------- marquee */}
-        <div className="hero__marquee" data-reveal="up" data-reveal-delay="120" aria-hidden="true">
+        <div className="hero__marquee" aria-hidden="true">
           <div className="hero__marquee-track">
             {[...companies, ...companies].map((name, i) => (
               <span className="hero__marquee-item" key={`${name}-${i}`}>

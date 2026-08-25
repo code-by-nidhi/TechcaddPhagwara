@@ -62,9 +62,10 @@ export default function ProgramLandingPage({
             eyebrowIcon={program.icon}
             title={program.title}
             lead={program.summary}
+            reveal={false}
           />
 
-          <div className="course-hero__cta" data-reveal="up">
+          <div className="course-hero__cta">
             <Button href="/#contact" arrow>
               Book Free Demo
             </Button>

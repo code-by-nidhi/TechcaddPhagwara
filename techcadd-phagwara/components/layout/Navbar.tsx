@@ -91,10 +91,12 @@ export default function Navbar() {
   /** Which category is expanded inside the Courses drawer accordion. */
   const [openCategory, setOpenCategory] = useState<string | null>(null)
   /**
-   * Panels are expensive to mount now that Courses carries 27 links across
-   * four columns — deferring that JSX until the panel is actually opened
-   * once keeps it out of the first render. It stays mounted afterwards so
-   * re-opening is instant, matching the mega menu's own hover-hold feel.
+   * Panels start unmounted so the first paint stays lean, but they are
+   * preloaded in the background right after that paint (see effect below)
+   * rather than on first hover — a visitor's pointer takes far longer than
+   * that idle window to reach a nav item, so every dropdown — Courses,
+   * Internship & Training, After 12th — opens instantly instead of paying
+   * a mount cost on its first use.
    */
   const [mountedPanels, setMountedPanels] = useState<ReadonlySet<string>>(new Set())
   /** Whether the demo modal is currently shown. */
@@ -132,6 +134,19 @@ export default function Navbar() {
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
+  }, [])
+
+  /* preload every dropdown/mega-menu panel once the browser is idle ------- */
+  useEffect(() => {
+    const labels = navLinks.filter(hasPanel).map((link) => link.label)
+    const mountAll = () => setMountedPanels(new Set(labels))
+
+    if (typeof window.requestIdleCallback === 'function') {
+      const id = window.requestIdleCallback(mountAll, { timeout: 1000 })
+      return () => window.cancelIdleCallback(id)
+    }
+    const id = window.setTimeout(mountAll, 200)
+    return () => window.clearTimeout(id)
   }, [])
 
   const go = useCallback(

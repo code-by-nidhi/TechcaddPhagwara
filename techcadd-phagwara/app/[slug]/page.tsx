@@ -77,9 +77,10 @@ export default async function CoursePage({ params }: PageProps) {
             eyebrowIcon={course.icon}
             title={course.title}
             lead={course.summary}
+            reveal={false}
           />
 
-          <div className="course-hero__cta" data-reveal="up">
+          <div className="course-hero__cta">
             <Button href="/#contact" arrow>
               Book Free Demo
             </Button>
