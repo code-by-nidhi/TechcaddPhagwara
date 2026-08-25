@@ -1,11 +1,31 @@
 import Button from '@/components/ui/Button'
+import Counter from '@/components/ui/Counter'
+import Icon, { type IconName } from '@/components/ui/Icon'
 import { aboutStats, brand } from '@/data/site'
+
+interface AchievementBadge {
+  icon: IconName
+  label: string
+  value?: number
+  suffix?: string
+}
+
+/** The four glass badges floating over the image collage. Two count up
+    (Counter is itself a client leaf, so this stays embeddable from a Server
+    Component the same way Hero already embeds it for `heroStats`); the
+    other two are label-only, matching what was asked for each. */
+const ACHIEVEMENTS: AchievementBadge[] = [
+  { icon: 'award', value: 20, suffix: '+', label: 'Years Experience' },
+  { icon: 'users', value: 5000, suffix: '+', label: 'Students Trained' },
+  { icon: 'code', label: 'Live Projects' },
+  { icon: 'briefcase', label: 'Placement Support' },
+]
 
 /**
  * Server Component — badge, heading, paragraph, stats and CTAs are all
- * static HTML; only the two `Button`s hydrate. The image collage is CSS-only
- * (see the `.about__shot-art` note below), so nothing else in this section
- * needs the client.
+ * static HTML; only the two `Button`s and the two counting badges hydrate.
+ * The image collage itself is CSS-only (see the `.about__shot-art` note
+ * below), so nothing else in this section needs the client.
  */
 export default function About() {
   return (
@@ -70,6 +90,24 @@ export default function About() {
                 <span className="about__shot-art" style={{ '--hue': 200 }} aria-hidden="true" />
               </figure>
             </div>
+
+            {ACHIEVEMENTS.map((badge, i) => (
+              <div className={`about__badge-float about__badge-float--${i}`} key={badge.label}>
+                <i>
+                  <Icon name={badge.icon} size={16} />
+                </i>
+                <div>
+                  {badge.value !== undefined ? (
+                    <b>
+                      <Counter value={badge.value} suffix={badge.suffix} />
+                    </b>
+                  ) : (
+                    <b>{badge.label}</b>
+                  )}
+                  {badge.value !== undefined && <span>{badge.label}</span>}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

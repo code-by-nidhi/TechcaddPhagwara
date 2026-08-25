@@ -2,7 +2,8 @@ import dynamic from 'next/dynamic'
 
 import Hero from '@/components/sections/Hero'
 import About from '@/components/sections/About'
-import Stats from '@/components/sections/Stats'
+import HowItWorks from '@/components/sections/HowItWorks'
+import Categories from '@/components/sections/Categories'
 import Courses from '@/components/sections/Courses'
 import LearningModes from '@/components/sections/LearningModes'
 import Benefits from '@/components/sections/Benefits'
@@ -31,7 +32,8 @@ export default function HomePage() {
     <main id="main">
       <Hero />
       <About />
-      <Stats />
+      <HowItWorks />
+      <Categories />
       <Courses />
       <LearningModes />
       <Benefits />
