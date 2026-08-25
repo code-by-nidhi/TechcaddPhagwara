@@ -239,7 +239,7 @@ const branchLinks: NavDropdownItem[] = [
 export const navLinks: NavLink[] = [
   { label: 'Home', href: '#home' },
   {
-    label: 'About Us',
+    label: 'About',
     href: '#about',
     items: [
       { label: 'About Us', href: '#about', note: 'Who we are' },
@@ -254,7 +254,7 @@ export const navLinks: NavLink[] = [
   { label: 'AI', href: '#labs', ai: true },
   { label: 'Courses', href: '#courses', mega: true },
   {
-    label: 'Internship & Training',
+    label: 'Internship',
     href: '#modes',
     groups: internshipCatalog.map((cat) => ({
       title: cat.title,
@@ -277,7 +277,6 @@ export const navLinks: NavLink[] = [
       })),
     })),
   },
-  { label: 'Branches', href: '#', items: branchLinks },
   {
     label: 'Resources',
     href: '#faq',
@@ -288,7 +287,8 @@ export const navLinks: NavLink[] = [
       { label: 'FAQs', href: '#faq', note: 'Fees, batches, placement' },
     ],
   },
-  { label: 'Contact Us', href: '#contact' },
+  { label: 'Branches', href: '#', items: branchLinks },
+  { label: 'Contact', href: '#contact' },
 ]
 
 /* The Courses mega menu now reads from `data/coursePages.ts` — its four

@@ -1207,43 +1207,62 @@
 
 /* ------------------------------------------------------------ responsive -- */
 
-/*
- * Ten labels plus the CTA stop clearing the container below 1280px, so that
- * is where the bar hands over to the drawer — the 1080px rule above was sized
- * for seven. Everything the drawer shows is the same tree as the desktop bar.
- */
+/* "Book Demo" is two words and must never wrap to two lines. The size itself
+   belongs to the reference rule above and to the two steps below — setting it
+   again here, outside any media query, silently overrode both. */
 .nav .btn--primary {
-  padding: 11px 20px;
-  font-size: 14.5px;
   white-space: nowrap;
 }
 
 /*
- * Ten labels, six chevrons and the CTA need about 1320px of bar, which the
- * 1420px container only offers from roughly 1410px of viewport up. Below that
- * the bar hands over to the drawer — the 1080px rule above was sized for the
- * seven-item version. The drawer carries the identical tree, so nothing is
- * unreachable at any width.
+ * Ten labels, six chevrons and the CTA used to need about 1320px of bar,
+ * which the 1420px container only offered from roughly 1410px of viewport up
+ * — so every ordinary 1366px laptop got the burger instead of the bar. The
+ * labels are shorter now (About / Internship / Contact), the phone chip is
+ * gone from the bar, and the two steps below trim type and padding, which
+ * brings the full row inside ~1080px. The drawer takes over from there and
+ * carries the identical tree, so nothing is unreachable at any width.
  */
-@media (max-width: 1400px) {
-  :root {
-    --nav-h: 68px;
+/*
+ * Between the drawer handover and reference sizing, every measurement in the
+ * row scales with the viewport instead of stepping at a breakpoint. Ten
+ * labels, six chevrons, the AI pill and the CTA is a lot of row: fixed steps
+ * either fit at 1440 and overflow at 1200, or fit at 1200 and look starved at
+ * 1440. Each `clamp()` below hits reference sizing at the top of the range
+ * and shrinks smoothly from there, so the bar fits at every width in between
+ * rather than at the two the steps were measured against.
+ */
+@media (min-width: 1081px) and (max-width: 1500px) {
+  /* 44px of gutter each side is pure whitespace the row cannot spend. */
+  .nav .shell--wide {
+    padding-inline: clamp(1rem, 2.2vw, 2.75rem);
   }
 
-  .nav__links {
-    display: none;
+  .nav__logo-img {
+    height: clamp(30px, 2.6vw, 40px);
   }
 
-  /* The drawer carries its own "Book Free Demo" button in its footer — this
-     one was never actually hidden here, so it kept sitting inside
-     `.nav__actions` next to the burger, still taking its full flex width and
-     pushing the burger past the bar's edge on narrow screens. */
+  .nav__link {
+    padding: 11px clamp(5px, 0.85vw, 14px);
+    font-size: clamp(12.5px, 1.02vw, 15.5px);
+  }
+
+  .nav__link--ai {
+    padding: 11px clamp(12px, 1.5vw, 26px);
+  }
+
+  .nav .btn--primary {
+    padding: 12px clamp(16px, 1.8vw, 30px);
+    font-size: clamp(13.5px, 1vw, 15px);
+  }
+}
+
+/* The handover to the drawer. `.nav__links` is hidden by the 1080px rule
+   further up; the CTA needs hiding too, or it keeps its flex width next to
+   the burger and pushes it past the bar's edge. */
+@media (max-width: 1080px) {
   .nav .btn--primary {
     display: none;
-  }
-
-  .nav__burger {
-    display: grid;
   }
 }
 
@@ -1256,5 +1275,47 @@
 
 .nav__caret,
 .nav__ai-mark {
+  flex: none;
+}
+
+/* ==========================================================================
+   The bar's own surface — navy on the left, blue on the right, dotted
+
+   A flat `rgba(6, 22, 74, .95)` read as a slab behind the logo. The reference
+   runs a deep navy under the logo up to a lit blue under the CTA, with a fine
+   dot grid over the whole thing, so the bar has a direction rather than just
+   a colour. Both layers live on `.nav` (the full-width header), not on
+   `.nav__bar` (the container-width row), or the gradient would stop short of
+   the viewport edges.
+   ========================================================================== */
+
+.nav {
+  background:
+    radial-gradient(rgba(255, 255, 255, 0.11) 1px, transparent 1.4px) 0 0 / 22px 22px,
+    linear-gradient(100deg, #050f3d 0%, #0a1f68 38%, #1140b4 78%, #1b56d8 100%);
+}
+
+.nav.is-stuck {
+  background:
+    radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1.4px) 0 0 / 22px 22px,
+    linear-gradient(100deg, #040c33 0%, #081a58 38%, #0e37a0 78%, #1749c2 100%);
+}
+
+/* --------------------------------------------------------------- links -- */
+
+/*
+ * `margin-left: auto` parked the row hard against the CTA. With the phone
+ * chip gone there is real slack in the bar, and the reference spends it on
+ * both sides — `margin-inline: auto` centres the ten items between the logo
+ * and the button.
+ */
+.nav__links {
+  margin-inline: auto;
+  gap: 0.1rem;
+}
+
+/* The bar is one row of ten: a label that wraps, or an icon the flex layout
+   decides to shrink, breaks the line height for every sibling. */
+.nav__item {
   flex: none;
 }

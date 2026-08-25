@@ -276,13 +276,11 @@ export default function Navbar() {
             </ul>
 
             <div className="nav__actions">
-              <a className="nav__phone" href={brand.phoneHref}>
-                <Icon name="phone" size={15} />
-                {brand.phone}
-              </a>
-
-              <Button onClick={openDemo} variant="primary" size="sm" arrow>
-                Book Free Demo
+              {/* The number lives in the drawer footer and the site footer —
+                  ten labels plus the CTA already use every pixel the bar has,
+                  and the chip was the first thing to push them off it. */}
+              <Button onClick={openDemo} variant="primary" size="sm">
+                Book Demo
               </Button>
 
               <button
