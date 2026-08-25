@@ -1,0 +1,1287 @@
+/* ==========================================================================
+   Navigation — floating glass pill, mega menu, mobile drawer
+   ========================================================================== */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9000;
+  padding-top: 0.9rem;
+  transition: padding var(--t-mid);
+}
+
+.nav.is-stuck {
+  padding-top: 0.45rem;
+}
+
+.nav__bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  height: var(--nav-h);
+  padding: 0 0.7rem 0 1.15rem;
+  border-radius: var(--r-pill);
+  border: 1px solid transparent;
+  background: transparent;
+  transition:
+    background var(--t-mid),
+    border-color var(--t-mid),
+    box-shadow var(--t-mid),
+    height var(--t-mid);
+}
+
+.nav.is-stuck .nav__bar {
+  height: 64px;
+  background: rgba(255, 255, 255, 0.72);
+  border-color: var(--border);
+  box-shadow: 0 10px 34px rgba(33, 150, 243, 0.1);
+  backdrop-filter: blur(22px) saturate(1.8);
+  -webkit-backdrop-filter: blur(22px) saturate(1.8);
+}
+
+/* ---------------------------------------------------------------- logo -- */
+
+.nav__logo {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+
+/* Sized off its own aspect ratio (899:242) so `height` is the only knob —
+   the sticky/1080px/520px steps below just tune that one number. */
+.nav__logo-img {
+  height: 40px;
+  width: auto;
+  transition: height 0.3s var(--ease-soft);
+}
+
+/* --------------------------------------------------------------- links -- */
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  margin-left: auto;
+}
+
+.nav__item {
+  position: relative;
+}
+
+.nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.34rem;
+  padding: 0.62rem 0.95rem;
+  border-radius: var(--r-pill);
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  transition: color var(--t-fast);
+}
+
+/* gradient wash on hover */
+.nav__link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(120deg, rgba(33, 150, 243, 0.09), rgba(144, 202, 249, 0.11));
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity var(--t-fast), transform var(--t-fast);
+}
+
+/* animated underline */
+.nav__link::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0.32rem;
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--grad);
+  transform: translateX(-50%);
+  transition: width 0.34s var(--ease);
+}
+
+.nav__link:hover,
+.nav__item.is-active .nav__link {
+  color: var(--blue-600);
+}
+
+.nav__link:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.nav__link:hover::after,
+.nav__item.is-active .nav__link::after {
+  width: calc(100% - 1.9rem);
+}
+
+.nav__link span,
+.nav__link svg {
+  position: relative;
+  z-index: 1;
+}
+
+.nav__caret {
+  transition: transform var(--t-fast);
+}
+
+.nav__item.is-open .nav__caret {
+  transform: rotate(180deg);
+}
+
+/* Only the AI item carries a persistent pill (see `.nav__link--ai` below).
+   Every other item is transparent until hovered — no scroll-driven "current
+   section" fill, so two items that happen to share an anchor (About Us and
+   Founder both point at #about) can never light up together. */
+
+/* -------------------------------------------------------------- action -- */
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex: none;
+}
+
+.nav__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: var(--r-pill);
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.6);
+  transition: color var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
+}
+
+.nav__phone:hover {
+  color: var(--blue-600);
+  border-color: var(--violet);
+  transform: translateY(-2px);
+}
+
+.nav__burger {
+  display: none;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  color: var(--ink);
+  font-size: 1.35rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: transform var(--t-fast), color var(--t-fast);
+}
+
+.nav__burger:hover {
+  color: var(--blue);
+  transform: scale(1.06);
+}
+
+/* ----------------------------------------------------------- mega menu -- */
+
+.mega {
+  position: absolute;
+  top: calc(100% + 0.65rem);
+  left: 50%;
+  width: min(960px, calc(100vw - 3rem));
+  padding: 1.5rem;
+  border-radius: var(--r-xl);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--border);
+  box-shadow: var(--sh-xl);
+  backdrop-filter: blur(28px) saturate(1.8);
+  -webkit-backdrop-filter: blur(28px) saturate(1.8);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 14px) scale(0.985);
+  transition:
+    opacity 0.34s var(--ease),
+    transform 0.34s var(--ease),
+    visibility 0.34s;
+}
+
+.nav__item.is-open .mega {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0) scale(1);
+}
+
+.mega::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--grad-soft);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.mega__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.4rem 1.2rem;
+}
+
+/* Programming | AI & Data
+   Digital Marketing | Cyber & Cloud — the four categories pair up rather
+   than squeeze into four narrow columns once the panel itself has less
+   than ~840px to work with. */
+@media (max-width: 1024px) {
+  .mega__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.1rem 1.5rem;
+  }
+}
+
+.mega__col-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.55rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px dashed var(--border-strong);
+  font-family: var(--font-display);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.mega__col-title::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--grad);
+}
+
+.mega__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 11px;
+  font-size: 0.89rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  transition: background var(--t-fast), color var(--t-fast), transform var(--t-fast);
+}
+
+.mega__link:hover {
+  color: var(--blue-600);
+  background: linear-gradient(100deg, rgba(33, 150, 243, 0.08), rgba(144, 202, 249, 0.06));
+  transform: translateX(4px);
+}
+
+.mega__meta {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--ink-4);
+  transition: color var(--t-fast);
+}
+
+.mega__link:hover .mega__meta {
+  color: var(--violet);
+}
+
+.mega__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.15rem;
+  padding: 0.95rem 1.15rem;
+  border-radius: var(--r-md);
+  background: linear-gradient(110deg, rgba(33, 150, 243, 0.07), rgba(144, 202, 249, 0.07));
+  border: 1px solid var(--border);
+}
+
+.mega__foot p {
+  font-size: 0.88rem;
+  color: var(--ink-2);
+  margin: 0;
+}
+
+.mega__foot b {
+  color: var(--ink);
+  font-family: var(--font-display);
+}
+
+/* ------------------------------------------------------- mobile drawer -- */
+
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 9500;
+  pointer-events: none;
+}
+
+.drawer__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 43, 98, 0.28);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+
+.drawer__panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(400px, 88vw);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1.4rem 1.35rem 2rem;
+  background: rgba(255, 255, 255, 0.96);
+  border-left: 1px solid var(--border);
+  box-shadow: -30px 0 70px rgba(33, 150, 243, 0.16);
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
+  transform: translateX(104%);
+  transition: transform 0.52s var(--ease), width 0.3s var(--ease-soft);
+  overflow-y: auto;
+}
+
+/* room for the Courses accordion's 2-column pairing at tablet widths */
+@media (min-width: 768px) {
+  .drawer__panel {
+    width: min(460px, 60vw);
+  }
+}
+
+.drawer.is-open {
+  pointer-events: auto;
+}
+
+.drawer.is-open .drawer__scrim {
+  opacity: 1;
+}
+
+.drawer.is-open .drawer__panel {
+  transform: none;
+}
+
+.drawer__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.drawer__close {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  font-size: 1.25rem;
+  color: var(--ink);
+  border: 1px solid var(--border);
+  background: var(--bg-2);
+  transition: transform var(--t-fast), color var(--t-fast);
+}
+
+.drawer__close:hover {
+  color: var(--purple);
+  transform: rotate(90deg);
+}
+
+.drawer__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.95rem 1rem;
+  border-radius: var(--r-md);
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--ink);
+  border: 1px solid transparent;
+  transition: all var(--t-fast);
+  opacity: 0;
+  transform: translateX(28px);
+}
+
+.drawer.is-open .drawer__link {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.5s var(--ease) calc(var(--i) * 55ms + 120ms),
+    transform 0.5s var(--ease) calc(var(--i) * 55ms + 120ms),
+    background var(--t-fast),
+    color var(--t-fast);
+}
+
+.drawer__link:hover,
+.drawer__link.is-active {
+  color: var(--blue-600);
+  background: linear-gradient(100deg, rgba(33, 150, 243, 0.08), rgba(144, 202, 249, 0.06));
+  border-color: var(--border);
+}
+
+.drawer__sub {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.25rem 0 0.5rem 0.6rem;
+  margin-left: 0.6rem;
+  border-left: 1px dashed var(--border-strong);
+}
+
+.drawer__sub a {
+  padding: 0.5rem 0.7rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink-3);
+  transition: color var(--t-fast), background var(--t-fast);
+}
+
+.drawer__sub a:hover {
+  color: var(--blue-600);
+  background: rgba(33, 150, 243, 0.06);
+}
+
+/* Courses in the drawer: a nested accordion rather than one 27-link scroll.
+   One row per category by default; a tablet gets the same 2x2 pairing the
+   desktop panel uses once it has the width to spare. */
+.drawer__sub--categories {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.3rem;
+  padding: 0.35rem 0 0.5rem 0.6rem;
+  margin-left: 0.6rem;
+  border-left: 1px dashed var(--border-strong);
+}
+
+@media (min-width: 768px) {
+  .drawer__sub--categories {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem 1rem;
+  }
+}
+
+.drawer__category {
+  min-width: 0;
+}
+
+.drawer__category-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  /* 44px+ tap target */
+  min-height: 44px;
+  padding: 0.6rem 0.7rem;
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--ink-2);
+  transition: color var(--t-fast), background var(--t-fast);
+}
+
+.drawer__category-toggle:hover {
+  color: var(--blue-600);
+  background: rgba(33, 150, 243, 0.06);
+}
+
+.drawer__category .drawer__sub {
+  margin-left: 0.3rem;
+  padding-left: 0.5rem;
+}
+
+.drawer__category .drawer__sub a {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.drawer__foot {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.drawer__contact {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--r-md);
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.drawer__contact svg {
+  color: var(--blue);
+  flex: none;
+}
+
+/* -------------------------------------------------------------- mobile -- */
+
+@media (max-width: 1080px) {
+  .nav__links,
+  .nav__phone {
+    display: none;
+  }
+
+  .nav__burger {
+    display: grid;
+  }
+
+  .nav__bar {
+    height: 68px;
+    padding-right: 0.5rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .nav__logo-img {
+    height: 32px;
+  }
+}
+
+/* ==========================================================================
+   Navigation — deep-navy AI bar (reference parity)
+
+   Visual only: the markup, the menu items, the mega-menu and drawer
+   behaviour, the scroll spy and the responsive breakpoints are all the ones
+   that were already here. What changes is the skin — the floating white pill
+   becomes a full-width deep-navy bar with a hairline foot, light ink, a blue
+   gradient pill on the active item and a white Book Demo button.
+   ========================================================================== */
+
+/*
+ * The bar is now a constant 84px instead of a 78px pill that shrank to 64px
+ * on scroll, so the token moves with it: `--nav-h` is what the hero reserves
+ * for the header and what every section uses for its scroll margin, and a
+ * hard-coded height here would have left both slightly wrong.
+ */
+:root {
+  --nav-h: 84px;
+}
+
+@media (max-width: 1080px) {
+  :root {
+    --nav-h: 68px;
+  }
+}
+
+.nav {
+  padding-top: 0;
+  background: rgba(6, 22, 74, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.3s var(--ease-soft), box-shadow 0.3s var(--ease-soft);
+}
+
+/* Sticking now reads as a touch more weight rather than a change of shape. */
+.nav.is-stuck {
+  padding-top: 0;
+  background: rgba(6, 22, 74, 0.97);
+  box-shadow: 0 8px 28px rgba(2, 8, 30, 0.35);
+}
+
+/* the pill is gone — the colour lives on the full-width header instead */
+.nav__bar,
+.nav.is-stuck .nav__bar {
+  height: var(--nav-h);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition: height 0.3s var(--ease-soft);
+}
+
+/* --------------------------------------------------------------- links -- */
+
+.nav__link {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.85);
+  transition: color 0.3s var(--ease-soft), text-shadow 0.3s var(--ease-soft);
+}
+
+/* the reference has neither a hover wash nor an underline — the pill and a
+   small glow carry the whole state */
+.nav__link::before,
+.nav__link::after {
+  display: none;
+}
+
+.nav__link:hover {
+  color: #ffffff;
+  text-shadow: 0 0 14px rgba(59, 130, 246, 0.65);
+}
+
+.nav__item.is-active .nav__link {
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.nav__caret {
+  opacity: 0.75;
+  transition: transform 0.3s var(--ease-soft);
+}
+
+/*
+ * The gradient pill is reserved for the AI item alone (`.nav__link--ai`,
+ * below) — a persistent highlight for the one destination the bar promotes.
+ * Every other item, including whichever section is currently scrolled to,
+ * stays transparent; only a genuine `:hover` lights one up, and only for as
+ * long as the pointer is actually over it.
+ */
+.nav__link:hover:not(.nav__link--ai) {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+/* -------------------------------------------------------------- action -- */
+
+.nav__phone {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  transition: color 0.3s var(--ease-soft), border-color 0.3s var(--ease-soft),
+    background 0.3s var(--ease-soft);
+}
+
+.nav__phone:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.1);
+  transform: none;
+}
+
+/* Book Demo — solid white capsule, dark ink */
+.nav .btn--primary {
+  padding: 14px 34px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+  background: #ffffff;
+  border: 0;
+  box-shadow: none;
+  transition: transform 0.3s var(--ease-soft), box-shadow 0.3s var(--ease-soft),
+    background 0.3s var(--ease-soft);
+}
+
+/* the sheen sweep was built for a gradient fill and is invisible on white */
+.nav .btn--primary::after {
+  display: none;
+}
+
+.nav .btn--primary:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+}
+
+.nav__burger {
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  transition: color 0.3s var(--ease-soft), background 0.3s var(--ease-soft);
+}
+
+.nav__burger:hover {
+  color: #93c5fd;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/*
+ * Below 1360px the seven links, the phone and the button no longer clear the
+ * container at reference sizing, so the type and the padding step down to
+ * roughly what the bar carried before. Nothing is hidden or reordered — the
+ * existing 1080px breakpoint still owns the switch to the burger.
+ */
+@media (max-width: 1360px) {
+  .nav .btn--primary {
+    padding: 12px 24px;
+  }
+}
+
+/* ----------------------------------------------------------- mega menu -- */
+
+.mega {
+  /* all but opaque: at 0.94 the hero headline read straight through the panel
+     and competed with the course names */
+  background: linear-gradient(180deg, rgba(9, 29, 88, 0.985), rgba(5, 18, 62, 0.985));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 70px rgba(2, 8, 30, 0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  /* Programming alone now carries 10 links — tall enough on a short laptop
+     screen to run past the viewport. Capped and scrollable rather than
+     spilling under the fold with no way back up. */
+  max-height: min(78vh, 640px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.mega__col {
+  min-width: 0;
+}
+
+.mega::before {
+  background: linear-gradient(120deg, rgba(79, 143, 255, 0.55), rgba(147, 197, 253, 0.2));
+  opacity: 0.45;
+}
+
+.mega__col-title {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.mega__col-title::before {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+}
+
+.mega__link {
+  color: rgba(255, 255, 255, 0.82);
+  transition: color 0.3s var(--ease-soft), background 0.3s var(--ease-soft),
+    transform 0.3s var(--ease-soft);
+}
+
+.mega__link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.mega__meta {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.mega__link:hover .mega__meta {
+  color: rgba(147, 197, 253, 0.95);
+}
+
+.mega__foot {
+  background: linear-gradient(110deg, rgba(37, 99, 235, 0.18), rgba(59, 130, 246, 0.1));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mega__foot p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.mega__foot b {
+  color: #ffffff;
+}
+
+/* ------------------------------------------------------- mobile drawer -- */
+
+.drawer__scrim {
+  background: rgba(2, 8, 30, 0.55);
+}
+
+.drawer__panel {
+  background: rgba(6, 22, 74, 0.97);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: -30px 0 70px rgba(2, 8, 30, 0.6);
+}
+
+.drawer__close {
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.drawer__close:hover {
+  color: #93c5fd;
+}
+
+.drawer__link {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.drawer__link:hover,
+.drawer__link.is-active {
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.85), rgba(59, 130, 246, 0.85));
+  border-color: transparent;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.35);
+}
+
+.drawer__sub {
+  border-left-color: rgba(255, 255, 255, 0.14);
+}
+
+.drawer__sub a {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.drawer__sub a:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.drawer__sub--categories {
+  border-left-color: rgba(255, 255, 255, 0.14);
+}
+
+.drawer__category-toggle {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.drawer__category-toggle:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.drawer__contact {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.drawer__contact svg {
+  color: rgba(147, 197, 253, 0.95);
+}
+
+/* ==========================================================================
+   Floating actions — matching blue-theme glow
+   ========================================================================== */
+
+.dock__btn {
+  box-shadow: 0 14px 34px rgba(4, 14, 48, 0.4);
+}
+
+.dock__btn:hover {
+  box-shadow:
+    0 20px 46px rgba(4, 14, 48, 0.5),
+    0 0 34px -6px rgba(79, 143, 255, 0.75);
+}
+
+.dock__btn--wa {
+  box-shadow:
+    0 14px 34px rgba(4, 14, 48, 0.4),
+    0 0 26px -6px rgba(37, 211, 102, 0.7);
+}
+
+.dock__btn--wa::after {
+  border-color: rgba(37, 211, 102, 0.7);
+}
+
+.dock__btn--call {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  box-shadow:
+    0 14px 34px rgba(4, 14, 48, 0.4),
+    0 0 30px -6px rgba(79, 143, 255, 0.85);
+}
+
+.dock__btn--top {
+  color: #dbeafe;
+  background: rgba(6, 22, 74, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 14px 34px rgba(4, 14, 48, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================================
+   Navigation — Hoshiarpur bar arrangement
+
+   Ten items, six of them with panels, an AI capsule and a white CTA. The
+   sizing below is what makes that fit: the bar carries ten labels where it
+   used to carry seven, so the type and the padding come down and the switch
+   to the burger moves from 1080px to 1280px — the same breakpoint Hoshiarpur
+   uses for the same reason.
+   ========================================================================== */
+
+/* The reference bar is logo · links · CTA. The number lives in the drawer
+   footer and on the floating call button, both untouched. */
+.nav__phone {
+  display: none;
+}
+
+/*
+ * `min-width: 0` is the actual fix for the CTA overflow bug: a flex item's
+ * min-width defaults to `auto`, which means "never shrink below your content"
+ * — and with ten nowrap labels that content is wider than the bar has room
+ * for. Without this, `.nav__links` refused to shrink and pushed everything
+ * after it (the actions group, the button) out past the bar's own right
+ * edge. The container never exceeds ~1310-1330px of content width regardless
+ * of viewport (`.shell--wide` caps at 1420px), so this and the tightened
+ * sizing below are tuned once against that ceiling, not per breakpoint.
+ */
+.nav__bar {
+  gap: 1rem;
+}
+
+.nav__links {
+  gap: 0;
+  min-width: 0;
+}
+
+.nav__link {
+  padding: 10px 6px;
+  font-size: 15px;
+  transition:
+    color 0.3s var(--ease-soft),
+    background 0.3s var(--ease-soft),
+    text-shadow 0.3s var(--ease-soft),
+    box-shadow 0.3s var(--ease-soft),
+    transform 0.3s var(--ease-soft);
+}
+
+/* --------------------------------------------------------- the AI capsule -- */
+
+/*
+ * Always a pill, like the reference — it is a destination the bar promotes,
+ * not a state. That is also why it carries no chevron: the sparkle is the
+ * affordance, and a chevron inside a gradient capsule reads as a form control.
+ *
+ * Fixed padding rather than inherited: this pill is deliberately wider than
+ * its siblings at every width, so there is nothing to stay in sync with.
+ * `align-items: center` on `.nav__links` centres it against its shorter
+ * neighbours regardless of its own height — no separate centring needed.
+ */
+.nav__link--ai {
+  position: relative;
+  gap: 8px;
+  padding: 14px 32px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #4f8fff 100%);
+  box-shadow:
+    0 0 20px rgba(59, 130, 246, 0.25),
+    0 0 40px rgba(59, 130, 246, 0.15),
+    0 0 60px rgba(59, 130, 246, 0.1);
+}
+
+.nav__link--ai:hover {
+  color: #ffffff;
+  text-shadow: none;
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 30px rgba(59, 130, 246, 0.45),
+    0 0 60px rgba(59, 130, 246, 0.25);
+}
+
+/* A thin conic-gradient ring, masked down to just the 1px border, slowly
+   circling the pill — the "premium SaaS" border-light look, kept to a hollow
+   ring (not a fill) so it never dims the label underneath it. */
+.nav__link--ai::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(255, 255, 255, 0.9) 18deg,
+    transparent 60deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.8;
+  pointer-events: none;
+  animation: ai-border-spin 7s linear infinite;
+}
+
+/* A soft diagonal highlight drifting across the pill — `background`, not a
+   layout property, so it never touches the pill's own size or position. */
+.nav__link--ai::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    transparent 32%,
+    rgba(255, 255, 255, 0.32) 48%,
+    rgba(191, 219, 254, 0.22) 53%,
+    transparent 70%
+  );
+  background-size: 260% 100%;
+  pointer-events: none;
+  animation: ai-shine 5.5s ease-in-out infinite;
+}
+
+@keyframes ai-border-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ai-shine {
+  0%,
+  20% {
+    background-position: -130% 0;
+  }
+  60%,
+  100% {
+    background-position: 130% 0;
+  }
+}
+
+.nav__ai-mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  font-style: normal;
+  color: #dbeafe;
+  filter: drop-shadow(0 0 6px rgba(191, 219, 254, 0.9));
+  animation: ai-sparkle-pulse 2.6s ease-in-out infinite;
+}
+
+@keyframes ai-sparkle-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 4px rgba(191, 219, 254, 0.7));
+  }
+  50% {
+    transform: scale(1.14);
+    filter: drop-shadow(0 0 9px rgba(191, 219, 254, 1));
+  }
+}
+
+/* ------------------------------------------------------- short dropdowns -- */
+
+.drop {
+  position: absolute;
+  top: calc(100% + 0.55rem);
+  left: 50%;
+  z-index: 5;
+  width: 322px;
+  padding: 0.5rem;
+  border-radius: var(--r-lg);
+  background: linear-gradient(180deg, rgba(9, 29, 88, 0.985), rgba(5, 18, 62, 0.985));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 70px rgba(2, 8, 30, 0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 12px) scale(0.985);
+  transition:
+    opacity 0.3s var(--ease),
+    transform 0.3s var(--ease),
+    visibility 0.3s;
+}
+
+.nav__item.is-open .drop {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0) scale(1);
+}
+
+/* Internship & Training / After 12th carry category sub-headers now — a
+   little wider so a group title doesn't wrap, and capped with a scroll once
+   After 12th's thirteen links across three groups run past a short screen. */
+.drop--grouped {
+  width: 340px;
+  max-height: min(75vh, 560px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.drop__group + .drop__group {
+  margin-top: 0.4rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.drop__group-title {
+  padding: 0.3rem 0.75rem 0.4rem;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/*
+ * The three items nearest the end of the bar hang their panel from the right
+ * edge instead of centring it, which is what keeps it inside the viewport on
+ * a 1280px screen. Counted from the end, so the indicator span sitting first
+ * in the list does not shift the arithmetic.
+ */
+.nav__item:nth-last-child(-n + 3) .drop {
+  left: auto;
+  right: 0;
+  transform: translate(0, 12px) scale(0.985);
+}
+
+.nav__item:nth-last-child(-n + 3).is-open .drop {
+  transform: none;
+}
+
+.drop__link {
+  position: relative;
+  display: block;
+  padding: 0.55rem 2rem 0.55rem 0.75rem;
+  border-radius: 12px;
+  transition: background 0.3s var(--ease-soft);
+}
+
+.drop__link:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.drop__label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.88);
+  transition: color 0.3s var(--ease-soft);
+}
+
+.drop__link:hover .drop__label {
+  color: #ffffff;
+}
+
+.drop__note {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: 0.73rem;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.drop__go {
+  position: absolute;
+  right: 0.7rem;
+  top: 50%;
+  color: rgba(147, 197, 253, 0.95);
+  opacity: 0;
+  transform: translateY(-50%) translateX(-4px);
+  transition: opacity 0.3s var(--ease-soft), transform 0.3s var(--ease-soft);
+}
+
+.drop__link:hover .drop__go {
+  opacity: 0.9;
+  transform: translateY(-50%);
+}
+
+/* a branch with no address yet opens no destination */
+.drop__link[aria-disabled='true'] {
+  cursor: default;
+}
+
+.drop__link[aria-disabled='true'] .drop__go {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ------------------------------------------------------- mobile drawer -- */
+
+.drawer__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.drawer__link--ai,
+.drawer__link--ai:hover {
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  border-color: transparent;
+  box-shadow: 0 0 25px rgba(59, 130, 246, 0.35);
+}
+
+/* ------------------------------------------------------------ responsive -- */
+
+/*
+ * Ten labels plus the CTA stop clearing the container below 1280px, so that
+ * is where the bar hands over to the drawer — the 1080px rule above was sized
+ * for seven. Everything the drawer shows is the same tree as the desktop bar.
+ */
+.nav .btn--primary {
+  padding: 11px 20px;
+  font-size: 14.5px;
+  white-space: nowrap;
+}
+
+/*
+ * Ten labels, six chevrons and the CTA need about 1320px of bar, which the
+ * 1420px container only offers from roughly 1410px of viewport up. Below that
+ * the bar hands over to the drawer — the 1080px rule above was sized for the
+ * seven-item version. The drawer carries the identical tree, so nothing is
+ * unreachable at any width.
+ */
+@media (max-width: 1400px) {
+  :root {
+    --nav-h: 68px;
+  }
+
+  .nav__links {
+    display: none;
+  }
+
+  /* The drawer carries its own "Book Free Demo" button in its footer — this
+     one was never actually hidden here, so it kept sitting inside
+     `.nav__actions` next to the burger, still taking its full flex width and
+     pushing the burger past the bar's edge on narrow screens. */
+  .nav .btn--primary {
+    display: none;
+  }
+
+  .nav__burger {
+    display: grid;
+  }
+}
+
+/* One line per item, and the chevron and sparkle keep their box: inside an
+   inline-flex link a flexible icon is the first thing the browser collapses,
+   which silently dropped every dropdown affordance. */
+.nav__link {
+  white-space: nowrap;
+}
+
+.nav__caret,
+.nav__ai-mark {
+  flex: none;
+}

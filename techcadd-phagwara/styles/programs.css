@@ -1,0 +1,468 @@
+/* ==========================================================================
+   Learning Modes (sticky stack) · Student Benefits (compact grid) · AI Labs
+   ========================================================================== */
+
+/* ------------------------------------------------ 1. sticky mode stack -- */
+
+.modes {
+  position: relative;
+  z-index: 1;
+}
+
+.modes__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.modes__intro {
+  position: sticky;
+  top: calc(var(--nav-h) + 3rem);
+}
+
+.modes__stack {
+  display: grid;
+  gap: 1.1rem;
+}
+
+/* each card sticks a little lower than the last, so they deck up */
+.mode {
+  position: sticky;
+  top: calc(var(--nav-h) + 2.5rem + var(--i) * 18px);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.3rem;
+  padding: clamp(1.4rem, 2.4vw, 2rem);
+  border-radius: var(--r-lg);
+  background: rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+}
+
+.mode::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(13, 71, 161, 0.13), transparent 66%);
+  transform: translate(38%, -46%);
+  transition: transform 0.7s var(--ease);
+}
+
+.mode:hover::after {
+  transform: translate(28%, -36%) scale(1.15);
+}
+
+.mode__body h3 {
+  font-size: 1.28rem;
+  margin-bottom: 0.5rem;
+}
+
+.mode__body > p {
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  color: var(--ink-3);
+}
+
+.mode__points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.mode__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.34rem 0.75rem;
+  border-radius: var(--r-pill);
+  background: rgba(33, 150, 243, 0.06);
+  border: 1px solid var(--border);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  transition: all var(--t-fast);
+}
+
+.mode__tag svg {
+  color: var(--violet);
+}
+
+.mode:hover .mode__tag {
+  background: rgba(13, 71, 161, 0.09);
+  border-color: var(--border-strong);
+}
+
+.mode__num {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1.4rem;
+  font-family: var(--font-display);
+  font-size: 4.4rem;
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(33, 150, 243, 0.06);
+  letter-spacing: -0.06em;
+}
+
+/* -------------------------------------------------- 2. benefits grid ---- */
+
+.benefits {
+  position: relative;
+  z-index: 1;
+}
+
+.benefits__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1px;
+  margin-top: clamp(2.2rem, 4vw, 3.2rem);
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+}
+
+.benefit {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: clamp(1.5rem, 2.6vw, 2.1rem);
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: background var(--t-mid), transform var(--t-mid);
+}
+
+.benefit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(33, 150, 243, 0.07), rgba(144, 202, 249, 0.05));
+  opacity: 0;
+  transition: opacity var(--t-mid);
+}
+
+.benefit:hover::before {
+  opacity: 1;
+}
+
+.benefit:hover {
+  transform: translateY(-5px);
+  z-index: 2;
+  box-shadow: var(--sh-lg);
+}
+
+.benefit > * {
+  position: relative;
+  z-index: 1;
+}
+
+.benefit__icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 15px;
+  font-size: 1.2rem;
+  color: var(--blue);
+  background: rgba(33, 150, 243, 0.09);
+  border: 1px solid var(--border);
+  transition: all 0.5s var(--ease);
+}
+
+.benefit:hover .benefit__icon {
+  color: #fff;
+  background: var(--grad);
+  border-color: transparent;
+  transform: rotate(-10deg) scale(1.09);
+  box-shadow: 0 12px 26px rgba(13, 71, 161, 0.32);
+}
+
+.benefit h3 {
+  font-size: 1.06rem;
+}
+
+.benefit p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--ink-3);
+}
+
+/* ------------------------------------------------------- 3. AI labs ----- */
+
+.labs {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.labs__panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  padding: clamp(1.8rem, 4vw, 3.2rem);
+  border-radius: var(--r-2xl);
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.9), rgba(244, 247, 255, 0.75));
+  border: 1px solid var(--border);
+  box-shadow: var(--sh-md);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  overflow: hidden;
+}
+
+.labs__panel::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -12%;
+  width: 460px;
+  height: 460px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(144, 202, 249, 0.2), transparent 68%);
+  filter: blur(28px);
+  animation: drift 22s var(--ease-soft) infinite alternate;
+  pointer-events: none;
+}
+
+.labs__list {
+  position: relative;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.lab {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.1rem;
+  align-items: center;
+  padding: 1.05rem 1.2rem;
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all var(--t-mid);
+}
+
+.lab:hover,
+.lab.is-on {
+  border-color: var(--violet);
+  background: #fff;
+  box-shadow: var(--sh-md);
+  transform: translateX(6px);
+}
+
+.lab__stat {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  border-radius: 18px;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
+  background: var(--grad);
+  box-shadow: 0 12px 26px rgba(33, 150, 243, 0.26);
+  transition: transform 0.5s var(--ease);
+}
+
+.lab:hover .lab__stat {
+  transform: rotate(-8deg) scale(1.07);
+}
+
+.lab h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.2rem;
+}
+
+.lab p {
+  margin: 0;
+  font-size: 0.87rem;
+  color: var(--ink-3);
+}
+
+.lab__stat-label {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--violet);
+}
+
+/* the lab visual — a stylised terminal / dashboard */
+.labs__visual {
+  position: relative;
+}
+
+.labwin {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: linear-gradient(150deg, #062347, #0d47a1);
+  border: 1px solid rgba(13, 71, 161, 0.3);
+  box-shadow: 0 34px 70px rgba(33, 150, 243, 0.3);
+  animation: float-y 7s var(--ease-soft) infinite;
+}
+
+.labwin__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 0.95rem;
+  background: rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.labwin__bar i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.labwin__bar i:first-child {
+  background: #f87171;
+}
+.labwin__bar i:nth-child(2) {
+  background: #fbbf24;
+}
+.labwin__bar i:nth-child(3) {
+  background: #34d399;
+}
+
+.labwin__bar span {
+  margin-left: auto;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.labwin__body {
+  padding: 1.1rem 1.2rem;
+  font-family: ui-monospace, 'SFMono-Regular', 'Consolas', monospace;
+  font-size: 0.79rem;
+  line-height: 1.85;
+  color: #90caf9;
+}
+
+.labwin__body b {
+  color: #e3f2fd;
+  font-weight: 600;
+}
+
+.labwin__body em {
+  color: #86efac;
+  font-style: normal;
+}
+
+.labwin__body u {
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: none;
+}
+
+.labwin__caret {
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  background: #90caf9;
+  vertical-align: -2px;
+  animation: blink 1.05s steps(2) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.labs__float {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.6rem 0.95rem;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--border);
+  box-shadow: var(--sh-md);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ink);
+  animation: float-y 6s var(--ease-soft) infinite;
+}
+
+.labs__float svg {
+  color: var(--violet);
+}
+
+.labs__float--a {
+  top: -18px;
+  right: -8px;
+  animation-delay: 0.6s;
+}
+
+.labs__float--b {
+  bottom: -16px;
+  left: -12px;
+  animation-delay: 1.8s;
+}
+
+/* ---------------------------------------------------------- responsive -- */
+
+@media (max-width: 980px) {
+  .modes__layout,
+  .labs__panel {
+    grid-template-columns: 1fr;
+  }
+
+  .modes__intro {
+    position: static;
+  }
+
+  .mode {
+    position: relative;
+    top: auto;
+  }
+
+  .labs__visual {
+    order: -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .mode {
+    grid-template-columns: 1fr;
+  }
+
+  .lab {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Migration note (Vite → Next.js): replaces inline `style` attributes.
+   -------------------------------------------------------------------------- */
+
+/* was style={{ marginTop: '2rem' }} in LearningModes.jsx */
+.modes__cta {
+  margin-top: 2rem;
+}
+
+/* was style={{ marginTop: 'clamp(2.2rem, 4vw, 3.2rem)' }} in AILabs.jsx */
+.labs__panel {
+  margin-top: clamp(2.2rem, 4vw, 3.2rem);
+}

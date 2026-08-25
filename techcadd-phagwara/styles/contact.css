@@ -1,0 +1,293 @@
+/* ==========================================================================
+   Contact — split panel: enquiry form, quick cards, map, social rail
+   ========================================================================== */
+
+.contact {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.contact__panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(1.6rem, 3.5vw, 3rem);
+  margin-top: clamp(2.2rem, 4vw, 3.2rem);
+  padding: clamp(1.5rem, 3.4vw, 2.8rem);
+  border-radius: var(--r-2xl);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--border);
+  box-shadow: var(--sh-md);
+  backdrop-filter: blur(22px) saturate(1.6);
+  -webkit-backdrop-filter: blur(22px) saturate(1.6);
+}
+
+.contact__panel::before {
+  content: '';
+  position: absolute;
+  top: -22%;
+  left: -8%;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(13, 71, 161, 0.16), transparent 68%);
+  filter: blur(30px);
+  animation: drift 24s var(--ease-soft) infinite alternate;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------- form -- */
+
+.cform {
+  position: relative;
+  display: grid;
+  gap: 0.95rem;
+}
+
+.cform__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.95rem;
+}
+
+.field {
+  position: relative;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.42rem;
+  font-family: var(--font-display);
+  font-size: 0.79rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink-2);
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border-strong);
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 0.93rem;
+  color: var(--ink);
+  transition: border-color var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.6;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--ink-4);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--violet);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(13, 71, 161, 0.12);
+}
+
+.field select {
+  appearance: none;
+  cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, var(--blue) 50%),
+    linear-gradient(135deg, var(--blue) 50%, transparent 50%);
+  background-position: calc(100% - 20px) center, calc(100% - 14px) center;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+.cform__note {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--ink-4);
+}
+
+.cform__status {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.8rem 1rem;
+  border-radius: var(--r-sm);
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.28);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #15803d;
+  animation: card-in 0.5s var(--ease);
+}
+
+/* ---------------------------------------------------------- side cards -- */
+
+.contact__side {
+  position: relative;
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+}
+
+.qcard {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.95rem;
+  align-items: center;
+  padding: 1.05rem 1.2rem;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.8);
+  transition: all var(--t-mid);
+}
+
+.qcard:hover {
+  transform: translateY(-4px);
+  border-color: var(--violet);
+  box-shadow: var(--sh-md);
+}
+
+.qcard i {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 15px;
+  font-size: 1.15rem;
+  font-style: normal;
+  color: #fff;
+  background: var(--grad);
+  box-shadow: 0 10px 22px rgba(33, 150, 243, 0.26);
+  transition: transform 0.5s var(--ease);
+}
+
+.qcard:hover i {
+  transform: rotate(-9deg) scale(1.07);
+}
+
+.qcard b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.qcard span {
+  font-size: 0.93rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ----------------------------------------------------------------- map -- */
+
+.contact__map {
+  position: relative;
+  height: 230px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--sh-sm);
+}
+
+.contact__map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: saturate(0.85) contrast(1.02);
+  transition: filter var(--t-mid);
+}
+
+.contact__map:hover iframe {
+  filter: saturate(1.1);
+}
+
+.contact__map-pin {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--border);
+  box-shadow: var(--sh-sm);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ink);
+  pointer-events: none;
+}
+
+.contact__map-pin svg {
+  color: var(--purple);
+}
+
+/* --------------------------------------------------------- social rail -- */
+
+.contact__socials {
+  display: flex;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.social {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 15px;
+  font-size: 1.05rem;
+  color: var(--blue);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.8);
+  transition: all var(--t-fast);
+  animation: float-y 5s var(--ease-soft) infinite;
+  animation-delay: calc(var(--i) * 0.35s);
+}
+
+.social:hover {
+  color: #fff;
+  background: var(--grad);
+  border-color: transparent;
+  transform: translateY(-5px) scale(1.08);
+  box-shadow: 0 12px 26px rgba(13, 71, 161, 0.34);
+}
+
+@media (max-width: 900px) {
+  .contact__panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .cform__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Error counterpart to .cform__status. The Vite build had no failure state at
+   all — the form could only ever "succeed", because it never talked to a
+   server. Now that /api/contact can return 422/429/502, the red variant is
+   reachable and needs styling. Same geometry as the success state, so the
+   layout does not shift between outcomes.
+   -------------------------------------------------------------------------- */
+.cform__status--error {
+  background: rgba(239, 68, 68, 0.09);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #b91c1c;
+}

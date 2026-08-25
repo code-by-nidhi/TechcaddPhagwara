@@ -1,0 +1,382 @@
+/* ==========================================================================
+   Courses — bento grid, filter pills, hover preview
+   ========================================================================== */
+
+.courses {
+  position: relative;
+  z-index: 1;
+}
+
+.courses__top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: clamp(1.8rem, 3vw, 2.6rem);
+}
+
+/* ------------------------------------------------------------- filters -- */
+
+.courses__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: clamp(1.8rem, 3vw, 2.6rem);
+  padding-bottom: 0.25rem;
+}
+
+.filter {
+  position: relative;
+  padding: 0.62rem 1.25rem;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink-2);
+  overflow: hidden;
+  transition: color var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast), border-color var(--t-fast);
+}
+
+.filter::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--grad);
+  opacity: 0;
+  transform: scale(0.6);
+  border-radius: inherit;
+  transition: opacity var(--t-fast), transform var(--t-fast);
+}
+
+.filter span {
+  position: relative;
+  z-index: 1;
+}
+
+.filter:hover {
+  transform: translateY(-2px);
+  border-color: var(--violet);
+  color: var(--blue-600);
+  box-shadow: var(--sh-sm);
+}
+
+.filter.is-on {
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 10px 26px rgba(13, 71, 161, 0.32);
+}
+
+.filter.is-on::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.filter__count {
+  margin-left: 0.4rem;
+  font-size: 0.74rem;
+  opacity: 0.7;
+}
+
+/* ---------------------------------------------------------- bento grid -- */
+
+.bento {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: clamp(0.9rem, 1.6vw, 1.35rem);
+  grid-auto-rows: minmax(200px, auto);
+}
+
+.course {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  grid-column: span 2;
+  padding: clamp(1.3rem, 2.2vw, 1.85rem);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  isolation: isolate;
+  animation: card-in 0.6s var(--ease) backwards;
+  animation-delay: calc(var(--i) * 55ms);
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.97);
+  }
+}
+
+/* featured cards claim more of the grid */
+.course--featured {
+  grid-column: span 3;
+  grid-row: span 2;
+  background: linear-gradient(150deg, rgba(33, 150, 243, 0.08), rgba(144, 202, 249, 0.06));
+}
+
+.course:hover {
+  transform: translateY(-8px);
+}
+
+/* cursor spotlight + preview wash */
+.course::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(13, 71, 161, 0.11),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity var(--t-mid);
+}
+
+.course:hover::after {
+  opacity: 1;
+}
+
+.course__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.course__icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex: none;
+  border-radius: 17px;
+  font-size: 1.35rem;
+  color: #fff;
+  background: var(--grad);
+  box-shadow: 0 12px 26px rgba(33, 150, 243, 0.28);
+  transition: transform 0.55s var(--ease), box-shadow 0.55s var(--ease);
+}
+
+.course:hover .course__icon {
+  transform: rotate(-9deg) scale(1.08) translateY(-3px);
+  box-shadow: 0 18px 34px rgba(13, 71, 161, 0.4);
+}
+
+.course--featured .course__icon {
+  width: 62px;
+  height: 62px;
+  font-size: 1.6rem;
+  border-radius: 20px;
+}
+
+/* popular ribbon */
+.course__ribbon {
+  position: absolute;
+  top: 16px;
+  right: -34px;
+  z-index: 2;
+  width: 140px;
+  padding: 0.3rem 0;
+  text-align: center;
+  transform: rotate(38deg);
+  background: linear-gradient(90deg, #f59e0b, #f97316);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.63rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 18px rgba(249, 115, 22, 0.34);
+}
+
+.course__title {
+  font-size: 1.1rem;
+  line-height: 1.24;
+}
+
+.course--featured .course__title {
+  font-size: clamp(1.32rem, 2vw, 1.62rem);
+}
+
+.course__blurb {
+  font-size: 0.9rem;
+  color: var(--ink-3);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.course--featured .course__blurb {
+  -webkit-line-clamp: 4;
+  font-size: 0.96rem;
+}
+
+.course__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.course__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.1rem;
+  margin-top: auto;
+  padding-top: 0.9rem;
+  border-top: 1px dashed var(--border-strong);
+}
+
+.course__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-3);
+}
+
+.course__meta-item svg {
+  color: var(--blue);
+  flex: none;
+}
+
+.course__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.course__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-display);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.course__rating svg {
+  color: #f59e0b;
+  fill: currentColor;
+}
+
+.course__rating em {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--ink-4);
+}
+
+/* the hidden CTA that slides up on hover (desktop only) */
+.course__cta {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.45s var(--ease), opacity 0.35s var(--ease), margin var(--ease) 0.35s;
+}
+
+.course:hover .course__cta,
+.course:focus-within .course__cta {
+  max-height: 70px;
+  opacity: 1;
+}
+
+.course__badge {
+  position: absolute;
+  bottom: 1.2rem;
+  right: 1.2rem;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: var(--blue);
+  border: 1px solid var(--border-strong);
+  background: rgba(255, 255, 255, 0.8);
+  transition: all var(--t-mid);
+}
+
+.course--featured .course__badge {
+  animation: float-y 5s var(--ease-soft) infinite;
+}
+
+.course:hover .course__badge {
+  color: #fff;
+  background: var(--grad);
+  border-color: transparent;
+  transform: rotate(45deg) scale(1.1);
+}
+
+.courses__empty {
+  grid-column: 1 / -1;
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--ink-3);
+}
+
+.courses__foot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: clamp(2rem, 3.5vw, 3rem);
+}
+
+/* ---------------------------------------------------------- responsive -- */
+
+@media (max-width: 1024px) {
+  .bento {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .course--featured {
+    grid-column: span 4;
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 720px) {
+  .bento {
+    grid-template-columns: 1fr;
+  }
+
+  .course,
+  .course--featured {
+    grid-column: span 1;
+  }
+
+  .course__cta {
+    max-height: 70px;
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Migration note (Vite → Next.js): these rules replace inline `style`
+   attributes that lived in the JSX. Same computed values, but now cacheable
+   with the rest of the stylesheet and out of the server-rendered HTML.
+   -------------------------------------------------------------------------- */
+
+/* was style={{ fontStyle: 'normal' }} on the <em> counter */
+.filter__count {
+  font-style: normal;
+}
+
+/* was style={{ margin: 0, color: 'var(--ink-3)' }} */
+.courses__foot-text {
+  margin: 0;
+  color: var(--ink-3);
+}

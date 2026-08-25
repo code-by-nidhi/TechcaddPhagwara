@@ -1,0 +1,595 @@
+/* ==========================================================================
+   Certifications · Projects (pinned horizontal) · Faculty · Gallery ·
+   Achievements timeline
+   ========================================================================== */
+
+/* ------------------------------------------------- 1. certifications ---- */
+
+.certs {
+  position: relative;
+  z-index: 1;
+}
+
+.certs__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.1rem;
+  margin-top: clamp(2.2rem, 4vw, 3.2rem);
+}
+
+.cert {
+  position: relative;
+  padding: 1.6rem 1.5rem 1.5rem;
+  border-radius: var(--r-lg);
+  text-align: center;
+  overflow: hidden;
+}
+
+.cert:hover {
+  transform: translateY(-8px);
+}
+
+.cert__seal {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 1.1rem;
+  border-radius: 50%;
+  font-size: 1.6rem;
+  color: #fff;
+  background: var(--grad);
+  box-shadow: 0 14px 30px rgba(33, 150, 243, 0.3);
+  transition: transform 0.6s var(--ease);
+}
+
+.cert:hover .cert__seal {
+  transform: rotate(360deg) scale(1.08);
+}
+
+/* notched ribbon tails under the seal */
+.cert__seal::before,
+.cert__seal::after {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  width: 14px;
+  height: 24px;
+  background: var(--violet);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 72%, 0 100%);
+  opacity: 0.85;
+}
+
+.cert__seal::before {
+  left: 14px;
+  transform: rotate(-12deg);
+}
+
+.cert__seal::after {
+  right: 14px;
+  transform: rotate(12deg);
+}
+
+.cert h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+
+.cert__issuer {
+  font-size: 0.86rem;
+  color: var(--ink-3);
+  margin: 0 0 0.9rem;
+}
+
+.cert__note {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--r-pill);
+  background: rgba(33, 150, 243, 0.07);
+  border: 1px solid var(--border);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--blue-600);
+}
+
+/* ------------------------------------------ 2. pinned horizontal rail ---- */
+
+.projects {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.projects__viewport {
+  margin-top: clamp(1.25rem, 2.5vw, 2rem);
+  overflow: hidden;
+}
+
+.projects__track {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(1rem, 2vw, 1.6rem);
+  width: max-content;
+  padding-inline: var(--gutter);
+  will-change: transform;
+}
+
+.project {
+  position: relative;
+  width: clamp(280px, 30vw, 370px);
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+/* While the section is pinned it must fit the viewport exactly, otherwise
+   the rail is clipped and the cards never come into view. */
+@media (min-width: 900px) {
+  .projects {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    padding-block: clamp(2rem, 5vh, 3.5rem);
+  }
+
+  .projects .sec-head {
+    margin-bottom: 0;
+  }
+
+  .project__visual {
+    height: clamp(96px, 13vh, 150px);
+  }
+}
+
+.project:hover {
+  transform: translateY(-7px);
+}
+
+.project__visual {
+  position: relative;
+  height: 150px;
+  margin-bottom: 1.2rem;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(33, 150, 243, 0.14), rgba(144, 202, 249, 0.14));
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+}
+
+.project__visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(33, 150, 243, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(33, 150, 243, 0.07) 1px, transparent 1px);
+  background-size: 26px 26px;
+  transition: transform 0.9s var(--ease);
+}
+
+.project:hover .project__visual::before {
+  transform: scale(1.18) rotate(3deg);
+}
+
+.project__glyph {
+  position: relative;
+  font-size: 2.4rem;
+  color: var(--blue);
+  opacity: 0.85;
+  transition: transform 0.7s var(--ease);
+}
+
+.project:hover .project__glyph {
+  transform: scale(1.16) rotate(-8deg);
+}
+
+.project__stack {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--violet);
+}
+
+.project h3 {
+  font-size: 1.14rem;
+  margin-bottom: 0.45rem;
+}
+
+.project p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--ink-3);
+}
+
+.projects__hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-4);
+}
+
+.projects__hint svg {
+  animation: nudge 1.8s var(--ease-soft) infinite;
+}
+
+@keyframes nudge {
+  50% {
+    transform: translateX(6px);
+  }
+}
+
+/* --------------------------------------------------------- 3. faculty ---- */
+
+.faculty {
+  position: relative;
+  z-index: 1;
+}
+
+.faculty__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  gap: 1.1rem;
+  margin-top: clamp(2.2rem, 4vw, 3.2rem);
+}
+
+.mentor {
+  position: relative;
+  padding: 1.7rem 1.5rem;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.mentor:hover {
+  transform: translateY(-8px);
+}
+
+.mentor::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(13, 71, 161, 0.14), transparent 68%);
+  transition: transform 0.7s var(--ease);
+}
+
+.mentor:hover::before {
+  transform: scale(1.35);
+}
+
+.mentor__avatar {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 74px;
+  height: 74px;
+  margin-bottom: 1.1rem;
+  border-radius: 24px;
+  font-family: var(--font-display);
+  font-size: 1.42rem;
+  font-weight: 800;
+  color: #fff;
+  background: var(--grad);
+  box-shadow: 0 14px 30px rgba(33, 150, 243, 0.3);
+  transition: transform 0.55s var(--ease), border-radius 0.55s var(--ease);
+}
+
+.mentor:hover .mentor__avatar {
+  border-radius: 50%;
+  transform: rotate(-8deg) scale(1.06);
+}
+
+.mentor__exp {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--border);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--violet);
+}
+
+.mentor h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+
+.mentor__role {
+  display: block;
+  margin-bottom: 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--blue-600);
+}
+
+.mentor__focus {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.85rem;
+  border-top: 1px dashed var(--border-strong);
+  font-size: 0.83rem;
+  color: var(--ink-3);
+}
+
+.mentor__focus svg {
+  color: var(--violet);
+  flex: none;
+}
+
+/* --------------------------------------------------------- 4. gallery ---- */
+
+.gallery {
+  position: relative;
+  z-index: 1;
+}
+
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 168px;
+  gap: 0.9rem;
+  margin-top: clamp(2.2rem, 4vw, 3.2rem);
+}
+
+.shot {
+  position: relative;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: transform var(--t-mid), box-shadow var(--t-mid);
+}
+
+.shot:nth-child(1),
+.shot:nth-child(6) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.shot:nth-child(4) {
+  grid-row: span 2;
+}
+
+.shot:hover {
+  transform: scale(1.015);
+  box-shadow: var(--sh-lg);
+  z-index: 2;
+}
+
+/* stand-in artwork — swap for real <img> when photos are supplied */
+.shot__art {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 25%, hsla(var(--hue), 90%, 72%, 0.5), transparent 58%),
+    radial-gradient(circle at 75% 78%, hsla(calc(var(--hue) + 26), 92%, 68%, 0.45), transparent 60%),
+    linear-gradient(150deg, hsla(var(--hue), 85%, 96%, 1), hsla(calc(var(--hue) + 20), 80%, 92%, 1));
+  transition: transform 1s var(--ease), filter 0.6s var(--ease);
+}
+
+.shot:hover .shot__art {
+  transform: scale(1.1) rotate(1.5deg);
+  filter: saturate(1.25);
+}
+
+.shot__art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.35) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.6;
+}
+
+.shot__veil {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.05rem;
+  background: linear-gradient(0deg, rgba(8, 43, 98, 0.62), rgba(8, 43, 98, 0.06) 55%, transparent);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity var(--t-mid), transform var(--t-mid);
+}
+
+.shot:hover .shot__veil {
+  opacity: 1;
+  transform: none;
+}
+
+.shot__veil b {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: #fff;
+}
+
+.shot__veil span {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--violet-300);
+}
+
+.shot__zoom {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--blue);
+  background: rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  transform: scale(0.7);
+  transition: all var(--t-mid);
+}
+
+.shot:hover .shot__zoom {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------------------------------------------------- 5. achievements ---- */
+
+.achievements {
+  position: relative;
+  z-index: 1;
+}
+
+.timeline {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  margin-top: clamp(2.2rem, 4vw, 3.2rem);
+  padding-left: 2.6rem;
+}
+
+/* the spine */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 11px;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--blue), var(--violet), var(--sky));
+  opacity: 0.35;
+}
+
+.tl-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.4rem;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--r-lg);
+}
+
+.tl-item:hover {
+  transform: translateX(8px);
+}
+
+/* the node on the spine */
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -2.05rem;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--grad);
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.18);
+  transform: translateY(-50%);
+  transition: box-shadow var(--t-mid), transform var(--t-mid);
+}
+
+.tl-item:hover::before {
+  box-shadow: 0 0 0 7px rgba(13, 71, 161, 0.16);
+  transform: translateY(-50%) scale(1.15);
+}
+
+.tl-year {
+  display: grid;
+  place-items: center;
+  min-width: 74px;
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--r-md);
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: #fff;
+  background: var(--grad);
+  box-shadow: 0 10px 22px rgba(33, 150, 243, 0.26);
+}
+
+.tl-item h3 {
+  font-size: 1.06rem;
+  margin-bottom: 0.25rem;
+}
+
+.tl-item p {
+  margin: 0;
+  font-size: 0.89rem;
+  color: var(--ink-3);
+}
+
+/* ---------------------------------------------------------- responsive -- */
+
+@media (max-width: 900px) {
+  .gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 150px;
+  }
+}
+
+@media (max-width: 560px) {
+  .gallery__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shot:nth-child(1),
+  .shot:nth-child(4),
+  .shot:nth-child(6) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .tl-item {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .tl-year {
+    justify-self: start;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Migration note: gallery tiles now support a real photograph via next/image
+   (`fill`). `.shot` is already `position: relative`, so the image just needs
+   to cover the tile and sit beneath the hover veil and zoom affordance.
+   Tiles without a `src` keep rendering the generated `.shot__art` gradient.
+   -------------------------------------------------------------------------- */
+.shot__img {
+  object-fit: cover;
+  z-index: 0;
+  transition: transform var(--t-mid);
+}
+
+.shot:hover .shot__img {
+  transform: scale(1.06);
+}
