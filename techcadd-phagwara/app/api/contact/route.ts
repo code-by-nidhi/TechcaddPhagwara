@@ -17,6 +17,9 @@ import { clean, isEmail, isNonEmpty, isPhone } from '@/lib/validation'
 interface EnquiryPayload {
   name: string
   phone: string
+  /** Optional — the navbar's Book Demo modal collects a phone number and a
+      captcha instead of an email, so this is only ever populated by the
+      full Contact section form. */
   email: string
   course: string
   message: string
@@ -105,7 +108,10 @@ export async function POST(request: Request) {
 
   if (!isNonEmpty(data.name, 120)) errors.push('a valid name')
   if (!isPhone(data.phone)) errors.push('a valid phone number')
-  if (!isEmail(data.email)) errors.push('a valid email address')
+  /* email is optional — only validated when the caller actually sends one */
+  if (data.email !== undefined && data.email !== '' && !isEmail(data.email)) {
+    errors.push('a valid email address')
+  }
   if (!isNonEmpty(data.course, 160)) errors.push('a program selection')
 
   if (errors.length > 0) {
@@ -118,7 +124,7 @@ export async function POST(request: Request) {
   const payload: EnquiryPayload = {
     name: clean(data.name as string, 120),
     phone: clean(data.phone as string, 20),
-    email: clean(data.email as string, 254).toLowerCase(),
+    email: typeof data.email === 'string' ? clean(data.email, 254).toLowerCase() : '',
     course: clean(data.course as string, 160),
     message: typeof data.message === 'string' ? clean(data.message, 2000) : '',
   }

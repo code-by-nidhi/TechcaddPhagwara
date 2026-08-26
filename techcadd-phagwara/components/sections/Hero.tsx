@@ -1,8 +1,23 @@
-import Icon from '@/components/ui/Icon'
+import Icon, { type IconName } from '@/components/ui/Icon'
 import Button from '@/components/ui/Button'
-import Counter from '@/components/ui/Counter'
 import HeroVisual from './HeroVisual'
-import { heroStats, companies } from '@/data/site'
+
+interface FeatureCard {
+  icon: IconName
+  title: string
+  subtitle: string
+}
+
+/**
+ * The registry (components/ui/Icon.tsx) has no dedicated graduation-cap
+ * glyph, so "Industry Mentors" uses `users` instead — the closest existing
+ * icon to "mentor".
+ */
+const FEATURE_CARDS: FeatureCard[] = [
+  { icon: 'users', title: 'Industry Mentors', subtitle: 'Taught by working engineers' },
+  { icon: 'code', title: 'Hands-on Projects', subtitle: 'Live projects & real client work' },
+  { icon: 'layers', title: 'Best Placements', subtitle: '500+ active hiring partners' },
+]
 
 /**
  * Server Component — the copy, headings and CTAs are all static HTML in the
@@ -52,54 +67,25 @@ export default function Hero() {
                 Book a Free Demo Class
               </Button>
             </div>
-
-            <div className="hero__proof">
-              <div className="hero__rating">
-                <div className="hero__avatars" aria-hidden="true">
-                  <span>AS</span>
-                  <span>MK</span>
-                  <span>RB</span>
-                  <span>+</span>
-                </div>
-                <div>
-                  <div className="hero__stars" role="img" aria-label="Rated 4.9 out of 5">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Icon key={i} name="star" style={{ fill: 'currentColor' }} />
-                    ))}
-                  </div>
-                  <p className="hero__rating-text">
-                    <b>4.9 / 5</b>
-                    1,850+ Google reviews
-                  </p>
-                </div>
-              </div>
-
-              <div className="hero__stats">
-                {heroStats.map((stat) => (
-                  <div className="hero__stat" key={stat.label}>
-                    <b>
-                      <Counter value={stat.value} suffix={stat.suffix} />
-                    </b>
-                    <span>{stat.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* ------------------------------------------------------- visual */}
           <HeroVisual />
         </div>
 
-        {/* ------------------------------------------------------- marquee */}
-        <div className="hero__marquee" aria-hidden="true">
-          <div className="hero__marquee-track">
-            {[...companies, ...companies].map((name, i) => (
-              <span className="hero__marquee-item" key={`${name}-${i}`}>
-                {name}
+        {/* ---------------------------------------------------- feature row */}
+        <div className="hero__features">
+          {FEATURE_CARDS.map((card) => (
+            <div className="hero__feature" key={card.title}>
+              <span className="hero__feature-icon">
+                <Icon name={card.icon} size={26} />
               </span>
-            ))}
-          </div>
+              <div>
+                <b className="hero__feature-title">{card.title}</b>
+                <span className="hero__feature-subtitle">{card.subtitle}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

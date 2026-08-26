@@ -1,8 +1,8 @@
 'use client'
 
 import {
+  useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState,
   type ChangeEvent,
@@ -11,7 +11,7 @@ import {
 } from 'react'
 import { createPortal } from 'react-dom'
 import Icon from '@/components/ui/Icon'
-import { brand, testimonials } from '@/data/site'
+import { brand } from '@/data/site'
 
 /**
  * `ssr:false` in Navbar.tsx guarantees this only ever runs client-side, so
@@ -35,26 +35,30 @@ interface FormState {
   course: string
   name: string
   phone: string
-  email: string
+  answer: string
 }
 
-const EMPTY_FORM: FormState = { course: '', name: '', phone: '', email: '' }
+const EMPTY_FORM: FormState = { course: '', name: '', phone: '', answer: '' }
 
 type FieldErrors = Partial<Record<keyof FormState, string>>
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
-
-function validate(form: FormState): FieldErrors {
+function validate(form: FormState, expected: number): FieldErrors {
   const errors: FieldErrors = {}
   if (!form.course) errors.course = 'Select a course'
   if (!form.name.trim()) errors.name = 'Enter your full name'
   if (!/^\d{10}$/.test(form.phone.trim())) errors.phone = 'Enter a 10-digit phone number'
-  if (!EMAIL_RE.test(form.email.trim())) errors.email = 'Enter a valid email address'
+  if (Number(form.answer.trim()) !== expected) errors.answer = 'That answer is not correct'
   return errors
 }
 
 /** Focusable elements the trap cycles Tab/Shift+Tab through. */
 const FOCUSABLE = 'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])'
+
+/** A fresh single-digit addition problem — the refresh button calls this again. */
+const newCaptcha = () => ({
+  a: 1 + Math.floor(Math.random() * 9),
+  b: 1 + Math.floor(Math.random() * 9),
+})
 
 export interface BookDemoModalProps {
   open: boolean
@@ -71,12 +75,16 @@ export default function BookDemoModal({ open, onClose }: BookDemoModalProps) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'error'>('idle')
   const [serverError, setServerError] = useState('')
   const [toast, setToast] = useState<string | null>(null)
+  const [captcha, setCaptcha] = useState(newCaptcha)
 
   const panelRef = useRef<HTMLDivElement | null>(null)
   const firstFieldRef = useRef<HTMLSelectElement | null>(null)
   const restoreFocusRef = useRef<HTMLElement | null>(null)
 
-  const featured = useMemo(() => testimonials[0], [])
+  const refreshCaptcha = useCallback(() => {
+    setCaptcha(newCaptcha())
+    setForm((f) => ({ ...f, answer: '' }))
+  }, [])
 
   /* open/close lifecycle -------------------------------------------------- */
   useEffect(() => {
@@ -99,6 +107,7 @@ export default function BookDemoModal({ open, onClose }: BookDemoModalProps) {
       setErrors({})
       setStatus('idle')
       setServerError('')
+      setCaptcha(newCaptcha())
     }
   }, [render])
 
@@ -147,9 +156,14 @@ export default function BookDemoModal({ open, onClose }: BookDemoModalProps) {
 
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const nextErrors = validate(form)
+    const nextErrors = validate(form, captcha.a + captcha.b)
     setErrors(nextErrors)
-    if (Object.keys(nextErrors).length > 0 || status === 'sending') return
+    if (Object.keys(nextErrors).length > 0 || status === 'sending') {
+      /* a wrong answer gets a fresh problem, same as any other captcha —
+         re-using the one they already failed just invites guessing */
+      if (nextErrors.answer) refreshCaptcha()
+      return
+    }
 
     setStatus('sending')
     setServerError('')
@@ -161,7 +175,6 @@ export default function BookDemoModal({ open, onClose }: BookDemoModalProps) {
         body: JSON.stringify({
           name: form.name,
           phone: form.phone,
-          email: form.email,
           course: form.course,
           message: 'Requested a free demo via the navbar popup.',
         }),
@@ -231,52 +244,57 @@ export default function BookDemoModal({ open, onClose }: BookDemoModalProps) {
             <div className="demo-modal__scroll">
               {/* -------------------------------------------------- branding */}
               <div className="demo-modal__brand">
-                <span className="demo-modal__badge">
-                  <Icon name="sparkles" size={13} />
-                  Free counselling session
-                </span>
-
                 <h2 id="demo-modal-title" className="demo-modal__title">
-                  Still exploring? Let us help
+                  <span aria-hidden="true">👋</span> Still exploring? Let us help
                 </h2>
                 <p className="demo-modal__lead">
                   Talk to a counsellor and we&rsquo;ll map the shortest route from where you are
                   to the job you want.
                 </p>
 
-                {featured && (
-                  <blockquote className="demo-modal__quote">
-                    <Icon name="message" size={16} className="demo-modal__quote-mark" />
-                    <p>&ldquo;{featured.quote}&rdquo;</p>
-                    <footer>
-                      <b>{featured.name}</b>
-                      <span>{featured.role}</span>
-                    </footer>
-                  </blockquote>
-                )}
+                <blockquote className="demo-modal__quote">
+                  <p>&ldquo;AI is the new electricity for modern computing.&rdquo;</p>
+                  <footer>
+                    <span className="demo-modal__quote-mark" aria-hidden="true">
+                      <Icon name="zap" size={16} />
+                    </span>
+                    <span>
+                      <b>Jensen Huang</b>
+                      <span>CEO, NVIDIA Corporation</span>
+                    </span>
+                  </footer>
+                </blockquote>
 
                 <div className="demo-modal__rating">
+                  <span className="demo-modal__g" aria-hidden="true">
+                    G
+                  </span>
+                  <span className="demo-modal__rating-label">
+                    Google Verified
+                    <Icon name="check" size={13} className="demo-modal__verified" />
+                  </span>
                   <div className="demo-modal__stars" aria-hidden="true">
                     {Array.from({ length: 5 }).map((_, i) => (
-                      <Icon key={i} name="star" size={14} />
+                      <Icon key={i} name="star" size={13} />
                     ))}
-                  </div>
-                  <div>
-                    <b>4.9 / 5 · Google Verified</b>
-                    <span>1,850+ student reviews</span>
                   </div>
                 </div>
 
-                <a className="demo-modal__support" href={`mailto:${brand.email}`}>
-                  <Icon name="mail" size={14} />
-                  {brand.email}
-                </a>
+                <p className="demo-modal__support">
+                  You can also share your requirements at{' '}
+                  <a href={`mailto:${brand.email}`}>{brand.email}</a>, and our team will get back
+                  to you right away.
+                </p>
               </div>
 
               {/* -------------------------------------------------------- form */}
               <form className="demo-form" onSubmit={submit} noValidate>
+                <h3 className="demo-form__title">Tell us your goal. We&rsquo;ll code it into reality.</h3>
+
                 <div className="demo-field">
-                  <label htmlFor="demo-course">Select course</label>
+                  <label htmlFor="demo-course" className="sr-only">
+                    Select your course of interest
+                  </label>
                   <select
                     id="demo-course"
                     ref={firstFieldRef}
@@ -286,7 +304,7 @@ export default function BookDemoModal({ open, onClose }: BookDemoModalProps) {
                     aria-describedby={errors.course ? 'demo-course-err' : undefined}
                   >
                     <option value="" disabled>
-                      Choose a course
+                      Select Your Course of Interest*
                     </option>
                     {COURSE_OPTIONS.map((c) => (
                       <option key={c} value={c}>
@@ -302,12 +320,14 @@ export default function BookDemoModal({ open, onClose }: BookDemoModalProps) {
                 </div>
 
                 <div className="demo-field">
-                  <label htmlFor="demo-name">Full name</label>
+                  <label htmlFor="demo-name" className="sr-only">
+                    Full name
+                  </label>
                   <input
                     id="demo-name"
                     type="text"
                     autoComplete="name"
-                    placeholder="Your full name"
+                    placeholder="Full Name*"
                     value={form.name}
                     onChange={update('name')}
                     aria-invalid={Boolean(errors.name)}
@@ -321,13 +341,15 @@ export default function BookDemoModal({ open, onClose }: BookDemoModalProps) {
                 </div>
 
                 <div className="demo-field">
-                  <label htmlFor="demo-phone">Contact number</label>
+                  <label htmlFor="demo-phone" className="sr-only">
+                    Contact number
+                  </label>
                   <input
                     id="demo-phone"
                     type="tel"
                     inputMode="numeric"
                     autoComplete="tel"
-                    placeholder="10-digit mobile number"
+                    placeholder="Contact Number (10 Digits)*"
                     value={form.phone}
                     onChange={update('phone')}
                     aria-invalid={Boolean(errors.phone)}
@@ -340,24 +362,46 @@ export default function BookDemoModal({ open, onClose }: BookDemoModalProps) {
                   )}
                 </div>
 
+                <div className="demo-captcha">
+                  <span className="demo-captcha__label">Security verification</span>
+                  <span className="demo-captcha__pill" aria-hidden="true">
+                    {captcha.a} + {captcha.b} = ?
+                  </span>
+                  <button
+                    type="button"
+                    className="demo-captcha__refresh"
+                    onClick={refreshCaptcha}
+                    aria-label="Get a new verification question"
+                  >
+                    <Icon name="repeat" size={15} />
+                  </button>
+                </div>
+
                 <div className="demo-field">
-                  <label htmlFor="demo-email">Email address</label>
+                  <label htmlFor="demo-answer" className="sr-only">
+                    Answer to {captcha.a} + {captcha.b}
+                  </label>
                   <input
-                    id="demo-email"
-                    type="email"
-                    autoComplete="email"
-                    placeholder="you@example.com"
-                    value={form.email}
-                    onChange={update('email')}
-                    aria-invalid={Boolean(errors.email)}
-                    aria-describedby={errors.email ? 'demo-email-err' : undefined}
+                    id="demo-answer"
+                    type="text"
+                    inputMode="numeric"
+                    placeholder="Answer"
+                    value={form.answer}
+                    onChange={update('answer')}
+                    aria-invalid={Boolean(errors.answer)}
+                    aria-describedby={errors.answer ? 'demo-answer-err' : undefined}
                   />
-                  {errors.email && (
-                    <span className="demo-field__error" id="demo-email-err">
-                      {errors.email}
+                  {errors.answer && (
+                    <span className="demo-field__error" id="demo-answer-err">
+                      {errors.answer}
                     </span>
                   )}
                 </div>
+
+                <p className="demo-trust">
+                  <Icon name="check" size={13} />
+                  Expert response within 5 minutes.
+                </p>
 
                 {serverError && <p className="demo-form__server-error">{serverError}</p>}
 

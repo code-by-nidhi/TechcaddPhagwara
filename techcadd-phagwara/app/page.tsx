@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
 
 import Hero from '@/components/sections/Hero'
-import TrustIndicators from '@/components/sections/TrustIndicators'
 import About from '@/components/sections/About'
 import HowItWorks from '@/components/sections/HowItWorks'
 import Categories from '@/components/sections/Categories'
@@ -32,7 +31,6 @@ export default function HomePage() {
   return (
     <main id="main">
       <Hero />
-      <TrustIndicators />
       <About />
       <HowItWorks />
       <Categories />
