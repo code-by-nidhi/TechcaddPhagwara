@@ -1,6 +1,4 @@
-import Counter from '@/components/ui/Counter'
 import Icon, { type IconName } from '@/components/ui/Icon'
-import { statistics } from '@/data/site'
 
 interface Step {
   icon: IconName
@@ -37,11 +35,9 @@ const STEPS: Step[] = [
 ]
 
 /**
- * Server Component — everything here is static HTML except the counters,
- * which reuse the same `Counter` client leaf Hero already embeds the same
- * way for `heroStats`. The connecting line is pure CSS (`transform: scaleX`
- * / `scaleY`, driven by the existing `[data-reveal]` engine) — no GSAP,
- * so this section carries no extra JS.
+ * Server Component — everything here is static HTML; no client JS at all.
+ * The connecting line is pure CSS (`transform: scaleX` / `scaleY`, driven by
+ * the existing `[data-reveal]` engine) — no GSAP.
  */
 export default function HowItWorks() {
   return (
@@ -73,22 +69,6 @@ export default function HowItWorks() {
               <h3 className="how__title">{step.title}</h3>
               <p className="how__desc">{step.text}</p>
             </article>
-          ))}
-        </div>
-
-        <div className="how__counters">
-          {statistics.map((stat) => (
-            <div className="how__counter" key={stat.label}>
-              {stat.icon && (
-                <i>
-                  <Icon name={stat.icon} size={18} />
-                </i>
-              )}
-              <b>
-                <Counter value={stat.value} suffix={stat.suffix} decimals={stat.decimals} />
-              </b>
-              <span>{stat.label}</span>
-            </div>
           ))}
         </div>
       </div>

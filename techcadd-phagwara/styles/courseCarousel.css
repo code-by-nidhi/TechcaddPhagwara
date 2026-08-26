@@ -1,0 +1,501 @@
+/* ==========================================================================
+   Course Carousel — 3D coverflow, replaces the old bento-grid Courses
+   section (`id="courses"` is preserved so every existing #courses link on
+   the site still lands here)
+   ========================================================================== */
+
+.carousel {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background: linear-gradient(160deg, #07153d 0%, #0b1f63 55%, #102d8a 100%);
+  color: #ffffff;
+}
+
+@media (max-width: 991px) {
+  .carousel {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+}
+
+@media (max-width: 640px) {
+  .carousel {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+}
+
+/* ------------------------------------------------------------ background -- */
+
+/* Same grid + glow technique as `.categories__fx` (categories.css) — a
+   masked dot/line grid plus a soft radial bloom, this time centred behind
+   wherever the active card sits rather than fixed corners. */
+.carousel__fx {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.carousel__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(122, 184, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(122, 184, 255, 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 90% 75% at 50% 45%, #000 30%, transparent 88%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 75% at 50% 45%, #000 30%, transparent 88%);
+}
+
+.carousel__glow {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 46rem;
+  height: 46rem;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.32), transparent 70%);
+  filter: blur(60px);
+}
+
+/* -------------------------------------------------------------- heading -- */
+
+.carousel__head {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+  text-align: center;
+}
+
+.carousel__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--r-pill);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.carousel__heading {
+  margin-top: 1.1rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.15;
+  color: #ffffff;
+}
+
+.carousel__accent {
+  color: #ffd100;
+}
+
+.carousel__lead {
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+}
+
+/* ---------------------------------------------------------------- stage -- */
+
+.carousel__stage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.carousel__arrow {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.carousel__arrow:hover {
+  background: #2563eb;
+  border-color: #2563eb;
+  transform: scale(1.08);
+}
+
+/* ---------------------------------------------------------------- track -- */
+
+.carousel__track {
+  position: relative;
+  flex: 1 1 auto;
+  height: 460px;
+  perspective: 1800px;
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+
+.ccard {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 420px;
+  margin: -210px 0 0 -140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.9rem 1.5rem;
+  text-align: center;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #071a52;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: transform 0.6s var(--ease), opacity 0.6s var(--ease), box-shadow 0.6s var(--ease);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.ccard__glow {
+  position: absolute;
+  inset: -20% -20% auto -20%;
+  height: 60%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.4), transparent 70%);
+  opacity: 0;
+  filter: blur(30px);
+  pointer-events: none;
+  transition: opacity 0.6s var(--ease);
+}
+
+/* stand-in for real course photography — see the note in Categories.tsx /
+   CategoryArc.tsx for why: no photo assets exist anywhere in this project. */
+.ccard__image {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  flex: none;
+  border-radius: 18px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  box-shadow: 0 14px 30px -8px rgba(37, 99, 235, 0.7);
+}
+
+.ccard__category {
+  position: relative;
+  z-index: 1;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #93c5fd;
+  background: rgba(59, 130, 246, 0.14);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.ccard__title {
+  position: relative;
+  z-index: 1;
+  font-size: 1.1rem;
+  line-height: 1.3;
+  color: #ffffff;
+}
+
+.ccard__desc {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: #cbd5e1;
+  /* clamp so a longer catalog summary never pushes the CTA off the card */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ccard__cta {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+/* -------------------------------------------------------- coverflow tiers -- */
+
+@keyframes ccard-active-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotateY(0deg) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) rotateY(0deg) scale(1);
+  }
+}
+
+.ccard.is-active {
+  z-index: 10;
+  opacity: 1;
+  box-shadow: 0 30px 70px rgba(2, 8, 30, 0.55), 0 0 60px -10px rgba(59, 130, 246, 0.55);
+  animation: ccard-active-float 5s var(--ease-soft) infinite;
+}
+
+.ccard.is-active .ccard__glow {
+  opacity: 1;
+}
+
+.ccard.is-active .ccard__cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ccard.is-right-1 {
+  z-index: 8;
+  opacity: 1;
+  transform: translate3d(240px, 0, -90px) rotateY(-35deg) scale(0.85);
+}
+
+.ccard.is-left-1 {
+  z-index: 8;
+  opacity: 1;
+  transform: translate3d(-240px, 0, -90px) rotateY(35deg) scale(0.85);
+}
+
+.ccard.is-right-2 {
+  z-index: 6;
+  opacity: 0.85;
+  transform: translate3d(430px, 0, -200px) rotateY(-45deg) scale(0.7);
+}
+
+.ccard.is-left-2 {
+  z-index: 6;
+  opacity: 0.85;
+  transform: translate3d(-430px, 0, -200px) rotateY(45deg) scale(0.7);
+}
+
+.ccard.is-right-3 {
+  z-index: 4;
+  opacity: 0.5;
+  transform: translate3d(580px, 0, -280px) rotateY(-45deg) scale(0.7);
+}
+
+.ccard.is-left-3 {
+  z-index: 4;
+  opacity: 0.5;
+  transform: translate3d(-580px, 0, -280px) rotateY(45deg) scale(0.7);
+}
+
+.ccard.is-hidden {
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, 0, -320px) scale(0.6);
+}
+
+/* ----------------------------------------------------------------- dots -- */
+
+.carousel__dots {
+  position: relative;
+  z-index: 1;
+  display: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.carousel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.carousel__dot.is-on {
+  background: #2563eb;
+  transform: scale(1.35);
+}
+
+/* ------------------------------------------------------------ responsive -- */
+
+/* tablet: 5 visible (active + 2 each side) — the third tier collapses in */
+@media (max-width: 1199px) {
+  .ccard.is-right-3,
+  .ccard.is-left-3 {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .carousel__track {
+    height: 420px;
+  }
+
+  .ccard {
+    width: 240px;
+    height: 380px;
+    margin: -190px 0 0 -120px;
+    padding: 1.6rem 1.25rem;
+  }
+
+  .ccard.is-right-1 {
+    transform: translate3d(190px, 0, -80px) rotateY(-35deg) scale(0.85);
+  }
+  .ccard.is-left-1 {
+    transform: translate3d(-190px, 0, -80px) rotateY(35deg) scale(0.85);
+  }
+  .ccard.is-right-2 {
+    transform: translate3d(340px, 0, -180px) rotateY(-45deg) scale(0.7);
+  }
+  .ccard.is-left-2 {
+    transform: translate3d(-340px, 0, -180px) rotateY(45deg) scale(0.7);
+  }
+}
+
+/* mobile: single centred card, dots take over as the primary navigation */
+@media (max-width: 640px) {
+  .carousel__stage {
+    gap: 0.5rem;
+  }
+
+  .carousel__arrow {
+    width: 42px;
+    height: 42px;
+  }
+
+  .carousel__track {
+    height: 400px;
+  }
+
+  .ccard {
+    width: 250px;
+    height: 370px;
+    margin: -185px 0 0 -125px;
+  }
+
+  .ccard.is-right-1,
+  .ccard.is-left-1,
+  .ccard.is-right-2,
+  .ccard.is-left-2 {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .carousel__dots {
+    display: flex;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ccard.is-active {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------- feature bar -- */
+
+.carousel__features {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+}
+
+.cfeature {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1.1rem 1.3rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
+}
+
+.cfeature:hover {
+  transform: translateY(-6px);
+  border-color: rgba(59, 130, 246, 0.55);
+  box-shadow: 0 20px 40px rgba(2, 8, 30, 0.4), 0 0 30px -8px rgba(59, 130, 246, 0.5);
+}
+
+.cfeature__icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex: none;
+  border-radius: 14px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  box-shadow: 0 10px 22px -6px rgba(37, 99, 235, 0.7);
+}
+
+.cfeature__title {
+  display: block;
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.cfeature__text {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}
+
+@media (max-width: 900px) {
+  .carousel__features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .carousel__features {
+    grid-template-columns: 1fr;
+  }
+}

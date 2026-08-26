@@ -4,7 +4,7 @@ import Hero from '@/components/sections/Hero'
 import About from '@/components/sections/About'
 import HowItWorks from '@/components/sections/HowItWorks'
 import Categories from '@/components/sections/Categories'
-import Courses from '@/components/sections/Courses'
+import CourseCarousel from '@/components/sections/CourseCarousel'
 import LearningModes from '@/components/sections/LearningModes'
 import Benefits from '@/components/sections/Benefits'
 import AILabs from '@/components/sections/AILabs'
@@ -34,7 +34,7 @@ export default function HomePage() {
       <About />
       <HowItWorks />
       <Categories />
-      <Courses />
+      <CourseCarousel />
       <LearningModes />
       <Benefits />
       <AILabs />
