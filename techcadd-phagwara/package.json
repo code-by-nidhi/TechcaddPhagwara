@@ -2,7 +2,7 @@
   "name": "techcadd-phagwara",
   "version": "2.0.0",
   "private": true,
-  "description": "Techcadd Computer Education, Phagwara \u2014 AI, Data Science and Full Stack training institute. Next.js 15 App Router.",
+  "description": "Techcadd Computer Education, Phagwara — AI, Data Science and Full Stack training institute. Next.js 15 App Router.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,6 +11,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "embla-carousel-auto-scroll": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
+    "framer-motion": "^11.18.2",
     "gsap": "^3.12.5",
     "lenis": "^1.1.13",
     "next": "^15.1.6",
@@ -22,11 +25,13 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^22.10.7",
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
     "eslint": "^9.18.0",
     "eslint-config-next": "^15.1.6",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.7.3"
   },
   "engines": {

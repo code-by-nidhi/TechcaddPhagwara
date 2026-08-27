@@ -5,6 +5,7 @@ import { Plus_Jakarta_Sans, Manrope } from 'next/font/google'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import SiteEffects from '@/components/fx/SiteEffects'
+import ScrollReset from '@/components/layout/ScrollReset'
 import FloatingDock from '@/components/fx/FloatingDock'
 import { brand } from '@/data/site'
 import {
@@ -49,6 +50,9 @@ import '@/styles/contact.css'
 import '@/styles/footer.css'
 import '@/styles/coursePage.css'
 import '@/styles/bookDemoModal.css'
+
+/* Last: the course pages' utility layer (see styles/tailwind.css). */
+import '@/styles/tailwind.css'
 
 /* --------------------------------------------------------------------------
    Fonts. Self-hosted and preloaded by next/font, which removes the two
@@ -176,6 +180,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </a>
 
         <SiteEffects />
+        <ScrollReset />
 
         <Navbar />
 

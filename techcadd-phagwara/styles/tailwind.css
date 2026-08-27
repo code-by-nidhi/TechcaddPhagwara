@@ -1,0 +1,133 @@
+/* --------------------------------------------------------------------------
+   Tailwind entry point — course landing pages only.
+
+   Two deliberate departures from the usual `@import "tailwindcss"`:
+
+   1. No Preflight. Its reset (margin:0 on everything, `border-style: solid`
+      globally, unstyled headings and lists) contradicts the reset `base.css`
+      already establishes for the other twenty-odd pages of this site.
+
+   2. Utilities are imported WITHOUT `layer(utilities)`. This is the important
+      one. Cascade layers lose to unlayered CSS unconditionally — specificity
+      is not even consulted — and every stylesheet in `styles/` is unlayered.
+      Putting the utilities in a layer therefore handed `base.css` a blanket
+      win over all of them: `* { margin: 0; padding: 0 }` (base.css:106) beat
+      `mx-auto` and `px-5`, so course pages rendered flush to the left edge
+      with no gutter, and `h1 { color: var(--ink) }` (base.css:164) beat
+      `text-white`, so every hero headline came out navy-on-navy.
+
+      Unlayered, ordinary specificity applies and the utilities win the cases
+      that matter: `.mx-auto` (0,1,0) over `*` (0,0,0), `.text-white` (0,1,0)
+      over `h1` (0,0,1). Nothing collides in the other direction, because the
+      project's own rules are all class selectors — `.nav__link`, `.shell`,
+      `.mega__link` — and none of those class names appear on a course page.
+      This file is imported last in `app/layout.tsx`, so it also wins any
+      exact specificity tie on source order.
+
+   3. `source(none)` plus explicit `@source` globs. `@source` *adds* to
+      Tailwind's automatic detection rather than replacing it, so without this
+      the scanner walks the whole project and treats any bare word that
+      happens to name a utility as one to emit. That is not hypothetical: it
+      emitted a `.ring` rule, which — unlayered and later in the cascade than
+      `placement.css` — put a box-shadow on the homepage's SuccessRing, an
+      element no course page ever renders. Restricting the scan to the two
+      directories that actually contain Tailwind keeps the emitted set to
+      exactly the classes these components use.
+   -------------------------------------------------------------------------- */
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' source(none);
+
+@source '../components/courses';
+@source '../app/[slug]';
+
+/* --------------------------------------------------------------------------
+   Dark-band inversion.
+
+   Sections rendered with `tone="dark"` (see `components/courses/shared.tsx`)
+   carry `.course-dark`. Rather than every child component branching on tone,
+   the colour flip lives here once: headings go white, body copy goes to a
+   muted slate, and the white card surfaces become a translucent lift so they
+   read as raised panels on navy instead of solid white blocks.
+   -------------------------------------------------------------------------- */
+.course-dark {
+  color: #e2e8f0;
+}
+
+.course-dark :is(h1, h2, h3, h4, h5),
+.course-dark .text-\[\#0F172A\] {
+  color: #ffffff;
+}
+
+.course-dark :is(p, li, dd, figcaption),
+.course-dark .text-\[\#475569\],
+.course-dark .text-\[\#64748B\],
+.course-dark .text-slate-600,
+.course-dark .text-slate-500 {
+  color: rgba(226, 232, 240, 0.78);
+}
+
+/* Matches the class prefix, not the literal class, so `bg-white/85` and
+   `bg-white/75` (the enquiry panel and its inputs) are caught too — otherwise
+   they stay light while the text on them turns white. */
+.course-dark [class*='bg-white'] {
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+.course-dark :is(.border-slate-200\/80, .border-slate-200, .border-slate-100) {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.course-dark .bg-\[\#F6F9FF\],
+.course-dark .bg-slate-50 {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.course-dark [class*='border-white'],
+.course-dark [class*='border-[#2563EB]'] {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+/* The accent blue is too dark to read on navy — lift it to the light ramp. */
+.course-dark .text-\[\#2563EB\] {
+  color: #93c5fd;
+}
+
+/* Shadows do nothing on a dark ground and only muddy the card edges. */
+.course-dark [class*='shadow-'] {
+  box-shadow: none;
+}
+
+/* Form controls need their own pass: both the typed text and the placeholder
+   have to clear the darker ground. */
+.course-dark :is(input, textarea, select) {
+  background-color: rgba(255, 255, 255, 0.09);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.course-dark :is(input, textarea)::placeholder {
+  color: rgba(226, 232, 240, 0.55);
+}
+
+.course-dark :is(input, textarea):focus {
+  background-color: rgba(255, 255, 255, 0.14);
+  border-color: #93c5fd;
+}
+
+.course-dark :is(.text-\[\#334155\], .text-\[\#94A3B8\], .text-\[\#1D4ED8\]) {
+  color: rgba(226, 232, 240, 0.72);
+}
+
+/* Inline validation: red-700 on a red-50 chip is unreadable on navy. */
+.course-dark .bg-red-50 {
+  background-color: rgba(248, 113, 113, 0.14);
+}
+
+.course-dark .text-red-700 {
+  color: #fecaca;
+}
+
+.course-dark .border-red-200 {
+  border-color: rgba(248, 113, 113, 0.4);
+}

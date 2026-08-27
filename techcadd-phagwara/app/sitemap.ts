@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next'
-import { allCoursePages } from '@/data/coursePages'
+import { courseSlugs } from '@/data/courses'
 import { allInternshipPages } from '@/data/internshipPages'
 import { allAfter12Pages } from '@/data/after12Pages'
 import { SITE_URL } from '@/lib/site-config'
@@ -19,8 +19,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 1,
     },
-    ...allCoursePages.map((course) => ({
-      url: `${SITE_URL}/${course.slug}`,
+    /* Read from the course-content catalogue, which is also what
+       `generateStaticParams` builds from — so the sitemap can never list a
+       course route that does not render. */
+    ...courseSlugs().map((slug) => ({
+      url: `${SITE_URL}/${slug}`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.8,

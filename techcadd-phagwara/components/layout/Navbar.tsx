@@ -248,10 +248,10 @@ export default function Navbar() {
                       <GroupedMegaMenu
                         label={link.label}
                         groups={link.groups}
-                        quote={link.label === 'Internship & Training' ? MEGA_QUOTE : undefined}
+                        quote={link.label === 'Internship' ? MEGA_QUOTE : undefined}
                         cta={{
                           label:
-                            link.label === 'Internship & Training'
+                            link.label === 'Internship'
                               ? 'See all training formats'
                               : 'Browse After 12th courses',
                           href: link.href,

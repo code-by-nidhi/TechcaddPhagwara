@@ -1,16 +1,34 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import Icon from '@/components/ui/Icon'
-import Button from '@/components/ui/Button'
-import SectionHeading from '@/components/ui/SectionHeading'
-import { allCoursePages, courseCatalog, findCourseBySlug } from '@/data/coursePages'
+
+import CourseHero from '@/components/courses/CourseHero'
+import CourseOverview from '@/components/courses/CourseOverview'
+import IndustryReady from '@/components/courses/IndustryReady'
+import WhoCanJoin from '@/components/courses/WhoCanJoin'
+import WhyProgram from '@/components/courses/WhyProgram'
+import WhyNow from '@/components/courses/WhyNow'
+import CourseModules from '@/components/courses/CourseModules'
+import DurationTiers from '@/components/courses/DurationTiers'
+import ToolsMesh from '@/components/courses/ToolsMesh'
+import Certification from '@/components/courses/Certification'
+import CareerOutcomes from '@/components/courses/CareerOutcomes'
+import Projects from '@/components/courses/Projects'
+import WorkingLoop from '@/components/courses/WorkingLoop'
+import Comparison from '@/components/courses/Comparison'
+import Reviews from '@/components/courses/Reviews'
+import CourseFaq from '@/components/courses/CourseFaq'
+import CourseCta from '@/components/courses/CourseCta'
+import RelatedCourses from '@/components/courses/RelatedCourses'
+import CourseEnquiry from '@/components/courses/CourseEnquiry'
+import StickyEnrolBar from '@/components/courses/StickyEnrolBar'
+
+import { COURSE_CONTENT, getCourse, getRelated } from '@/data/courses'
 import { brand } from '@/data/site'
 import { SITE_URL } from '@/lib/site-config'
 
 /** One static page per course — no route is generated for an unknown slug. */
 export function generateStaticParams() {
-  return allCoursePages.map((course) => ({ slug: course.slug }))
+  return COURSE_CONTENT.map((course) => ({ slug: course.slug }))
 }
 
 interface PageProps {
@@ -19,17 +37,20 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const course = findCourseBySlug(slug)
+  const course = getCourse(slug)
   if (!course) return {}
+
+  const url = `${SITE_URL}/${course.slug}`
 
   return {
     title: course.title,
     description: course.summary,
+    keywords: course.keywords,
     alternates: { canonical: `/${course.slug}` },
     openGraph: {
       title: `${course.title} | ${brand.name} ${brand.suffix}`,
       description: course.summary,
-      url: `${SITE_URL}/${course.slug}`,
+      url,
       type: 'website',
     },
     twitter: {
@@ -42,97 +63,118 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function CoursePage({ params }: PageProps) {
   const { slug } = await params
-  const course = findCourseBySlug(slug)
+  const course = getCourse(slug)
   if (!course) notFound()
 
-  const category = courseCatalog.find((cat) => cat.courses.some((c) => c.slug === slug))!
-  const related = category.courses.filter((c) => c.slug !== slug).slice(0, 6)
+  const related = getRelated(slug)
+  const url = `${SITE_URL}/${course.slug}`
 
+  /*
+   * Three graphs in one script: the Course itself, the breadcrumb trail, and
+   * the FAQ. A @graph keeps them in a single tag and lets them reference one
+   * another by @id.
+   *
+   * No `aggregateRating`: the reviews on the page are reviews of the centre,
+   * not of this syllabus, and claiming a per-course score in structured data
+   * would be a rich result the page does not actually support.
+   */
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Course',
-    name: course.title,
-    description: course.summary,
-    provider: {
-      '@type': 'EducationalOrganization',
-      name: `${brand.name} ${brand.suffix}`,
-      sameAs: SITE_URL,
-    },
+    '@graph': [
+      {
+        '@type': 'Course',
+        '@id': `${url}#course`,
+        name: course.title,
+        description: course.overview,
+        url,
+        inLanguage: 'en',
+        educationalLevel: course.level,
+        teaches: course.learningOutcomes,
+        provider: {
+          '@type': 'EducationalOrganization',
+          name: `${brand.name} ${brand.suffix}`,
+          sameAs: SITE_URL,
+        },
+        offers: {
+          '@type': 'Offer',
+          category: 'Paid',
+          availability: 'https://schema.org/InStock',
+          url,
+        },
+        hasCourseInstance: {
+          '@type': 'CourseInstance',
+          courseMode: 'Onsite',
+          courseWorkload: course.duration,
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${url}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+          { '@type': 'ListItem', position: 2, name: 'Courses', item: `${SITE_URL}/#courses` },
+          { '@type': 'ListItem', position: 3, name: course.label, item: url },
+        ],
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${url}#faq`,
+        mainEntity: course.faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.q,
+          acceptedAnswer: { '@type': 'Answer', text: faq.a },
+        })),
+      },
+    ],
   }
 
   return (
-    <main id="main">
-      <section className="section course-hero">
-        <div className="shell">
-          <nav className="course-breadcrumb" aria-label="Breadcrumb">
-            <Link href="/">Home</Link>
-            <Icon name="chevronRight" size={12} />
-            <Link href="/#courses">Courses</Link>
-            <Icon name="chevronRight" size={12} />
-            <span aria-current="page">{course.label}</span>
-          </nav>
+    <>
+      {/*
+       * Every section on this page reveals on scroll, which means framer-motion
+       * writes `style="opacity:0"` into the server HTML and only clears it once
+       * hydrated. With scripting off that leaves the whole page blank even
+       * though the text is all present, so the reveal is undone here. The
+       * inline style has to be beaten with `!important`.
+       */}
+      <noscript>
+        <style
+          dangerouslySetInnerHTML={{
+            __html:
+              '#main [style*="opacity:0"]{opacity:1!important;transform:none!important}',
+          }}
+        />
+      </noscript>
 
-          <SectionHeading
-            eyebrow={`${category.title} · ${course.duration}`}
-            eyebrowIcon={course.icon}
-            title={course.title}
-            lead={course.summary}
-            reveal={false}
-          />
+      <main id="main">
+        <CourseHero course={course} />
+        <CourseOverview course={course} />
+        <IndustryReady course={course} />
+        <WhoCanJoin course={course} />
+        <WhyProgram course={course} />
+        <WhyNow course={course} />
+        <CourseModules course={course} />
+        <DurationTiers course={course} />
+        <ToolsMesh course={course} />
+        <Certification course={course} />
+        <CareerOutcomes course={course} />
+        <Projects course={course} />
+        <WorkingLoop course={course} />
+        <Reviews course={course} />
+        <Comparison course={course} />
+        <CourseFaq course={course} />
+        <CourseCta course={course} />
+        <RelatedCourses courses={related} />
+        <CourseEnquiry course={course} />
+      </main>
 
-          <div className="course-hero__cta">
-            <Button href="/#contact" arrow>
-              Book Free Demo
-            </Button>
-            <Button href="/#contact" variant="ghost" icon="phone">
-              Talk to a counsellor
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      <section className="section section--tint course-highlights">
-        <div className="shell">
-          <h2 className="course-highlights__title">What you&rsquo;ll learn</h2>
-          <ul className="course-highlights__list">
-            {course.highlights.map((point, i) => (
-              <li key={point} data-reveal="up" data-reveal-delay={i * 60}>
-                <i>
-                  <Icon name="check" />
-                </i>
-                {point}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {related.length > 0 && (
-        <section className="section course-related">
-          <div className="shell">
-            <h2 className="course-related__title">
-              More {category.title} courses
-            </h2>
-            <div className="course-related__grid">
-              {related.map((c) => (
-                <Link key={c.slug} href={`/${c.slug}`} className="course-related__card">
-                  <i>
-                    <Icon name={c.icon} />
-                  </i>
-                  <span>{c.label}</span>
-                  <em>{c.duration}</em>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      <StickyEnrolBar course={course} />
 
       {/* JSON-LD is inert data, not executable script — safe to inline. */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    </main>
+    </>
   )
 }
