@@ -4,7 +4,13 @@ import { useState, type ChangeEvent, type FormEvent } from 'react'
 import Icon from '@/components/ui/Icon'
 import Button from '@/components/ui/Button'
 import SectionHeading from '@/components/ui/SectionHeading'
-import { brand, courses, socials } from '@/data/site'
+import {
+  brand as staticBrand,
+  courses as staticCourses,
+  socials as staticSocials,
+  type Brand,
+  type Social,
+} from '@/data/site'
 
 interface EnquiryForm {
   name: string
@@ -18,7 +24,26 @@ const EMPTY: EnquiryForm = { name: '', phone: '', email: '', course: '', message
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
-export default function Contact() {
+/**
+ * The enquiry form and the contact panel beside it.
+ *
+ * `courseOptions` is what fills the "Interested in" select. It used to read
+ * `courses` from `data/site.ts` — a six-item homepage grid that is not the
+ * catalogue and never was, so a student could not choose most of what the
+ * institute teaches. It is now the real catalogue, from the CMS, and the
+ * chosen title travels to the CMS as the enquiry's course name.
+ */
+export interface ContactProps {
+  courseOptions?: string[]
+  brand?: Brand
+  socials?: Social[]
+}
+
+export default function Contact({
+  courseOptions = staticCourses.map((course) => course.title),
+  brand = staticBrand,
+  socials = staticSocials,
+}: ContactProps = {}) {
   const [form, setForm] = useState<EnquiryForm>(EMPTY)
   const [status, setStatus] = useState<Status>('idle')
   const [feedback, setFeedback] = useState('')
@@ -142,9 +167,9 @@ export default function Contact() {
                   <option value="" disabled>
                     Select a program
                   </option>
-                  {courses.map((course) => (
-                    <option key={course.id} value={course.title}>
-                      {course.title}
+                  {courseOptions.map((course) => (
+                    <option key={course} value={course}>
+                      {course}
                     </option>
                   ))}
                   <option value="Not sure yet">Not sure yet — help me choose</option>
@@ -239,7 +264,7 @@ export default function Contact() {
             <div className="contact__map">
               <iframe
                 src={brand.mapEmbed}
-                title="Techcadd Phagwara location map"
+                title={`${brand.name} ${brand.suffix} location map`}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
@@ -258,6 +283,9 @@ export default function Contact() {
                   href={social.href}
                   style={{ '--i': i }}
                   aria-label={social.name}
+                  {...(/^https?:/.test(social.href)
+                    ? { target: '_blank', rel: 'noopener noreferrer' }
+                    : {})}
                 >
                   <Icon name={social.key} />
                 </a>

@@ -1,0 +1,384 @@
+/* ==========================================================================
+   The blog and events sections — /blogs, /events and their detail pages.
+
+   New routes, so new CSS, but no new design: every value below is one of the
+   tokens base.css already declares, and the card, chip and section-heading
+   shapes are the ones the course pages and the homepage already use. The point
+   is that a visitor arriving from the homepage should not be able to tell
+   these were added later.
+   ========================================================================== */
+
+/* --------------------------------------------------------------- index --- */
+
+.editorial__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: clamp(1.2rem, 2.5vw, 1.8rem);
+}
+
+.ecard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  transition:
+    transform var(--t-fast),
+    border-color var(--t-fast),
+    box-shadow var(--t-fast);
+}
+
+.ecard:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+  box-shadow: var(--sh-md);
+}
+
+.ecard__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--grad-soft);
+}
+
+.ecard__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The generated stand-in for a post with no cover — the same device the
+   gallery tiles and the About collage use when there is no photograph. */
+.ecard__art {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 90% at 20% 15%, hsl(var(--hue, 218) 92% 62% / 0.5), transparent 60%),
+    radial-gradient(100% 80% at 85% 85%, hsl(calc(var(--hue, 218) + 40) 90% 58% / 0.4), transparent 55%),
+    linear-gradient(140deg, hsl(var(--hue, 218) 60% 96%), hsl(var(--hue, 218) 55% 90%));
+}
+
+.ecard__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.15rem 1.25rem 1.35rem;
+}
+
+.ecard__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.7rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.ecard__meta i {
+  display: inline-grid;
+  place-items: center;
+  color: var(--blue-600);
+}
+
+.ecard__title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.ecard:hover .ecard__title {
+  color: var(--blue-600);
+}
+
+.ecard__excerpt {
+  flex: 1;
+  color: var(--ink-3);
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.ecard__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--blue-600);
+}
+
+/* --------------------------------------------------------------- tags ---- */
+
+.etags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.5rem;
+  margin-bottom: clamp(1.4rem, 3vw, 2rem);
+}
+
+.etags a,
+.etags span {
+  padding: 0.32rem 0.8rem;
+  border-radius: 999px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  color: var(--ink-2);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: border-color var(--t-fast), color var(--t-fast);
+}
+
+.etags a:hover,
+.etags a[aria-current='page'] {
+  border-color: transparent;
+  background: var(--grad-soft);
+  color: var(--blue-600);
+}
+
+/* -------------------------------------------------------------- detail --- */
+
+.epost__cover {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  margin-bottom: clamp(1.6rem, 3.5vw, 2.4rem);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+}
+
+.epost__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1.4rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--ink-4);
+}
+
+/* -------------------------------------------------------------- events --- */
+
+/* The "when and where" strip on an event's page. */
+.event-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: clamp(1.6rem, 3vw, 2.2rem);
+  padding-top: clamp(1.4rem, 3vw, 2rem);
+  border-top: 1px solid var(--border);
+}
+
+.event-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.event-status--upcoming {
+  background: var(--grad-soft);
+  color: var(--blue-600);
+}
+
+.event-status--past {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  color: var(--ink-4);
+}
+
+.event-agenda {
+  display: grid;
+  gap: 0.7rem;
+  max-width: 860px;
+}
+
+.event-agenda li {
+  display: grid;
+  grid-template-columns: minmax(90px, auto) 1fr;
+  gap: 0.4rem 1.1rem;
+  padding: 0.95rem 1.15rem;
+  border-radius: var(--r-lg);
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+}
+
+.event-agenda b {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--blue-600);
+}
+
+.event-agenda h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.event-agenda p {
+  grid-column: 2;
+  color: var(--ink-3);
+  line-height: 1.6;
+}
+
+.event-speakers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.espeaker {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1.1rem 1.2rem;
+  border-radius: var(--r-lg);
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+}
+
+.espeaker__avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 46px;
+  height: 46px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--grad);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.espeaker__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.espeaker b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.espeaker span {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: 0.84rem;
+  color: var(--ink-4);
+}
+
+.espeaker p {
+  margin-top: 0.45rem;
+  color: var(--ink-3);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------------------- comments -- */
+
+.ecomments {
+  display: grid;
+  gap: 1rem;
+  max-width: 780px;
+}
+
+.ecomment {
+  padding: 1.05rem 1.2rem;
+  border-radius: var(--r-lg);
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+}
+
+/* A reply, indented once. Threads are one level deep in the CMS. */
+.ecomment--reply {
+  margin-left: clamp(1rem, 4vw, 2.5rem);
+}
+
+.ecomment__head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.45rem;
+}
+
+.ecomment__head b {
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.ecomment__head time {
+  font-size: 0.78rem;
+  color: var(--ink-4);
+}
+
+.ecomment__staff {
+  padding: 0.12rem 0.5rem;
+  border-radius: 999px;
+  background: var(--grad-soft);
+  color: var(--blue-600);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ecomment p {
+  color: var(--ink-2);
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+/* The comment form reuses the contact form's field styling (contact.css). */
+.ecomment-form {
+  display: grid;
+  gap: 1rem;
+  max-width: 640px;
+  margin-top: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+.ecomment-form__row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+/* The honeypot. Hidden from sight *and* from assistive tech — a person must
+   never be shown this field, because filling it in discards their comment. */
+.ecomment-form__trap {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------- empty -- */
+
+.editorial__empty {
+  max-width: 60ch;
+  color: var(--ink-3);
+  font-size: 1.02rem;
+  line-height: 1.75;
+}

@@ -1,0 +1,374 @@
+/* ==========================================================================
+   Course landing pages — the sections that only appear when the CMS has
+   something to put in them.
+
+   Every rule here is additive. A course with no facts, no overview, no
+   curriculum, no tools, no careers and no editor blocks renders exactly the
+   markup it rendered before the CMS existed, so none of this applies to it.
+
+   Tokens only — no new colours, radii or shadows are introduced. The point is
+   that a section an editor fills in looks like it was always part of the page.
+   ========================================================================== */
+
+/* ------------------------------------------------------------ hero badge -- */
+
+.course-badge {
+  display: inline-block;
+  margin-bottom: 0.9rem;
+  padding: 0.32rem 0.75rem;
+  border-radius: 999px;
+  background: var(--grad-soft);
+  color: var(--blue-600);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ----------------------------------------------------------- facts strip -- */
+
+.course-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: clamp(1.8rem, 3.5vw, 2.6rem);
+  padding-top: clamp(1.4rem, 3vw, 2rem);
+  border-top: 1px solid var(--border);
+}
+
+.course-fact {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.course-fact i {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--grad-soft);
+  color: var(--blue-600);
+}
+
+.course-fact dt {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.course-fact dd {
+  margin-top: 0.15rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.course-fact dd em {
+  font-style: normal;
+  margin-left: 0.15rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink-3);
+}
+
+/* ------------------------------------------------------------- prose ----- */
+
+/* Shared by the overview, the rich-text blocks and the CMS page template. */
+.course-prose {
+  max-width: 76ch;
+  color: var(--ink-2);
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+.course-prose > * + * {
+  margin-top: 1rem;
+}
+
+.course-prose h1,
+.course-prose h2,
+.course-prose h3,
+.course-prose h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.25;
+}
+
+.course-prose h2 {
+  margin-top: 2rem;
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+}
+
+.course-prose h3 {
+  margin-top: 1.6rem;
+  font-size: 1.15rem;
+}
+
+.course-prose h4 {
+  margin-top: 1.4rem;
+  font-size: 1.02rem;
+}
+
+.course-prose a {
+  color: var(--blue-600);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.course-prose a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.course-prose ul,
+.course-prose ol {
+  padding-left: 1.3rem;
+}
+
+.course-prose ul {
+  list-style: disc;
+}
+
+.course-prose ol {
+  list-style: decimal;
+}
+
+.course-prose li + li {
+  margin-top: 0.4rem;
+}
+
+.course-prose blockquote {
+  padding-left: 1.1rem;
+  border-left: 3px solid var(--blue-600);
+  color: var(--ink-3);
+  font-style: italic;
+}
+
+.course-prose code {
+  padding: 0.12em 0.4em;
+  border-radius: 6px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  font-size: 0.9em;
+}
+
+.course-prose pre {
+  overflow-x: auto;
+  padding: 1rem 1.1rem;
+  border-radius: var(--r-lg);
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+}
+
+.course-prose pre code {
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.course-prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--r-lg);
+}
+
+.course-prose hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+
+/* --------------------------------------------------------- curriculum ---- */
+
+.course-modules__intro {
+  max-width: 76ch;
+  margin-bottom: 1.6rem;
+  color: var(--ink-3);
+  line-height: 1.7;
+}
+
+.course-modules__list {
+  display: grid;
+  gap: 0.9rem;
+  max-width: 980px;
+  list-style: none;
+  counter-reset: none;
+}
+
+.cmodule {
+  display: flex;
+  gap: 1rem;
+  padding: 1.15rem 1.25rem;
+  border-radius: var(--r-lg);
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+
+.cmodule:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--sh-md);
+}
+
+.cmodule__index {
+  flex: none;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--blue-600);
+  opacity: 0.75;
+}
+
+.cmodule__body h3 {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.cmodule__body h3 em {
+  font-style: normal;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.cmodule__body p {
+  margin-top: 0.4rem;
+  color: var(--ink-3);
+  line-height: 1.65;
+}
+
+.cmodule__topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.5rem;
+  margin-top: 0.7rem;
+}
+
+.cmodule__topics li {
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  background: var(--grad-soft);
+  color: var(--ink-2);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------- tools and careers --- */
+
+.course-meta__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(1.8rem, 4vw, 3rem);
+}
+
+.course-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.6rem;
+}
+
+.course-chips li {
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  color: var(--ink-2);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.course-chips--accent li {
+  background: var(--grad-soft);
+  border-color: transparent;
+  color: var(--blue-600);
+  font-weight: 700;
+}
+
+/* ------------------------------------------- eligibility / certification -- */
+
+.course-notes__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.course-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1.2rem 1.3rem;
+  border-radius: var(--r-lg);
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+}
+
+.course-note i {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: var(--grad-soft);
+  color: var(--blue-600);
+}
+
+.course-note b {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.course-note p {
+  color: var(--ink-3);
+  line-height: 1.65;
+}
+
+/* ----------------------------------------------- the editor's own blocks -- */
+
+.course-block__image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+}
+
+.course-block__video {
+  position: relative;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-2);
+}
+
+.course-block__video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.course-block--cta .shell > * + * {
+  margin-top: 1.1rem;
+}

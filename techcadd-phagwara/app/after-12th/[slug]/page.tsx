@@ -1,12 +1,17 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import ProgramLandingPage from '@/components/pages/ProgramLandingPage'
-import { after12Catalog, allAfter12Pages, findAfter12BySlug } from '@/data/after12Pages'
-import { brand } from '@/data/site'
+
+import CourseLanding from '@/components/pages/CourseLanding'
+import { getBrand, getCourse } from '@/lib/cms/content'
+import { courseExtras } from '@/lib/cms/course-view'
+import { SEGMENT_ANCHOR, SEGMENT_LABEL } from '@/lib/cms/segments'
+import { allAfter12Pages } from '@/data/after12Pages'
 import { SITE_URL } from '@/lib/site-config'
 
+/* Prerendered from the bundled catalogue; CMS-only slugs render on demand.
+   See the longer note on the same decision in app/[slug]/page.tsx. */
 export function generateStaticParams() {
-  return allAfter12Pages.map((p) => ({ slug: p.slug }))
+  return allAfter12Pages.map((program) => ({ slug: program.slug }))
 }
 
 interface PageProps {
@@ -15,44 +20,52 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const program = findAfter12BySlug(slug)
-  if (!program) return {}
+  const [resolved, brand] = await Promise.all([
+    getCourse('after-12th-courses', slug),
+    getBrand(),
+  ])
+  if (!resolved) return {}
+
+  const { page, cms } = resolved
+  const title = cms?.seo?.metaTitle?.trim() || page.title
+  const description = cms?.seo?.metaDescription?.trim() || page.summary
 
   return {
-    title: program.title,
-    description: program.summary,
-    alternates: { canonical: `/after-12th/${program.slug}` },
+    title,
+    description,
+    alternates: { canonical: cms?.seo?.canonicalUrl?.trim() || `/after-12th/${page.slug}` },
+    ...(cms?.seo?.keywords?.length ? { keywords: cms.seo.keywords } : {}),
+    ...(cms?.seo?.robotsIndex === false ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
-      title: `${program.title} | ${brand.name} ${brand.suffix}`,
-      description: program.summary,
-      url: `${SITE_URL}/after-12th/${program.slug}`,
+      title: cms?.seo?.ogTitle?.trim() || `${page.title} | ${brand.name} ${brand.suffix}`,
+      description: cms?.seo?.ogDescription?.trim() || description,
+      url: `${SITE_URL}/after-12th/${page.slug}`,
       type: 'website',
     },
-    twitter: {
-      card: 'summary_large_image',
-      title: program.title,
-      description: program.summary,
-    },
+    twitter: { card: 'summary_large_image', title, description },
   }
 }
 
 export default async function After12ProgramPage({ params }: PageProps) {
   const { slug } = await params
-  const program = findAfter12BySlug(slug)
-  if (!program) notFound()
+  const resolved = await getCourse('after-12th-courses', slug)
+  if (!resolved) notFound()
 
-  const category = after12Catalog.find((cat) => cat.programs.some((p) => p.slug === slug))!
-  const related = category.programs.filter((p) => p.slug !== slug)
+  const brand = await getBrand()
+  const extras = courseExtras(resolved.cms)
 
   return (
-    <ProgramLandingPage
-      sectionLabel="After 12th"
-      sectionHref="/#journey"
-      categoryTitle={category.title}
-      program={program}
-      related={related}
+    <CourseLanding
+      sectionLabel={SEGMENT_LABEL['after-12th-courses']}
+      sectionHref={SEGMENT_ANCHOR['after-12th-courses']}
+      categoryTitle={resolved.categoryTitle}
+      course={resolved.page}
+      related={resolved.related.slice(0, 6)}
       basePath="/after-12th"
-      relatedTitle={`More ${category.title}`}
+      relatedTitle={`More ${resolved.categoryTitle}`}
+      brandName={`${brand.name} ${brand.suffix}`}
+      siteUrl={SITE_URL}
+      {...(extras ? { extras } : {})}
     />
   )
 }

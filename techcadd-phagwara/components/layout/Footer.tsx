@@ -1,13 +1,35 @@
 import Icon from '@/components/ui/Icon'
 import SmartLink from '@/components/ui/SmartLink'
 import NewsletterForm from './NewsletterForm'
-import { brand, branches, footerLinks, socials } from '@/data/site'
+import {
+  brand as staticBrand,
+  branches,
+  footerLinks,
+  socials as staticSocials,
+  type Brand,
+  type Social,
+} from '@/data/site'
+import type { CmsNavPage } from '@/lib/cms/types'
 
 /**
  * Server Component. Only <NewsletterForm /> is interactive, so the rest of
  * the footer costs zero client JavaScript.
+ *
+ * Content arrives as props with bundled defaults, so the footer renders on its
+ * own wherever it is used without a CMS behind it — see the note on Navbar.
  */
-export default function Footer() {
+export interface FooterProps {
+  brand?: Brand
+  socials?: Social[]
+  /** Pages written in the CMS and marked for the footer. */
+  navPages?: CmsNavPage[]
+}
+
+export default function Footer({
+  brand = staticBrand,
+  socials = staticSocials,
+  navPages = [],
+}: FooterProps = {}) {
   return (
     <footer className="footer">
       <div className="shell">
@@ -48,6 +70,14 @@ export default function Footer() {
                   href={social.href}
                   style={{ '--i': i }}
                   aria-label={social.name}
+                  /*
+                    A social profile is somewhere else. These used to be `#`
+                    placeholders where the attributes did not matter; now that
+                    the CMS can put a real address here, they do.
+                  */
+                  {...(/^https?:/.test(social.href)
+                    ? { target: '_blank', rel: 'noopener noreferrer' }
+                    : {})}
                 >
                   <Icon name={social.key} />
                 </a>
@@ -72,6 +102,32 @@ export default function Footer() {
               </ul>
             </div>
           ))}
+
+          {/*
+            Pages an editor wrote and asked to be linked from the footer.
+
+            Its own column rather than folded into one of the four above: those
+            are hand-written groupings with hand-written headings, and dropping
+            a privacy policy into "Popular Courses" would be worse than giving
+            it a heading of its own. The column simply does not exist until an
+            editor sets a page's placement to Footer.
+          */}
+          {navPages.length > 0 && (
+            <div
+              className="footer__col"
+              data-reveal="up"
+              data-reveal-delay={(footerLinks.length + 1) * 90}
+            >
+              <h3>More</h3>
+              <ul>
+                {navPages.map((page) => (
+                  <li key={page.slug}>
+                    <SmartLink href={`/${page.slug}`}>{page.label}</SmartLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
         {/* ---------------------------------------------------- branches */}

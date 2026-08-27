@@ -7,6 +7,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import {
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
   type CSSProperties,
@@ -15,27 +16,20 @@ import {
 import Icon from '@/components/ui/Icon'
 import Button from '@/components/ui/Button'
 import {
-  brand,
-  navLinks,
+  brand as staticBrand,
+  navLinks as staticNavLinks,
+  type Brand,
   type NavDropdownGroup,
   type NavDropdownItem,
   type NavLink,
 } from '@/data/site'
-import { courseCatalog } from '@/data/coursePages'
+import {
+  courseCatalog as staticCourseCatalog,
+  type CourseMenuCategory,
+} from '@/data/coursePages'
 import { useScrollSpy } from '@/hooks/useScrollSpy'
 import { isHashLink, scrollToSection } from '@/lib/scroll'
 
-/* Module scope: a stable array identity, so useScrollSpy's effect does not
-   re-subscribe on every render. Deduped, and `#` triggers (the branch panel,
-   which navigates nowhere) are not sections to track. */
-const SECTION_IDS: readonly string[] = [
-  ...new Set(
-    navLinks
-      .map((l) => l.href)
-      .filter((h) => h.startsWith('#') && h.length > 1)
-      .map((h) => h.slice(1))
-  ),
-]
 
 /*
  * The modal has no meaningful server-rendered output (it's closed on first
@@ -63,7 +57,10 @@ interface AccordionGroup {
 
 /** Courses' four columns and a `groups`-bearing link's own groups both
     reduce to the same shape, so the drawer only needs one accordion. */
-const accordionGroupsFor = (link: NavLink): AccordionGroup[] | undefined => {
+const accordionGroupsFor = (
+  link: NavLink,
+  courseCatalog: CourseMenuCategory[],
+): AccordionGroup[] | undefined => {
   if (link.mega) {
     return courseCatalog.map((cat) => ({
       key: cat.key,
@@ -81,7 +78,45 @@ const accordionGroupsFor = (link: NavLink): AccordionGroup[] | undefined => {
   return undefined
 }
 
-export default function Navbar() {
+export interface NavbarProps {
+  /**
+   * The bar, built from whatever the CMS knows about the catalogue.
+   *
+   * Every one of these has a bundled default, so the navbar still renders on
+   * its own — which is what the CMS preview frame and any checkout without a
+   * configured API rely on.
+   */
+  navLinks?: NavLink[]
+  courseCatalog?: CourseMenuCategory[]
+  brand?: Brand
+}
+
+export default function Navbar({
+  navLinks = staticNavLinks,
+  courseCatalog = staticCourseCatalog,
+  brand = staticBrand,
+}: NavbarProps = {}) {
+  /*
+    Derived, not module scope.
+
+    This used to be computed once beside the imports, which was fine while the
+    bar was a constant. Now that it arrives as a prop it has to be recomputed
+    when the bar changes — and it still has to keep a stable identity between
+    renders, because `useScrollSpy` re-subscribes its observer whenever this
+    array changes. `useMemo` gives both.
+  */
+  const sectionIds = useMemo<readonly string[]>(
+    () => [
+      ...new Set(
+        navLinks
+          .map((l) => l.href)
+          .filter((h) => h.startsWith('#') && h.length > 1)
+          .map((h) => h.slice(1)),
+      ),
+    ],
+    [navLinks],
+  )
+
   const [stuck, setStuck] = useState(false)
   const [drawer, setDrawer] = useState(false)
   /** Label of the open desktop panel, or null. */
@@ -105,7 +140,7 @@ export default function Navbar() {
   const [demoMounted, setDemoMounted] = useState(false)
 
   const panelTimer = useRef<number>(0)
-  const active = useScrollSpy(SECTION_IDS, 140)
+  const active = useScrollSpy(sectionIds, 140)
   const pathname = usePathname()
   const router = useRouter()
 
@@ -147,7 +182,7 @@ export default function Navbar() {
     }
     const id = window.setTimeout(mountAll, 200)
     return () => window.clearTimeout(id)
-  }, [])
+  }, [navLinks])
 
   const go = useCallback(
     (event: MouseEvent<HTMLElement>, href: string) => {
@@ -242,6 +277,7 @@ export default function Navbar() {
                         onNavigate={go}
                         onMouseEnter={() => holdPanel(link.label)}
                         onMouseLeave={() => holdPanel(null)}
+                        courseCatalog={courseCatalog}
                       />
                     )}
                     {link.groups && mountedPanels.has(link.label) && (
@@ -336,7 +372,7 @@ export default function Navbar() {
                  Courses and any `groups`-bearing link get the nested
                  category accordion instead. */
               const sub = link.mega || link.groups ? undefined : link.items
-              const groupedAccordion = accordionGroupsFor(link)
+              const groupedAccordion = accordionGroupsFor(link, courseCatalog)
               const isOpenSub = drawerSub === link.label
               const opensAccordion = Boolean(groupedAccordion) || Boolean(sub)
 
@@ -487,7 +523,14 @@ export default function Navbar() {
         </div>
       </div>
 
-      {demoMounted && <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} />}
+      {demoMounted && (
+        <BookDemoModal
+          open={demoOpen}
+          onClose={() => setDemoOpen(false)}
+          catalogTitles={courseCatalog.flatMap((cat) => cat.courses.map((c) => c.title))}
+          brand={brand}
+        />
+      )}
     </>
   )
 }
@@ -587,9 +630,17 @@ interface MegaMenuProps {
    */
   onMouseEnter: () => void
   onMouseLeave: () => void
+  /** The catalogue the four columns are drawn from — CMS-backed, or bundled. */
+  courseCatalog: CourseMenuCategory[]
 }
 
-function MegaMenu({ onSelect, onNavigate, onMouseEnter, onMouseLeave }: MegaMenuProps) {
+function MegaMenu({
+  onSelect,
+  onNavigate,
+  onMouseEnter,
+  onMouseLeave,
+  courseCatalog,
+}: MegaMenuProps) {
   return (
     <div
       className="mega"

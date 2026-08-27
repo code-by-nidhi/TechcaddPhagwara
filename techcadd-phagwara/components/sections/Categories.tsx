@@ -1,6 +1,10 @@
 import Link from 'next/link'
 import Icon from '@/components/ui/Icon'
 import CategoryArc from './CategoryArc'
+import {
+  courseCatalog as staticCourseCatalog,
+  type CourseMenuCategory,
+} from '@/data/coursePages'
 
 /**
  * Server Component — the header (badge, heading, CTA) and the background fx
@@ -9,7 +13,9 @@ import CategoryArc from './CategoryArc'
  * neither of which a CSS keyframe animation can do — see that file for how
  * it stays off React's render loop.
  */
-export default function Categories() {
+export default function Categories({
+  courseCatalog = staticCourseCatalog,
+}: { courseCatalog?: CourseMenuCategory[] } = {}) {
   return (
     <section className="categories section" id="categories">
       <span className="categories__fx" aria-hidden="true">
@@ -45,7 +51,7 @@ export default function Categories() {
         </Link>
       </div>
 
-      <CategoryArc />
+      <CategoryArc courseCatalog={courseCatalog} />
     </section>
   )
 }

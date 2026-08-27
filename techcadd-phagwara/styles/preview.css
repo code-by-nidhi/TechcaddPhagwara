@@ -1,0 +1,55 @@
+/* ==========================================================================
+   The CMS preview frame.
+
+   Scoped entirely to `body:has(.preview-root)` — the wrapper that only
+   `/preview/*` renders. Nothing here can reach a visitor's page, because no
+   visitor's page has that element in it.
+
+   `:has()` rather than a class on <body>: the root layout is shared by every
+   route and setting a body class per route would mean teaching it about
+   previews. The selector is supported everywhere the site's own `aspect-ratio`
+   and `inset` already require, and if it were ever not, the failure is the
+   dock staying visible in an editor's preview pane — not a broken page.
+   ========================================================================== */
+
+/* The dock is three fixed action buttons over the bottom-right corner. In a
+   390px-wide frame it covers content the editor is trying to read, and none of
+   what it does — WhatsApp, call, back to top — is being previewed. */
+body:has(.preview-root) .dock {
+  display: none;
+}
+
+/*
+  Reveal-on-scroll, defeated.
+
+  `[data-reveal]` is `opacity: 0` until useReveal()'s IntersectionObserver adds
+  `.is-in`. That is correct on a page someone scrolls and wrong in a frame that
+  is 400px tall and never scrolled: the observer never fires for anything below
+  the fold, so an editor typing into a section further down the form watches a
+  blank pane and concludes the preview is broken.
+
+  `CourseLanding` already omits the attribute in preview mode, so this covers
+  the components that do not take a preview flag — the navbar, the footer and
+  anything reached through a content block.
+*/
+body:has(.preview-root) [data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/*
+  The sticky navbar, unstuck.
+
+  It is `position: fixed`, so in a short frame it sits on top of the hero the
+  editor is editing. Made static here so the preview scrolls as one document
+  and the heading is never underneath it.
+*/
+body:has(.preview-root) .nav {
+  position: static;
+}
+
+/* The frame has its own scrollbar; the page must not also reserve one. */
+body:has(.preview-root) {
+  overflow-x: hidden;
+}

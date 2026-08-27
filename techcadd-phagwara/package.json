@@ -8,7 +8,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "check:sanitizer": "node ../cms-techcadd/backend/node_modules/tsx/dist/cli.mjs scripts/check-sanitizer.ts",
+    "check:cms": "node ../cms-techcadd/backend/node_modules/tsx/dist/cli.mjs scripts/check-cms-links.ts",
+    "check": "npm run typecheck && npm run check:sanitizer && npm run check:cms"
   },
   "dependencies": {
     "gsap": "^3.12.5",

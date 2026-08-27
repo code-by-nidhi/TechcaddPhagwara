@@ -236,60 +236,96 @@ const branchLinks: NavDropdownItem[] = [
  * seven-item bar never reached rather than pointing at routes that do not
  * exist. No page, route or section content changes because of anything here.
  */
-export const navLinks: NavLink[] = [
-  { label: 'Home', href: '#home' },
-  {
-    label: 'About',
-    href: '#about',
-    items: [
-      { label: 'About Us', href: '#about', note: 'Who we are' },
-      /* No founder section exists on this page, so this lands on About —
-         same destination as the Founder item promoted into the bar. */
-      { label: 'Founder Vision', href: '#about', note: 'Why we started' },
-      { label: 'Why Techcadd', href: '#benefits', note: 'What sets us apart' },
-      { label: 'Infrastructure', href: '#labs', note: 'GPU-backed AI labs' },
-    ],
-  },
-  { label: 'Founder', href: '#about' },
-  { label: 'AI', href: '#labs', ai: true },
-  { label: 'Courses', href: '#courses', mega: true },
-  {
-    label: 'Internship',
-    href: '#modes',
-    groups: internshipCatalog.map((cat) => ({
-      title: cat.title,
-      items: cat.programs.map((p) => ({
-        label: p.label,
-        href: `/internship-training/${p.slug}`,
-        note: p.duration,
+export function makeNavLinks(
+  internship: NavCatalog,
+  after12: NavCatalog,
+  /** Pages an editor asked to be linked from the header — see /public/nav-pages. */
+  extraPages: NavDropdownItem[] = [],
+): NavLink[] {
+  return [
+    { label: 'Home', href: '#home' },
+    {
+      label: 'About',
+      href: '#about',
+      items: [
+        { label: 'About Us', href: '#about', note: 'Who we are' },
+        /* No founder section exists on this page, so this lands on About —
+           same destination as the Founder item promoted into the bar. */
+        { label: 'Founder Vision', href: '#about', note: 'Why we started' },
+        { label: 'Why Techcadd', href: '#benefits', note: 'What sets us apart' },
+        { label: 'Infrastructure', href: '#labs', note: 'GPU-backed AI labs' },
+      ],
+    },
+    { label: 'Founder', href: '#about' },
+    { label: 'AI', href: '#labs', ai: true },
+    { label: 'Courses', href: '#courses', mega: true },
+    {
+      label: 'Internship',
+      href: '#modes',
+      groups: internship.map((cat) => ({
+        title: cat.title,
+        items: cat.programs.map((p) => ({
+          label: p.label,
+          href: `/internship-training/${p.slug}`,
+          note: p.duration,
+        })),
       })),
-    })),
-  },
-  {
-    label: 'After 12th',
-    href: '#journey',
-    groups: after12Catalog.map((cat) => ({
-      title: cat.title,
-      items: cat.programs.map((p) => ({
-        label: p.label,
-        href: `/after-12th/${p.slug}`,
-        note: p.duration,
+    },
+    {
+      label: 'After 12th',
+      href: '#journey',
+      groups: after12.map((cat) => ({
+        title: cat.title,
+        items: cat.programs.map((p) => ({
+          label: p.label,
+          href: `/after-12th/${p.slug}`,
+          note: p.duration,
+        })),
       })),
-    })),
-  },
-  {
-    label: 'Resources',
-    href: '#faq',
-    items: [
-      { label: 'Student Stories', href: '#testimonials', note: '1,850+ Google reviews' },
-      { label: 'Campus Gallery', href: '#gallery', note: 'Labs, classrooms, events' },
-      { label: 'Awards & Recognition', href: '#achievements', note: '15 years of results' },
-      { label: 'FAQs', href: '#faq', note: 'Fees, batches, placement' },
-    ],
-  },
-  { label: 'Branches', href: '#', items: branchLinks },
-  { label: 'Contact', href: '#contact' },
-]
+    },
+    {
+      label: 'Resources',
+      href: '#faq',
+      items: [
+        { label: 'Student Stories', href: '#testimonials', note: '1,850+ Google reviews' },
+        { label: 'Campus Gallery', href: '#gallery', note: 'Labs, classrooms, events' },
+        { label: 'Awards & Recognition', href: '#achievements', note: '15 years of results' },
+        { label: 'FAQs', href: '#faq', note: 'Fees, batches, placement' },
+        /* Blog, events and any page an editor marked for the header. Filed
+           under Resources rather than given top-level slots: the bar is
+           already ten items wide, and content added in the CMS should not
+           reflow the navigation. */
+        ...extraPages,
+      ],
+    },
+    { label: 'Branches', href: '#', items: branchLinks },
+    { label: 'Contact', href: '#contact' },
+  ]
+}
+
+/**
+ * The shape `makeNavLinks` needs from a catalogue.
+ *
+ * Structurally what both `ProgramCategory` and `CourseMenuCategory` already
+ * are, declared here so this file does not import from the two catalogue
+ * modules it is imported *by* — `internshipPages` imports nothing from here,
+ * and it should stay that way.
+ */
+export interface NavCatalogEntry {
+  label: string
+  slug: string
+  duration: string
+}
+
+export type NavCatalog = { title: string; programs: NavCatalogEntry[] }[]
+
+/**
+ * The bar as it stands with no CMS behind it.
+ *
+ * Still exported, and still what the navbar falls back to: a checkout with no
+ * CMS configured renders the menu it always rendered.
+ */
+export const navLinks: NavLink[] = makeNavLinks(internshipCatalog, after12Catalog)
 
 /* The Courses mega menu now reads from `data/coursePages.ts` — its four
    categories back both the nav panel and each course's own `/[slug]` page. */

@@ -1,12 +1,17 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import ProgramLandingPage from '@/components/pages/ProgramLandingPage'
-import { allInternshipPages, findInternshipBySlug, internshipCatalog } from '@/data/internshipPages'
-import { brand } from '@/data/site'
+
+import CourseLanding from '@/components/pages/CourseLanding'
+import { getBrand, getCourse } from '@/lib/cms/content'
+import { courseExtras } from '@/lib/cms/course-view'
+import { SEGMENT_ANCHOR, SEGMENT_LABEL } from '@/lib/cms/segments'
+import { allInternshipPages } from '@/data/internshipPages'
 import { SITE_URL } from '@/lib/site-config'
 
+/* Prerendered from the bundled catalogue; CMS-only slugs render on demand.
+   See the longer note on the same decision in app/[slug]/page.tsx. */
 export function generateStaticParams() {
-  return allInternshipPages.map((p) => ({ slug: p.slug }))
+  return allInternshipPages.map((program) => ({ slug: program.slug }))
 }
 
 interface PageProps {
@@ -15,44 +20,54 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const program = findInternshipBySlug(slug)
-  if (!program) return {}
+  const [resolved, brand] = await Promise.all([
+    getCourse('internship-training', slug),
+    getBrand(),
+  ])
+  if (!resolved) return {}
+
+  const { page, cms } = resolved
+  const title = cms?.seo?.metaTitle?.trim() || page.title
+  const description = cms?.seo?.metaDescription?.trim() || page.summary
 
   return {
-    title: program.title,
-    description: program.summary,
-    alternates: { canonical: `/internship-training/${program.slug}` },
+    title,
+    description,
+    alternates: {
+      canonical: cms?.seo?.canonicalUrl?.trim() || `/internship-training/${page.slug}`,
+    },
+    ...(cms?.seo?.keywords?.length ? { keywords: cms.seo.keywords } : {}),
+    ...(cms?.seo?.robotsIndex === false ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
-      title: `${program.title} | ${brand.name} ${brand.suffix}`,
-      description: program.summary,
-      url: `${SITE_URL}/internship-training/${program.slug}`,
+      title: cms?.seo?.ogTitle?.trim() || `${page.title} | ${brand.name} ${brand.suffix}`,
+      description: cms?.seo?.ogDescription?.trim() || description,
+      url: `${SITE_URL}/internship-training/${page.slug}`,
       type: 'website',
     },
-    twitter: {
-      card: 'summary_large_image',
-      title: program.title,
-      description: program.summary,
-    },
+    twitter: { card: 'summary_large_image', title, description },
   }
 }
 
 export default async function InternshipProgramPage({ params }: PageProps) {
   const { slug } = await params
-  const program = findInternshipBySlug(slug)
-  if (!program) notFound()
+  const resolved = await getCourse('internship-training', slug)
+  if (!resolved) notFound()
 
-  const category = internshipCatalog.find((cat) => cat.programs.some((p) => p.slug === slug))!
-  const related = category.programs.filter((p) => p.slug !== slug)
+  const brand = await getBrand()
+  const extras = courseExtras(resolved.cms)
 
   return (
-    <ProgramLandingPage
-      sectionLabel="Internship & Training"
-      sectionHref="/#modes"
-      categoryTitle={category.title}
-      program={program}
-      related={related}
+    <CourseLanding
+      sectionLabel={SEGMENT_LABEL['internship-training']}
+      sectionHref={SEGMENT_ANCHOR['internship-training']}
+      categoryTitle={resolved.categoryTitle}
+      course={resolved.page}
+      related={resolved.related.slice(0, 6)}
       basePath="/internship-training"
-      relatedTitle={`More ${category.title} programmes`}
+      relatedTitle={`More ${resolved.categoryTitle} programmes`}
+      brandName={`${brand.name} ${brand.suffix}`}
+      siteUrl={SITE_URL}
+      {...(extras ? { extras } : {})}
     />
   )
 }

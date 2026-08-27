@@ -1,9 +1,20 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type TouchEvent } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type KeyboardEvent,
+  type TouchEvent,
+} from 'react'
 import Link from 'next/link'
 import Icon, { type IconName } from '@/components/ui/Icon'
-import { courseCatalog } from '@/data/coursePages'
+import {
+  courseCatalog as staticCourseCatalog,
+  type CourseMenuCategory,
+} from '@/data/coursePages'
 
 interface CarouselCard {
   slug: string
@@ -17,13 +28,17 @@ interface CarouselCard {
 }
 
 /**
- * Ten real course pages, pulled live from `courseCatalog`
- * (`data/coursePages.ts`) rather than hand-copied — the description,
- * icon and category badge on every card are the same data the mega menu
- * and each course's own landing page already use, so there's nothing here
- * that can drift out of sync with the real catalog.
+ * The ten courses the ring shows.
+ *
+ * The slugs are named rather than taken off the top of the catalogue: this is
+ * an editorial choice about what to lead with, and "whatever the CMS returns
+ * first" is not one. The description, icon and category badge still come from
+ * the catalogue itself, so nothing here can drift from the course's own page.
+ *
+ * The titles are the one thing kept explicit — the ring's cards want
+ * "MERN Stack Development" where the menu column wants "MERN Stack".
  */
-const FEATURED_SLUGS: { slug: string; title: string }[] = [
+const FEATURED: { slug: string; title: string }[] = [
   { slug: 'mern-stack-course-in-phagwara', title: 'MERN Stack Development' },
   { slug: 'python-course-in-phagwara', title: 'Python Programming' },
   { slug: 'java-course-in-phagwara', title: 'Java Programming' },
@@ -36,20 +51,46 @@ const FEATURED_SLUGS: { slug: string; title: string }[] = [
   { slug: 'cybersecurity-course-in-phagwara', title: 'Cyber Security' },
 ]
 
-const CATALOG_BY_SLUG = new Map(
-  courseCatalog.flatMap((cat) => cat.courses.map((c) => [c.slug, { ...c, category: cat.title }]))
-)
+/**
+ * The featured slugs, resolved against whatever catalogue is in play.
+ *
+ * A named course that the CMS no longer has is dropped rather than rendered
+ * with an empty description pointing at a 404 — which is exactly what would
+ * happen the first time someone unpublished one of these ten. If enough of
+ * them go that the ring would be threadbare, the rest of the catalogue backs
+ * it up to eight so the carousel still reads as a carousel.
+ */
+function buildCards(catalog: CourseMenuCategory[]): CarouselCard[] {
+  const bySlug = new Map(
+    catalog.flatMap((cat) => cat.courses.map((c) => [c.slug, { ...c, category: cat.title }])),
+  )
 
-const CARDS: CarouselCard[] = FEATURED_SLUGS.map(({ slug, title }) => {
-  const entry = CATALOG_BY_SLUG.get(slug)
-  return {
-    slug,
-    title,
-    category: entry?.category ?? '',
-    summary: entry?.summary ?? '',
-    icon: entry?.icon ?? 'code',
+  const cards: CarouselCard[] = []
+
+  for (const { slug, title } of FEATURED) {
+    const entry = bySlug.get(slug)
+    if (!entry) continue
+    cards.push({ slug, title, category: entry.category, summary: entry.summary, icon: entry.icon })
   }
-})
+
+  const MIN_CARDS = 8
+  if (cards.length < MIN_CARDS) {
+    const taken = new Set(cards.map((card) => card.slug))
+    for (const [slug, entry] of bySlug) {
+      if (cards.length >= MIN_CARDS) break
+      if (taken.has(slug)) continue
+      cards.push({
+        slug,
+        title: entry.title,
+        category: entry.category,
+        summary: entry.summary,
+        icon: entry.icon,
+      })
+    }
+  }
+
+  return cards
+}
 
 interface FeatureBarItem {
   icon: IconName
@@ -64,7 +105,6 @@ const FEATURES: FeatureBarItem[] = [
   { icon: 'briefcase', title: 'Placement Support', text: '500+ hiring partners' },
 ]
 
-const COUNT = CARDS.length
 const AUTOPLAY_MS = 3000
 const SWIPE_THRESHOLD = 40
 
@@ -83,22 +123,37 @@ const tierClass = (offset: number) => {
   return tier >= 4 ? 'is-hidden' : `is-${side}-${tier}`
 }
 
-export default function CourseCarousel() {
+export default function CourseCarousel({
+  courseCatalog = staticCourseCatalog,
+}: { courseCatalog?: CourseMenuCategory[] } = {}) {
+  const CARDS = useMemo(() => buildCards(courseCatalog), [courseCatalog])
+  const COUNT = CARDS.length
+
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
   const touchX = useRef<number | null>(null)
 
-  const next = useCallback(() => setActive((a) => (a + 1) % COUNT), [])
-  const prev = useCallback(() => setActive((a) => (a - 1 + COUNT) % COUNT), [])
+  const next = useCallback(() => setActive((a) => (a + 1) % COUNT), [COUNT])
+  const prev = useCallback(() => setActive((a) => (a - 1 + COUNT) % COUNT), [COUNT])
   const goTo = useCallback((i: number) => setActive(i), [])
+
+  /*
+    The catalogue can shrink under a mounted carousel — a revalidation after an
+    editor unpublishes a featured course re-renders this with fewer cards, and
+    an `active` index left pointing past the end shows an empty ring.
+  */
+  useEffect(() => {
+    setActive((a) => (a < COUNT ? a : 0))
+  }, [COUNT])
 
   /* autoplay — every 3s, paused on hover/focus and under reduced motion */
   useEffect(() => {
     if (paused) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (COUNT < 2) return
     const id = window.setInterval(next, AUTOPLAY_MS)
     return () => window.clearInterval(id)
-  }, [paused, next])
+  }, [paused, next, COUNT])
 
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'ArrowRight') {
