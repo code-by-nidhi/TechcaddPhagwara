@@ -90,17 +90,32 @@ export default function Projects({ course }: { course: CourseContent }) {
         />
 
         {asymmetric ? (
-          <div className={`mt-11 grid gap-4 ${columns}`}>
-            <div className="flex flex-col gap-4">
-              {projects.slice(0, 2).map((project, i) => (
-                <ProjectCard key={project.name} project={project} index={i} />
+          <>
+            {/* The first four get the asymmetric treatment — two stacked beside
+                two tall — which gives the section a shape. Everything after
+                them follows in an even grid. An earlier version rendered only
+                these four and silently dropped the rest, which meant half of
+                every course's projects never appeared on the page at all. */}
+            <div className={`mt-11 grid gap-4 ${columns}`}>
+              <div className="flex flex-col gap-4">
+                {projects.slice(0, 2).map((project, i) => (
+                  <ProjectCard key={project.name} project={project} index={i} />
+                ))}
+              </div>
+
+              {projects.slice(2, 4).map((project, i) => (
+                <ProjectCard key={project.name} project={project} index={i + 2} tall />
               ))}
             </div>
 
-            {projects.slice(2, 4).map((project, i) => (
-              <ProjectCard key={project.name} project={project} index={i + 2} tall />
-            ))}
-          </div>
+            {projects.length > 4 && (
+              <div className={`mt-4 grid gap-4 ${columns}`}>
+                {projects.slice(4).map((project, i) => (
+                  <ProjectCard key={project.name} project={project} index={i + 4} />
+                ))}
+              </div>
+            )}
+          </>
         ) : (
           <div className="mt-11 grid gap-4 sm:grid-cols-2">
             {projects.map((project, i) => (

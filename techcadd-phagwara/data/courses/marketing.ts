@@ -2156,403 +2156,1217 @@ export const MARKETING_COURSES: CourseContent[] = [
   makeCourse({
     slug: 'wordpress-course-in-phagwara',
     label: 'WordPress',
-    title: 'Best WordPress Course & Training in Phagwara',
+    title: 'WordPress Course in Phagwara',
     category: 'digital-marketing',
     categoryTitle: 'Digital Marketing',
-    icon: 'edit',
-    duration: '1 Month',
-    level: 'Beginner',
-    eligibility: '10th / 12th Pass Onward',
-    summary: 'Design, build and launch a complete WordPress website — themes, plugins and page builders, no-code to light-code.',
-    overview: 'Four weeks from install to launch: themes, plugins, page builders, performance and the security basics every live site needs.',
-    demand: 'WordPress runs a large share of the web, and building a local business a site it can update itself is the most common first paid project our students take.',
+    icon: 'palette',
+    duration: '3 – 9 Months',
+    level: 'Beginner to Advanced',
+    eligibility: '12th Pass Onward',
+    summary:
+      'Build professional websites without deep coding — themes, Elementor, plugins, WooCommerce, SEO and security, with live projects and placement assistance.',
+    overview:
+      'Techcadd’s WordPress Development Course in Phagwara is an industry-oriented course that teaches students, graduates, job seekers and beginners to build professional websites without deep coding. It covers domain and hosting setup, theme customisation, page builders, plugin configuration, SEO basics and WooCommerce. The training is based on practical knowledge rather than theory: you learn through website-building exercises, assignments and client-style projects, so you see how WordPress is actually used in freelancing, business branding and development work. The approach is beginner-friendly throughout, developing UI sense, design logic and technical confidence together — by the end you can design, build, secure and manage a professional WordPress site.',
+    demand:
+      'WordPress runs over 40% of the web, and in Phagwara that means a steady stream of small businesses who need a site built and then maintained — which is repeat work, not one-off.',
     modules: [
       {
-        title: 'Setup & themes',
-        summary: 'Hosting, install and choosing a theme.',
-        topics: ['Hosting', 'Install', 'Themes', 'Customiser'],
-        duration: '1 week',
-        lessons: 5,
+        title: 'WordPress Fundamentals & Setup',
+        summary:
+          'Build your foundation from scratch and get a real site live on a real domain.',
+        topics: [
+          'Domain registration, DNS settings and hosting setup',
+          'Installing WordPress',
+          'The dashboard, themes and plugins',
+          'Creating your first blog',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
       },
       {
-        title: 'Pages & builders',
-        summary: 'Building pages without writing code.',
-        topics: ['Gutenberg', 'Elementor', 'Templates', 'Menus'],
-        duration: '1 week',
-        lessons: 5,
+        title: 'Website Design & Page Builders',
+        summary:
+          'Get deeper into design and learn how a page gets built without writing code.',
+        topics: [
+          'Elementor and other page builders',
+          'Landing pages, home pages and contact forms',
+          'Responsive design for mobile',
+          'How designers approach a layout',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
       },
       {
-        title: 'Plugins & WooCommerce',
-        summary: 'Extending the site, including selling.',
-        topics: ['Essential plugins', 'WooCommerce', 'Forms', 'SEO plugins'],
-        duration: '1 week',
-        lessons: 5,
+        title: 'Theme Customisation & Child Themes',
+        summary:
+          'Find out how professional sites are structured, and how to change one safely.',
+        topics: [
+          'Custom post types, widgets and menus',
+          'Theme files and CSS basics',
+          'Child themes for safe code changes',
+          'Understanding template structure',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
       },
       {
-        title: 'Performance & security',
-        summary: 'Keeping it fast and unbroken.',
-        topics: ['Caching', 'Images', 'Backups', 'Hardening'],
-        duration: '1 week',
-        lessons: 5,
+        title: 'Plugin Mastery & Functionality',
+        summary:
+          'Find out how to add almost any feature to a site — and how to judge which plugin to trust.',
+        topics: [
+          'Contact Form 7, WPForms and sliders',
+          'SEO, caching and security plugins',
+          'Vetting and installing the right plugin',
+          'Configuring plugins properly',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'SEO & Speed Optimisation',
+        summary:
+          'Find out how a site actually ranks, and why a slow one never will.',
+        topics: [
+          'On-page SEO, keyword placement and permalinks',
+          'XML sitemaps',
+          'Caching and image compression',
+          'CDN basics',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'E-commerce with WooCommerce',
+        summary:
+          'Advance into selling online, and build a store that actually takes money.',
+        topics: [
+          'Products, categories and shopping carts',
+          'Checkout pages',
+          'Payment gateways — Razorpay and PayPal',
+          'Shipping methods',
+        ],
+        duration: '4 weeks',
+        lessons: 14,
+      },
+      {
+        title: 'AI-Powered Website Building',
+        summary:
+          'Learn how AI tools change the pace of building sites, and where they should stop.',
+        topics: [
+          'Generating website copy and product descriptions',
+          'AI for CSS and code snippets',
+          'Using AI ethically to speed up a workflow',
+          'Keeping content genuinely yours',
+        ],
+        duration: '2 weeks',
+        lessons: 8,
+      },
+      {
+        title: 'Security & Maintenance',
+        summary:
+          'Apply the skills that keep a client site online — the part freelancers get paid monthly for.',
+        topics: [
+          'SSL certificates and firewalls',
+          'Backups and malware scanning',
+          'User roles and permissions',
+          'Regular maintenance routines',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Live Web Projects & Career Preparation',
+        summary:
+          'An end-to-end build for your portfolio, then learning to present it to a client.',
+        topics: [
+          'Building a business website or online store',
+          'Portfolio-ready project work',
+          'Presenting your designs in interviews',
+          'Handling a client brief and delivery',
+        ],
+        duration: '4 weeks',
+        lessons: 14,
       },
     ],
     outcomes: [
-      'Install and configure WordPress',
-      'Build pages with a builder',
-      'Set up a WooCommerce store',
-      'Improve site speed measurably',
-      'Back up and secure a live site',
+      'Register a domain, configure hosting and install WordPress unaided',
+      'Design responsive pages in Elementor without writing code',
+      'Customise themes safely using child themes and CSS',
+      'Build a working WooCommerce store with payments and shipping',
+      'Optimise a site for search and for speed under three seconds',
+      'Secure, back up and maintain a live client website',
     ],
-    tools: ['WordPress', 'Elementor', 'WooCommerce', 'Yoast', 'cPanel', 'UpdraftPlus'],
-    roles: ['WordPress Developer', 'Web Designer', 'Freelance Site Builder', 'Digital Marketer'],
+    tools: [
+      'WordPress',
+      'cPanel',
+      'Elementor',
+      'WooCommerce',
+      'Yoast SEO',
+      'RankMath',
+      'Git & GitHub',
+      'Hostinger & GoDaddy',
+      'Cloudflare',
+      'Google Analytics',
+      'Google Search Console',
+      'ChatGPT for Content',
+      'Canva',
+      'PHP Basics',
+      'MySQL Basics',
+    ],
+    audience: [
+      {
+        label: '12th Pass Students',
+        copy: 'Interested in technology or starting a side hustle? WordPress is the easiest way in — its interface makes web development basics approachable, and themes, plugins, SEO and site management are a useful skill to carry alongside your studies.',
+      },
+      {
+        label: 'College Learners & Graduates',
+        copy: 'Colleges teach theory; the industry wants real sites. Whatever your major — computer science, engineering, commerce or management — building live websites and understanding hosting, SEO and e-commerce strengthens both your projects and your CV.',
+      },
+      {
+        label: 'Job Seekers & Freshers',
+        copy: 'Knowing how to install a theme is not enough. Employers want problem-solvers. Design logic, customisation skill and a portfolio of live sites are worth more than any certificate when applying for web developer roles here.',
+      },
+      {
+        label: 'Working Professionals',
+        copy: 'In marketing, operations, sales or IT? WordPress lets you manage your company’s site, update content and fix things without waiting for a developer. It becomes a high-value addition rather than a career change.',
+      },
+      {
+        label: 'Entrepreneurs & Business Owners',
+        copy: 'You should not need a developer for every small change. Understanding WordPress means control over your landing pages, blog and store — and far lower maintenance costs.',
+      },
+      {
+        label: 'Aspiring Freelancers & Developers',
+        copy: 'For freelancing, WordPress is gold. Theme customisation, speed optimisation and client handling let you deliver real sites to local and international clients, and build a steady income stream.',
+      },
+    ],
+    whyChooseUs: [
+      {
+        title: 'WordPress skills are in demand',
+        copy: 'Startups, agencies and businesses all need websites. Theme customisation, plugin setup and SEO optimisation give you a versatile qualification — and practical learning shows you where the actual money in the digital market is.',
+      },
+      {
+        title: 'Understanding how WordPress really works',
+        copy: 'Not just installing themes. Domain and hosting management, CMS fundamentals and database structure, child themes, page builders, plugin configuration, SEO, security hardening and backups, WooCommerce and payment gateways, and client delivery.',
+      },
+      {
+        title: 'Practical training is how sites get learned',
+        copy: 'Watching tutorials is useful; building a site from scratch is what makes it stick. Hands-on assignments cover UI design, debugging real errors and speed optimisation.',
+      },
+      {
+        title: 'Skills that open several career paths',
+        copy: 'Depending on your interest, WordPress leads to freelance web developer, UI designer, web content manager, e-commerce manager or technical support.',
+      },
+    ],
+    whyNow: {
+      title: 'Gain WordPress Skills You Can Apply In Real Life',
+      points: [
+        'Practical projects build a portfolio that proves your web design ability rather than asserting it.',
+        'A portfolio website is the single most persuasive thing you can show an employer or a client.',
+        'WordPress and web developer roles in Punjab start around ₹15,000 – ₹25,000 a month for a fresher.',
+        'Focus on building sites and solving real problems rather than memorising menu options.',
+      ],
+    },
+    roles: [
+      'WordPress Developer',
+      'Web Designer',
+      'E-commerce Manager',
+      'SEO Specialist',
+      'Freelance Web Developer',
+      'AI-Powered Web Strategist',
+    ],
+    roleDetails: [
+      {
+        role: 'WordPress Developer',
+        copy: 'Build custom themes, plugins and backend solutions, working with PHP, MySQL and API integration.',
+      },
+      {
+        role: 'Web Designer',
+        copy: 'Create responsive layouts in Elementor and CSS, focused on UI, user experience and branding.',
+      },
+      {
+        role: 'E-commerce Manager',
+        copy: 'Run WooCommerce stores end to end — inventory, payments, orders and customer experience.',
+      },
+      {
+        role: 'SEO Specialist',
+        copy: 'Optimise sites with Yoast, RankMath and Analytics to earn rankings and traffic that lasts.',
+      },
+      {
+        role: 'Freelance Web Developer',
+        copy: 'Build a business creating websites for clients anywhere, with the flexible hours that come with it.',
+      },
+      {
+        role: 'AI-Powered Web Strategist',
+        copy: 'Use AI tools to create content strategy and automate site management, with judgement still doing the real work.',
+      },
+    ],
     hiring: [
-      'Web agencies and studios',
-      'Small business website projects',
-      'Content and publishing teams',
-      'Freelance maintenance retainers',
+      'Digital marketing agencies needing landing page designers',
+      'IT startups building MVPs and product sites',
+      'E-commerce companies managing online stores',
+      'Freelance platforms such as Upwork and Fiverr for remote work',
+      'Local businesses requiring website maintenance',
     ],
-    nextSteps: ['Web Designing', 'SEO', 'PHP Full Stack', 'Shopify'],
-    industries: ['Small business', 'Agencies', 'Publishing', 'E-commerce'],
+    nextSteps: [
+      'Web development with React',
+      'PHP & custom theme development',
+      'SEO specialisation',
+      'Shopify & e-commerce platforms',
+    ],
+    industries: ['Agencies', 'IT startups', 'E-commerce', 'Freelance & remote'],
+    /*
+     * Client-supplied bands, monthly rather than the derived LPA figures used
+     * elsewhere in the catalogue — that is the unit a fresher in this market
+     * recognises. The freelance spread is the widest here for a real reason:
+     * a beginner taking small local jobs may start at ₹5,000 a month, while an
+     * established WordPress freelancer with repeat clients passes ₹1,00,000 —
+     * higher than either salaried market. `scale` is the midpoint in ₹/month.
+     */
     salary: {
       role: 'WordPress Developer',
-      summary: 'Builds, customises and maintains the websites most small businesses actually run on.',
-      starting: '₹2–3 LPA',
-      after2: '₹3.5–7 LPA',
+      summary:
+        'Builds and maintains the websites businesses run on. Earnings depend on your portfolio, speed and how well you handle clients.',
+      starting: '₹15,000–₹25,000/month',
+      after2: '₹25,000–₹40,000/month',
       markets: [
         {
-          name: 'Punjab / Tricity',
-          fresher: '₹2–3 LPA',
-          after2: '₹3.5–7 LPA',
-          scale: { fresher: 2.5, after2: 5.25 },
+          name: 'Punjab — WordPress / Web Developer',
+          fresher: '₹15,000–₹25,000/month',
+          after2: '₹25,000–₹40,000/month',
+          scale: { fresher: 20000, after2: 32500 },
         },
         {
-          name: 'Delhi NCR',
-          fresher: '₹2.5–4.5 LPA',
-          after2: '₹5–10 LPA',
-          scale: { fresher: 3.5, after2: 7.35 },
+          name: 'Delhi / NCR — Web Development',
+          fresher: '₹20,000–₹35,000/month',
+          after2: '₹40,000–₹60,000+/month',
+          scale: { fresher: 27500, after2: 50000 },
         },
         {
-          name: 'Remote / Freelance',
-          fresher: '₹3–5 LPA',
-          after2: '₹5.5–11 LPA',
-          scale: { fresher: 3.88, after2: 8.14 },
+          name: 'Remote / Freelance WordPress',
+          fresher: '₹5,000–₹20,000/month',
+          after2: '₹50,000–₹1,00,000+/month',
+          scale: { fresher: 12500, after2: 75000 },
         },
       ],
     },
     careerFaqs: [
       {
-        q: 'What job roles open up after WordPress?',
-        a: 'Graduates move into WordPress Developer, Web Designer, Freelance Site Builder, Digital Marketer and similar roles. WordPress runs a large share of the web, and building a local business a site it can update itself is the most common first paid project our students take.',
+        q: 'What job roles open up after this course?',
+        a: 'WordPress Developer, Web Designer, E-commerce Manager, SEO Specialist and Freelance Web Developer. A portfolio of live sites matters far more here than any certificate.',
       },
       {
         q: 'What can I earn, and how fast does it grow?',
-        a: 'A fresher with a working portfolio starts around ₹15,000 – ₹27,000 a month in the Phagwara market. With two years of delivery experience that typically doubles, and specialists who keep learning move well beyond it.',
+        a: 'A fresher starts around ₹15,000 – ₹25,000 a month in the Punjab market, rising to ₹25,000 – ₹40,000 with two years of work. Salaried WordPress work pays modestly — the money in this skill is in freelancing.',
       },
       {
         q: 'Can I freelance or work remotely with this skill?',
-        a: 'Yes. A Phagwara address costs you nothing on a remote brief. Students bill clients in Delhi, Dubai and Canada. The course covers client handling, proposals and reporting so you can price and defend your work, not just do it.',
+        a: 'Yes, and this is where WordPress genuinely pays. The starting range is the lowest in the catalogue — around ₹5,000 – ₹20,000 a month while you take small local jobs — but it rises past ₹1,00,000 with repeat clients, which is more than either salaried market offers. Expect a slow first year.',
       },
       {
         q: 'Which industries hire for this in Punjab?',
-        a: 'Beyond IT companies, the agro and food processing units, immigration consultancies, hospitals, schools, hotels and the university belt around Phagwara all now hire for these skills directly.',
+        a: 'Digital marketing agencies needing landing pages, IT startups building product sites, e-commerce companies running stores, and local businesses needing maintenance — plus Upwork, Fiverr and direct remote clients.',
       },
       {
-        q: 'Can I continue to higher studies or a specialisation later?',
-        a: 'The certificate and portfolio stand on their own, and they stack. Most students move on to an adjacent techcadd track. The tools overlap, so the second course is faster than the first.',
+        q: 'Do I need to know coding first?',
+        a: 'No, and that is the point of WordPress. You will build complete sites in Elementor without writing code. CSS and PHP basics come later, for the customisations page builders cannot reach — by which time you will already have live sites to show.',
       },
     ],
     projects: [
       {
-        name: 'Business website',
-        summary: 'A complete multi-page site, launched on real hosting.',
-        tech: ['WordPress', 'Elementor'],
+        name: 'Business Landing Page',
+        summary:
+          'Build a high-converting landing page in Elementor, learning UI design and how a call-to-action earns its place.',
+        tech: ['Elementor', 'WordPress'],
         level: 'Beginner',
-        skills: ['Themes', 'Pages', 'Launch'],
+        skills: ['UI Design', 'Conversion Layout'],
       },
       {
-        name: 'WooCommerce store',
-        summary: 'Products, checkout and shipping configured end to end.',
-        tech: ['WooCommerce'],
+        name: 'Advanced Blog Setup',
+        summary:
+          'Create a blog built to be monetised — content strategy, SEO and internal linking that actually holds together.',
+        tech: ['WordPress', 'Yoast SEO'],
+        level: 'Beginner',
+        skills: ['Content Strategy', 'SEO'],
+      },
+      {
+        name: 'E-commerce Store',
+        summary:
+          'Build a real online store with products, cart and a working payment gateway integration.',
+        tech: ['WooCommerce', 'Razorpay'],
         level: 'Intermediate',
-        skills: ['Products', 'Payments', 'Performance'],
+        skills: ['E-commerce', 'Payments'],
+      },
+      {
+        name: 'AI Content Website',
+        summary:
+          'Use ChatGPT to generate content and design a news or review site around it, keeping the result genuinely readable.',
+        tech: ['ChatGPT', 'WordPress'],
+        level: 'Intermediate',
+        skills: ['AI Content', 'Site Design'],
+      },
+      {
+        name: 'Portfolio Website',
+        summary:
+          'Build your own portfolio — the site that will do most of the work of getting you hired or booked.',
+        tech: ['Elementor', 'WordPress'],
+        level: 'Intermediate',
+        skills: ['Personal Branding', 'Design'],
+      },
+      {
+        name: 'Speed & Security Optimisation',
+        summary:
+          'Take a slow site and get it loading under three seconds, then secure it properly against the usual attacks.',
+        tech: ['Caching', 'Cloudflare'],
+        level: 'Advanced',
+        skills: ['Performance', 'Security'],
+      },
+      {
+        name: 'Real Estate / Booking Site',
+        summary:
+          'Manage custom post types and advanced search filters for a niche that needs more than a standard theme.',
+        tech: ['Custom Post Types', 'WordPress'],
+        level: 'Advanced',
+        skills: ['Advanced Search', 'Niche Sites'],
+      },
+      {
+        name: 'End-to-End Client Project',
+        summary:
+          'Simulate a client brief: take the requirements, build the site, and deliver it the way you would for real.',
+        tech: ['WordPress', 'Client Delivery'],
+        level: 'Advanced',
+        skills: ['Requirements', 'Portfolio'],
       },
     ],
+    industryReady: [
+      {
+        title: 'Industry-ready training course',
+        copy: 'Practical topics — hosting, themes, plugins, SEO and e-commerce — that turn dashboard familiarity into working skill.',
+      },
+      {
+        title: 'Learn by building websites',
+        copy: 'Practise by building sites rather than watching demos, developing the ability to design clean, fast, functional websites.',
+      },
+      {
+        title: 'Develop a web portfolio',
+        copy: 'Website projects you can put on a CV — work that proves your design and development ability rather than asserting it.',
+      },
+      {
+        title: 'Career guidance and placement support',
+        copy: 'Resume building, freelancing guidance and interview preparation that make the course career-oriented rather than academic.',
+      },
+    ],
+    whyTechcadd: [
+      {
+        title: 'Experienced trainers',
+        copy: 'Web design is easier when someone simplifies the genuinely confusing parts — hosting, DNS and why a site broke — rather than reading the manual at you.',
+      },
+      {
+        title: 'Live and practical projects',
+        copy: 'Projects make theory meaningful. You build real websites on real hosting, not dummy pages on localhost.',
+      },
+      {
+        title: 'Small batch learning',
+        copy: 'Design and coding get much easier when you can clear a doubt in real time rather than carrying it home.',
+      },
+      {
+        title: 'A practical portfolio',
+        copy: 'You finish with a portfolio of full website builds — the thing that actually gets freshers hired in this field.',
+      },
+      {
+        title: 'Career guidance',
+        copy: 'Guidance on freelancing, resume building and mock interviews, aimed at the two routes this skill actually leads to.',
+      },
+    ],
+    comparison: {
+      rows: [
+        {
+          feature: 'Curriculum',
+          techcadd: 'Industry-focused, covering hosting, Elementor, WooCommerce and SEO',
+          others: 'Often focuses only on basic dashboard usage',
+        },
+        {
+          feature: 'Learning style',
+          techcadd: 'Practical, project-based learning',
+          others: 'Can be more theory-oriented',
+        },
+        {
+          feature: 'Practical projects',
+          techcadd: 'Students work on live hosting environments and client-style tasks',
+          others: 'Practical exposure may be limited to localhost',
+        },
+        {
+          feature: 'Design skills',
+          techcadd: 'Focus on UI, responsive design and branding',
+          others: 'May cover themes without design principles',
+        },
+        {
+          feature: 'E-commerce',
+          techcadd: 'A deep dive into WooCommerce and payments',
+          others: 'E-commerce training is often skipped',
+        },
+        {
+          feature: 'SEO',
+          techcadd: 'Yoast/RankMath, Search Console and Google Analytics',
+          others: 'SEO might be an afterthought',
+        },
+        {
+          feature: 'Portfolio building',
+          techcadd: 'Students leave with three or more live websites',
+          others: 'Portfolio development may not be a focus',
+        },
+        {
+          feature: 'Career support',
+          techcadd: 'Freelancing guidance, CV preparation and interview support',
+          others: 'Career assistance varies between institutes',
+        },
+        {
+          feature: 'Doubt support',
+          techcadd: 'Hands-on troubleshooting of the errors that actually break a site',
+          others: 'Support may be limited to classroom slides',
+        },
+      ],
+      note: 'The right-hand column represents general market patterns, not a claim about any specific institute. Before choosing a WordPress institute in Phagwara, ask how many live websites you will build, whether you will manage hosting yourself, and what career support is provided.',
+    },
+    durations: [
+      {
+        length: '3 Months',
+        tier: 'Foundation',
+        heading: 'Learn the basics of web design',
+        blurb:
+          'Gain the fundamental skills to build a simple, working website you can put online.',
+        skills: ['WordPress', 'Elementor', 'Basic SEO', 'Plugins'],
+        recommendedFor: 'Website Owner, beginner freelancer and college student.',
+      },
+      {
+        length: '6 Months',
+        tier: 'Professional',
+        heading: 'Get proficient in e-commerce & customisation',
+        blurb:
+          'Go further with WooCommerce, advanced theme editing and speed optimisation — the level clients pay for.',
+        skills: ['Elementor Pro', 'WooCommerce', 'PHP basics', 'SEO tools'],
+        recommendedFor: 'WordPress Developer, E-commerce Manager and professional freelancer.',
+      },
+      {
+        length: '9 Months',
+        tier: 'Advanced',
+        heading: 'Master web development & strategy',
+        blurb:
+          'Combine WordPress with advanced SEO, AI tools and the workflows an agency actually runs on.',
+        skills: ['PHP', 'MySQL', 'React basics', 'AI tools', 'Advanced SEO'],
+        recommendedFor: 'Full-Stack Web Developer, digital agency owner and senior developer.',
+      },
+    ],
+    capabilities: [
+      { capability: 'WordPress installation & hosting', included: [true, true, true] },
+      { capability: 'Theme & plugin setup', included: [true, true, true] },
+      { capability: 'Elementor page building', included: [true, true, true] },
+      { capability: 'Blogging & basic SEO', included: [true, true, true] },
+      { capability: 'E-commerce (WooCommerce)', included: [false, true, true] },
+      { capability: 'Payment gateways & shipping', included: [false, true, true] },
+      { capability: 'PHP & child theme editing', included: [false, true, true] },
+      { capability: 'Speed optimisation (caching / CDN)', included: [false, true, true] },
+      { capability: 'Advanced API integration', included: [false, false, true] },
+      { capability: 'AI content & automation', included: [false, false, true] },
+      { capability: 'Advanced custom post types', included: [false, false, true] },
+    ],
+    durationNote:
+      'The programme is nested, not parallel. Choose 3 months to build a blog or a simple business site; 6 months if you want to sell online or start professional freelancing; 9 months to become a full-stack WordPress developer or run a web agency. Each level builds on the last, so moving to a longer duration never means starting from zero.',
     instructor: {
-      heading: 'Why learn with us?',
-      intro: 'Every trainer here still ships production code. That is the whole basis of the teaching: answers come from current practice rather than from a slide deck written three years ago.',
+      heading: 'Why learn WordPress with us?',
+      intro:
+        'WordPress is more than installing plugins. The emphasis here is on design logic, marketing sense and professional execution — practical coding experience, assignments and the tools the industry actually uses.',
       points: [
         {
-          title: 'Practitioners, not presenters',
-          copy: 'Sessions are run by engineers working on live systems, so the examples come from real codebases.',
+          title: 'Real hosting, not localhost',
+          copy: 'You work on live hosting with a real domain from early on. Everything that can go wrong on a client site goes wrong on yours first, where it is safe.',
         },
         {
-          title: 'Project-based from week one',
-          copy: 'You build as you learn. Each module ends in something that runs, not in a quiz.',
+          title: 'Design taught alongside the tool',
+          copy: 'A site built with no design sense looks it. UI, spacing and branding are taught with the page builder, not separately.',
         },
         {
-          title: 'Personalised guidance',
-          copy: 'Small batches mean your mentor knows what you are stuck on and what you are aiming at.',
+          title: 'Projects that become a portfolio',
+          copy: 'Eight practical builds covering a landing page, blog, store, AI content site, portfolio, optimisation, a niche site and a full client project.',
         },
         {
-          title: 'Doubt support that continues',
-          copy: 'Doubt sessions and mentor hours carry on after the certificate is printed.',
+          title: 'Built for freelancing',
+          copy: 'Client handling, requirements and delivery are part of the course, because freelancing is where this skill genuinely pays.',
         },
       ],
     },
     extraFaqs: [
       {
-        q: 'What is the duration of the WordPress course in Phagwara?',
-        a: 'techcadd runs WordPress over 1 month depending on the track you choose. Weekday, evening and weekend batches cover the same syllabus, and 1-on-1 training is available if you would rather set your own pace. Every class runs for 2 hours, whichever format you choose.',
+        q: 'What is the WordPress Course in Phagwara at Techcadd?',
+        a: 'It is designed to help beginners and aspiring developers learn website creation through practical training. Students learn hosting, themes, plugins, WooCommerce and SEO with hands-on practice.',
       },
       {
-        q: 'What is the fee for the WordPress course in Phagwara?',
-        a: 'Fees depend on the batch format and whether you take the course on its own or as part of a longer track. EMI options are available. Call the centre or book a free demo and a counsellor will give you the exact figure for the format you want.',
+        q: 'Who can join a WordPress Course in Phagwara?',
+        a: 'It suits 12th-pass students, college students, graduates, business owners and working professionals. No prior coding experience is needed.',
       },
       {
-        q: 'Who can join the WordPress course?',
-        a: '10th / 12th Pass Onward. The first modules start from fundamentals, so no prior experience is assumed.',
+        q: 'Is WordPress a good career option for freshers?',
+        a: 'Yes. WordPress powers over 40% of the web. After gaining practical skills, freshers can explore roles such as Web Designer, WordPress Developer, E-commerce Manager and SEO Specialist.',
       },
       {
-        q: 'What jobs can I get after the WordPress course?',
-        a: 'Graduates move into WordPress Developer, Web Designer, Freelance Site Builder, Digital Marketer and similar roles. WordPress runs a large share of the web, and building a local business a site it can update itself is the most common first paid project our students take.',
+        q: 'What will I learn in the WordPress Course?',
+        a: 'Domain setup, hosting, cPanel, Elementor, WooCommerce, Yoast SEO, security and website maintenance — the full path from an empty domain to a running, protected site.',
       },
       {
-        q: 'What salary can a fresher expect after this course in Phagwara?',
-        a: 'WordPress Developer roles start around ₹15,000 – ₹27,000 a month for a fresher with a working portfolio, rising to ₹3.5–7 LPA with two years of delivery experience. Specialists move beyond that.',
+        q: 'Is the course practical or theory-based?',
+        a: 'The approach is hands-on. You build live websites, debug real errors such as internal server errors, and manage databases rather than reading about them.',
       },
       {
-        q: 'Is this course suitable for beginners?',
-        a: 'Yes. WordPress begins from fundamentals, and the pace is set so nothing is assumed.',
+        q: 'Will I work on WordPress projects during the course?',
+        a: 'Yes. You build business websites, blogs and online stores. These strengthen the portfolio you will use for web developer jobs or freelancing.',
       },
       {
-        q: 'What are the prerequisites?',
-        a: 'Basic computer familiarity. Anything else the track needs is introduced in the first module.',
+        q: 'Can I learn WordPress after 12th?',
+        a: 'Absolutely. Students can start after 12th to build a foundation in web technology and begin earning early through freelancing.',
+      },
+      {
+        q: 'Can WordPress help me get a job or internship?',
+        a: 'Yes, if you focus on problem solving and portfolio building. Employers look for design sense, SEO knowledge and speed optimisation skills more than certificates.',
+      },
+      {
+        q: 'Does the course include AI for web building?',
+        a: 'Yes. The course introduces ChatGPT, Gemini and AI image generators for producing content and code snippets faster — with judgement about quality kept central.',
+      },
+      {
+        q: 'How do I choose the best WordPress Course in Phagwara?',
+        a: 'Do not choose on fees alone. Check the syllabus, live project exposure, hosting management training and career guidance. A good course should take you from knowing WordPress to building a business with it.',
       },
     ],
-    whyNow: {
-      title: 'WordPress Is Powering the Next Generation of Industry Leaders',
-      points: [
-        'Live client work from week one, supervised by a trainer, not slides, not simulations.',
-        'WordPress Developer roles in Punjab start around ₹15,000 – ₹27,000 a month for a fresher with a working portfolio.',
-      ],
-    },
     relatedCourses: [
-      'web-designing-course-in-phagwara',
       'shopify-course-in-phagwara',
+      'web-designing-course-in-phagwara',
       'seo-course-in-phagwara',
-      'php-full-stack-course-in-phagwara',
       'digital-marketing-course-in-phagwara',
-      'social-media-marketing-course-in-phagwara',
+      'php-full-stack-course-in-phagwara',
+      'web-development-course-in-phagwara',
     ],
     keywords: [
-      'wordpress course phagwara',
-      'elementor training in phagwara',
-      'woocommerce course in phagwara',
-      'website building classes in phagwara',
+      'wordpress course in phagwara',
+      'wordpress training in phagwara',
+      'wordpress institute in phagwara',
+      'web development course in phagwara',
+      'web design course in phagwara',
+      'wordpress course after 12th in phagwara',
     ],
   }),
 
   makeCourse({
     slug: 'shopify-course-in-phagwara',
     label: 'Shopify',
-    title: 'Best Shopify Course & Training in Phagwara',
+    title: 'Shopify Course in Phagwara',
     category: 'digital-marketing',
     categoryTitle: 'Digital Marketing',
     icon: 'wallet',
-    duration: '1 Month',
-    level: 'Beginner to Intermediate',
+    duration: '3 – 9 Months',
+    level: 'Beginner to Advanced',
     eligibility: '12th Pass Onward',
-    summary: 'Build a launch-ready online store on Shopify — from product setup to payments, themes and store marketing.',
-    overview: 'Four weeks building a Shopify store: setup, theme customisation, products, payments, apps and the conversion work that follows launch.',
-    demand: 'D2C brands are launching faster than there are people who can build and tune their stores, and Shopify work bills unusually well on international briefs.',
+    summary:
+      'Build online stores that sell — store setup, theme customisation, Liquid programming, payments, APIs and automation, with live projects and placement assistance.',
+    overview:
+      'Techcadd’s Shopify Development Course in Phagwara is an industry-oriented course that teaches students, graduates, job seekers and beginners to build online stores on Shopify. It covers e-commerce setup, theme customisation, product management, Liquid coding, payment gateways, shipping logic, APIs and app development. The training is based on practical knowledge rather than theory: you learn through store-building exercises, assignments and client-level projects, so you see how Shopify is actually used in online retail, D2C brands, freelancing and e-commerce work. The approach is beginner-friendly throughout, developing business logic, design sense and coding skill together — by the end you can set up, customise and scale a full Shopify store.',
+    demand:
+      'D2C brands and local retailers are moving online faster than agencies can staff for it, and Shopify is where most of them land — which makes a developer who can also code Liquid genuinely scarce here.',
     modules: [
       {
-        title: 'Store setup',
-        summary: 'Account, domain and settings.',
-        topics: ['Setup', 'Domains', 'Payments', 'Shipping'],
-        duration: '1 week',
-        lessons: 5,
+        title: 'Shopify Fundamentals & Store Setup',
+        summary:
+          'Build your e-commerce knowledge from scratch and get a real store standing up.',
+        topics: [
+          'Store creation, domain setup and dashboard configuration',
+          'Products, collections, navigation and menus',
+          'Themes, typography and branding elements',
+          'Creating a clean, understandable store structure',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
       },
       {
-        title: 'Themes & products',
-        summary: 'Making it look and read right.',
-        topics: ['Theme editor', 'Collections', 'Product pages', 'Navigation'],
-        duration: '1 week',
-        lessons: 5,
+        title: 'Theme Customisation & Design Logic',
+        summary:
+          'Get deeper into the front end and learn how a store gets shaped to fit a brand.',
+        topics: [
+          'Theme settings and section blocks',
+          'Images, content and layouts',
+          'Mobile responsiveness and UX principles',
+          'Breaking complex pages into customisable sections',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
       },
       {
-        title: 'Apps & automation',
-        summary: 'Extending the store sensibly.',
-        topics: ['App selection', 'Email flows', 'Reviews', 'Upsells'],
-        duration: '1 week',
-        lessons: 5,
+        title: 'Liquid Programming & Dynamic Content',
+        summary:
+          'Find out how professional Shopify themes are actually structured underneath.',
+        topics: [
+          'Objects, tags, filters and variables',
+          'Logic, loops and conditionals in Liquid',
+          'Structuring theme code into reusable components',
+          'Building dynamic store features',
+        ],
+        duration: '4 weeks',
+        lessons: 14,
       },
       {
-        title: 'Conversion & analytics',
-        summary: 'Turning traffic into orders.',
-        topics: ['CRO basics', 'Analytics', 'Abandoned carts', 'Reporting'],
-        duration: '1 week',
-        lessons: 5,
+        title: 'E-commerce Operations & Payments',
+        summary:
+          'Find out how Shopify handles real transactions — the part where a store stops being a demo.',
+        topics: [
+          'Payment gateways — Razorpay, PayPal and Stripe',
+          'Shipping profiles and tax settings',
+          'Checkout logic and how it affects sales',
+          'Automating tasks with Shopify Flow',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Data Handling & Analytics',
+        summary:
+          'Find out how a store’s own sales data tells you what to change next.',
+        topics: [
+          'Reading traffic reports and sales metrics',
+          'Google Analytics integration',
+          'Marketing pixels and tracking',
+          'Practical analysis and reporting',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Advanced APIs & App Integrations',
+        summary:
+          'Advance into the parts of Shopify that connect it to everything else a business runs.',
+        topics: [
+          'Admin API and Storefront API basics',
+          'Webhooks and app proxies',
+          'Integrating with ERP, CRM and AI tools',
+          'Beginner-level Shopify app concepts',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'AI-Powered E-commerce Development',
+        summary:
+          'Learn how AI tools change the pace of store building — and where your judgement still matters.',
+        topics: [
+          'AI assistants for understanding code and troubleshooting',
+          'Generating product descriptions and marketing copy',
+          'Using AI ethically without over-reliance',
+          'Faster debugging, documentation and workflow',
+        ],
+        duration: '2 weeks',
+        lessons: 8,
+      },
+      {
+        title: 'Projects, Git & Developer Workflow',
+        summary:
+          'Apply your store-building skills the way a team does — version controlled and readable.',
+        topics: [
+          'Building projects against real-world requirements',
+          'Git and version control for theme code',
+          'Developer workflow and project organisation',
+          'Writing readable, reusable Liquid',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Live Shopify Projects & Career Preparation',
+        summary:
+          'An end-to-end store for your portfolio, then learning to present it to a client.',
+        topics: [
+          'Store building assignments on real business scenarios',
+          'Portfolio-ready project work',
+          'Explaining your store design and code in interviews',
+          'Career paths in Shopify development, e-commerce and freelancing',
+        ],
+        duration: '4 weeks',
+        lessons: 14,
       },
     ],
     outcomes: [
-      'Set up a store end to end',
-      'Customise a theme without breaking it',
-      'Configure payments and shipping',
-      'Automate email flows',
-      'Read store analytics and act on them',
+      'Set up a complete Shopify store with products, collections and navigation',
+      'Customise themes to match a brand without breaking them',
+      'Write Liquid with objects, loops and conditionals for dynamic content',
+      'Configure payment gateways, shipping profiles and tax logic',
+      'Integrate external services through the Admin and Storefront APIs',
+      'Ship an end-to-end store you can defend in an interview',
     ],
-    tools: ['Shopify', 'Shopify Theme Editor', 'Klaviyo', 'Google Analytics', 'Meta Pixel'],
+    tools: [
+      'Shopify Admin',
+      'Shopify CLI',
+      'Liquid',
+      'Theme Kit',
+      'VS Code',
+      'Git & GitHub',
+      'Canva',
+      'Google Analytics',
+      'Meta Pixel',
+      'Payment Gateways',
+      'REST APIs',
+      'Shopify Flow',
+      'ChatGPT & AI Tools',
+      'Gemini for Content',
+    ],
+    audience: [
+      {
+        label: '12th Pass Students',
+        copy: 'Interested in earning online or exploring technology? Shopify’s interface makes e-commerce basics approachable — store setup, theme editing, product listing, order management and payment gateways are a useful skill alongside your studies.',
+      },
+      {
+        label: 'College Learners & Graduates',
+        copy: 'E-commerce should be taught through real stores, not textbooks. Whatever your discipline — commerce, management, computer science or arts — store-building exercises in theme customisation, app integrations and management strengthen your projects and portfolio.',
+      },
+      {
+        label: 'Job Seekers & Freshers',
+        copy: 'Drag-and-drop skills alone do not impress employers. They want candidates who can customise a theme and solve an e-commerce problem. Design logic, debugging and a portfolio of real stores beat any certificate.',
+      },
+      {
+        label: 'Working Professionals',
+        copy: 'Already in IT, marketing, operations or sales? Shopify lets you manage online assets and build technical business skill — store automation, product data, payment integrations and conversion optimisation, without changing career.',
+      },
+      {
+        label: 'Entrepreneurs & Business Owners',
+        copy: 'You do not need to be a developer to run a store well. Understanding online sales funnels, inventory and the technology behind them makes scaling decisions clearer and developer conversations far easier.',
+      },
+      {
+        label: 'Aspiring Freelancers & Developers',
+        copy: 'For freelancing, Shopify pays well. Store development, theme customisation, Liquid programming and client management let you build stores, migrate stores, create custom sections and consult on e-commerce.',
+      },
+    ],
+    whyChooseUs: [
+      {
+        title: 'E-commerce skills are in demand',
+        copy: 'Shopify has spread well past small stores — multi-million-dollar brands and startups run on it. Store setup, theme development, payment integration and marketing automation give you a versatile qualification.',
+      },
+      {
+        title: 'Understanding how e-commerce really works',
+        copy: 'Not memorising menus. Admin and dashboard navigation, theme and section editing, product and inventory management, Liquid basics, payment gateways and shipping zones, tax logic, fulfilment workflows and app integrations.',
+      },
+      {
+        title: 'Practical training is how stores get learned',
+        copy: 'Watching tutorials is useful; building and customising your own store teaches far more. Hands-on assignments cover store development, theme editing, product uploading and e-commerce problem solving.',
+      },
+      {
+        title: 'Skills that open several career paths',
+        copy: 'Depending on your interest, Shopify leads to Shopify Developer, E-commerce Executive, freelance web designer, dropshipping expert or digital entrepreneur.',
+      },
+    ],
+    whyNow: {
+      title: 'Gain Shopify Skills You Can Apply In Real Life',
+      points: [
+        'Practical projects take your skills past theory into a portfolio that proves you can build stores.',
+        'A strong portfolio shows theme customisation, product data, payment APIs and client requirements handled properly.',
+        'Shopify developer roles in Punjab start around ₹18,000 – ₹30,000 a month for a fresher with real stores to show.',
+        'Focus on building stores and solving problems rather than memorising menus and steps.',
+      ],
+    },
     roles: [
       'Shopify Developer',
-      'E-commerce Manager',
-      'Freelance Store Builder',
-      'Digital Marketer',
+      'E-commerce Executive',
+      'Front-End Developer',
+      'Automation Specialist',
+      'Freelance Shopify Developer',
+      'Dropshipping Expert',
+    ],
+    roleDetails: [
+      {
+        role: 'Shopify Developer',
+        copy: 'Build custom themes, applications and e-commerce solutions on Shopify, working across Liquid programming, APIs and the platform’s development concepts. The most common path after this course.',
+      },
+      {
+        role: 'E-commerce Executive',
+        copy: 'Manage online stores, products and marketing campaigns, using Shopify tools, analytics and automation to run a profitable operation.',
+      },
+      {
+        role: 'Front-End Developer',
+        copy: 'Build reliable interfaces and user experiences with HTML, CSS and Liquid, turning design concepts into working storefronts.',
+      },
+      {
+        role: 'Automation Specialist',
+        copy: 'Create workflows that automate inventory updates, customer tagging and repetitive operations using Shopify Flow, APIs and webhooks.',
+      },
+      {
+        role: 'Freelance Shopify Developer',
+        copy: 'Build a freelance practice creating stores for clients in Phagwara, Jalandhar and further out, growing a portfolio from real briefs.',
+      },
+      {
+        role: 'Dropshipping Expert',
+        copy: 'Build and run dropshipping businesses on Shopify, understanding product sourcing, logistics and the tools that support them.',
+      },
     ],
     hiring: [
-      'E-commerce agencies',
-      'D2C and retail brands',
-      'Dropshipping businesses',
-      'International freelance briefs',
+      'IT companies creating websites, applications and business solutions',
+      'E-commerce startups and tech companies building on Shopify',
+      'Digital marketing agencies working on client stores',
+      'D2C brands and retail companies managing their online presence',
+      'Freelance and remote projects needing Shopify developers',
     ],
-    nextSteps: ['Digital Marketing', 'Social Media Marketing', 'SEO', 'WordPress'],
-    industries: ['D2C brands', 'Retail', 'Dropshipping', 'Agencies'],
+    nextSteps: [
+      'WordPress & WooCommerce',
+      'Front-end development with React',
+      'Digital marketing for e-commerce',
+      'Shopify app development',
+    ],
+    industries: ['E-commerce & D2C', 'Agencies', 'IT startups', 'Retail'],
+    /*
+     * Client-supplied bands, monthly rather than the derived LPA figures used
+     * elsewhere in the catalogue — that is the unit a fresher in this market
+     * recognises. They sit above the WordPress bands, which is consistent:
+     * Shopify work involves Liquid and API skill that pure page-building does
+     * not. `scale` is the midpoint in ₹/month; remote sits below Punjab at the
+     * fresher end on purpose, since freelance income ramps rather than
+     * starting at a salary.
+     */
     salary: {
       role: 'Shopify Developer',
-      summary: 'Builds and optimises the storefronts D2C brands sell through.',
-      starting: '₹2–3.5 LPA',
-      after2: '₹4.5–9 LPA',
+      summary:
+        'Builds and customises the online stores brands sell through. Earnings depend on your technical skills, portfolio, experience, company and location.',
+      starting: '₹18,000–₹30,000/month',
+      after2: '₹30,000–₹50,000/month',
       markets: [
         {
-          name: 'Punjab / Tricity',
-          fresher: '₹2–3.5 LPA',
-          after2: '₹4.5–9 LPA',
-          scale: { fresher: 2.8, after2: 6.75 },
+          name: 'Punjab — Shopify Developer',
+          fresher: '₹18,000–₹30,000/month',
+          after2: '₹30,000–₹50,000/month',
+          scale: { fresher: 24000, after2: 40000 },
         },
         {
-          name: 'Delhi NCR',
-          fresher: '₹3–5 LPA',
-          after2: '₹6.5–12.5 LPA',
-          scale: { fresher: 3.92, after2: 9.45 },
+          name: 'Delhi / NCR — Shopify / E-commerce',
+          fresher: '₹25,000–₹40,000/month',
+          after2: '₹40,000–₹70,000+/month',
+          scale: { fresher: 32500, after2: 55000 },
         },
         {
-          name: 'Remote / Freelance',
-          fresher: '₹3–5.5 LPA',
-          after2: '₹7–14 LPA',
-          scale: { fresher: 4.34, after2: 10.46 },
+          name: 'Remote / Freelance Shopify Development',
+          fresher: '₹10,000–₹25,000/month',
+          after2: '₹30,000–₹80,000+/month',
+          scale: { fresher: 17500, after2: 55000 },
         },
       ],
     },
     careerFaqs: [
       {
-        q: 'What job roles open up after Shopify?',
-        a: 'Graduates move into Shopify Developer, E-commerce Manager, Freelance Store Builder, Digital Marketer and similar roles. D2C brands are launching faster than there are people who can build and tune their stores, and Shopify work bills unusually well on international briefs.',
+        q: 'What job roles open up after this course?',
+        a: 'Shopify Developer, E-commerce Executive, Front-End Developer, Automation Specialist and Freelance Store Designer. A portfolio of real stores matters far more here than any certificate.',
       },
       {
         q: 'What can I earn, and how fast does it grow?',
-        a: 'A fresher with a working portfolio starts around ₹17,000 – ₹30,000 a month in the Phagwara market. With two years of delivery experience that typically doubles, and specialists who keep learning move well beyond it.',
+        a: 'A fresher with real stores to show starts around ₹18,000 – ₹30,000 a month in the Punjab market, rising to ₹30,000 – ₹50,000 with two years of work. Developers who can write Liquid rather than only configure themes command the upper end.',
       },
       {
         q: 'Can I freelance or work remotely with this skill?',
-        a: 'Yes. A Phagwara address costs you nothing on a remote brief. Students bill clients in Delhi, Dubai and Canada. The course covers client handling, proposals and reporting so you can price and defend your work, not just do it.',
+        a: 'Yes — Shopify freelancing travels particularly well, since a store is a self-contained deliverable and international clients pay in stronger currencies. Income ramps rather than starting at a salary: around ₹10,000 – ₹25,000 a month early on, and ₹30,000 – ₹80,000+ once you have client stores behind you.',
       },
       {
         q: 'Which industries hire for this in Punjab?',
-        a: 'Beyond IT companies, the agro and food processing units, immigration consultancies, hospitals, schools, hotels and the university belt around Phagwara all now hire for these skills directly.',
+        a: 'IT companies building business solutions, e-commerce startups, digital marketing agencies running client stores, and D2C and retail brands managing their own — plus freelance and remote projects.',
       },
       {
-        q: 'Can I continue to higher studies or a specialisation later?',
-        a: 'The certificate and portfolio stand on their own, and they stack. Most students move on to an adjacent techcadd track. The tools overlap, so the second course is faster than the first.',
+        q: 'Should I learn Shopify or WordPress?',
+        a: 'Shopify if you want to build stores; WordPress if you want to build websites of every kind. Shopify handles payments, inventory and checkout for you, so you reach a working store faster and the client work pays better. WordPress is more flexible and has far more local demand for non-store sites. Neither wastes the other — the design and client skills carry across.',
       },
     ],
     projects: [
       {
-        name: 'Launch-ready store',
-        summary: 'A full store with products, payments and shipping live.',
-        tech: ['Shopify'],
+        name: 'E-commerce Store Setup',
+        summary:
+          'Build a fully functional store from scratch, focused on branding, navigation and product organisation — the architecture everything else sits on.',
+        tech: ['Shopify Admin', 'Product Management'],
         level: 'Beginner',
-        skills: ['Setup', 'Theming', 'Payments'],
+        skills: ['Store Setup', 'Navigation'],
       },
       {
-        name: 'Conversion improvement sprint',
-        summary: 'Measure, change, re-measure on a live store.',
-        tech: ['Shopify', 'GA4'],
+        name: 'Theme Customisation Project',
+        summary:
+          'Take a pre-built theme and reshape it to a specific brand identity using sections, blocks and theme settings.',
+        tech: ['Shopify Themes', 'CSS'],
+        level: 'Beginner',
+        skills: ['Theme Design', 'Responsive Design'],
+      },
+      {
+        name: 'Liquid Programming Project',
+        summary:
+          'Build a custom section or dynamic feature — manipulating data, logic and loops in Liquid to display content that changes with the store.',
+        tech: ['Liquid', 'Shopify Themes'],
         level: 'Intermediate',
-        skills: ['CRO', 'Analytics', 'Email'],
+        skills: ['Dynamic Content', 'Template Logic'],
+      },
+      {
+        name: 'Shopify Automation Project',
+        summary:
+          'Design a working automation in Shopify Flow: tag customers, manage inventory notifications and take repetitive service tasks off a person.',
+        tech: ['Shopify Flow', 'Automation'],
+        level: 'Intermediate',
+        skills: ['Workflow', 'Operations'],
+      },
+      {
+        name: 'API Integration Project',
+        summary:
+          'Connect Shopify to an external service — fetching and displaying real-time data through the Storefront or Admin API.',
+        tech: ['REST API', 'JSON'],
+        level: 'Intermediate',
+        skills: ['API Integration', 'Development'],
+      },
+      {
+        name: 'E-commerce Analytics Project',
+        summary:
+          'Work with real sales data: analyse traffic, conversion rates and customer behaviour in Shopify Analytics and Google Analytics.',
+        tech: ['Shopify Analytics', 'Google Analytics'],
+        level: 'Advanced',
+        skills: ['Data Analysis', 'Tracking'],
+      },
+      {
+        name: 'AI-Powered Store Project',
+        summary:
+          'Use AI to generate product descriptions, SEO content and marketing copy, then integrate the results into a store that still reads like a brand.',
+        tech: ['AI Tools', 'Shopify'],
+        level: 'Advanced',
+        skills: ['Content Generation', 'Prompt Engineering'],
+      },
+      {
+        name: 'End-to-End Capstone Project',
+        summary:
+          'Bring everything together for a real business case: ideate, build, test and present a complete e-commerce solution.',
+        tech: ['Shopify', 'Liquid'],
+        level: 'Advanced',
+        skills: ['Development', 'Portfolio'],
       },
     ],
+    industryReady: [
+      {
+        title: 'Industry-ready Shopify training',
+        copy: 'Practical topics — store setup, themes, Liquid, payments, APIs and problem solving — that turn dashboard familiarity into working skill.',
+      },
+      {
+        title: 'Learn by building stores',
+        copy: 'Practise on real store projects, developing the ability to design clean stores, debug theme issues, manage data and build useful e-commerce solutions.',
+      },
+      {
+        title: 'Develop a Shopify portfolio',
+        copy: 'Industry-relevant projects you can put on a CV — work that proves your store-building and problem-solving ability in interviews and job hunts.',
+      },
+      {
+        title: 'Career guidance and placement support',
+        copy: 'Resume help, technical interview preparation, project presentation and career direction across Shopify development, e-commerce management and digital marketing.',
+      },
+    ],
+    whyTechcadd: [
+      {
+        title: 'Trainers who explain Shopify simply',
+        copy: 'Shopify is a good place for beginners, and it should feel that way. Trainers explain e-commerce concepts and coding logic through simple, practical examples.',
+      },
+      {
+        title: 'Live and practical projects',
+        copy: 'Projects make the theory meaningful. You learn through hands-on work spanning store setup, automation, API integration and problem solving.',
+      },
+      {
+        title: 'Small batch learning',
+        copy: 'Store building is far easier when you can clear a doubt on Liquid in real time and practise the concept while you are still stuck on it.',
+      },
+      {
+        title: 'A practical portfolio',
+        copy: 'You finish with a portfolio demonstrating store customisation, API integration and real development — good examples to talk about in an interview.',
+      },
+      {
+        title: 'Career and placement guidance',
+        copy: 'Because Shopify spans web development, e-commerce, digital marketing and D2C brands, guidance is career-oriented: resume building, mock interviews and project presentation.',
+      },
+    ],
+    comparison: {
+      rows: [
+        {
+          feature: 'Shopify curriculum',
+          techcadd:
+            'Industry-focused training covering store setup, Liquid programming, APIs and automation',
+          others: 'Often focuses mainly on basic store setup and theme usage',
+        },
+        {
+          feature: 'Learning style',
+          techcadd: 'Practical, project-based learning built around real e-commerce problems',
+          others: 'Can be more theory-oriented',
+        },
+        {
+          feature: 'Practical projects',
+          techcadd:
+            'Students work on live store projects and assignments to strengthen problem-solving skills',
+          others: 'Practical exposure may be limited',
+        },
+        {
+          feature: 'Technical skills',
+          techcadd: 'Focus on Liquid coding, API integration, debugging and automation',
+          others: 'May cover concepts without enough coding practice',
+        },
+        {
+          feature: 'Advanced topics',
+          techcadd: 'Exposure to Liquid, APIs, custom apps and business logic',
+          others: 'Advanced topics can vary by institute',
+        },
+        {
+          feature: 'Problem solving',
+          techcadd:
+            'Regular exercises designed to improve logical thinking and development confidence',
+          others: 'Problem-solving practice may receive less attention',
+        },
+        {
+          feature: 'Portfolio building',
+          techcadd: 'Projects that help students showcase their Shopify development skills',
+          others: 'Portfolio development may not be a major focus',
+        },
+        {
+          feature: 'Career support',
+          techcadd: 'CV guidance, interview preparation and portfolio support',
+          others: 'Career assistance varies between institutes',
+        },
+        {
+          feature: 'Doubt support',
+          techcadd:
+            'Trainer guidance to help students understand coding concepts and solve design challenges',
+          others: 'Support may be limited to classroom sessions',
+        },
+        {
+          feature: 'Certification',
+          techcadd: 'Course completion certification supported by practical learning',
+          others: 'Certification and practical exposure can vary',
+        },
+      ],
+      note: 'The right-hand column represents common market patterns, not a comparison with any specific institute. Before choosing a Shopify institute in Phagwara, ask how much coding practice is included, whether students build real stores, how trainers handle doubts, and what career support is provided.',
+    },
+    durations: [
+      {
+        length: '3 Months',
+        tier: 'Foundation',
+        heading: 'Learn the basics of Shopify development',
+        blurb:
+          'Gain fundamental skills step by step through practical store building and easy-to-start projects.',
+        skills: ['Shopify Admin', 'Theme Customisation', 'Basic Liquid', 'Product Setup'],
+        recommendedFor:
+          'E-commerce Trainee, Store Manager, Junior Shopify Developer and anyone starting a Shopify course in Phagwara.',
+      },
+      {
+        length: '6 Months',
+        tier: 'Professional',
+        heading: 'Get proficient in Shopify development',
+        blurb:
+          'Real-world development: Liquid programming, API integration, payment gateways and advanced customisation.',
+        skills: ['Liquid', 'Git', 'API Integration', 'Theme Kit', 'Shopify Flow'],
+        recommendedFor:
+          'Shopify Developer, E-commerce Developer, Front-End Developer and Automation Specialist.',
+      },
+      {
+        length: '9 Months',
+        tier: 'Advanced',
+        heading: 'Master Shopify development',
+        blurb:
+          'Store development combined with advanced Liquid, API integration, automation and AI-powered workflows.',
+        skills: ['Liquid', 'APIs', 'MySQL', 'Shopify Flow', 'Google Analytics', 'AI tools'],
+        recommendedFor:
+          'Full-Stack Shopify Developer, E-commerce Consultant, freelance developer and agency-ready professionals.',
+      },
+    ],
+    capabilities: [
+      { capability: 'Store setup & admin', included: [true, true, true] },
+      { capability: 'Product & order management', included: [true, true, true] },
+      { capability: 'Theme customisation', included: [true, true, true] },
+      { capability: 'Navigation & menus', included: [true, true, true] },
+      { capability: 'Liquid programming basics', included: [true, true, true] },
+      { capability: 'Basic payment integration', included: [true, true, true] },
+      { capability: 'Advanced Liquid logic', included: [false, true, true] },
+      { capability: 'API integration', included: [false, true, true] },
+      { capability: 'Shopify Flow automation', included: [false, true, true] },
+      { capability: 'Git & Theme Kit', included: [false, true, true] },
+      { capability: 'Advanced app development', included: [false, false, true] },
+      { capability: 'Headless commerce concepts', included: [false, false, true] },
+      { capability: 'AI integration & automation', included: [false, false, true] },
+      { capability: 'Advanced projects', included: [false, false, true] },
+    ],
+    durationNote:
+      'The programme is nested, not parallel. Choose 3 months for store setup, theme editing and product management; 6 months for Liquid programming, payment gateways, API integration and automation; 9 months for advanced development, integrations and AI tools as a full-stack e-commerce developer. Each level builds on the last, so moving to a longer duration never means starting from zero.',
     instructor: {
-      heading: 'Why learn with us?',
-      intro: 'Every trainer here still ships production code. That is the whole basis of the teaching: answers come from current practice rather than from a slide deck written three years ago.',
+      heading: 'Why learn Shopify with us?',
+      intro:
+        'Shopify is more than knowing the platform. The emphasis here is on how stores get built and how business problems get solved with e-commerce technology — practical store work, assignments and the tools the industry uses.',
       points: [
         {
-          title: 'Practitioners, not presenters',
-          copy: 'Sessions are run by engineers working on live systems, so the examples come from real codebases.',
+          title: 'Liquid, not just themes',
+          copy: 'Anyone can pick a theme. Writing Liquid is what separates a store configurer from a Shopify developer, and it gets four weeks here.',
         },
         {
-          title: 'Project-based from week one',
-          copy: 'You build as you learn. Each module ends in something that runs, not in a quiz.',
+          title: 'Real stores, real payments',
+          copy: 'You configure genuine payment gateways, shipping profiles and tax logic — the parts that decide whether a store can actually trade.',
         },
         {
-          title: 'Personalised guidance',
-          copy: 'Small batches mean your mentor knows what you are stuck on and what you are aiming at.',
+          title: 'Projects that become a portfolio',
+          copy: 'Eight practical builds covering setup, theme work, Liquid, automation, APIs, analytics, AI content and a full client-style capstone.',
         },
         {
-          title: 'Doubt support that continues',
-          copy: 'Doubt sessions and mentor hours carry on after the certificate is printed.',
+          title: 'Built for freelancing',
+          copy: 'Client requirements, delivery and store handover are part of the course, because that is where Shopify skill pays best.',
         },
       ],
     },
     extraFaqs: [
       {
-        q: 'What is the duration of the Shopify course in Phagwara?',
-        a: 'techcadd runs Shopify over 1 month depending on the track you choose. Weekday, evening and weekend batches cover the same syllabus, and 1-on-1 training is available if you would rather set your own pace. Every class runs for 2 hours, whichever format you choose.',
+        q: 'What is the Shopify Course in Phagwara at Techcadd?',
+        a: 'It is designed to help beginners and aspiring developers learn e-commerce development through practical, career-focused training. Students learn store setup, theme customisation, Liquid programming, payment gateways and real-world e-commerce concepts with hands-on practice.',
       },
       {
-        q: 'What is the fee for the Shopify course in Phagwara?',
-        a: 'Fees depend on the batch format and whether you take the course on its own or as part of a longer track. EMI options are available. Call the centre or book a free demo and a counsellor will give you the exact figure for the format you want.',
+        q: 'Who can join a Shopify Course in Phagwara?',
+        a: 'It suits 12th-pass students, college students, graduates, freshers, job seekers and working professionals. Beginners can start from the basics without prior coding experience, while those with technical knowledge can strengthen their e-commerce development skills.',
       },
       {
-        q: 'Who can join the Shopify course?',
-        a: '12th Pass Onward. The first modules start from fundamentals, so no prior experience is assumed.',
+        q: 'Is Shopify a good career option for freshers?',
+        a: 'Yes. Shopify is widely used across online retail, dropshipping, brand management and web development. After gaining practical skills, freshers can explore roles such as Shopify Developer, E-commerce Executive, Front-End Developer or freelance store designer.',
       },
       {
-        q: 'What jobs can I get after the Shopify course?',
-        a: 'Graduates move into Shopify Developer, E-commerce Manager, Freelance Store Builder, Digital Marketer and similar roles. D2C brands are launching faster than there are people who can build and tune their stores, and Shopify work bills unusually well on international briefs.',
+        q: 'What will I learn in the Shopify Course?',
+        a: 'Store setup, product management, theme customisation, Liquid basics, payment gateways, shipping logic, API integration and automation — plus how Shopify is used in digital marketing and business scaling.',
       },
       {
-        q: 'What salary can a fresher expect after this course in Phagwara?',
-        a: 'Shopify Developer roles start around ₹17,000 – ₹30,000 a month for a fresher with a working portfolio, rising to ₹4.5–9 LPA with two years of delivery experience. Specialists move beyond that.',
+        q: 'Is the course practical or theory-based?',
+        a: 'Learning Shopify becomes much easier when you build stores yourself. The approach focuses on hands-on store building, theme editing, debugging and mini-projects rather than theory alone.',
       },
       {
-        q: 'Is this course suitable for beginners?',
-        a: 'Yes. Shopify begins from fundamentals, and the pace is set so nothing is assumed.',
+        q: 'Will I work on Shopify projects during the course?',
+        a: 'Yes. Practical learning includes store setup projects, theme customisation tasks, Liquid programming exercises and end-to-end e-commerce projects — which show how the concepts work together and strengthen your portfolio.',
       },
       {
-        q: 'What are the prerequisites?',
-        a: 'Basic computer familiarity. Anything else the track needs is introduced in the first module.',
+        q: 'Can I learn Shopify after 12th?',
+        a: 'Absolutely, especially if you are interested in online business, e-commerce, design or web development. It provides a strong professional foundation to build on.',
+      },
+      {
+        q: 'Can Shopify help me get a job or internship?',
+        a: 'Yes, but Shopify alone is not enough. Employers also look for problem-solving ability, practical store projects, Liquid coding skill and an understanding of business logic. A job-oriented course helps you build these.',
+      },
+      {
+        q: 'Does the course include Shopify for AI and automation?',
+        a: 'Yes. Shopify integrates with AI for product descriptions, customer service and marketing automation. The course introduces these tools, building a foundation before advanced e-commerce automation.',
+      },
+      {
+        q: 'How do I choose the best Shopify Course in Phagwara?',
+        a: 'Do not choose on fees or certificates alone. Check the syllabus, practical store sessions, trainer experience, project work, Liquid coding coverage, doubt support and placement assistance. A good course should take you from basics to actually building and customising stores.',
       },
     ],
-    whyNow: {
-      title: 'Shopify Is Powering the Next Generation of Industry Leaders',
-      points: [
-        'Live client work from week one, supervised by a trainer, not slides, not simulations.',
-        'Shopify Developer roles in Punjab start around ₹17,000 – ₹30,000 a month for a fresher with a working portfolio.',
-      ],
-    },
     relatedCourses: [
-      'digital-marketing-course-in-phagwara',
       'wordpress-course-in-phagwara',
-      'social-media-marketing-course-in-phagwara',
+      'digital-marketing-course-in-phagwara',
+      'web-designing-course-in-phagwara',
       'seo-course-in-phagwara',
-      'google-ads-course-in-phagwara',
-      'python-course-in-phagwara',
+      'social-media-marketing-course-in-phagwara',
+      'web-development-course-in-phagwara',
     ],
     keywords: [
-      'shopify course phagwara',
-      'ecommerce training in phagwara',
-      'dropshipping course in phagwara',
-      'shopify store classes in phagwara',
+      'shopify course in phagwara',
+      'shopify development course in phagwara',
+      'shopify training institute in phagwara',
+      'shopify classes in phagwara',
+      'ecommerce course in phagwara',
+      'shopify course after 12th in phagwara',
     ],
   }),
 ]
