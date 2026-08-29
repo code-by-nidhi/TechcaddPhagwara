@@ -103,6 +103,13 @@ export interface CourseDuration {
   blurb: string
   skills: string[]
   recommendedFor: string
+  /**
+   * The syllabus this tier adds, where a course states one. Because the tiers
+   * are nested, the second and third list only what is *new* at that level —
+   * which is the same reason `capabilities` is a matrix rather than three
+   * lists. Omitted renders no list, which is right for shorter courses.
+   */
+  covers?: string[]
 }
 
 /** One capability, and the tiers that include it (index-aligned to `durations`). */

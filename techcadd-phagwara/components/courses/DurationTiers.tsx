@@ -54,6 +54,31 @@ export default function DurationTiers({ course }: { course: CourseContent }) {
               </h3>
               <p className="mt-2.5 text-[13.5px] leading-[1.7] text-[#475569]">{d.blurb}</p>
 
+              {/* The syllabus this tier adds, where the course states one.
+                  Capped at eight with a count for the rest: the full list runs
+                  to fourteen on some tiers, which would push "Recommended for"
+                  off the bottom of a card the reader is comparing across. */}
+              {d.covers && d.covers.length > 0 && (
+                <div className="mt-6">
+                  <p className="text-[10.5px] font-bold uppercase tracking-[0.14em] text-[#94A3B8]">
+                    What it covers
+                  </p>
+                  <ul className="mt-3 space-y-1.5">
+                    {d.covers.slice(0, 8).map((item) => (
+                      <li key={item} className="flex gap-2 text-[12.5px] leading-[1.5] text-[#475569]">
+                        <span aria-hidden className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-[#2563EB]" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  {d.covers.length > 8 && (
+                    <p className="mt-2 text-[12px] font-medium text-[#94A3B8]">
+                      + {d.covers.length - 8} more
+                    </p>
+                  )}
+                </div>
+              )}
+
               <div className="mt-6">
                 <p className="text-[10.5px] font-bold uppercase tracking-[0.14em] text-[#94A3B8]">
                   Skills &amp; tools
