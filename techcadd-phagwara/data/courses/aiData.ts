@@ -2425,7 +2425,7 @@ export const AI_DATA_COURSES: CourseContent[] = [
       },
       {
         q: 'Should I take Data Science or Data Analytics?',
-        a: 'They overlap heavily at the start. Data Analytics is the faster route to a first job and stays closer to reporting, dashboards and business questions. Data Science goes further into programming, statistics and machine learning, so it takes longer but reaches higher. If you are unsure, start here — the analytics skills are inside this course anyway.',
+        a: 'They overlap heavily at the start. Data Analytics is the faster route to a first job and stays closer to Excel, SQL, dashboards and business questions. Data Science goes further into Python, statistics and machine learning, so it takes longer but reaches higher. If you want to be working sooner, start with Analytics and move across later; if you are set on the modelling side, come straight here.',
       },
     ],
     projects: [
@@ -2790,641 +2790,1992 @@ export const AI_DATA_COURSES: CourseContent[] = [
   makeCourse({
     slug: 'data-analytics-course-in-phagwara',
     label: 'Data Analytics',
-    title: 'Best Data Analytics Course & Training in Phagwara',
+    title: 'Data Analytics Course in Phagwara',
     category: 'ai-data',
     categoryTitle: 'AI & Data',
     icon: 'chart',
-    duration: '3 Months',
-    level: 'Beginner to Intermediate',
+    duration: '3 – 9 Months',
+    level: 'Beginner to Advanced',
     eligibility: '12th Pass Onward',
-    summary: 'Turn raw data into decisions — Excel, SQL and visualization tools used daily by working analysts.',
-    overview: 'Five months turning raw data into decisions: statistics you genuinely use, SQL you can be tested on, and dashboards built to answer a specific business question rather than to look busy.',
-    demand: 'Analytics is the most reachable well-paid role in the data field: SQL and a BI tool are enough to be hired, and both can be learned from scratch in months.',
+    summary:
+      'Turn numbers into decisions — Excel, SQL, Python, Power BI and Tableau, with dashboards, live projects and placement assistance.',
+    overview:
+      'Techcadd’s Data Analytics Programming Course in Phagwara is an industry-focused programme for students, graduates, job aspirants, entrepreneurs, business owners and aspiring analysts who want practical analytical skill. It covers Excel, SQL, Python, data cleaning, visualisation, Power BI, Tableau, business reporting, statistics, dashboard creation and AI-powered analytics tools. The training is hands-on throughout — real datasets, practical projects and industry-standard tooling — so you learn to collect, clean, organise, analyse, visualise and interpret data into insight that supports a decision. Unlike purely theoretical learning, you work with real datasets, reporting workflows, dashboard development and business intelligence technique, and finish understanding how organisations use data to spot trends, measure performance and decide well.',
+    demand:
+      'Excel and a dashboard is the most immediately hireable data skill in Punjab — every firm with sales figures needs someone to read them, long before it needs anyone who can train a model.',
     modules: [
       {
-        title: 'Excel & analytical thinking',
-        summary: 'Framing a question before touching a tool.',
-        topics: ['Pivot tables', 'Lookup functions', 'Data hygiene', 'Framing an analysis'],
-        duration: '2 weeks',
-        lessons: 8,
-      },
-      {
-        title: 'SQL',
-        summary: 'Getting exactly the rows you need out of a real database.',
-        topics: ['SELECT & filtering', 'Joins', 'Window functions', 'Query performance'],
-        duration: '4 weeks',
-        lessons: 16,
-      },
-      {
-        title: 'Python for analysis',
-        summary: 'Pandas for the work spreadsheets cannot carry.',
-        topics: ['Dataframes', 'Cleaning', 'Merging', 'Time series'],
-        duration: '4 weeks',
-        lessons: 16,
-      },
-      {
-        title: 'Statistics that matter',
-        summary: 'Enough inference to avoid confident wrong answers.',
-        topics: ['Distributions', 'Hypothesis testing', 'A/B testing', 'Correlation vs causation'],
+        title: 'Excel & Data Analytics Foundations',
+        summary:
+          'Understand how Excel supports real analysis — still the tool most business data actually arrives in.',
+        topics: [
+          'Formulas, functions, sorting, filtering and conditional formatting',
+          'Pivot Tables and charts',
+          'Working with practical business datasets',
+          'KPIs and reporting',
+        ],
         duration: '3 weeks',
         lessons: 12,
       },
       {
-        title: 'Power BI & Tableau',
-        summary: 'Dashboards designed for the person who has to decide something.',
-        topics: ['Data modelling', 'DAX basics', 'Visual design', 'Publishing & refresh'],
+        title: 'Data Cleaning & Preparation',
+        summary:
+          'Learn to work with raw, unstructured information — the messy reality behind every clean report.',
+        topics: [
+          'Missing values, duplicates and inconsistent formats',
+          'Data transformation techniques',
+          'Organising datasets for analysis and reporting',
+          'Building a structured preparation workflow',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'SQL & Database Analytics',
+        summary:
+          'Learn to retrieve and analyse information where business data actually lives.',
+        topics: [
+          'SELECT statements, filtering and sorting',
+          'Joins, grouping, aggregations and subqueries',
+          'Working with practical business datasets',
+          'How analysts use SQL for reporting',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Python for Data Analytics',
+        summary:
+          'Learn how Python takes over when the dataset outgrows a spreadsheet.',
+        topics: [
+          'Python fundamentals and the data libraries',
+          'Working with Pandas and NumPy',
+          'Analysing datasets programmatically',
+          'Automating repetitive data tasks',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Data Visualisation & Dashboarding',
+        summary:
+          'Learn to turn raw numbers into a visual story someone can act on.',
+        topics: [
+          'Charts, graphs, KPIs, dashboards and business reports',
+          'Selecting the right visualisation for the question',
+          'Building interactive, professional dashboards',
+          'Presenting information clearly',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Power BI & Business Intelligence',
+        summary:
+          'Discover how businesses actually run their reporting, and build one that works.',
+        topics: [
+          'Data importing, transformation and modelling',
+          'Relationships and DAX fundamentals',
+          'KPIs and dashboard creation',
+          'Building interactive reports',
+        ],
         duration: '4 weeks',
         lessons: 14,
       },
       {
-        title: 'Capstone analysis',
-        summary: 'One end-to-end analysis, presented and defended.',
-        topics: ['Problem framing', 'Analysis', 'Storytelling', 'Presentation'],
+        title: 'Tableau & Advanced Visualisation',
+        summary:
+          'Explore professional visualisation and the storytelling that makes a dashboard persuasive.',
+        topics: [
+          'Worksheets, dashboards and filters',
+          'Calculated fields and interactive reports',
+          'Working with practical datasets',
+          'Building visually meaningful dashboards',
+        ],
         duration: '3 weeks',
-        lessons: 10,
+        lessons: 12,
+      },
+      {
+        title: 'Business Reporting, KPIs & Insights',
+        summary:
+          'Learn how professional analysts communicate — the part that decides whether your work changes anything.',
+        topics: [
+          'Business reports and the metrics that matter',
+          'Identifying trends and actionable insight',
+          'Presenting findings to managers, clients and employers',
+          'Building a practical reporting workflow',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'AI-Powered Analytics, Live Projects & Career Preparation',
+        summary:
+          'End-to-end projects from collection to boardroom, with AI used where it genuinely helps.',
+        topics: [
+          'Collection, cleaning, SQL analysis, dashboards and reporting',
+          'Using AI tools to improve analytical workflows',
+          'A portfolio project demonstrating your skills',
+          'Career guidance across Analytics, BI, Reporting and Business Analysis',
+        ],
+        duration: '4 weeks',
+        lessons: 14,
       },
     ],
     outcomes: [
-      'Write SQL against a real schema with confidence',
-      'Clean and reshape messy data in Pandas',
-      'Choose the right chart for the question',
-      'Run and interpret a basic experiment',
-      'Build dashboards in Power BI and Tableau',
-      'Present findings so a decision follows',
+      'Analyse business data confidently in Excel, including Pivot Tables and KPIs',
+      'Clean and prepare messy real-world datasets',
+      'Query relational databases fluently with SQL',
+      'Automate analysis in Python with Pandas and NumPy',
+      'Build interactive Power BI and Tableau dashboards a business can use',
+      'Present findings and defend your analysis in an interview',
     ],
     tools: [
+      'Microsoft Excel',
+      'Advanced Excel',
       'SQL',
       'MySQL',
       'Python',
+      'Jupyter Notebook',
       'Pandas',
       'NumPy',
       'Power BI',
       'Tableau',
-      'Excel',
-      'Git',
-      'Jupyter',
+      'Google Sheets',
+      'Matplotlib',
+      'Seaborn',
+      'Git & GitHub',
+      'ChatGPT & AI Tools',
     ],
+    audience: [
+      {
+        label: '12th Pass Students',
+        copy: 'You do not need previous technical experience to understand how businesses use data. A structured course covers Excel, basic SQL, Python fundamentals, cleaning, charts and dashboards — a smart way to explore business analytics alongside your studies.',
+      },
+      {
+        label: 'College Students & Graduates',
+        copy: 'Employers value academic knowledge combined with practical analytical skill. Whatever you study — commerce, management, arts, computer science, engineering or mathematics — analytics shows you how information becomes insight.',
+      },
+      {
+        label: 'Job Seekers & Freshers',
+        copy: 'Learning several tools alone is confusing. A structured path replaces certificate-collecting with understanding how real projects run: cleaning raw data, writing queries, building dashboards, analysing trends and presenting business insight.',
+      },
+      {
+        label: 'Working Professionals',
+        copy: 'Already in IT, finance, sales, marketing, operations or management? Analytics makes your experience more valuable. Sales professionals learn to analyse performance; business professionals learn how dashboards support decisions.',
+      },
+      {
+        label: 'Entrepreneurs & Business Owners',
+        copy: 'You do not have to become an analyst. Understanding your own sales trends, customer behaviour, marketing performance and operational data makes you a better decision-maker — and easier for analysts and agencies to work with.',
+      },
+      {
+        label: 'Freelancers & Aspiring Freelancers',
+        copy: 'Excel reporting, SQL analysis, Power BI and Tableau dashboards, visualisation, business reporting and performance analytics are all billable — and dashboards are among the easiest deliverables to sell.',
+      },
+    ],
+    whyChooseUs: [
+      {
+        title: 'Analytics skills are in demand across businesses',
+        copy: 'IT companies, e-commerce brands, hospitals, financial organisations, manufacturers, education companies and local service providers all use data to measure performance. Excel, SQL, Python, Power BI, Tableau, visualisation and BI apply across all of them.',
+      },
+      {
+        title: 'Learn how data analytics actually works',
+        copy: 'Creating a chart is the beginning. Data collection and organisation, Excel formulas, cleaning, SQL, database fundamentals, Python, exploratory analysis, statistics, visualisation, dashboards, BI and storytelling are the rest.',
+      },
+      {
+        title: 'Practical learning builds real confidence',
+        copy: 'Tutorials teach you where the buttons are. Practical training teaches you to solve problems — cleaning, Excel analysis, SQL queries, Python, dashboards, Power BI reporting, Tableau and business analysis.',
+      },
+      {
+        title: 'Think about insights, not just reports',
+        copy: 'Creating reports is easy; finding the right insight is the challenge. You learn to read revenue, growth rate, conversion, customer trends, averages, percentages, KPIs and correlations well enough to know whether the data tells a useful story.',
+      },
+      {
+        title: 'Analytics and AI are changing business intelligence',
+        copy: 'AI is changing how analysts clean data, write queries and build dashboards. But it does not replace analytical thinking: the business problem, data quality, KPIs, trends and context still need a person who understands them.',
+      },
+    ],
+    whyNow: {
+      title: 'Build Analytics Skills You Can Show, Not Just Talk About',
+      points: [
+        'Project-based learning gives you experience beyond classroom theory that goes straight into a portfolio.',
+        'A strong portfolio demonstrates Excel, SQL, Power BI, Tableau, Python and dashboard development in interviews.',
+        'Data Analyst and BI roles in Punjab start around ₹18,000 – ₹30,000 a month for a fresher with real project work.',
+        'The goal is not learning software tools — it is turning raw information into decisions a business can act on.',
+      ],
+    },
     roles: [
       'Data Analyst',
       'Business Analyst',
-      'BI Developer',
+      'MIS Executive / MIS Analyst',
+      'Power BI Developer',
+      'SQL Data Analyst',
       'Reporting Analyst',
-      'Analytics Consultant',
+      'AI-Powered Data Analyst',
+      'Freelance Data Analyst',
+    ],
+    roleDetails: [
+      {
+        role: 'Data Analyst',
+        copy: 'Collect, clean, analyse and interpret business information across Excel, SQL, Python, Power BI, dashboards and reports. The most common path after this course.',
+      },
+      {
+        role: 'Business Analyst',
+        copy: 'Analyse business processes, performance metrics, customer trends and operational data to find opportunities and support strategy.',
+      },
+      {
+        role: 'MIS Executive / MIS Analyst',
+        copy: 'Create reports, maintain business data, monitor KPIs and deliver regular insight using Excel, databases and reporting tools.',
+      },
+      {
+        role: 'Power BI Developer',
+        copy: 'Build interactive dashboards and BI reports, working with data modelling, DAX, visualisation, KPIs and business reporting.',
+      },
+      {
+        role: 'SQL Data Analyst',
+        copy: 'Use SQL to retrieve, organise, filter, join and analyse large datasets held in relational databases.',
+      },
+      {
+        role: 'Reporting Analyst',
+        copy: 'Build reports and dashboards in Excel, Power BI, Tableau, SQL and Google Sheets that make trends and performance legible.',
+      },
+      {
+        role: 'AI-Powered Data Analyst',
+        copy: 'Combine analytics with modern AI tools to speed up reporting, cleaning, SQL generation and visualisation — with analytical thinking still doing the real work.',
+      },
+      {
+        role: 'Freelance Data Analyst',
+        copy: 'Build a freelance practice on Excel reporting, SQL analysis, Power BI and Tableau dashboards, KPI tracking and business intelligence, locally or remotely.',
+      },
     ],
     hiring: [
-      'Business intelligence teams',
-      'E-commerce and retail analytics',
-      'Finance and operations teams',
-      'Consulting and reporting roles',
+      'IT companies and software organisations managing business and customer data',
+      'Startups and SaaS companies focused on analytics and performance reporting',
+      'E-commerce and D2C brands analysing sales, customers and product performance',
+      'Financial, healthcare and manufacturing organisations using reports and dashboards',
     ],
     nextSteps: [
-      'Machine learning foundations',
-      'Data engineering basics',
-      'Advanced statistics',
-      'Cloud data platforms',
+      'Data Science with Python',
+      'Power BI in depth',
+      'Advanced SQL & data engineering',
+      'Machine Learning fundamentals',
     ],
-    industries: ['Retail & e-commerce', 'Finance', 'Healthcare', 'Logistics'],
+    industries: ['IT & software', 'E-commerce', 'Finance & healthcare', 'Manufacturing'],
+    /*
+     * Client-supplied bands, monthly rather than the derived LPA figures used
+     * elsewhere in the catalogue — that is the unit a fresher in this market
+     * recognises. These sit below the Data Science bands, which is consistent:
+     * analytics is the faster, more accessible entry point into data work.
+     * `scale` is the midpoint in ₹/month; remote sits below Punjab at the
+     * fresher end on purpose, since freelance income ramps rather than
+     * starting at a salary.
+     */
     salary: {
       role: 'Data Analyst',
-      summary: 'Cleans, queries and visualises data so a team can see what is actually happening.',
-      starting: '₹3–5 LPA',
-      after2: '₹6–11 LPA',
+      summary:
+        'Turns business data into the reports and dashboards decisions get made from. Earnings vary with your skills, project experience, portfolio, certifications, company, location and performance.',
+      starting: '₹18,000–₹30,000/month',
+      after2: '₹30,000–₹50,000/month',
       markets: [
         {
-          name: 'Punjab / Tricity',
-          fresher: '₹3–5 LPA',
-          after2: '₹6–11 LPA',
-          scale: { fresher: 3.9, after2: 8.5 },
+          name: 'Punjab — Data Analyst / BI',
+          fresher: '₹18,000–₹30,000/month',
+          after2: '₹30,000–₹50,000/month',
+          scale: { fresher: 24000, after2: 40000 },
         },
         {
-          name: 'Delhi NCR',
-          fresher: '₹4–7 LPA',
-          after2: '₹8.5–15.5 LPA',
-          scale: { fresher: 5.46, after2: 11.9 },
+          name: 'Delhi / NCR — Data Analytics / Business Intelligence',
+          fresher: '₹25,000–₹40,000/month',
+          after2: '₹40,000–₹70,000+/month',
+          scale: { fresher: 32500, after2: 55000 },
         },
         {
-          name: 'Remote / Freelance',
-          fresher: '₹4.5–8 LPA',
-          after2: '₹9.5–17 LPA',
-          scale: { fresher: 6.04, after2: 13.18 },
+          name: 'Remote / Freelance Data Analytics',
+          fresher: '₹10,000–₹25,000/month',
+          after2: '₹30,000–₹80,000+/month',
+          scale: { fresher: 17500, after2: 55000 },
         },
       ],
     },
     careerFaqs: [
       {
-        q: 'What job roles open up after Data Analytics?',
-        a: 'Graduates move into Data Analyst, Business Analyst, BI Developer, Reporting Analyst and similar roles. Analytics is the most reachable well-paid role in the data field: SQL and a BI tool are enough to be hired, and both can be learned from scratch in months.',
+        q: 'What job roles open up after this course?',
+        a: 'Data Analyst, Business Analyst, MIS Executive, Reporting Analyst, Power BI Developer and BI Analyst. Practical project experience and the ability to explain an insight matter far more here than certificates.',
       },
       {
         q: 'What can I earn, and how fast does it grow?',
-        a: 'A fresher with a working portfolio starts around ₹23,000 – ₹42,000 a month in the Phagwara market. With two years of delivery experience that typically doubles, and specialists who keep learning move well beyond it.',
+        a: 'A fresher with real project work starts around ₹18,000 – ₹30,000 a month in the Punjab market, rising to ₹30,000 – ₹50,000 with two years of experience. Delhi/NCR runs higher, and analysts who add Python and machine learning move well beyond it.',
       },
       {
         q: 'Can I freelance or work remotely with this skill?',
-        a: 'Yes. A Phagwara address costs you nothing on a remote brief. Students bill clients in Delhi, Dubai and Canada. The course covers client handling, proposals and reporting so you can price and defend your work, not just do it.',
+        a: 'Yes, and analytics is one of the easiest skills to freelance with because a dashboard or report is a self-contained deliverable. Freelance income ramps rather than starting at a salary: around ₹10,000 – ₹25,000 a month early on, and ₹30,000 – ₹80,000+ once you have real client work behind you.',
       },
       {
         q: 'Which industries hire for this in Punjab?',
-        a: 'Beyond IT companies, the agro and food processing units, immigration consultancies, hospitals, schools, hotels and the university belt around Phagwara all now hire for these skills directly.',
+        a: 'IT companies and software organisations, startups and SaaS companies focused on analytics, e-commerce and D2C brands studying sales and customers, and financial, healthcare and manufacturing organisations — plus remote and freelance clients.',
       },
       {
-        q: 'Can I continue to higher studies or a specialisation later?',
-        a: 'The certificate and portfolio stand on their own, and they stack. Most students move on to an adjacent techcadd track. The tools overlap, so the second course is faster than the first.',
+        q: 'Should I take Data Analytics or Data Science?',
+        a: 'Analytics is the faster route to a first job. It stays closer to Excel, SQL, dashboards and business questions, and those skills are hireable in months. Data Science goes further into Python, statistics and machine learning — it takes longer but reaches higher. Many people start here, get working, and move across later.',
       },
     ],
     projects: [
       {
-        name: 'Sales analytics dashboard',
-        summary: 'Revenue, cohorts and regional performance in one publishable dashboard.',
-        tech: ['SQL', 'Power BI'],
-        level: 'Intermediate',
-        skills: ['Data modelling', 'Visual design', 'DAX'],
+        name: 'Excel Business Analysis Project',
+        summary:
+          'Build a complete Excel analysis from scratch: organise business data, use formulas and functions, create Pivot Tables, analyse KPIs and produce a report someone can use.',
+        tech: ['Excel', 'Pivot Tables'],
+        level: 'Beginner',
+        skills: ['Business Analysis', 'KPI Reporting'],
       },
       {
-        name: 'Customer churn analysis',
-        summary: 'Find who leaves, when, and which signals precede it.',
-        tech: ['Python', 'Pandas', 'SQL'],
+        name: 'SQL Data Analysis Project',
+        summary:
+          'An analytics project answering real business questions in SQL — writing queries, filtering, joining, grouping and analysing datasets.',
+        tech: ['SQL', 'MySQL'],
+        level: 'Beginner',
+        skills: ['Database Queries', 'Data Analysis'],
+      },
+      {
+        name: 'Python Data Analytics Project',
+        summary:
+          'A complete Python project on practical datasets: clean the information, analyse trends, manipulate data and build useful visualisations.',
+        tech: ['Python', 'Pandas'],
+        level: 'Intermediate',
+        skills: ['Data Analysis', 'Automation'],
+      },
+      {
+        name: 'Power BI Dashboard Project',
+        summary:
+          'Build an interactive dashboard on business performance — data models, KPIs, charts, filters and reports that make the trends obvious.',
+        tech: ['Power BI', 'DAX'],
+        level: 'Intermediate',
+        skills: ['Business Intelligence', 'Dashboards'],
+      },
+      {
+        name: 'Sales & Customer Analytics Project',
+        summary:
+          'An analytical solution for a real business dataset: sales performance, customer behaviour, purchasing trends and the growth indicators that matter.',
+        tech: ['Excel', 'Power BI'],
+        level: 'Intermediate',
+        skills: ['Sales Analytics', 'Customer Insights'],
+      },
+      {
+        name: 'Tableau Visualisation Project',
+        summary:
+          'Turn a dataset into an interactive visual story with worksheets, dashboards, filters and charts that carry a business argument.',
+        tech: ['Tableau', 'Dashboards'],
         level: 'Advanced',
-        skills: ['Feature analysis', 'Segmentation', 'Reporting'],
+        skills: ['Data Visualisation', 'Storytelling'],
       },
       {
-        name: 'Pricing experiment review',
-        summary: 'Read an A/B test properly and say what it does and does not prove.',
-        tech: ['Python', 'Statistics'],
-        level: 'Intermediate',
-        skills: ['Hypothesis testing', 'Interpretation', 'Communication'],
+        name: 'AI-Powered Data Analytics Project',
+        summary:
+          'Use modern AI tools to accelerate cleaning, SQL, reporting, research and visualisation ideas — with accuracy, reasoning and originality kept central.',
+        tech: ['AI Analytics', 'Automation'],
+        level: 'Advanced',
+        skills: ['Prompt Engineering', 'Reporting'],
+      },
+      {
+        name: 'End-to-End Data Analytics Capstone',
+        summary:
+          'A complete solution for a real business problem: collection, cleaning, SQL analysis, visualisation, dashboard development, reporting and presentation.',
+        tech: ['Excel', 'SQL', 'Power BI'],
+        level: 'Advanced',
+        skills: ['Business Intelligence', 'Portfolio'],
       },
     ],
+    workingLoop: [
+      {
+        title: 'Understand',
+        copy: 'Start from a real business objective and work out what information answers it — the KPIs, the data sources, the customer trends and the performance metrics that matter.',
+        artefact: 'Business Problem & Data Brief',
+      },
+      {
+        title: 'Build',
+        copy: 'Work with Excel, SQL, Python, Power BI, Tableau and dashboards under trainer guidance — clean the data, analyse it, build the report and develop the insight.',
+        artefact: 'Data Analysis & Dashboard Development',
+      },
+      {
+        title: 'Present & Improve',
+        copy: 'Present findings, dashboards, KPIs, trends and recommendations like a professional, and learn to explain your analytical approach in an interview or client meeting.',
+        artefact: 'End-to-End Data Analytics Project & Reporting',
+      },
+    ],
+    industryReady: [
+      {
+        title: 'Industry-ready analytics certificate',
+        copy: 'A certificate reflecting practical understanding of Excel, SQL, Python, Power BI, Tableau, data cleaning, dashboards, visualisation and business reporting.',
+      },
+      {
+        title: 'Learn through practical projects',
+        copy: 'Work on projects mirroring real business scenarios — cleaning datasets, analysing performance, writing SQL, creating dashboards, building reports and presenting insight.',
+      },
+      {
+        title: 'Build an analytics portfolio',
+        copy: 'Excel reports, SQL projects, Power BI dashboards, Tableau visualisations, Python analysis, KPI reports and insight presentations — proof you can show an employer or client.',
+      },
+      {
+        title: 'Career and placement support',
+        copy: 'CV work, interview preparation, guidance on presenting your projects, and a clear picture of the paths in Analytics, BI, Reporting and Business Analysis.',
+      },
+    ],
+    whyTechcadd: [
+      {
+        title: 'Trainers who understand analytics and BI',
+        copy: 'The field keeps moving — AI, automation, BI platforms, cloud data tools and visualisation methods all change. Teaching uses practical examples and current approaches, so you understand not only how to build a report but why an insight matters.',
+      },
+      {
+        title: 'Live and practical projects',
+        copy: 'Without practical work it is hard to understand a real business problem. Projects span Excel, SQL, Python, cleaning, Power BI dashboards, Tableau, KPI reporting, BI and AI-powered workflows.',
+      },
+      {
+        title: 'Small batches and doubt support',
+        copy: 'A focused room means you can ask, discuss an analytical approach and get guidance while working on real datasets — whether you are a beginner or strengthening existing skill.',
+      },
+      {
+        title: 'Build an analytics portfolio',
+        copy: 'Finishing should mean more than a certificate. Practical exercises produce portfolio work demonstrating Excel, SQL, Python, Power BI, Tableau, visualisation, dashboards and reporting.',
+      },
+      {
+        title: 'Career and placement guidance',
+        copy: 'Resume improvement, interview preparation, portfolio presentation and mock interviews, with a realistic view of roles across analytics, BI, reporting and operations.',
+      },
+      {
+        title: 'A practical approach to analytics',
+        copy: 'The goal is confidence understanding data, not memorising formulas or software interfaces — practical Excel, SQL, Python, Power BI, Tableau, visualisation, BI, KPI reporting and AI-powered analytics.',
+      },
+    ],
+    comparison: {
+      rows: [
+        {
+          feature: 'Data Analytics curriculum',
+          techcadd:
+            'Industry-focused training covering Excel, SQL, Python, Power BI, Tableau, dashboards and reporting',
+          others: 'Often focuses mainly on basic tool concepts',
+        },
+        {
+          feature: 'Learning style',
+          techcadd: 'Hands-on and practical, designed around real datasets',
+          others: 'Can be more theory-oriented',
+        },
+        {
+          feature: 'Practical project training',
+          techcadd:
+            'Students learn data cleaning, analysis, visualisation, dashboarding and reporting',
+          others: 'Practical exposure may be limited',
+        },
+        {
+          feature: 'Analytics skills',
+          techcadd: 'Covers Excel, SQL, Python, KPIs, reporting, dashboards and business intelligence',
+          others: 'May cover only selected tools',
+        },
+        {
+          feature: 'Business intelligence',
+          techcadd: 'Focus on data models, dashboards, KPIs and performance insight',
+          others: 'BI training can vary',
+        },
+        {
+          feature: 'Visualisation & reporting',
+          techcadd:
+            'Practical understanding of charts, dashboards, storytelling and business reports',
+          others: 'Visualisation may receive limited attention',
+        },
+        {
+          feature: 'Portfolio building',
+          techcadd: 'Practical assignments and analytics projects that demonstrate real skill',
+          others: 'Portfolio development may receive less focus',
+        },
+        {
+          feature: 'Career support',
+          techcadd: 'CV guidance, mock interviews, portfolio preparation and career-oriented support',
+          others: 'Career assistance can vary significantly',
+        },
+        {
+          feature: 'Doubt support',
+          techcadd: 'Trainer guidance throughout the learning journey to clarify concepts',
+          others: 'Support may be limited to scheduled sessions',
+        },
+        {
+          feature: 'Certification',
+          techcadd: 'Course completion certification combined with practical learning exposure',
+          others: 'Certification format and practical exposure can vary',
+        },
+      ],
+      note: 'The right-hand column represents common market patterns, not a claim about any specific institute. Before choosing a Data Analytics institute in Phagwara, ask what you will actually learn, whether you will work on practical projects, how trainers teach analysis, and what career support is included.',
+    },
+    durations: [
+      {
+        length: '3 Months',
+        tier: 'Foundation',
+        heading: 'Build your analytics fundamentals',
+        blurb:
+          'Understand how business information is organised and analysed — Excel, data cleaning, basic SQL, visualisation and reporting.',
+        covers: [
+          'Introduction to Data Analytics',
+          'Excel fundamentals',
+          'Advanced Excel functions',
+          'Data cleaning basics',
+          'Sorting and filtering',
+          'Pivot Tables',
+          'Basic charts and visualisation',
+          'Introduction to SQL',
+          'Understanding KPIs',
+          'Basic business reporting',
+        ],
+        skills: ['Microsoft Excel', 'Google Sheets', 'Basic SQL', 'Power BI basics'],
+        recommendedFor:
+          'Data Analyst Trainee, MIS Trainee, Reporting Intern and junior analytics roles.',
+      },
+      {
+        length: '6 Months',
+        tier: 'Professional',
+        heading: 'Move beyond basic data analysis',
+        blurb:
+          'Practical skill in SQL, Python, Power BI, Tableau, dashboards and business reporting — the level professional analytics roles want.',
+        covers: [
+          'Advanced Excel',
+          'Data cleaning and preparation',
+          'Advanced SQL queries',
+          'Database fundamentals',
+          'Python for data analytics',
+          'Pandas and NumPy',
+          'Data visualisation',
+          'Power BI dashboard development',
+          'Tableau fundamentals',
+          'KPI analysis',
+          'Business intelligence reporting',
+          'Data storytelling',
+        ],
+        skills: ['SQL', 'MySQL', 'Python', 'Pandas', 'Power BI', 'Tableau'],
+        recommendedFor:
+          'Data Analyst, MIS Analyst, Reporting Analyst, Business Analyst, Power BI Developer and BI Analyst roles.',
+      },
+      {
+        length: '9 Months',
+        tier: 'Expert',
+        heading: 'Build a complete analytics & BI skill set',
+        blurb:
+          'Advanced analytics with business intelligence, dashboard development, Python, advanced visualisation, reporting automation and AI-powered strategy.',
+        covers: [
+          'Advanced Excel analytics',
+          'Advanced SQL',
+          'Python programming for analytics',
+          'Advanced Pandas',
+          'Data cleaning automation',
+          'Advanced Power BI',
+          'Data modelling and DAX',
+          'Advanced Tableau',
+          'Business intelligence',
+          'KPI and performance analysis',
+          'Data storytelling',
+          'Reporting automation',
+          'AI tools and prompt engineering',
+          'End-to-end analytics projects',
+        ],
+        skills: ['Power BI', 'DAX', 'Tableau', 'Python', 'SQL', 'GitHub', 'AI tools'],
+        recommendedFor:
+          'Senior Data Analyst pathway, Business Intelligence Analyst, Power BI Developer, Reporting Specialist, Business Analyst and advanced analytics pathways.',
+      },
+    ],
+    capabilities: [
+      { capability: 'Excel fundamentals', included: [true, true, true] },
+      { capability: 'Data cleaning', included: [true, true, true] },
+      { capability: 'Pivot Tables & reports', included: [true, true, true] },
+      { capability: 'Basic visualisation', included: [true, true, true] },
+      { capability: 'SQL fundamentals', included: [true, true, true] },
+      { capability: 'Advanced SQL', included: [false, true, true] },
+      { capability: 'Python for analytics', included: [false, true, true] },
+      { capability: 'Power BI', included: [false, true, true] },
+      { capability: 'Tableau', included: [false, true, true] },
+      { capability: 'Dashboard development', included: [false, true, true] },
+      { capability: 'Advanced Power BI & DAX', included: [false, false, true] },
+      { capability: 'Advanced Tableau', included: [false, false, true] },
+      { capability: 'Data modelling', included: [false, false, true] },
+      { capability: 'Reporting automation', included: [false, false, true] },
+      { capability: 'AI & prompt engineering', included: [false, false, true] },
+    ],
+    durationNote:
+      'The programme is nested, not parallel. The 3-month track gives you the essential foundation. The 6-month course includes those fundamentals and continues into professional SQL, Python, Power BI, Tableau, dashboards and reporting. The 9-month programme combines all of it with advanced business intelligence, data modelling, reporting automation, AI tools and end-to-end projects — so moving to a longer duration never means starting from zero.',
     instructor: {
-      heading: 'Why learn with us?',
-      intro: 'Every trainer here still ships production code. That is the whole basis of the teaching: answers come from current practice rather than from a slide deck written three years ago.',
+      heading: 'Why learn Data Analytics with us?',
+      intro:
+        'The goal is not learning where to click inside Excel, Power BI or Tableau. The focus is on what the numbers mean, which trends matter, how a dashboard tells a story, and how data supports a better decision.',
       points: [
         {
-          title: 'Practitioners, not presenters',
-          copy: 'Sessions are run by engineers working on live systems, so the examples come from real codebases.',
+          title: 'Excel taken seriously',
+          copy: 'Most business data still arrives in a spreadsheet. Excel is taught properly here rather than rushed past on the way to the fancier tools.',
         },
         {
-          title: 'Project-based from week one',
-          copy: 'You build as you learn. Each module ends in something that runs, not in a quiz.',
+          title: 'SQL from early on',
+          copy: 'Business data lives in databases. An analyst who can only open a CSV is limited from their first week.',
         },
         {
-          title: 'Personalised guidance',
-          copy: 'Small batches mean your mentor knows what you are stuck on and what you are aiming at.',
+          title: 'Projects that become a portfolio',
+          copy: 'Eight practical projects covering Excel, SQL, Python, a Power BI dashboard, sales analytics, Tableau, AI tooling and a capstone you own.',
         },
         {
-          title: 'Doubt support that continues',
-          copy: 'Doubt sessions and mentor hours carry on after the certificate is printed.',
+          title: 'Communication counts',
+          copy: 'A dashboard nobody understands changes nothing. Reporting and presentation are taught as part of the work, not an afterthought.',
         },
       ],
     },
     extraFaqs: [
       {
-        q: 'What is the duration of the Data Analytics course in Phagwara?',
-        a: 'techcadd runs Data Analytics over 3 months depending on the track you choose. Weekday, evening and weekend batches cover the same syllabus, and 1-on-1 training is available if you would rather set your own pace. Every class runs for 2 hours, whichever format you choose.',
+        q: 'What is the Data Analytics Course in Phagwara at Techcadd?',
+        a: 'It is designed to help learners understand how business data is collected, cleaned, analysed, visualised and turned into insight. The focus is practical: Excel, SQL, Python, Power BI, Tableau, cleaning, dashboards, reporting and business intelligence — real analytical skill rather than software concepts.',
       },
       {
-        q: 'What is the fee for the Data Analytics course in Phagwara?',
-        a: 'Fees depend on the batch format and whether you take the course on its own or as part of a longer track. EMI options are available. Call the centre or book a free demo and a counsellor will give you the exact figure for the format you want.',
+        q: 'Who can join a Data Analytics Course in Phagwara?',
+        a: 'It suits 12th-pass students, college students, graduates, freshers, job seekers, working professionals, business owners, entrepreneurs and aspiring freelancers. Beginners can start without programming experience; professionals use it to strengthen their data and reporting skills.',
       },
       {
-        q: 'Who can join the Data Analytics course?',
-        a: '12th Pass Onward. The first modules start from fundamentals, so no prior experience is assumed.',
+        q: 'Is Data Analytics a good career option for freshers?',
+        a: 'Yes. It opens opportunities in data analysis, business intelligence, reporting, MIS, business analysis and technology-driven business roles. Depending on skills and experience, learners can explore roles such as Data Analyst, Business Analyst, MIS Executive, Reporting Analyst, Power BI Developer and BI Analyst.',
       },
       {
-        q: 'What jobs can I get after the Data Analytics course?',
-        a: 'Graduates move into Data Analyst, Business Analyst, BI Developer, Reporting Analyst and similar roles. Analytics is the most reachable well-paid role in the data field: SQL and a BI tool are enough to be hired, and both can be learned from scratch in months.',
+        q: 'What will I learn in the Data Analytics Course?',
+        a: 'Advanced Excel, SQL, Python, data cleaning, exploratory analysis, statistics, Power BI, Tableau, dashboards, KPIs, visualisation, reporting and AI-powered analytics — plus business KPIs, growth trends, averages, percentages, customer behaviour, sales performance and conversion rates.',
       },
       {
-        q: 'What salary can a fresher expect after this course in Phagwara?',
-        a: 'Data Analyst roles start around ₹23,000 – ₹42,000 a month for a fresher with a working portfolio, rising to ₹6–11 LPA with two years of delivery experience. Specialists move beyond that.',
+        q: 'Is the course practical or theory-based?',
+        a: 'Analytics becomes much easier once you work with real datasets, spreadsheets, databases, dashboards and reports. The approach includes practical Excel exercises, SQL projects, Python analysis, dashboard development, visualisation and reporting tasks.',
       },
       {
-        q: 'Is this course suitable for beginners?',
-        a: 'Yes. It starts with Excel and analytical framing before SQL, so no prior coding is assumed.',
+        q: 'Will I work on Data Analytics projects during the course?',
+        a: 'Yes. Assignments include Excel analysis projects, SQL queries, Python data analysis, Power BI dashboards, Tableau visualisations, KPI reports, sales analysis and AI-powered workflows — which build the portfolio that demonstrates your understanding.',
       },
       {
-        q: 'What are the prerequisites?',
-        a: 'Comfort with numbers and basic spreadsheets. Programming experience is helpful but not required.',
+        q: 'Can I learn Data Analytics after 12th?',
+        a: 'Absolutely, if you are interested in technology, business, programming, reporting or mathematics. It lets students develop specialised skills while continuing formal education or preparing for future analytics roles.',
+      },
+      {
+        q: 'Can Data Analytics help me become a freelancer?',
+        a: 'Yes. Freelancers can offer Excel reporting, SQL analysis, Power BI dashboards, Tableau visualisation, Python analysis, KPI reporting and business intelligence. But successful freelancing needs more than tools: a portfolio, an understanding of client goals and clear communication matter just as much.',
+      },
+      {
+        q: 'Does the course include AI in Data Analytics?',
+        a: 'Yes. Modern workflows use AI for cleaning, formula assistance, SQL generation, reporting, research, dashboard ideas and automation. The course covers how these tools support analytics while keeping critical thinking, validation and human decision-making at the centre.',
+      },
+      {
+        q: 'How do I choose the best Data Analytics Course in Phagwara?',
+        a: 'Do not choose on the certificate or duration alone. Look at the syllabus, Excel training, SQL training, Python modules, Power BI, Tableau, practical projects, dashboard development, trainer experience, portfolio building, doubt support and career guidance.',
       },
     ],
-    whyNow: {
-      title: 'Data Analytics Is Powering the Next Generation of Industry Leaders',
-      points: [
-        'Live client work from week one, supervised by a trainer, not slides, not simulations.',
-        'Data Analyst roles in Punjab start around ₹23,000 – ₹42,000 a month for a fresher with a working portfolio.',
-      ],
-    },
     relatedCourses: [
+      'power-bi-course-in-phagwara',
+      'tableau-course-in-phagwara',
+      'data-science-course-in-phagwara',
       'python-course-in-phagwara',
-      'digital-marketing-course-in-phagwara',
-      'java-course-in-phagwara',
-      'artificial-intelligence-course-in-phagwara',
       'machine-learning-course-in-phagwara',
-      'deep-learning-course-in-phagwara',
+      'artificial-intelligence-course-in-phagwara',
     ],
     keywords: [
-      'data analytics course phagwara',
-      'power bi training in phagwara',
-      'sql course in phagwara',
-      'data analyst training in phagwara',
+      'data analytics course in phagwara',
+      'data analytics training in phagwara',
+      'data analytics classes in phagwara',
+      'business analytics course in phagwara',
+      'data analyst course in phagwara',
+      'data analytics course after 12th in phagwara',
     ],
   }),
 
   makeCourse({
     slug: 'power-bi-course-in-phagwara',
     label: 'Power BI',
-    title: 'Best Power BI Course & Training in Phagwara',
+    title: 'Power BI Course in Phagwara',
     category: 'ai-data',
     categoryTitle: 'AI & Data',
     icon: 'chart',
-    duration: '2 Months',
-    level: 'Beginner to Intermediate',
+    duration: '3 – 9 Months',
+    level: 'Beginner to Advanced',
     eligibility: '12th Pass Onward',
-    summary: 'Microsoft\'s leading BI tool — connect, model and visualize data into dashboards that decision-makers actually use.',
-    overview: 'Six weeks in Power BI: connecting and shaping with Power Query, modelling relationships, writing DAX and publishing dashboards that refresh.',
-    demand: 'Power BI sits on almost every corporate desktop in India, which makes it the single fastest reporting skill to convert into a job offer.',
+    summary:
+      'Turn raw data into dashboards a business runs on — Power Query, DAX, data modelling and interactive reports, with live projects and placement assistance.',
+    overview:
+      'Techcadd’s Power BI Programming Course in Phagwara is an industry-focused programme for students, graduates, job aspirants, entrepreneurs, business owners and aspiring data professionals who want practical business intelligence skill. It covers Power BI Desktop, data transformation, Power Query, data modelling, DAX, visualisation, KPI development, interactive reports, dashboard creation and AI-powered analytics tools. The training is hands-on throughout — real datasets, practical projects and industry-standard BI workflows — so you learn to connect, clean, transform, model, analyse, visualise and present data for decisions that get made from it. Unlike purely theoretical learning, you work with real datasets, dashboard development, reporting workflows and performance analysis, and finish understanding how organisations use Power BI to track KPIs, spot trends and monitor performance.',
+    demand:
+      'Power BI is the reporting layer most Indian businesses have already bought and few can properly use, which makes a competent developer immediately useful rather than a long-term investment.',
     modules: [
       {
-        title: 'Connect & transform',
-        summary: 'Power Query, and cleaning at the source.',
-        topics: ['Connectors', 'Power Query', 'Cleaning', 'Merging'],
-        duration: '1 week',
-        lessons: 5,
+        title: 'Power BI & Business Intelligence Foundations',
+        summary:
+          'Understand how Power BI supports modern business intelligence, and get your first dashboard working.',
+        topics: [
+          'The Power BI interface and data importing',
+          'Basic reports, charts, filters and slicers',
+          'KPIs and dashboards',
+          'Working with practical business datasets',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
       },
       {
-        title: 'Data modelling',
-        summary: 'Relationships and star schemas.',
-        topics: ['Relationships', 'Star schema', 'Date tables', 'Cardinality'],
-        duration: '2 weeks',
-        lessons: 8,
+        title: 'Data Cleaning & Power Query',
+        summary:
+          'Learn to work with raw, unstructured information — the step that decides whether a dashboard is trustworthy.',
+        topics: [
+          'Missing values, duplicates and inconsistent formats',
+          'Practical Power Query transformation techniques',
+          'Organising datasets for analysis and reporting',
+          'Building a structured preparation workflow',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
       },
       {
-        title: 'DAX',
-        summary: 'Measures that answer real questions.',
-        topics: ['Calculated columns', 'Measures', 'CALCULATE', 'Time intelligence'],
-        duration: '2 weeks',
-        lessons: 8,
+        title: 'Data Modelling & Relationships',
+        summary:
+          'Learn to structure data for reporting — where most self-taught Power BI work quietly falls apart.',
+        topics: [
+          'Tables, relationships and cardinality',
+          'Star schema and data models',
+          'Working with multiple business datasets',
+          'How professional dashboards connect information',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
       },
       {
-        title: 'Dashboards & sharing',
-        summary: 'Design, publish and refresh.',
-        topics: ['Visual design', 'Bookmarks', 'Publishing', 'Scheduled refresh'],
-        duration: '1 week',
-        lessons: 5,
+        title: 'DAX Programming',
+        summary:
+          'Learn the language behind every real calculation in Power BI, and the metrics a business actually asks for.',
+        topics: [
+          'Measures and calculated columns',
+          'DAX functions and aggregations',
+          'Time intelligence',
+          'Conditional calculations',
+        ],
+        duration: '4 weeks',
+        lessons: 14,
+      },
+      {
+        title: 'Data Visualisation & Dashboarding',
+        summary:
+          'Learn to turn raw numbers into a visual story someone can read in ten seconds.',
+        topics: [
+          'Charts, graphs, KPIs, cards, slicers and maps',
+          'Selecting the right visualisation for the question',
+          'Dashboards and business reports',
+          'Building interactive, professional dashboards',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Advanced Power BI Development',
+        summary:
+          'Discover the reporting techniques that separate a working dashboard from a professional one.',
+        topics: [
+          'Drill-through, bookmarks and tooltips',
+          'Conditional formatting and report navigation',
+          'Advanced DAX and data modelling',
+          'Interactive dashboard design',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Business Intelligence & Reporting',
+        summary:
+          'Explore professional reporting and the storytelling that makes a dashboard persuasive.',
+        topics: [
+          'Analysing KPIs and comparing performance',
+          'Identifying trends worth acting on',
+          'Communicating business insight',
+          'Building meaningful BI reports',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'KPIs, Performance & Data Insights',
+        summary:
+          'Learn how BI developers communicate findings — the part that decides whether your work changes anything.',
+        topics: [
+          'Business reports and the metrics that matter',
+          'Identifying trends and actionable insight',
+          'Presenting findings to managers, clients and employers',
+          'Building a practical reporting workflow',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'AI-Powered Power BI, Live Projects & Career Preparation',
+        summary:
+          'End-to-end projects from raw data to boardroom, with AI used where it genuinely helps.',
+        topics: [
+          'Collection, transformation, modelling, DAX and dashboards',
+          'Using AI tools to improve analytical workflows',
+          'A portfolio project demonstrating your skills',
+          'Career guidance across Power BI, Analytics, BI and Reporting',
+        ],
+        duration: '4 weeks',
+        lessons: 14,
       },
     ],
     outcomes: [
-      'Clean and shape data in Power Query',
-      'Build a sound star-schema model',
-      'Write DAX measures with confidence',
-      'Design dashboards for decisions',
-      'Publish and schedule refreshes',
+      'Connect, clean and transform messy data in Power Query',
+      'Build a proper data model with relationships and a star schema',
+      'Write DAX measures, calculated columns and time intelligence',
+      'Design interactive dashboards with drill-through and bookmarks',
+      'Define KPIs that answer a real business question',
+      'Ship an end-to-end Power BI project you can defend in an interview',
     ],
-    tools: ['Power BI Desktop', 'Power Query', 'DAX', 'Power BI Service', 'Excel', 'SQL'],
-    roles: ['BI Developer', 'Data Analyst', 'Reporting Analyst', 'Business Analyst'],
+    tools: [
+      'Power BI Desktop',
+      'Power BI Service',
+      'Power Query',
+      'DAX',
+      'Data Modelling',
+      'Microsoft Excel',
+      'SQL',
+      'MySQL',
+      'Python Basics for Analytics',
+      'Power BI Dashboards',
+      'Data Visualisation',
+      'BI Reporting',
+      'KPI Development',
+      'Git & GitHub',
+      'ChatGPT & AI Tools',
+    ],
+    audience: [
+      {
+        label: '12th Pass Students',
+        copy: 'You do not need previous technical experience to understand how businesses use dashboards. A structured course covers data fundamentals, Power BI Desktop, Power Query, visualisation, dashboards and KPIs — a smart way to explore reporting and analytics alongside your studies.',
+      },
+      {
+        label: 'College Students & Graduates',
+        copy: 'Employers value academic knowledge combined with practical analytical skill. Whatever you study — commerce, management, arts, computer science, engineering or mathematics — Power BI shows you how information becomes business insight.',
+      },
+      {
+        label: 'Job Seekers & Freshers',
+        copy: 'Learning several tools alone is confusing. A structured path replaces certificate-collecting with understanding how real projects run: importing and cleaning data, building relationships, writing DAX, creating dashboards and presenting insight.',
+      },
+      {
+        label: 'Working Professionals',
+        copy: 'Already in IT, finance, sales, marketing, operations or management? Power BI makes your experience more valuable. Sales professionals build performance dashboards; business professionals learn how interactive reports support decisions.',
+      },
+      {
+        label: 'Entrepreneurs & Business Owners',
+        copy: 'You do not have to become a developer. A dashboard of your own sales trends, customer behaviour, marketing performance and operational data makes you a better decision-maker — and easier for analysts and agencies to work with.',
+      },
+      {
+        label: 'Freelancers & Aspiring Freelancers',
+        copy: 'Dashboard development, visualisation, KPI reporting, DAX calculations, business reporting, data modelling and performance analytics are all billable — and a dashboard is among the cleanest deliverables to sell.',
+      },
+    ],
+    whyChooseUs: [
+      {
+        title: 'Power BI skills are in demand across businesses',
+        copy: 'IT companies, e-commerce brands, hospitals, financial organisations, manufacturers, education companies and local service providers all use Power BI to monitor performance. Power Query, DAX, modelling, dashboards, KPIs and BI apply across all of them.',
+      },
+      {
+        title: 'Learn how Power BI actually works',
+        copy: 'Creating a dashboard is the beginning. Data importing and connections, Power Query, cleaning and transformation, modelling, relationships, DAX formulas, measures and calculated columns, KPIs, visualisation, BI and storytelling are the rest.',
+      },
+      {
+        title: 'Practical learning builds real confidence',
+        copy: 'Tutorials teach you where the buttons are. Practical training teaches you to solve problems — importing, Power Query transformation, DAX calculations, modelling, dashboard development, KPI reporting and business analysis.',
+      },
+      {
+        title: 'Think about insights, not just dashboards',
+        copy: 'Creating dashboards is easy; finding the right insight is the challenge. You learn to read revenue, growth rate, conversion, customer trends, averages, percentages and KPIs well enough to know whether the dashboard tells a useful story.',
+      },
+      {
+        title: 'Power BI and AI are changing business intelligence',
+        copy: 'AI is changing how professionals clean data, write formulas and build reports. But it does not replace analytical thinking: the business problem, data quality, KPIs, relationships and context still need a person who understands them.',
+      },
+    ],
+    whyNow: {
+      title: 'Build Power BI Skills You Can Show, Not Just Talk About',
+      points: [
+        'Project-based learning gives you experience beyond classroom theory that goes straight into a portfolio.',
+        'A strong portfolio demonstrates dashboards, DAX, data modelling, Power Query and visualisation in interviews.',
+        'Power BI and BI roles in Punjab start around ₹18,000 – ₹30,000 a month for a fresher with real dashboards to show.',
+        'The goal is not learning software tools — it is turning raw information into dashboards and decisions.',
+      ],
+    },
+    roles: [
+      'Power BI Developer',
+      'Data Analyst',
+      'BI Analyst',
+      'Reporting Analyst',
+      'DAX Developer',
+      'MIS Analyst',
+      'AI-Powered BI Analyst',
+      'Freelance Power BI Developer',
+    ],
+    roleDetails: [
+      {
+        role: 'Power BI Developer',
+        copy: 'Build interactive dashboards and BI reports across Power Query, DAX, data modelling, visualisation, KPIs and business reporting. The most common path after this course.',
+      },
+      {
+        role: 'Data Analyst',
+        copy: 'Collect, clean, analyse and interpret business information using Power BI, Excel, SQL, dashboards and reports to surface the trends that matter.',
+      },
+      {
+        role: 'BI Analyst',
+        copy: 'Analyse business performance, build dashboards, monitor KPIs and deliver regular insight through Power BI and the surrounding BI stack.',
+      },
+      {
+        role: 'Reporting Analyst',
+        copy: 'Build reports and dashboards in Power BI, Excel, SQL and visualisation tools that make trends and performance legible.',
+      },
+      {
+        role: 'DAX Developer',
+        copy: 'Build calculations, measures, time intelligence formulas and advanced business metrics inside Power BI data models.',
+      },
+      {
+        role: 'MIS Analyst',
+        copy: 'Create reports, maintain business information and monitor KPIs using Excel, Power BI, databases and reporting tools.',
+      },
+      {
+        role: 'AI-Powered BI Analyst',
+        copy: 'Combine Power BI with modern AI tools to speed up reporting, formula generation, preparation and visualisation ideas — with analytical thinking still doing the real work.',
+      },
+      {
+        role: 'Freelance Power BI Developer',
+        copy: 'Build a freelance practice on dashboards, KPI reporting, DAX, data modelling and performance tracking, locally in Phagwara or remotely.',
+      },
+    ],
     hiring: [
-      'Corporate reporting teams',
-      'Finance and operations departments',
-      'Consulting and audit firms',
-      'Freelance dashboard projects',
+      'IT companies and software organisations managing business and customer data',
+      'Startups and SaaS companies focused on analytics and performance reporting',
+      'E-commerce and D2C brands analysing sales, customers and product performance',
+      'Financial, healthcare and manufacturing organisations using reports and dashboards',
     ],
-    nextSteps: ['Tableau', 'Data Analytics', 'SQL in depth', 'Machine Learning'],
-    industries: ['Finance', 'Retail', 'Manufacturing', 'Healthcare'],
+    nextSteps: [
+      'Tableau & advanced visualisation',
+      'Advanced SQL for BI',
+      'Data Analytics in depth',
+      'Data Science with Python',
+    ],
+    industries: ['IT & software', 'E-commerce', 'Finance & healthcare', 'Manufacturing'],
+    /*
+     * Client-supplied bands, monthly rather than the derived LPA figures used
+     * elsewhere in the catalogue — that is the unit a fresher in this market
+     * recognises. They match the Data Analytics bands, which is consistent:
+     * Power BI is the tool most of those analyst roles are hired against.
+     * `scale` is the midpoint in ₹/month; remote sits below Punjab at the
+     * fresher end on purpose, since freelance income ramps rather than
+     * starting at a salary.
+     */
     salary: {
-      role: 'BI Analyst',
-      summary: 'Builds the dashboards and data models a business runs its weekly decisions on.',
-      starting: '₹2.5–4.5 LPA',
-      after2: '₹5.5–10 LPA',
+      role: 'Power BI Developer',
+      summary:
+        'Builds the dashboards and reports a business runs its decisions from. Earnings vary with your skills, project experience, portfolio, certifications, company, location and performance.',
+      starting: '₹18,000–₹30,000/month',
+      after2: '₹30,000–₹50,000/month',
       markets: [
         {
-          name: 'Punjab / Tricity',
-          fresher: '₹2.5–4.5 LPA',
-          after2: '₹5.5–10 LPA',
-          scale: { fresher: 3.55, after2: 7.75 },
+          name: 'Punjab — Power BI / BI',
+          fresher: '₹18,000–₹30,000/month',
+          after2: '₹30,000–₹50,000/month',
+          scale: { fresher: 24000, after2: 40000 },
         },
         {
-          name: 'Delhi NCR',
-          fresher: '₹3.5–6.5 LPA',
-          after2: '₹7.5–14 LPA',
-          scale: { fresher: 4.97, after2: 10.85 },
+          name: 'Delhi / NCR — Power BI / Data Analytics',
+          fresher: '₹25,000–₹40,000/month',
+          after2: '₹40,000–₹70,000+/month',
+          scale: { fresher: 32500, after2: 55000 },
         },
         {
-          name: 'Remote / Freelance',
-          fresher: '₹4–7 LPA',
-          after2: '₹8.5–15.5 LPA',
-          scale: { fresher: 5.5, after2: 12.01 },
+          name: 'Remote / Freelance Power BI Projects',
+          fresher: '₹10,000–₹25,000/month',
+          after2: '₹30,000–₹80,000+/month',
+          scale: { fresher: 17500, after2: 55000 },
         },
       ],
     },
     careerFaqs: [
       {
-        q: 'What job roles open up after Power BI?',
-        a: 'Graduates move into BI Developer, Data Analyst, Reporting Analyst, Business Analyst and similar roles. Power BI sits on almost every corporate desktop in India, which makes it the single fastest reporting skill to convert into a job offer.',
+        q: 'What job roles open up after this course?',
+        a: 'Power BI Developer, Data Analyst, BI Analyst, MIS Executive, Reporting Analyst and Business Intelligence Consultant. Practical project experience and the ability to explain an insight matter far more here than certificates.',
       },
       {
         q: 'What can I earn, and how fast does it grow?',
-        a: 'A fresher with a working portfolio starts around ₹22,000 – ₹38,000 a month in the Phagwara market. With two years of delivery experience that typically doubles, and specialists who keep learning move well beyond it.',
+        a: 'A fresher with real dashboards to show starts around ₹18,000 – ₹30,000 a month in the Punjab market, rising to ₹30,000 – ₹50,000 with two years of experience. Delhi/NCR runs higher, and developers who add SQL and modelling depth move well beyond it.',
       },
       {
         q: 'Can I freelance or work remotely with this skill?',
-        a: 'Yes. A Phagwara address costs you nothing on a remote brief. Students bill clients in Delhi, Dubai and Canada. The course covers client handling, proposals and reporting so you can price and defend your work, not just do it.',
+        a: 'Yes — Power BI is one of the best freelance skills in the catalogue, because a dashboard is a self-contained deliverable a client can see the value of immediately. Income ramps rather than starting at a salary: around ₹10,000 – ₹25,000 a month early on, and ₹30,000 – ₹80,000+ with real client work behind you.',
       },
       {
         q: 'Which industries hire for this in Punjab?',
-        a: 'Beyond IT companies, the agro and food processing units, immigration consultancies, hospitals, schools, hotels and the university belt around Phagwara all now hire for these skills directly.',
+        a: 'IT companies and software organisations, startups and SaaS companies focused on reporting, e-commerce and D2C brands studying sales and customers, and financial, healthcare and manufacturing organisations — plus remote and freelance clients.',
       },
       {
-        q: 'Can I continue to higher studies or a specialisation later?',
-        a: 'The certificate and portfolio stand on their own, and they stack. Most students move on to an adjacent techcadd track. The tools overlap, so the second course is faster than the first.',
+        q: 'Is Power BI enough on its own, or do I need Data Analytics too?',
+        a: 'Power BI alone will get you hired for dashboard work. What limits people is everything around it — SQL to get at the data, and enough analytical judgement to know which KPI matters. This course covers SQL basics and KPI thinking for that reason; the Data Analytics course goes wider still, adding Python and Tableau.',
       },
     ],
     projects: [
       {
-        name: 'Executive sales dashboard',
-        summary: 'A modelled, DAX-driven dashboard with scheduled refresh.',
-        tech: ['Power BI', 'DAX'],
-        level: 'Intermediate',
-        skills: ['Modelling', 'DAX', 'Design'],
+        name: 'Sales Performance Dashboard',
+        summary:
+          'Build a complete sales dashboard from scratch: import business data, transform it, create KPIs, analyse performance and produce an interactive report.',
+        tech: ['Power BI', 'KPIs'],
+        level: 'Beginner',
+        skills: ['Sales Analytics', 'Dashboards'],
       },
       {
-        name: 'Operations report',
-        summary: 'Power Query cleaning feeding a daily operations view.',
-        tech: ['Power Query'],
+        name: 'DAX Business Analysis Project',
+        summary:
+          'A DAX project answering real business questions — measures, calculated columns, aggregations and time intelligence calculations.',
+        tech: ['DAX', 'Measures'],
         level: 'Beginner',
-        skills: ['Cleaning', 'Merging', 'Visuals'],
+        skills: ['Business Intelligence', 'Calculations'],
+      },
+      {
+        name: 'Customer Analytics Dashboard',
+        summary:
+          'A complete customer analytics project on practical data: behaviour, purchasing trends, segmentation and the performance metrics that matter.',
+        tech: ['Power BI', 'Data Analysis'],
+        level: 'Intermediate',
+        skills: ['Customer Insights', 'Segmentation'],
+      },
+      {
+        name: 'Financial Performance Dashboard',
+        summary:
+          'An interactive financial dashboard on revenue and business performance — data models, KPIs, charts, filters and reports that make trends obvious.',
+        tech: ['Power BI', 'Finance'],
+        level: 'Intermediate',
+        skills: ['Data Modelling', 'Dashboards'],
+      },
+      {
+        name: 'Marketing Performance Project',
+        summary:
+          'An analytical solution for marketing data: campaign performance, customer engagement, conversions and the growth indicators behind them.',
+        tech: ['Power BI', 'KPIs'],
+        level: 'Intermediate',
+        skills: ['Marketing Analytics', 'Reporting'],
+      },
+      {
+        name: 'HR Analytics Dashboard',
+        summary:
+          'Turn HR datasets into a working BI solution — dashboards, filters, charts, KPIs and workforce visualisations people will actually use.',
+        tech: ['Power BI', 'HR Analytics'],
+        level: 'Advanced',
+        skills: ['Visualisation', 'Dashboards'],
+      },
+      {
+        name: 'AI-Powered Power BI Project',
+        summary:
+          'Use modern AI tools to accelerate formula development, reporting, preparation and visualisation ideas — with accuracy, reasoning and originality kept central.',
+        tech: ['AI Analytics', 'DAX'],
+        level: 'Advanced',
+        skills: ['Reporting', 'Automation'],
+      },
+      {
+        name: 'End-to-End Power BI Capstone',
+        summary:
+          'A complete solution for a real business problem: collection, transformation, modelling, DAX, dashboard development, reporting and presentation.',
+        tech: ['Power Query', 'DAX', 'Power BI'],
+        level: 'Advanced',
+        skills: ['Business Intelligence', 'Portfolio'],
       },
     ],
+    workingLoop: [
+      {
+        title: 'Understand',
+        copy: 'Start from a real business objective and work out what information answers it — the KPIs, the data sources, the customer trends and the performance metrics that matter.',
+        artefact: 'Business Problem & Data Brief',
+      },
+      {
+        title: 'Build',
+        copy: 'Work with Power BI, Power Query, DAX, data models, dashboards and KPIs under trainer guidance — transform the data, build the relationships and develop the insight.',
+        artefact: 'Dashboard Development & Business Intelligence',
+      },
+      {
+        title: 'Present & Improve',
+        copy: 'Present findings, dashboards, KPIs, trends and recommendations like a professional, and learn to explain your development approach in an interview or client meeting.',
+        artefact: 'End-to-End Power BI Project & Reporting',
+      },
+    ],
+    industryReady: [
+      {
+        title: 'Industry-ready Power BI certificate',
+        copy: 'A certificate reflecting practical understanding of Power Query, DAX, data modelling, dashboards, visualisation, KPIs and business reporting.',
+      },
+      {
+        title: 'Learn through practical projects',
+        copy: 'Work on projects mirroring real business scenarios — transforming datasets, building models, writing DAX, creating dashboards, analysing KPIs and presenting insight.',
+      },
+      {
+        title: 'Build a Power BI portfolio',
+        copy: 'Dashboards, DAX projects, KPI reports, sales dashboards, customer analytics, performance dashboards and insight presentations — proof you can show an employer or client.',
+      },
+      {
+        title: 'Career and placement support',
+        copy: 'CV work, interview preparation, guidance on presenting your projects, and a clear picture of the paths in Power BI, Analytics, BI, Reporting and Business Analysis.',
+      },
+    ],
+    whyTechcadd: [
+      {
+        title: 'Trainers who understand business intelligence',
+        copy: 'The field keeps moving — AI, automation, BI platforms, cloud data tools and visualisation methods all change. Teaching uses practical examples and current approaches, so you understand not only how to build a dashboard but why an insight matters.',
+      },
+      {
+        title: 'Live and practical Power BI projects',
+        copy: 'Without practical work it is hard to understand a real business problem. Projects span transformation, Power Query, DAX, modelling, dashboards, KPI reporting, BI and AI-powered workflows.',
+      },
+      {
+        title: 'Small batches and doubt support',
+        copy: 'A focused room means you can ask, discuss a dashboard approach and get guidance while working on real datasets — whether you are a beginner or strengthening existing analytical skill.',
+      },
+      {
+        title: 'Build a Power BI portfolio',
+        copy: 'Finishing should mean more than a certificate. Practical exercises produce portfolio work demonstrating Power Query, DAX, modelling, dashboards, visualisation, KPIs and reporting.',
+      },
+      {
+        title: 'Career and placement guidance',
+        copy: 'Resume improvement, interview preparation, portfolio presentation and mock interviews, with a realistic view of roles across BI, analytics, reporting and operations.',
+      },
+      {
+        title: 'A practical approach to Power BI',
+        copy: 'The goal is confidence understanding data, not memorising software interfaces — practical Power BI, Power Query, DAX, modelling, visualisation, BI, KPI reporting and dashboard development.',
+      },
+    ],
+    comparison: {
+      rows: [
+        {
+          feature: 'Power BI curriculum',
+          techcadd:
+            'Industry-focused training covering Power Query, DAX, data modelling, dashboards and reporting',
+          others: 'Often focuses mainly on basic tool concepts',
+        },
+        {
+          feature: 'Learning style',
+          techcadd: 'Hands-on and practical, designed around real datasets',
+          others: 'Can be more theory-oriented',
+        },
+        {
+          feature: 'Practical project training',
+          techcadd:
+            'Students learn transformation, modelling, visualisation, dashboarding and reporting',
+          others: 'Practical exposure may be limited',
+        },
+        {
+          feature: 'Business intelligence skills',
+          techcadd: 'Covers Power BI, DAX, KPIs, reporting, dashboards and business intelligence',
+          others: 'May cover only selected concepts',
+        },
+        {
+          feature: 'Data modelling',
+          techcadd: 'Focus on relationships, models, measures and analytical structure',
+          others: 'Modelling training can vary',
+        },
+        {
+          feature: 'Visualisation & reporting',
+          techcadd:
+            'Practical understanding of charts, dashboards, storytelling and business reports',
+          others: 'Visualisation may receive limited attention',
+        },
+        {
+          feature: 'Portfolio building',
+          techcadd: 'Practical assignments and Power BI projects that demonstrate real skill',
+          others: 'Portfolio development may receive less focus',
+        },
+        {
+          feature: 'Career support',
+          techcadd: 'CV guidance, mock interviews, portfolio preparation and career-oriented support',
+          others: 'Career assistance can vary significantly',
+        },
+        {
+          feature: 'Doubt support',
+          techcadd: 'Trainer guidance throughout the learning journey to clarify concepts',
+          others: 'Support may be limited to scheduled sessions',
+        },
+        {
+          feature: 'Certification',
+          techcadd: 'Course completion certification combined with practical learning exposure',
+          others: 'Certification format and practical exposure can vary',
+        },
+      ],
+      note: 'The right-hand column represents common market patterns, not a claim about any specific institute. Before choosing a Power BI institute in Phagwara, ask what you will actually learn, whether you will work on practical projects, how trainers teach business intelligence, and what career support is included.',
+    },
+    durations: [
+      {
+        length: '3 Months',
+        tier: 'Foundation',
+        heading: 'Build your Power BI fundamentals',
+        blurb:
+          'Understand how business information is connected and visualised — Power BI Desktop, data importing, Power Query, basic dashboards, KPIs and reporting.',
+        skills: ['Power BI Desktop', 'Power Query', 'Microsoft Excel', 'Basic visualisation'],
+        recommendedFor:
+          'Power BI Trainee, Reporting Intern, MIS Trainee and junior analytics roles.',
+      },
+      {
+        length: '6 Months',
+        tier: 'Professional',
+        heading: 'Move beyond basic dashboard development',
+        blurb:
+          'Practical skill in Power Query, DAX, data modelling, dashboards, business intelligence and reporting — the level professional BI roles want.',
+        skills: ['Power BI Desktop', 'DAX', 'Data modelling', 'SQL basics', 'Visualisation'],
+        recommendedFor:
+          'Power BI Developer, Data Analyst, BI Analyst, Reporting Analyst, MIS Analyst and business intelligence roles.',
+      },
+      {
+        length: '9 Months',
+        tier: 'Expert',
+        heading: 'Build a complete Power BI & BI skill set',
+        blurb:
+          'Advanced dashboard development with advanced DAX, data modelling, business intelligence, visualisation, reporting automation and AI-powered strategy.',
+        skills: ['Power BI Service', 'Advanced DAX', 'SQL', 'Data modelling', 'GitHub', 'AI tools'],
+        recommendedFor:
+          'Advanced Power BI Developer pathway, Business Intelligence Analyst, Data Analyst, Reporting Specialist, BI Consultant and advanced analytics pathways.',
+      },
+    ],
+    capabilities: [
+      { capability: 'Power BI fundamentals', included: [true, true, true] },
+      { capability: 'Data importing', included: [true, true, true] },
+      { capability: 'Power Query', included: [true, true, true] },
+      { capability: 'Basic dashboards', included: [true, true, true] },
+      { capability: 'KPIs & visualisation', included: [true, true, true] },
+      { capability: 'Data modelling', included: [false, true, true] },
+      { capability: 'DAX fundamentals', included: [false, true, true] },
+      { capability: 'Interactive dashboards', included: [false, true, true] },
+      { capability: 'Advanced DAX', included: [false, false, true] },
+      { capability: 'Time intelligence', included: [false, false, true] },
+      { capability: 'Advanced data modelling', included: [false, false, true] },
+      { capability: 'Advanced Power BI', included: [false, false, true] },
+      { capability: 'Reporting automation', included: [false, false, true] },
+      { capability: 'AI & prompt engineering', included: [false, false, true] },
+    ],
+    durationNote:
+      'The programme is nested, not parallel. The 3-month track gives you the essential foundation. The 6-month course includes those fundamentals and continues into professional Power Query, DAX, data modelling, dashboards and business intelligence. The 9-month programme combines all of it with advanced development, advanced DAX, modelling, reporting automation, AI tools and end-to-end BI projects — so moving to a longer duration never means starting from zero.',
     instructor: {
-      heading: 'Why learn with us?',
-      intro: 'Every trainer here still ships production code. That is the whole basis of the teaching: answers come from current practice rather than from a slide deck written three years ago.',
+      heading: 'Why learn Power BI with us?',
+      intro:
+        'The goal is not learning where to click inside Power BI. The focus is on what the numbers mean, which trends matter, how a dashboard tells a story, and how business intelligence supports a better decision.',
       points: [
         {
-          title: 'Practitioners, not presenters',
-          copy: 'Sessions are run by engineers working on live systems, so the examples come from real codebases.',
+          title: 'Modelling before prettiness',
+          copy: 'Most self-taught Power BI falls apart at the data model. Relationships and star schema are taught properly, before the visuals.',
         },
         {
-          title: 'Project-based from week one',
-          copy: 'You build as you learn. Each module ends in something that runs, not in a quiz.',
+          title: 'DAX given real time',
+          copy: 'Four weeks on DAX rather than an afternoon. Measures, time intelligence and conditional logic are where the actual capability lives.',
         },
         {
-          title: 'Personalised guidance',
-          copy: 'Small batches mean your mentor knows what you are stuck on and what you are aiming at.',
+          title: 'Projects that become a portfolio',
+          copy: 'Eight practical dashboards covering sales, DAX, customers, finance, marketing, HR, AI tooling and a capstone you own.',
         },
         {
-          title: 'Doubt support that continues',
-          copy: 'Doubt sessions and mentor hours carry on after the certificate is printed.',
+          title: 'Communication counts',
+          copy: 'A dashboard nobody understands changes nothing. Reporting and presentation are taught as part of the work, not an afterthought.',
         },
       ],
     },
     extraFaqs: [
       {
-        q: 'What is the duration of the Power BI course in Phagwara?',
-        a: 'techcadd runs Power BI over 2 months depending on the track you choose. Weekday, evening and weekend batches cover the same syllabus, and 1-on-1 training is available if you would rather set your own pace. Every class runs for 2 hours, whichever format you choose.',
+        q: 'What is the Power BI Course in Phagwara at Techcadd?',
+        a: 'It is designed to help learners understand how business data is connected, cleaned, transformed, modelled, visualised and turned into insight. The focus is practical: Power BI Desktop, Power Query, DAX, modelling, dashboards, KPI reporting, visualisation and business intelligence — real skill rather than software concepts.',
       },
       {
-        q: 'What is the fee for the Power BI course in Phagwara?',
-        a: 'Fees depend on the batch format and whether you take the course on its own or as part of a longer track. EMI options are available. Call the centre or book a free demo and a counsellor will give you the exact figure for the format you want.',
+        q: 'Who can join a Power BI Course in Phagwara?',
+        a: 'It suits 12th-pass students, college students, graduates, freshers, job seekers, working professionals, business owners, entrepreneurs and aspiring freelancers. Beginners can start without programming experience; professionals use it to strengthen their reporting and analytical skills.',
       },
       {
-        q: 'Who can join the Power BI course?',
-        a: '12th Pass Onward. The first modules start from fundamentals, so no prior experience is assumed.',
+        q: 'Is Power BI a good career option for freshers?',
+        a: 'Yes. It opens opportunities in Power BI development, data analytics, business intelligence, reporting, MIS and technology-driven business roles. Depending on skills and experience, learners can explore roles such as Power BI Developer, Data Analyst, BI Analyst, MIS Executive, Reporting Analyst and BI Consultant.',
       },
       {
-        q: 'What jobs can I get after the Power BI course?',
-        a: 'Graduates move into BI Developer, Data Analyst, Reporting Analyst, Business Analyst and similar roles. Power BI sits on almost every corporate desktop in India, which makes it the single fastest reporting skill to convert into a job offer.',
+        q: 'What will I learn in the Power BI Course?',
+        a: 'Power BI Desktop, Power Query, data transformation, DAX, data modelling, relationships, KPIs, dashboard development, visualisation, reporting, business intelligence and AI-powered analytics — plus business KPIs, growth trends, averages, percentages, customer behaviour, sales performance and conversion rates.',
       },
       {
-        q: 'What salary can a fresher expect after this course in Phagwara?',
-        a: 'BI Analyst roles start around ₹22,000 – ₹38,000 a month for a fresher with a working portfolio, rising to ₹5.5–10 LPA with two years of delivery experience. Specialists move beyond that.',
+        q: 'Is the course practical or theory-based?',
+        a: 'Power BI becomes much easier once you work with real datasets, dashboards, data models, DAX formulas and business reports. The approach includes practical dashboard exercises, Power Query projects, DAX calculations, modelling, KPI development, visualisation and reporting tasks.',
       },
       {
-        q: 'Is this course suitable for beginners?',
-        a: 'Yes. Power BI begins from fundamentals, and the pace is set so nothing is assumed.',
+        q: 'Will I work on Power BI projects during the course?',
+        a: 'Yes. Assignments include sales dashboards, customer analytics, financial reports, DAX calculations, Power Query transformations, KPI reports, HR analytics and AI-powered BI workflows — which build the portfolio that demonstrates your understanding.',
       },
       {
-        q: 'What are the prerequisites?',
-        a: 'Basic computer familiarity. Anything else the track needs is introduced in the first module.',
+        q: 'Can I learn Power BI after 12th?',
+        a: 'Absolutely, if you are interested in technology, business, reporting or mathematics. It lets students develop specialised skills while continuing formal education or preparing for future analytics roles.',
+      },
+      {
+        q: 'Can Power BI help me become a freelancer?',
+        a: 'Yes. Freelancers can offer dashboard development, DAX calculations, KPI reporting, data modelling, BI reporting, visualisation and performance analytics. But successful freelancing needs more than tools: a portfolio, an understanding of client goals and clear communication matter just as much.',
+      },
+      {
+        q: 'Does the course include AI in Power BI?',
+        a: 'Yes. Modern BI workflows use AI for data preparation, formula assistance, DAX generation, reporting, research, dashboard ideas and automation. The course covers how these tools support business intelligence while keeping critical thinking, validation and human decision-making at the centre.',
+      },
+      {
+        q: 'How do I choose the best Power BI Course in Phagwara?',
+        a: 'Do not choose on the certificate or duration alone. Look at the syllabus, Power Query training, DAX training, data modelling modules, dashboard development, visualisation, practical projects, trainer experience, portfolio building, doubt support and career guidance.',
       },
     ],
-    whyNow: {
-      title: 'Power BI Is Powering the Next Generation of Industry Leaders',
-      points: [
-        'Live client work from week one, supervised by a trainer, not slides, not simulations.',
-        'BI Analyst roles in Punjab start around ₹22,000 – ₹38,000 a month for a fresher with a working portfolio.',
-      ],
-    },
     relatedCourses: [
-      'tableau-course-in-phagwara',
       'data-analytics-course-in-phagwara',
-      'machine-learning-course-in-phagwara',
-      'artificial-intelligence-course-in-phagwara',
-      'deep-learning-course-in-phagwara',
+      'tableau-course-in-phagwara',
       'data-science-course-in-phagwara',
+      'machine-learning-course-in-phagwara',
+      'python-course-in-phagwara',
+      'artificial-intelligence-course-in-phagwara',
     ],
     keywords: [
-      'power bi course phagwara',
-      'dax training in phagwara',
-      'power query course in phagwara',
-      'bi dashboard classes in phagwara',
+      'power bi course in phagwara',
+      'power bi training in phagwara',
+      'power bi classes in phagwara',
+      'business intelligence course in phagwara',
+      'dax course in phagwara',
+      'power bi course after 12th in phagwara',
     ],
   }),
 
   makeCourse({
     slug: 'tableau-course-in-phagwara',
     label: 'Tableau',
-    title: 'Best Tableau Course & Training in Phagwara',
+    title: 'Tableau Course in Phagwara',
     category: 'ai-data',
     categoryTitle: 'AI & Data',
     icon: 'chart',
-    duration: '2 Months',
-    level: 'Beginner to Intermediate',
+    duration: '3 – 9 Months',
+    level: 'Beginner to Advanced',
     eligibility: '12th Pass Onward',
-    summary: 'Industry-standard visual analytics — build the kind of interactive dashboards used across BI and analyst roles.',
-    overview: 'Six weeks turning data into decisions in Tableau: connecting and shaping sources, choosing the right visual, and publishing dashboards people return to.',
-    demand: 'Tableau is what larger analytics teams and international clients standardise on, and it travels particularly well on remote briefs.',
+    summary:
+      'Make numbers speak — Tableau dashboards, calculated fields, filters, parameters and data storytelling, with live projects and placement assistance.',
+    overview:
+      'Techcadd’s Tableau Programming Course in Phagwara is an industry-focused programme for students, graduates, job aspirants, business professionals, entrepreneurs and aspiring analysts who want practical skill in data visualisation and business intelligence. It covers Tableau Desktop, data connections, charts, dashboards, calculated fields, filters, parameters, data blending, joins, Tableau Prep, analytics, storytelling and AI-powered analysis tools. The training is hands-on throughout — live dashboards, practical projects and industry-standard tooling — so you learn to connect, clean, analyse, visualise and present data that supports a real decision. Unlike purely theoretical learning, you work with real datasets, dashboard development technique, visualisation strategy and insight-driven reporting, and finish understanding how organisations use dashboards to spot trends, monitor performance and communicate clearly.',
+    demand:
+      'Tableau is what the larger firms and the analytics teams standardise on, so it opens the doors Excel alone will not — and dashboard work is visible enough that a good portfolio speaks for itself.',
     modules: [
       {
-        title: 'Connecting & shaping data',
-        summary: 'Getting clean, joined data into Tableau.',
-        topics: ['Connections', 'Joins & blends', 'Extracts', 'Data prep'],
-        duration: '1 week',
-        lessons: 5,
+        title: 'Tableau Foundations & Data Visualisation',
+        summary:
+          'Understand how Tableau works and where visualisation fits into business intelligence.',
+        topics: [
+          'Tableau fundamentals, data types and analytical concepts',
+          'Dimensions, measures, worksheets and dashboards',
+          'Choosing the right chart for a business question',
+          'Building a first working dashboard',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
       },
       {
-        title: 'Core visualisations',
-        summary: 'Choosing the chart the question deserves.',
-        topics: ['Bar & line', 'Maps', 'Scatter', 'Chart choice'],
+        title: 'Data Connections & Preparation',
+        summary:
+          'Learn to connect data from wherever it actually lives, and get it into a shape worth charting.',
+        topics: [
+          'Excel, CSV, database and cloud connections',
+          'Basic data cleaning and preparation',
+          'Joins, relationships and data blending',
+          'Building structured datasets for analysis',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Tableau Charts & Visualisations',
+        summary:
+          'Learn to build professional visualisations, and why a chart type is a decision rather than a preference.',
+        topics: [
+          'Bar, line and pie charts, maps and advanced visuals',
+          'Dimensions, measures and aggregation',
+          'Meaningful comparisons and trend analysis',
+          'Visualisation best practice',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Calculated Fields, Filters & Parameters',
+        summary:
+          'Analyse data through calculations and the interactive controls that make a dashboard genuinely useful.',
+        topics: [
+          'Calculated fields and formulas',
+          'Filters, groups and sets',
+          'Parameters for interactive dashboards',
+          'Calculations for business KPIs',
+        ],
+        duration: '4 weeks',
+        lessons: 14,
+      },
+      {
+        title: 'Dashboards & Business Intelligence',
+        summary:
+          'Learn to combine visualisations into a dashboard a manager will actually use.',
+        topics: [
+          'Dashboard layouts and design principles',
+          'Tracking KPIs, trends and business metrics',
+          'Interactive filters and actions',
+          'Designing for management reporting',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Data Analysis & Performance Reporting',
+        summary:
+          'Creating dashboards is the beginning. Learn how analysts find the insight inside them.',
+        topics: [
+          'Analysing trends, comparisons and patterns',
+          'Identifying opportunities and performance gaps',
+          'KPIs and analytical metrics',
+          'Dashboard optimisation and performance',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'AI-Powered Tableau Analytics',
+        summary:
+          'Discover how AI is changing analytics without replacing the judgement behind it.',
+        topics: [
+          'AI for data exploration and calculation ideas',
+          'Faster research and analytical workflows',
+          'Using AI to identify patterns in datasets',
+          'Responsible use, keeping analysis accurate and business-focused',
+        ],
         duration: '2 weeks',
         lessons: 8,
       },
       {
-        title: 'Calculations & LOD',
-        summary: 'Where Tableau gets genuinely powerful.',
-        topics: ['Calculated fields', 'Table calcs', 'LOD expressions', 'Parameters'],
-        duration: '2 weeks',
-        lessons: 8,
+        title: 'Reporting, Storytelling & Business Strategy',
+        summary:
+          'Learn how professional analysts present insight — the part that decides whether it gets acted on.',
+        topics: [
+          'Organising data stories and reports',
+          'Identifying what needs attention',
+          'Creating clear performance reports',
+          'Communicating insight to managers and clients',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
       },
       {
-        title: 'Dashboards & publishing',
-        summary: 'Layout, interactivity and getting it in front of people.',
-        topics: ['Actions', 'Filters', 'Layout', 'Tableau Public / Server'],
-        duration: '1 week',
-        lessons: 5,
+        title: 'Live Tableau Projects, Portfolio & Career Preparation',
+        summary:
+          'An end-to-end project from raw data to presentation, then learning to defend it out loud.',
+        topics: [
+          'Collection, preparation, visualisation and dashboard creation',
+          'Assignments based on real business scenarios',
+          'A portfolio project demonstrating analytics skill',
+          'Career guidance across Tableau, analytics, BI and reporting',
+        ],
+        duration: '4 weeks',
+        lessons: 14,
       },
     ],
     outcomes: [
-      'Connect, join and extract from real sources',
-      'Choose the right chart for the question',
-      'Write calculated fields and LOD expressions',
-      'Build interactive dashboards with actions',
-      'Publish and share dashboards that stay current',
+      'Connect Tableau to Excel, CSV, SQL and cloud data sources',
+      'Choose and build the right visualisation for a business question',
+      'Write calculated fields and use filters, groups, sets and parameters',
+      'Design interactive dashboards with actions and drill-downs',
+      'Read a dashboard for insight rather than decoration',
+      'Ship an end-to-end Tableau project you can defend in an interview',
     ],
-    tools: ['Tableau Desktop', 'Tableau Public', 'SQL', 'Excel', 'Tableau Prep'],
-    roles: ['BI Developer', 'Data Analyst', 'Reporting Analyst', 'Visualisation Specialist'],
+    tools: [
+      'Tableau Desktop',
+      'Tableau Public',
+      'Tableau Prep',
+      'Tableau Cloud',
+      'Microsoft Excel',
+      'SQL Databases',
+      'Google Sheets',
+      'Power BI Concepts',
+      'Python Basics for Data',
+      'MySQL',
+      'Google Analytics',
+      'Looker Studio',
+      'ChatGPT & AI Tools',
+    ],
+    audience: [
+      {
+        label: '12th Pass Students',
+        copy: 'You do not need an advanced technical background to understand how data visualisation works. A structured course covers data connections, charts, dashboards, filters, calculations and business reporting — a smart way to explore analytics alongside your studies.',
+      },
+      {
+        label: 'College Students & Graduates',
+        copy: 'Employers value academic knowledge combined with practical analytical skill. Whatever you study — commerce, management, arts, computer science or engineering — Tableau shows you how businesses analyse information and decide from it.',
+      },
+      {
+        label: 'Job Seekers & Freshers',
+        copy: 'Learning this alone is confusing. A structured path replaces certificate-collecting with understanding how real dashboards work: connecting datasets, creating charts, analysing trends, building interactive reports and presenting insight.',
+      },
+      {
+        label: 'Working Professionals',
+        copy: 'Already in business, operations, finance, marketing, sales, HR or IT? Tableau makes your experience more useful. Sales professionals learn how dashboards track performance; business professionals learn how visualisation drives smarter decisions.',
+      },
+      {
+        label: 'Entrepreneurs & Business Owners',
+        copy: 'You do not have to become an analyst. A dashboard of your own sales trends, customer behaviour and operational performance tells you why some areas do better than others — and makes working with analysts far easier.',
+      },
+      {
+        label: 'Freelancers & Aspiring Freelancers',
+        copy: 'Dashboard development, visualisation, business reporting, data cleaning, analytics and interactive reports are all billable — and a dashboard is a deliverable a client can see the value of immediately.',
+      },
+    ],
+    whyChooseUs: [
+      {
+        title: 'Tableau skills are in demand across industries',
+        copy: 'IT companies, e-commerce businesses, hospitals, financial organisations, educational institutes, retail brands and local businesses all use dashboards to understand performance. Visualisation, dashboard development, calculated fields, analytics and BI apply across all of them.',
+      },
+      {
+        title: 'Learn how Tableau actually works',
+        copy: 'Creating a dashboard is the beginning. Data connections and sources, cleaning and preparation, dimensions and measures, charts, calculated fields, filters and parameters, joins and relationships, blending, stories, KPIs and optimisation are the rest.',
+      },
+      {
+        title: 'Practical learning builds real confidence',
+        copy: 'Tutorials teach you where the options are. Practical training teaches you to make analytical decisions — data connections, visualisation design, calculated fields, dashboard planning, KPI tracking and performance analysis.',
+      },
+      {
+        title: 'Think about insights, not just charts',
+        copy: 'Creating charts is easy; finding meaningful insight is the challenge. You learn to read revenue, profit, growth rate, conversion, customer trends and KPIs well enough to know what the data is actually telling you.',
+      },
+      {
+        title: 'Tableau and AI are changing data analytics',
+        copy: 'AI is changing how professionals analyse data and generate insight. But it does not replace analytical thinking: the business problem, data quality, KPIs, context, trends and audience still need a person who understands them.',
+      },
+    ],
+    whyNow: {
+      title: 'Build Tableau Skills You Can Show, Not Just Talk About',
+      points: [
+        'Dashboard-based projects give you experience beyond classroom theory that goes straight into a portfolio.',
+        'A strong portfolio demonstrates visualisation, dashboard development, calculated fields and analytics in interviews.',
+        'Tableau and analytics roles in Punjab start around ₹18,000 – ₹30,000 a month for a fresher with real dashboards to show.',
+        'The goal is not learning where the buttons are — it is turning raw data into insight and better decisions.',
+      ],
+    },
+    roles: [
+      'Tableau Developer',
+      'Data Analyst',
+      'Business Intelligence Analyst',
+      'Data Visualization Specialist',
+      'Reporting Analyst',
+      'Tableau Analyst',
+      'AI-Powered Data Analyst',
+      'Freelance Tableau Developer',
+    ],
+    roleDetails: [
+      {
+        role: 'Tableau Developer',
+        copy: 'Build and maintain dashboards against real business requirements — data connections, visualisation, calculations, dashboard design, filters, parameters and reporting. The most popular path after this course.',
+      },
+      {
+        role: 'Data Analyst',
+        copy: 'Analyse business datasets to find patterns, trends and insight, working across cleaning, visualisation, reporting and KPIs.',
+      },
+      {
+        role: 'Business Intelligence Analyst',
+        copy: 'Use Tableau alongside databases and analytics tools to build the reports business decisions get made from.',
+      },
+      {
+        role: 'Data Visualization Specialist',
+        copy: 'Build clear, interactive visualisations that make complex information legible — charts, dashboards, calculated fields and storytelling.',
+      },
+      {
+        role: 'Reporting Analyst',
+        copy: 'Manage reports and dashboards for an organisation: development, KPI tracking, analysis, maintenance and performance reporting.',
+      },
+      {
+        role: 'Tableau Analyst',
+        copy: 'Track and analyse business performance across Tableau, Excel, SQL and analytics platforms, using revenue, profit, growth and conversion to show what is working.',
+      },
+      {
+        role: 'AI-Powered Data Analyst',
+        copy: 'Combine Tableau with modern AI tools to speed up exploration, calculation development, insight generation and reporting — with analytical thinking still doing the real work.',
+      },
+      {
+        role: 'Freelance Tableau Developer',
+        copy: 'Build a freelance practice on dashboards, business reports, visualisation, KPI dashboards and analytical solutions, locally in Phagwara or remotely.',
+      },
+    ],
     hiring: [
-      'Analytics and BI teams',
-      'Consulting firms',
-      'Multinational reporting teams',
-      'Freelance visualisation work',
+      'IT companies and software organisations using business intelligence dashboards',
+      'Startups and SaaS companies focused on data-driven decision-making',
+      'E-commerce and D2C brands analysing sales and customer data',
+      'Financial and business organisations using reporting dashboards',
     ],
-    nextSteps: ['Power BI', 'Data Analytics', 'SQL in depth', 'Machine Learning'],
-    industries: ['Retail', 'Finance', 'Healthcare', 'Logistics'],
+    nextSteps: [
+      'Power BI & the Microsoft BI stack',
+      'Advanced SQL for analytics',
+      'Data Analytics in depth',
+      'Data Science with Python',
+    ],
+    industries: ['IT & software', 'E-commerce', 'Finance & business', 'Startups & SaaS'],
+    /*
+     * Client-supplied bands, monthly rather than the derived LPA figures used
+     * elsewhere in the catalogue — that is the unit a fresher in this market
+     * recognises. They match the Data Analytics and Power BI bands, which is
+     * consistent: all three hire into the same analyst roles. `scale` is the
+     * midpoint in ₹/month; remote sits below Punjab at the fresher end on
+     * purpose, since freelance income ramps rather than starting at a salary.
+     */
     salary: {
-      role: 'Data Visualisation Analyst',
-      summary: 'Turns messy datasets into dashboards an executive can read in ten seconds.',
-      starting: '₹2.5–4.5 LPA',
-      after2: '₹5.5–10 LPA',
+      role: 'Tableau Developer',
+      summary:
+        'Builds the dashboards a business reads its performance from. Earnings vary with your skills, project experience, portfolio, certifications, company, location and performance.',
+      starting: '₹18,000–₹30,000/month',
+      after2: '₹30,000–₹50,000/month',
       markets: [
         {
-          name: 'Punjab / Tricity',
-          fresher: '₹2.5–4.5 LPA',
-          after2: '₹5.5–10 LPA',
-          scale: { fresher: 3.55, after2: 7.75 },
+          name: 'Punjab — Tableau / Data Analytics',
+          fresher: '₹18,000–₹30,000/month',
+          after2: '₹30,000–₹50,000/month',
+          scale: { fresher: 24000, after2: 40000 },
         },
         {
-          name: 'Delhi NCR',
-          fresher: '₹3.5–6.5 LPA',
-          after2: '₹7.5–14 LPA',
-          scale: { fresher: 4.97, after2: 10.85 },
+          name: 'Delhi / NCR — Tableau / Business Intelligence',
+          fresher: '₹25,000–₹40,000/month',
+          after2: '₹40,000–₹70,000+/month',
+          scale: { fresher: 32500, after2: 55000 },
         },
         {
-          name: 'Remote / Freelance',
-          fresher: '₹4–7 LPA',
-          after2: '₹8.5–15.5 LPA',
-          scale: { fresher: 5.5, after2: 12.01 },
+          name: 'Remote / Freelance Tableau Projects',
+          fresher: '₹10,000–₹25,000/month',
+          after2: '₹30,000–₹80,000+/month',
+          scale: { fresher: 17500, after2: 55000 },
         },
       ],
     },
     careerFaqs: [
       {
-        q: 'What job roles open up after Tableau?',
-        a: 'Graduates move into BI Developer, Data Analyst, Reporting Analyst, Visualisation Specialist and similar roles. Tableau is what larger analytics teams and international clients standardise on, and it travels particularly well on remote briefs.',
+        q: 'What job roles open up after this course?',
+        a: 'Tableau Developer, Data Analyst, Business Intelligence Analyst, Reporting Analyst and Data Visualization Specialist. Practical dashboard experience and the ability to analyse insight matter far more here than certificates.',
       },
       {
         q: 'What can I earn, and how fast does it grow?',
-        a: 'A fresher with a working portfolio starts around ₹22,000 – ₹38,000 a month in the Phagwara market. With two years of delivery experience that typically doubles, and specialists who keep learning move well beyond it.',
+        a: 'A fresher with real dashboards to show starts around ₹18,000 – ₹30,000 a month in the Punjab market, rising to ₹30,000 – ₹50,000 with two years of experience. Delhi/NCR runs higher, and analysts who add SQL depth move well beyond it.',
       },
       {
         q: 'Can I freelance or work remotely with this skill?',
-        a: 'Yes. A Phagwara address costs you nothing on a remote brief. Students bill clients in Delhi, Dubai and Canada. The course covers client handling, proposals and reporting so you can price and defend your work, not just do it.',
+        a: 'Yes — Tableau dashboards are self-contained deliverables a client can judge at a glance, which makes them unusually easy to sell. Income ramps rather than starting at a salary: around ₹10,000 – ₹25,000 a month early on, and ₹30,000 – ₹80,000+ with real client work behind you.',
       },
       {
         q: 'Which industries hire for this in Punjab?',
-        a: 'Beyond IT companies, the agro and food processing units, immigration consultancies, hospitals, schools, hotels and the university belt around Phagwara all now hire for these skills directly.',
+        a: 'IT companies and software organisations running BI dashboards, startups and SaaS companies focused on data-driven decisions, e-commerce and D2C brands analysing sales and customers, and financial and business organisations — plus remote and freelance clients.',
       },
       {
-        q: 'Can I continue to higher studies or a specialisation later?',
-        a: 'The certificate and portfolio stand on their own, and they stack. Most students move on to an adjacent techcadd track. The tools overlap, so the second course is faster than the first.',
+        q: 'Should I learn Tableau or Power BI?',
+        a: 'Both do the same job and the concepts transfer, so neither is a wasted choice. Power BI is more common in Indian companies already on Microsoft, and tends to appear in more local job listings. Tableau is stronger on visualisation and storytelling and is standard in larger analytics teams. If you are aiming locally, Power BI opens more doors first; if you want the visualisation craft, learn Tableau. Analysts who know both are rare and are paid accordingly.',
       },
     ],
     projects: [
       {
-        name: 'Sales performance dashboard',
-        summary: 'Revenue, region and cohort views in one publishable dashboard.',
-        tech: ['Tableau', 'SQL'],
-        level: 'Intermediate',
-        skills: ['Data modelling', 'LOD', 'Layout'],
+        name: 'Tableau Dashboard Setup',
+        summary:
+          'Build a dashboard from scratch: connect datasets, work with dimensions and measures, create visualisations and plan a dashboard around a business objective.',
+        tech: ['Tableau', 'Data Connections'],
+        level: 'Beginner',
+        skills: ['Dashboard Structure', 'Visualisation'],
       },
       {
-        name: 'Operations KPI board',
-        summary: 'A live-refreshing board built for a daily stand-up.',
-        tech: ['Tableau Prep', 'Tableau'],
+        name: 'Sales Performance Dashboard',
+        summary:
+          'A dashboard analysing sales performance — charts, KPIs, trends, filters, and the usability decisions that make it worth opening twice.',
+        tech: ['Tableau', 'KPIs'],
         level: 'Beginner',
-        skills: ['Data prep', 'Chart choice', 'Publishing'],
+        skills: ['Sales Analytics', 'Dashboards'],
+      },
+      {
+        name: 'Data Analysis Project',
+        summary:
+          'A complete analysis on structured data: find the trends, comparisons and insight while judging data quality and analytical requirements.',
+        tech: ['Tableau', 'Data Analysis'],
+        level: 'Intermediate',
+        skills: ['Business Insights', 'Visualisation Strategy'],
+      },
+      {
+        name: 'Customer Analytics Dashboard',
+        summary:
+          'An interactive dashboard on customer behaviour — metrics, segmentation, and which patterns are actually generating insight.',
+        tech: ['Tableau', 'Calculations'],
+        level: 'Intermediate',
+        skills: ['Customer Analytics', 'Interactive Dashboards'],
+      },
+      {
+        name: 'Local Business Analytics Project',
+        summary:
+          'An analytics strategy for a Phagwara business: sales, customers, services and operational performance, combining Tableau, Excel data and real KPIs.',
+        tech: ['Tableau', 'Excel'],
+        level: 'Intermediate',
+        skills: ['Business Analytics', 'KPI Dashboards'],
+      },
+      {
+        name: 'Dashboard Optimisation Project',
+        summary:
+          'Take an existing dashboard and make it better. Analyse charts, filters, calculations, KPIs and user interaction the way a working analyst does.',
+        tech: ['Tableau', 'KPIs'],
+        level: 'Advanced',
+        skills: ['Dashboard Optimisation', 'Performance Analysis'],
+      },
+      {
+        name: 'AI-Powered Data Analytics Project',
+        summary:
+          'Use modern AI tools to accelerate exploration, calculation ideas, pattern analysis and dashboard concepts — with accuracy and critical thinking kept central.',
+        tech: ['AI Analytics', 'Tableau'],
+        level: 'Advanced',
+        skills: ['Prompt Engineering', 'Data Insights'],
+      },
+      {
+        name: 'End-to-End Tableau Capstone',
+        summary:
+          'A complete analytics solution for a real business scenario: preparation, visualisation, dashboard development, KPI analysis, reporting and insight.',
+        tech: ['Tableau', 'Business Intelligence'],
+        level: 'Advanced',
+        skills: ['Analytics', 'Portfolio'],
       },
     ],
+    workingLoop: [
+      {
+        title: 'Understand',
+        copy: 'Turn a real business requirement into a focused analysis strategy — research the dataset, understand the objective, identify the KPIs and choose the visualisations that answer it.',
+        artefact: 'Data Research & Tableau Analytics Brief',
+      },
+      {
+        title: 'Build',
+        copy: 'Create and manage dashboards with trainer guidance — connections, charts, calculated fields, filters, parameters, KPIs and AI-powered workflows — improving on what the data shows.',
+        artefact: 'Tableau Dashboards & Data Visualisation',
+      },
+      {
+        title: 'Present & Analyse',
+        copy: 'Present your data strategy, visualisations, KPIs, insight and calculations like a professional, and learn to explain your analytical process in an interview or client meeting.',
+        artefact: 'End-to-End Tableau Dashboard & Analytics Project',
+      },
+    ],
+    industryReady: [
+      {
+        title: 'Industry-ready Tableau certificate',
+        copy: 'A certificate reflecting practical understanding of visualisation, dashboards, calculated fields, filters, parameters, analytics, reporting and business intelligence.',
+      },
+      {
+        title: 'Learn through practical projects',
+        copy: 'Work on projects mirroring real analytics scenarios — connecting datasets, creating visualisations, building dashboards, analysing KPIs and presenting insight.',
+      },
+      {
+        title: 'Build a Tableau portfolio',
+        copy: 'Dashboards, visualisation reports, calculated fields, KPI analysis, interactive reports and analytical strategies — proof you can show an employer or client.',
+      },
+      {
+        title: 'Career and placement support',
+        copy: 'CV work, preparation for Tableau and data analyst interviews, guidance on presenting your dashboard work, and a clear picture of the paths in analytics, BI and reporting.',
+      },
+    ],
+    whyTechcadd: [
+      {
+        title: 'Trainers who understand data analytics',
+        copy: 'Tableau and BI keep changing — analytics practice, AI-powered tools, dashboard design, data integration and reporting all move. Teaching uses practical examples and current practice, so you understand not only how to build a dashboard but why an insight matters.',
+      },
+      {
+        title: 'Live and practical Tableau projects',
+        copy: 'Without practical work it is hard to understand real data analysis. Projects span dashboards, visualisation, calculated fields, filters, parameters, KPI analysis, reporting and optimisation.',
+      },
+      {
+        title: 'Small batches and doubt support',
+        copy: 'A focused room means you can ask, discuss an analytical strategy and get guidance while working on practical tasks — whether you are a beginner or strengthening existing skill.',
+      },
+      {
+        title: 'Build a Tableau portfolio',
+        copy: 'Finishing should mean more than a certificate. Practical exercises produce portfolio work demonstrating visualisation, dashboards, calculations, analytics, reporting and BI.',
+      },
+      {
+        title: 'Career and placement guidance',
+        copy: 'Resume improvement, interview preparation, portfolio presentation and mock interviews, with a realistic view of roles across analytics and business intelligence.',
+      },
+      {
+        title: 'A practical approach to Tableau',
+        copy: 'The goal is confidence making data-driven decisions, not memorising the interface — practical Tableau, visualisation, BI, dashboard development, calculated fields, analytics and reporting.',
+      },
+    ],
+    comparison: {
+      rows: [
+        {
+          feature: 'Tableau curriculum',
+          techcadd:
+            'Industry-focused training covering dashboards, visualisation, calculated fields, filters, parameters, data connections, analytics and reporting',
+          others: 'Often focuses mainly on basic Tableau concepts',
+        },
+        {
+          feature: 'Learning style',
+          techcadd: 'Hands-on and practical, designed around real data scenarios',
+          others: 'Can be more theory-oriented',
+        },
+        {
+          feature: 'Practical dashboard training',
+          techcadd:
+            'Students learn dashboard planning, visualisation design, KPI analysis, data preparation and reporting',
+          others: 'Practical exposure may be limited or simulated',
+        },
+        {
+          feature: 'Data analytics skills',
+          techcadd:
+            'Covers analytics fundamentals, KPIs, calculated fields, data trends, business metrics and performance analysis',
+          others: 'May cover only selected analytics concepts',
+        },
+        {
+          feature: 'Dashboard optimisation',
+          techcadd: 'Focus on understanding data and improving dashboard usability',
+          others: 'Optimisation training can vary between institutes',
+        },
+        {
+          feature: 'Analytics & reporting',
+          techcadd: 'Practical understanding of business insight, KPIs, dashboards and reporting',
+          others: 'Analytics and reporting may receive limited attention',
+        },
+        {
+          feature: 'Portfolio building',
+          techcadd:
+            'Practical assignments and dashboard projects that help students demonstrate their skills',
+          others: 'Portfolio development may receive less focus',
+        },
+        {
+          feature: 'Career support',
+          techcadd: 'CV guidance, mock interviews, portfolio preparation and career-oriented support',
+          others: 'Career assistance can vary significantly',
+        },
+        {
+          feature: 'Doubt support',
+          techcadd:
+            'Trainer guidance throughout to clarify analytical and visualisation concepts',
+          others: 'Support may be limited to scheduled sessions',
+        },
+        {
+          feature: 'Certification',
+          techcadd: 'Course completion certification combined with practical learning exposure',
+          others: 'Certification format and practical exposure can vary',
+        },
+      ],
+      note: 'The right-hand column represents common market patterns, not a claim about any specific institute. Before choosing a Tableau institute in Phagwara, ask what you will actually learn, whether you will work on practical dashboard exercises, how trainers teach analytics, and what career support is included.',
+    },
+    durations: [
+      {
+        length: '3 Months',
+        tier: 'Foundation',
+        heading: 'Build your Tableau fundamentals',
+        blurb:
+          'Understand how visualisation works and how businesses use dashboards — Tableau fundamentals, data connections, charts and basic analytics.',
+        skills: ['Tableau Desktop', 'Tableau Public', 'Microsoft Excel', 'Google Sheets', 'Basic SQL'],
+        recommendedFor:
+          'Tableau Trainee, Data Analytics Trainee, Reporting Intern and Junior Data Analyst roles.',
+      },
+      {
+        length: '6 Months',
+        tier: 'Professional',
+        heading: 'Move beyond basic Tableau',
+        blurb:
+          'Practical skill in dashboard development, calculated fields, data preparation, analytics and reporting — the job-ready level for analytics roles.',
+        skills: ['Tableau Desktop', 'Tableau Prep', 'SQL', 'MySQL', 'Looker Studio', 'AI tools'],
+        recommendedFor:
+          'Tableau Developer, Data Analyst, Reporting Analyst, Business Intelligence Executive and Analytics Executive roles.',
+      },
+      {
+        length: '9 Months',
+        tier: 'Expert',
+        heading: 'Build a complete data analytics skill set',
+        blurb:
+          'Tableau combined with advanced analytics, SQL, business intelligence, reporting, dashboard optimisation and AI-powered strategy.',
+        skills: ['Tableau Prep', 'Tableau Public', 'SQL', 'Power BI concepts', 'Looker Studio', 'AI tools'],
+        recommendedFor:
+          'Tableau Developer, Data Analyst, Business Intelligence Analyst, Senior Reporting Analyst, Data Visualization Specialist and Analytics Consultant pathways.',
+      },
+    ],
+    capabilities: [
+      { capability: 'Tableau fundamentals', included: [true, true, true] },
+      { capability: 'Data visualisation', included: [true, true, true] },
+      { capability: 'Tableau dashboards', included: [true, true, true] },
+      { capability: 'Data connections', included: [true, true, true] },
+      /* Your matrix marks this "Basic" at 3 months rather than a tick, so the
+         row says so rather than overstating what the foundation tier covers. */
+      { capability: 'Calculated fields (basic at 3 months)', included: [true, true, true] },
+      { capability: 'Advanced dashboards', included: [false, true, true] },
+      { capability: 'Parameters & sets', included: [false, true, true] },
+      { capability: 'Data preparation', included: [false, true, true] },
+      { capability: 'SQL analytics', included: [false, true, true] },
+      { capability: 'Tableau Prep', included: [false, true, true] },
+      { capability: 'Advanced business intelligence', included: [false, false, true] },
+      { capability: 'AI & prompt engineering', included: [false, false, true] },
+    ],
+    durationNote:
+      'The programme is nested, not parallel. The 3-month track gives you the essential foundation. The 6-month course includes those fundamentals and continues into professional dashboard development, analytics and reporting. The 9-month programme combines all of it with advanced Tableau, SQL, business intelligence, data storytelling and AI-powered workflows — so moving to a longer duration never means starting from zero.',
     instructor: {
-      heading: 'Why learn with us?',
-      intro: 'Every trainer here still ships production code. That is the whole basis of the teaching: answers come from current practice rather than from a slide deck written three years ago.',
+      heading: 'Why learn Tableau with us?',
+      intro:
+        'The goal is not learning where to click inside Tableau. The focus is on what the data means, which patterns matter, how business performance is tracked, and how insight gets presented clearly.',
       points: [
         {
-          title: 'Practitioners, not presenters',
-          copy: 'Sessions are run by engineers working on live systems, so the examples come from real codebases.',
+          title: 'Chart choice as a decision',
+          copy: 'Picking the right visualisation for a question is a skill, not a preference. It is taught as one.',
         },
         {
-          title: 'Project-based from week one',
-          copy: 'You build as you learn. Each module ends in something that runs, not in a quiz.',
+          title: 'Calculated fields given real time',
+          copy: 'Four weeks on calculations, filters and parameters — where a static chart becomes an interactive analysis.',
         },
         {
-          title: 'Personalised guidance',
-          copy: 'Small batches mean your mentor knows what you are stuck on and what you are aiming at.',
+          title: 'Projects that become a portfolio',
+          copy: 'Eight practical dashboards covering setup, sales, analysis, customers, a local business, optimisation, AI tooling and a capstone you own.',
         },
         {
-          title: 'Doubt support that continues',
-          copy: 'Doubt sessions and mentor hours carry on after the certificate is printed.',
+          title: 'Storytelling counts',
+          copy: 'Tableau’s real advantage is communication. Presenting a dashboard so it persuades is taught as part of the work.',
         },
       ],
     },
     extraFaqs: [
       {
-        q: 'What is the duration of the Tableau course in Phagwara?',
-        a: 'techcadd runs Tableau over 2 months depending on the track you choose. Weekday, evening and weekend batches cover the same syllabus, and 1-on-1 training is available if you would rather set your own pace. Every class runs for 2 hours, whichever format you choose.',
+        q: 'What is the Tableau Course in Phagwara at Techcadd?',
+        a: 'It is designed to help learners understand how data visualisation and business intelligence work. The focus is practical: data connections, charts, dashboards, calculated fields, filters, parameters, analysis, reporting and dashboard optimisation — real analytics skill rather than Tableau concepts.',
       },
       {
-        q: 'What is the fee for the Tableau course in Phagwara?',
-        a: 'Fees depend on the batch format and whether you take the course on its own or as part of a longer track. EMI options are available. Call the centre or book a free demo and a counsellor will give you the exact figure for the format you want.',
+        q: 'Who can join a Tableau Course in Phagwara?',
+        a: 'It suits 12th-pass students, college students, graduates, freshers, job seekers, working professionals, business owners, entrepreneurs and aspiring freelancers. Beginners can start without previous analytics experience; professionals use it to strengthen their analytical skills.',
       },
       {
-        q: 'Who can join the Tableau course?',
-        a: '12th Pass Onward. The first modules start from fundamentals, so no prior experience is assumed.',
+        q: 'Is Tableau a good career option for freshers?',
+        a: 'Yes. It opens opportunities in data analytics, business intelligence, reporting, dashboard development and visualisation. Depending on skills and experience, learners can explore roles such as Tableau Developer, Data Analyst, Business Intelligence Analyst, Reporting Analyst and Data Visualization Specialist.',
       },
       {
-        q: 'What jobs can I get after the Tableau course?',
-        a: 'Graduates move into BI Developer, Data Analyst, Reporting Analyst, Visualisation Specialist and similar roles. Tableau is what larger analytics teams and international clients standardise on, and it travels particularly well on remote briefs.',
+        q: 'What will I learn in the Tableau Course?',
+        a: 'Tableau fundamentals, data connections, charts, dashboards, calculated fields, filters, parameters, joins, data blending, business intelligence, KPI analysis, storytelling, reporting and dashboard optimisation — plus revenue, profit, growth, conversion rate and customer trends.',
       },
       {
-        q: 'What salary can a fresher expect after this course in Phagwara?',
-        a: 'Data Visualisation Analyst roles start around ₹22,000 – ₹38,000 a month for a fresher with a working portfolio, rising to ₹5.5–10 LPA with two years of delivery experience. Specialists move beyond that.',
+        q: 'Is the course practical or theory-based?',
+        a: 'Tableau becomes much easier once you work with real datasets, visualisations, dashboards, calculations, filters and business metrics. The approach includes practical dashboard exercises, data analysis, visualisation development, reporting and real business scenarios.',
       },
       {
-        q: 'Is this course suitable for beginners?',
-        a: 'Yes. It starts from connecting a spreadsheet and assumes no prior BI experience.',
+        q: 'Will I work on Tableau projects during the course?',
+        a: 'Yes. Assignments include sales dashboards, customer analytics, business intelligence reports, KPI dashboards, visualisation projects, dashboard optimisation and performance analysis — which build the portfolio that demonstrates your understanding.',
       },
       {
-        q: 'What are the prerequisites?',
-        a: 'Comfort with spreadsheets. SQL helps but is introduced where it is needed.',
+        q: 'Can I learn Tableau after 12th?',
+        a: 'Absolutely, if you are interested in technology, business, analytics or data visualisation. It lets students develop a specialised skill while continuing formal education or preparing for future analytics roles.',
+      },
+      {
+        q: 'Can Tableau help me become a freelancer?',
+        a: 'Yes. Freelancers can offer dashboard development, visualisation, business reporting, KPI analysis, optimisation and analytics consulting. But successful freelancing needs more than the platform: a portfolio, an understanding of client requirements and clear communication matter just as much.',
+      },
+      {
+        q: 'Does the course include AI in Tableau and data analytics?',
+        a: 'Yes. Modern workflows use AI for exploration, insight generation, calculation ideas, reporting, research, pattern identification and automation. The course covers how these tools support analytics while keeping critical thinking, data accuracy, validation and human decision-making at the centre.',
+      },
+      {
+        q: 'How do I choose the best Tableau Course in Phagwara?',
+        a: 'Do not choose on the certificate or duration alone. Look at the syllabus, practical training, dashboard exercises, visualisation training, calculated fields, analytics tools, trainer experience, portfolio projects, doubt support and career guidance.',
       },
     ],
-    whyNow: {
-      title: 'Tableau Is Powering the Next Generation of Industry Leaders',
-      points: [
-        'Live client work from week one, supervised by a trainer, not slides, not simulations.',
-        'Data Visualisation Analyst roles in Punjab start around ₹22,000 – ₹38,000 a month for a fresher with a working portfolio.',
-      ],
-    },
     relatedCourses: [
+      'power-bi-course-in-phagwara',
       'data-analytics-course-in-phagwara',
-      'machine-learning-course-in-phagwara',
-      'artificial-intelligence-course-in-phagwara',
-      'digital-marketing-course-in-phagwara',
-      'deep-learning-course-in-phagwara',
       'data-science-course-in-phagwara',
+      'machine-learning-course-in-phagwara',
+      'python-course-in-phagwara',
+      'artificial-intelligence-course-in-phagwara',
     ],
     keywords: [
-      'tableau course phagwara',
+      'tableau course in phagwara',
       'tableau training in phagwara',
-      'data visualisation course in phagwara',
-      'bi dashboard course in phagwara',
+      'tableau classes in phagwara',
+      'tableau data visualization course in phagwara',
+      'data analytics course in phagwara',
+      'tableau course after 12th in phagwara',
     ],
   }),
 ]
