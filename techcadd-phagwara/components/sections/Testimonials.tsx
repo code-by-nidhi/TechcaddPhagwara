@@ -6,15 +6,32 @@ import { Autoplay, Pagination, Keyboard, A11y } from 'swiper/modules'
 import type { Swiper as SwiperClass } from 'swiper'
 import Icon from '@/components/ui/Icon'
 import SectionHeading from '@/components/ui/SectionHeading'
-import { testimonials } from '@/data/site'
+import { testimonials as staticTestimonials, type Testimonial } from '@/data/site'
 
 /* Swiper's stylesheets are imported in app/layout.tsx, before
    styles/testimonials.css — importing them here instead would place them
    after it in the cascade and undo our overrides. */
 
-/** Client Component: Swiper needs the DOM. Loaded as its own chunk (see page.tsx). */
-export default function Testimonials() {
+/**
+ * Client Component: Swiper needs the DOM. Loaded as its own chunk (see page.tsx).
+ *
+ * The reviews arrive as a prop so the homepage can hand over whatever the CMS
+ * has; the bundled set is the default, which is what renders when there is no
+ * CMS or it is unreachable.
+ */
+export default function Testimonials({
+  testimonials = staticTestimonials,
+}: { testimonials?: Testimonial[] } = {}) {
   const swiperRef = useRef<SwiperClass | null>(null)
+
+  /*
+    Swiper's loop mode duplicates slides to fake the wrap-around, and needs
+    more slides than it shows to do it. At the widest breakpoint it shows
+    three, so with three or fewer it silently disables looping and leaves a
+    carousel that stops dead at the last card. An editor publishing two
+    testimonials should not discover that as a bug.
+  */
+  const loop = testimonials.length > 3
 
   return (
     <section className="reviews section" id="testimonials">
@@ -57,7 +74,7 @@ export default function Testimonials() {
             }}
             spaceBetween={20}
             slidesPerView={1}
-            loop
+            loop={loop}
             keyboard={{ enabled: true }}
             autoplay={{
               delay: 3600,
@@ -71,7 +88,7 @@ export default function Testimonials() {
             }}
           >
             {testimonials.map((review) => (
-              <SwiperSlide key={review.name} style={{ height: 'auto' }}>
+              <SwiperSlide key={`${review.name}-${review.quote.slice(0, 24)}`} style={{ height: 'auto' }}>
                 <article className="review glass">
                   <span className="review__quote" aria-hidden="true">
                     &rdquo;

@@ -1,8 +1,12 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import Link from 'next/link'
 import Icon, { type IconName } from '@/components/ui/Icon'
+import {
+  courseCatalog as staticCourseCatalog,
+  type CourseMenuCategory,
+} from '@/data/coursePages'
 
 interface CategoryCard {
   title: string
@@ -85,12 +89,33 @@ const CATEGORIES: CategoryCard[] = [
   },
 ]
 
-const COUNT = CATEGORIES.length
-const STEP = 360 / COUNT
-/* Half a step either side of dead-centre still reads as "the front card" —
-   any wider and two cards would claim the highlight at once. */
-const FRONT_WINDOW = STEP / 2
-const NEAR_WINDOW = STEP * 1.5
+/**
+ * The cards whose course still exists.
+ *
+ * Every card is a link to a real course page, and the eight slugs above are
+ * chosen by hand — which was fine while the catalogue was a TypeScript file
+ * that changed only when this one did. Now that a course can be unpublished in
+ * the CMS, a card can outlive the page it points at, and the ring would go on
+ * offering a 404 with a confident description under it.
+ *
+ * Dropping the card is the right correction rather than pointing it somewhere
+ * else: the ring is a 3D circle whose geometry is derived from how many cards
+ * there are, so it closes up around a missing one and still looks deliberate.
+ */
+function usableCards(catalog: CourseMenuCategory[]): CategoryCard[] {
+  const live = new Set(catalog.flatMap((group) => group.courses.map((course) => course.slug)))
+  const kept = CATEGORIES.filter((card) => live.has(card.slug))
+
+  /*
+    Below three the ring stops being a ring — the cards face away from each
+    other and the section reads as broken rather than as sparse. If that many
+    have gone, the hand-picked list has drifted far enough that showing it
+    unchanged is the better failure: the links may 404, but somebody will
+    notice, which is the point.
+  */
+  return kept.length >= 3 ? kept : CATEGORIES
+}
+
 const AUTO_SPEED = 6 /* deg/sec */
 const EASE_RATE = 6 /* how fast a hover-recentre closes the angular gap */
 
@@ -106,7 +131,20 @@ const angleDelta = (a: number, b: number) => (((b - a + 180) % 360) + 360) % 360
  * same technique `useMouseParallax` uses elsewhere in this codebase),
  * never through React state, so this never triggers a re-render.
  */
-export default function CategoryArc() {
+export default function CategoryArc({
+  courseCatalog = staticCourseCatalog,
+}: { courseCatalog?: CourseMenuCategory[] } = {}) {
+  const cards = useMemo(() => usableCards(courseCatalog), [courseCatalog])
+  const COUNT = cards.length
+  const STEP = 360 / COUNT
+
+  /* Half a step either side of dead-centre still reads as "the front card" —
+     any wider and two cards would claim the highlight at once. Derived from
+     STEP, which now depends on how many cards survived, so these moved in
+     here with it. */
+  const FRONT_WINDOW = STEP / 2
+  const NEAR_WINDOW = STEP * 1.5
+
   const ringRef = useRef<HTMLDivElement | null>(null)
   const cardRefs = useRef<(HTMLAnchorElement | null)[]>([])
 
@@ -173,7 +211,7 @@ export default function CategoryArc() {
 
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [])
+  }, [STEP, FRONT_WINDOW, NEAR_WINDOW])
 
   const focusCard = (i: number) => {
     paused.current = true
@@ -190,7 +228,7 @@ export default function CategoryArc() {
   return (
     <div className="arc" onMouseLeave={releaseStage}>
       <div className="arc__ring" ref={ringRef}>
-        {CATEGORIES.map((cat, i) => (
+        {cards.map((cat, i) => (
           <Link
             href={`/${cat.slug}`}
             key={cat.slug}

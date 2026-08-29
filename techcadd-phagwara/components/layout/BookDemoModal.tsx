@@ -3,6 +3,7 @@
 import {
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
   type ChangeEvent,
@@ -11,14 +12,23 @@ import {
 } from 'react'
 import { createPortal } from 'react-dom'
 import Icon from '@/components/ui/Icon'
-import { brand } from '@/data/site'
+import { brand as staticBrand, type Brand } from '@/data/site'
 
 /**
  * `ssr:false` in Navbar.tsx guarantees this only ever runs client-side, so
  * `document` is always safe here — no hydration mismatch to guard against.
  */
 
-const COURSE_OPTIONS = [
+/**
+ * The short list the popup offers when it has nothing better.
+ *
+ * The modal is a two-field, thirty-second interruption, so a shortlist is the
+ * right shape for it — a forty-six-item select is not. When the navbar hands
+ * over the real catalogue this is still what seeds the list, with the
+ * catalogue's own titles matched against it, so the popup keeps its length and
+ * stops offering courses the institute may no longer run.
+ */
+const FALLBACK_COURSES = [
   'Python Programming',
   'Java Programming',
   'MERN Stack',
@@ -28,8 +38,35 @@ const COURSE_OPTIONS = [
   'Cyber Security',
   'Cloud Computing',
   'Web Development',
-  'Other',
 ]
+
+/** 'Other' is always last and always offered — it is not a course. */
+const OTHER = 'Other'
+
+/**
+ * The shortlist, kept to the courses that still exist.
+ *
+ * Matched loosely because the two vocabularies differ by wording rather than
+ * by meaning: the popup says "AI & ML" where the catalogue says "Artificial
+ * Intelligence Course in Phagwara". A shortlist entry with no match anywhere
+ * in the catalogue is dropped, which is the whole point — a student should not
+ * be able to request a demo for something that is not taught.
+ */
+function shortlist(catalogTitles: string[] | undefined): string[] {
+  if (!catalogTitles || catalogTitles.length === 0) return [...FALLBACK_COURSES, OTHER]
+
+  const haystack = catalogTitles.map((title) => title.toLowerCase())
+  const words = (text: string) =>
+    text.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length > 2)
+
+  const kept = FALLBACK_COURSES.filter((option) => {
+    const needles = words(option)
+    if (needles.length === 0) return false
+    return haystack.some((title) => needles.every((word) => title.includes(word)))
+  })
+
+  return kept.length > 0 ? [...kept, OTHER] : [...FALLBACK_COURSES, OTHER]
+}
 
 interface FormState {
   course: string
@@ -63,9 +100,18 @@ const newCaptcha = () => ({
 export interface BookDemoModalProps {
   open: boolean
   onClose: () => void
+  /** Every published course title, so the shortlist can be checked against it. */
+  catalogTitles?: string[]
+  brand?: Brand
 }
 
-export default function BookDemoModal({ open, onClose }: BookDemoModalProps) {
+export default function BookDemoModal({
+  open,
+  onClose,
+  catalogTitles,
+  brand = staticBrand,
+}: BookDemoModalProps) {
+  const courseOptions = useMemo(() => shortlist(catalogTitles), [catalogTitles])
   /* `render` keeps the modal mounted for the fade-out; `visible` drives the
      transition class. Split so closing can animate instead of vanishing. */
   const [render, setRender] = useState(open)
@@ -177,6 +223,9 @@ export default function BookDemoModal({ open, onClose }: BookDemoModalProps) {
           phone: form.phone,
           course: form.course,
           message: 'Requested a free demo via the navbar popup.',
+          /* Recorded on the enquiry so a counsellor can tell a two-field demo
+             request from a considered contact-form enquiry. */
+          formType: 'book-demo',
         }),
       })
 
@@ -306,7 +355,7 @@ export default function BookDemoModal({ open, onClose }: BookDemoModalProps) {
                     <option value="" disabled>
                       Select Your Course of Interest*
                     </option>
-                    {COURSE_OPTIONS.map((c) => (
+                    {courseOptions.map((c) => (
                       <option key={c} value={c}>
                         {c}
                       </option>

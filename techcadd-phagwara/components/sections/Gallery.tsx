@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Icon from '@/components/ui/Icon'
 import SectionHeading from '@/components/ui/SectionHeading'
-import { gallery } from '@/data/site'
+import { gallery as staticGallery, type GalleryShot } from '@/data/site'
 
 /**
  * Bento gallery — Server Component.
@@ -15,7 +15,9 @@ import { gallery } from '@/data/site'
  * `sizes` matches the bento breakpoints so the optimiser serves a
  * correctly-scaled AVIF/WebP rather than a full-width original.
  */
-export default function Gallery() {
+export default function Gallery({
+  gallery = staticGallery,
+}: { gallery?: GalleryShot[] } = {}) {
   return (
     <section className="gallery section section--soft" id="gallery">
       <div className="shell">
@@ -31,7 +33,7 @@ export default function Gallery() {
           {gallery.map((shot, i) => (
             <figure
               className="shot"
-              key={shot.title}
+              key={`${shot.title}-${i}`}
               style={{ '--hue': shot.hue }}
               data-reveal="scale"
               data-reveal-delay={(i % 4) * 80}

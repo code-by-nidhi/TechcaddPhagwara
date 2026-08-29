@@ -7,7 +7,17 @@ import Footer from '@/components/layout/Footer'
 import SiteEffects from '@/components/fx/SiteEffects'
 import ScrollReset from '@/components/layout/ScrollReset'
 import FloatingDock from '@/components/fx/FloatingDock'
-import { brand } from '@/data/site'
+import { makeNavLinks, type NavDropdownItem } from '@/data/site'
+import {
+  getAfter12Catalog,
+  getBlogs,
+  getBrand,
+  getCourseCatalog,
+  getEvents,
+  getInternshipCatalog,
+  getNavPages,
+  getSocials,
+} from '@/lib/cms/content'
 import {
   OG_IMAGE_URL,
   SITE_DESCRIPTION,
@@ -49,7 +59,12 @@ import '@/styles/faq.css'
 import '@/styles/contact.css'
 import '@/styles/footer.css'
 import '@/styles/coursePage.css'
+import '@/styles/courseCms.css'
+import '@/styles/editorial.css'
 import '@/styles/bookDemoModal.css'
+/* Last, so its `:has(.preview-root)` overrides land on top of everything the
+   preview frame is trying to correct. Inert on every other route. */
+import '@/styles/preview.css'
 
 /* Last: the course pages' utility layer (see styles/tailwind.css). */
 import '@/styles/tailwind.css'
@@ -143,35 +158,113 @@ export const viewport: Viewport = {
 
 /* ------------------------------------------------------- structured data -- */
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'EducationalOrganization',
-  name: `${brand.name} ${brand.tagline} — ${brand.suffix}`,
-  url: SITE_URL,
-  description:
-    'AI, Data Science and Full Stack training institute offering job-oriented courses with placement assistance.',
-  image: OG_IMAGE_URL,
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: 'Near Bus Stand, GT Road',
-    addressLocality: 'Phagwara',
-    addressRegion: 'Punjab',
-    postalCode: '144401',
-    addressCountry: 'IN',
-  },
-  telephone: '+91-98765-43210',
-  email: brand.email,
-  openingHours: 'Mo-Sa 09:00-19:00',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '1850',
-  },
+/**
+ * The organisation card, built from whatever the CMS knows.
+ *
+ * Was a module constant reading the bundled `brand`. That put the placeholder
+ * phone number and address into the structured data on every page — the copy
+ * Google reads and may print in a knowledge panel — and left them there however
+ * many times someone corrected them in the CMS. It is a function now for the
+ * same reason the footer takes props.
+ */
+function organisationJsonLd(brand: {
+  name: string
+  suffix: string
+  tagline: string
+  email: string
+  phone: string
+  address: string
+}) {
+  /*
+    "Near Bus Stand, GT Road, Phagwara, Punjab 144401" back into a PostalAddress.
+
+    The CMS stores an address as one line, because that is how it is written on
+    a contact page. Schema.org wants it in parts, and the parts were hard-coded
+    here — so an edited address changed the visible page and not the markup a
+    crawler reads. Split from the end, which is the only end with a reliable
+    shape: a PIN code, then the state, then the locality.
+  */
+  const parts = brand.address.split(',').map((part) => part.trim()).filter(Boolean)
+  const last = parts.at(-1) ?? ''
+  const pin = last.match(/\b(\d{6})\b/)?.[1]
+  const region = pin ? last.replace(pin, '').trim() : last
+  const locality = parts.at(pin || region ? -2 : -1) ?? ''
+  const street = parts.slice(0, Math.max(0, parts.length - (pin || region ? 2 : 1))).join(', ')
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'EducationalOrganization',
+    name: `${brand.name} ${brand.tagline} — ${brand.suffix}`,
+    url: SITE_URL,
+    description:
+      'AI, Data Science and Full Stack training institute offering job-oriented courses with placement assistance.',
+    image: OG_IMAGE_URL,
+    address: {
+      '@type': 'PostalAddress',
+      ...(street ? { streetAddress: street } : {}),
+      ...(locality ? { addressLocality: locality } : {}),
+      ...(region ? { addressRegion: region } : {}),
+      ...(pin ? { postalCode: pin } : {}),
+      addressCountry: 'IN',
+    },
+    telephone: brand.phone.replace(/\s+/g, '-'),
+    email: brand.email,
+    openingHours: 'Mo-Sa 09:00-19:00',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '1850',
+    },
+  }
 }
 
 /* ----------------------------------------------------------------- root -- */
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
+  /*
+    One round of CMS reads for the whole shell, in parallel.
+
+    Every one of these is cached and tagged (see lib/cms/client.ts), so this is
+    a cache read on all but the first request after an editor saves — and each
+    falls back to the bundled data on its own, so a CMS that is down costs the
+    chrome nothing.
+  */
+  const [brand, courseCatalog, internship, after12, navPages, socials, blogs, events] =
+    await Promise.all([
+      getBrand(),
+      getCourseCatalog(),
+      getInternshipCatalog(),
+      getAfter12Catalog(),
+      getNavPages(),
+      getSocials(),
+      // Only to decide whether to advertise the sections at all — see below.
+      getBlogs(1),
+      getEvents(1),
+    ])
+
+  /*
+    What goes into the Resources menu.
+
+    The blog and the events listing are offered only once the CMS has something
+    to show. A menu item leading to "no posts yet" is a worse first impression
+    than no menu item, and both sections are new — they will be empty until
+    somebody writes the first post or announces the first seminar. The pages
+    themselves stay reachable by address either way.
+  */
+  const headerPages: NavDropdownItem[] = [
+    ...(blogs && blogs.length > 0
+      ? [{ label: 'Blog', href: '/blogs', note: 'Guides and career advice' }]
+      : []),
+    ...(events && events.length > 0
+      ? [{ label: 'Events', href: '/events', note: 'Seminars and workshops' }]
+      : []),
+    ...navPages
+      .filter((page) => page.placement === 'header')
+      .map((page) => ({ label: page.label, href: `/${page.slug}` })),
+  ]
+
+  const navLinks = makeNavLinks(internship, after12, headerPages)
+
   return (
     <html lang="en" className={`${jakarta.variable} ${manrope.variable}`}>
       <body>
@@ -182,17 +275,21 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <SiteEffects />
         <ScrollReset />
 
-        <Navbar />
+        <Navbar navLinks={navLinks} courseCatalog={courseCatalog} brand={brand} />
 
         {children}
 
-        <Footer />
-        <FloatingDock />
+        <Footer
+          brand={brand}
+          socials={socials}
+          navPages={navPages.filter((page) => page.placement === 'footer')}
+        />
+        <FloatingDock brand={brand} />
 
         {/* JSON-LD is inert data, not executable script — safe to inline. */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organisationJsonLd(brand)) }}
         />
       </body>
     </html>

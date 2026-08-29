@@ -2,11 +2,16 @@
 
 import { useEffect, useState } from 'react'
 import Icon from '@/components/ui/Icon'
-import { brand } from '@/data/site'
+import { brand as staticBrand, type Brand } from '@/data/site'
 import { scrollToTop } from '@/lib/scroll'
 
-/** Persistent WhatsApp / call / back-to-top actions. */
-export default function FloatingDock() {
+/**
+ * Persistent WhatsApp / call / back-to-top actions.
+ *
+ * `brand` is a prop so the WhatsApp and call buttons follow the number in the
+ * CMS. It kept its bundled default, so the dock still works standalone.
+ */
+export default function FloatingDock({ brand = staticBrand }: { brand?: Brand } = {}) {
   const [showTop, setShowTop] = useState(false)
 
   useEffect(() => {

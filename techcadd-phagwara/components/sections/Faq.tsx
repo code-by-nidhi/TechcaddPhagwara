@@ -3,10 +3,18 @@
 import { useState } from 'react'
 import Icon from '@/components/ui/Icon'
 import SectionHeading from '@/components/ui/SectionHeading'
-import { brand, faqs } from '@/data/site'
+import {
+  brand as staticBrand,
+  faqs as staticFaqs,
+  type Brand,
+  type Faq as FaqItem,
+} from '@/data/site'
 
 /** Client Component: accordion open/close state. */
-export default function Faq() {
+export default function Faq({
+  faqs = staticFaqs,
+  brand = staticBrand,
+}: { faqs?: FaqItem[]; brand?: Brand } = {}) {
   const [open, setOpen] = useState(0)
 
   return (

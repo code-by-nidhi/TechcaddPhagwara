@@ -3,12 +3,19 @@ import Counter from '@/components/ui/Counter'
 import SectionHeading from '@/components/ui/SectionHeading'
 import TiltCard from '@/components/ui/TiltCard'
 import SuccessRing from './SuccessRing'
-import { placementStats, salaryCards, companies } from '@/data/site'
+import {
+  placementStats as staticPlacementStats,
+  salaryCards,
+  companies,
+  type Stat,
+} from '@/data/site'
 
 const BAR_WIDTHS = ['86%', '74%', '64%', '58%']
 
 /** Server Component — the ring, counters and tilt shells are the only client bits. */
-export default function Placement() {
+export default function Placement({
+  placementStats = staticPlacementStats,
+}: { placementStats?: Stat[] } = {}) {
   return (
     <section className="placement section section--tint" id="placement">
       <div className="shell">
