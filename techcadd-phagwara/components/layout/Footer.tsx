@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Icon from '@/components/ui/Icon'
 import SmartLink from '@/components/ui/SmartLink'
 import NewsletterForm from './NewsletterForm'
@@ -49,12 +50,17 @@ export default function Footer({
         {/* ----------------------------------------------------- columns */}
         <div className="footer__grid">
           <div className="footer__brand" data-reveal="up">
-            <SmartLink className="nav__logo" href="#home">
-              <span className="nav__mark">T</span>
-              <span className="nav__name">
-                <b>{brand.name}</b>
-                <span>{brand.suffix}</span>
-              </span>
+            {/* The navy lockup rather than the navbar's white one: the footer
+                gradient ends near-white, so the reversed mark would disappear
+                into it. Not `priority` — this sits below every fold there is. */}
+            <SmartLink className="footer__logo" href="#home" aria-label={`${brand.name} — home`}>
+              <Image
+                src="/images/techcadd-logo-navy.png"
+                alt={`${brand.name} — ${brand.suffix}`}
+                width={899}
+                height={242}
+                className="footer__logo-img"
+              />
             </SmartLink>
 
             <p>

@@ -252,11 +252,14 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 0 2.25rem;
   padding-bottom: 2.25rem;
-  /* Programming alone carries 10 links — tall enough on a short laptop
-     screen to run past the viewport. Capped and scrollable rather than
-     spilling under the fold with no way back up; the panel itself stays
-     `overflow: hidden` so its own rounded corners stay clean. */
-  max-height: min(58vh, 480px);
+  /* Programming alone carries 10 links, the most of any category, so it sets
+     the height of the whole grid. The previous 58vh cap cut its last two
+     entries (MEAN Stack and PHP Full Stack) below the fold on a laptop, where
+     they were reachable only by noticing the scrollbar. 70vh clears all ten
+     above ~600px of viewport and stays scrollable below that; the pull-quote
+     in the footer is dropped on short screens so the links get its space. The
+     panel itself stays `overflow: hidden` to keep its rounded corners clean. */
+  max-height: min(70vh, 540px);
   overflow-y: auto;
   overscroll-behavior: contain;
 }
@@ -311,7 +314,7 @@
 
 .mega__link {
   display: block;
-  padding: 0.42rem 0;
+  padding: 0.36rem 0;
   font-size: 0.92rem;
   font-weight: 500;
   color: var(--ink-2);
@@ -1324,4 +1327,17 @@
    decides to shrink, breaks the line height for every sibling. */
 .nav__item {
   flex: none;
+}
+
+/* On a short screen the links matter and the pull-quote does not, so the
+   quote yields its ~90px rather than the Programming column losing its
+   last entries. "Browse all courses" stays: it is a way out of the menu. */
+@media (max-height: 760px) {
+  .mega__quote {
+    display: none;
+  }
+
+  .mega__foot {
+    justify-content: flex-end;
+  }
 }

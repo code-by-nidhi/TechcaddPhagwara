@@ -2593,433 +2593,795 @@ export const PROGRAMMING_COURSES: CourseContent[] = [
   makeCourse({
     slug: 'web-designing-course-in-phagwara',
     label: 'Web Designing',
-    title: 'Best Web Designing Course & Training in Phagwara',
+    title: 'Web Designing Course in Phagwara',
     category: 'programming',
     categoryTitle: 'Programming',
     icon: 'palette',
-    duration: '2 Months',
-    level: 'Beginner',
-    eligibility: '10th / 12th Pass Onward',
-    summary: 'HTML, CSS and responsive layout — build pixel-accurate, mobile-first pages before moving into full development.',
-    overview: 'Prepare for a career in web design with structured training in Phagwara. You study website design, HTML, CSS, JavaScript, responsive design and user interface work, then put each of them into practice. Built for beginners: the course teaches website creation step by step, so creative and technical skill grow together rather than one waiting on the other.',
-    demand: 'Every business in Phagwara that wants a website needs someone who can make it look right on a phone — and most local agencies are short of exactly that person.',
+    duration: '3 – 9 Months',
+    level: 'Beginner to Advanced',
+    eligibility: '12th Pass Onward',
+    summary:
+      'Learn web designing from first tag to a live site — HTML, CSS, responsive layouts, JavaScript, UI design and real client projects, with placement assistance.',
+    overview:
+      'Techcadd’s Web Designing Course in Phagwara is a professionally oriented course where students, graduates, job aspirants and beginners are taught to build modern websites with HTML, CSS, JavaScript, responsive design, layouts, forms and UI design. The training is oriented to practical knowledge rather than theory: you learn through coding exercises, assignments and actual projects, seeing how websites are designed, built and optimised for different devices instead of reading about it. The approach is beginner-friendly throughout, developing design thinking, coding, layout and problem-solving together — by the end you can design, build, debug and ship a website of your own.',
+    demand:
+      'Every business in Phagwara now needs a site that works on a phone, and the agencies serving them cannot find designers who can build a responsive layout properly rather than drag one together.',
     modules: [
       {
-        title: 'Web designing basics',
-        summary: 'How websites work — structure, browsers, domains, web hosting and the basic elements of a page.',
-        topics: ['Website structure', 'Browsers', 'Domains & hosting', 'Page elements'],
-        duration: '1 week',
-        lessons: 6,
-      },
-      {
-        title: 'HTML basics',
-        summary: 'HTML syntax and elements — headings, paragraphs, links, images, lists, tables and forms.',
-        topics: ['Headings & paragraphs', 'Links & images', 'Lists & tables', 'Forms'],
-        duration: '2 weeks',
-        lessons: 10,
-      },
-      {
-        title: 'CSS styling & page layout',
-        summary: 'Selectors, colour, fonts, backgrounds, borders, spacing, positioning and advanced page styling.',
-        topics: ['Selectors', 'Colour & typography', 'Box model & spacing', 'Positioning'],
-        duration: '2 weeks',
+        title: 'Web Designing Fundamentals',
+        summary:
+          'Grow as a designer from scratch, building simple pages that exercise both your design eye and your coding logic.',
+        topics: [
+          'HTML structure, tags, elements and attributes',
+          'CSS selectors, properties and styling',
+          'Colours, fonts, images and layouts',
+          'Writing clear and understandable pages',
+        ],
+        duration: '3 weeks',
         lessons: 12,
       },
       {
-        title: 'Responsive web design',
-        summary: 'The principles and methods behind sites that adapt to desktop, tablet and mobile.',
-        topics: ['Media queries', 'Flexbox', 'CSS Grid', 'Mobile-first layout'],
-        duration: '2 weeks',
-        lessons: 10,
+        title: 'HTML, CSS & Responsive Design',
+        summary:
+          'Understand page structure properly and learn how professional websites are actually assembled.',
+        topics: [
+          'Semantic HTML',
+          'Flexbox and CSS Grid',
+          'Responsive layouts for mobile, tablet and desktop',
+          'Building flexible website sections',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
       },
       {
-        title: 'JavaScript basics',
-        summary: 'The JavaScript language — variables, data types, operators, functions, conditions and loops.',
-        topics: ['Variables & types', 'Operators', 'Functions', 'Conditions & loops'],
-        duration: '2 weeks',
-        lessons: 10,
+        title: 'UI Design & User Experience',
+        summary:
+          'Learn what professional website interfaces are made of, and how to build them consistently.',
+        topics: [
+          'Typography, colour, spacing and visual hierarchy',
+          'Navigation, buttons, cards and components',
+          'Structuring pages for the best user experience',
+          'Building beautiful, consistent interfaces',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
       },
       {
-        title: 'User interface & user experience',
-        summary: 'Planning layouts, navigation, typography, visual hierarchy and usability.',
-        topics: ['Layout planning', 'Navigation', 'Visual hierarchy', 'Usability'],
-        duration: '1 week',
+        title: 'JavaScript, Forms & Interactivity',
+        summary:
+          'Learn how a website stops being a poster and starts responding to the person using it.',
+        topics: [
+          'JavaScript fundamentals',
+          'Variables, conditions, functions and events',
+          'Forms and user input',
+          'Basic DOM manipulation',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Modern CSS & Website Layouts',
+        summary:
+          'Learn how modern sites are built beyond basic styling, and make components you can reuse.',
+        topics: [
+          'Advanced Flexbox and CSS Grid',
+          'Responsive navigation and sections',
+          'Animations, transitions and visual effects',
+          'Reusable design components',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Web Design for Business Websites',
+        summary:
+          'Design real-world sites — the pages a business actually pays for and the layouts that convert.',
+        topics: [
+          'The structure of a business website',
+          'Landing pages and service pages',
+          'Calls-to-action and conversion in layout',
+          'Organising content visually',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Web Designing Using AI',
+        summary:
+          'Learn how AI tooling has changed how sites get built — and how to use it without depending on it.',
+        topics: [
+          'AI assistants for learning and fixing HTML, CSS and JavaScript',
+          'Generating and improving ideas through effective prompts',
+          'Using AI without over-reliance',
+          'Faster design, coding, debugging and documentation',
+        ],
+        duration: '2 weeks',
         lessons: 8,
       },
       {
-        title: 'Bootstrap & frameworks',
-        summary: 'Building responsive layouts, navigation bars, cards, forms and buttons with Bootstrap.',
-        topics: ['Grid system', 'Navbars', 'Cards & forms', 'Components'],
-        duration: '2 weeks',
-        lessons: 10,
+        title: 'Web Projects, Git & Designer Workflow',
+        summary:
+          'Apply your skills the way a studio does — version controlled, organised and readable by someone else.',
+        topics: [
+          'Building sites with HTML, CSS and JavaScript together',
+          'Git and version control workflow',
+          'Website organisation and development workflow',
+          'Writing clean, reusable code',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
       },
       {
-        title: 'Website graphics & resources',
-        summary: 'Choosing and using images, icons, banners and fonts so a site looks considered rather than assembled.',
-        topics: ['Images & icons', 'Banners', 'Web fonts', 'Asset choice'],
-        duration: '1 week',
-        lessons: 6,
-      },
-      {
-        title: 'Forms & interactivity',
-        summary: 'Contact and registration forms, buttons, menus and sliders, with form validation.',
-        topics: ['Contact forms', 'Validation', 'Menus & sliders', 'Interactive components'],
-        duration: '1 week',
-        lessons: 8,
-      },
-      {
-        title: 'Website deployment & hosting',
-        summary: 'Domain names, web hosting, FTP, deployment and file management.',
-        topics: ['Domains', 'Hosting', 'FTP & deployment', 'File management'],
-        duration: '1 week',
-        lessons: 6,
-      },
-      {
-        title: 'Website optimisation',
-        summary: 'Page speed, image optimisation, mobile usability and accessible site structure.',
-        topics: ['Page speed', 'Image optimisation', 'Mobile usability', 'Accessibility'],
-        duration: '1 week',
-        lessons: 6,
-      },
-      {
-        title: 'Practice projects & career development',
-        summary: 'Real practice projects, landing pages and responsive builds, plus preparation for internships and design work.',
-        topics: ['Landing pages', 'Portfolio site', 'Responsive build', 'Interview preparation'],
-        duration: '2 weeks',
-        lessons: 10,
+        title: 'Live Web Projects & Career Preparation',
+        summary:
+          'Apply everything in one end-to-end site, then learn to defend your design choices out loud.',
+        topics: [
+          'An end-to-end web designing project',
+          'Design assignments from real-world scenarios',
+          'Explaining your design choices in interviews',
+          'Careers in web design, UI, front-end and freelancing',
+        ],
+        duration: '4 weeks',
+        lessons: 14,
       },
     ],
     outcomes: [
-      'Build standards-based pages with HTML5',
-      'Style and lay out sites confidently with CSS3',
-      'Make any layout responsive across desktop, tablet and mobile',
-      'Add interactivity and form validation with JavaScript',
-      'Apply user interface and usability principles to a design',
-      'Deploy, host and optimise a finished website',
+      'Build and style complete web pages with semantic HTML and CSS',
+      'Lay out responsive interfaces with Flexbox and CSS Grid',
+      'Apply typography, colour, spacing and visual hierarchy deliberately',
+      'Add interactivity, forms and DOM behaviour with JavaScript',
+      'Test and debug a site across phone, tablet and desktop',
+      'Ship an end-to-end website you can defend in an interview',
     ],
     tools: [
-      'HTML5',
-      'CSS3',
+      'HTML',
+      'CSS',
       'JavaScript',
       'Bootstrap',
-      'Responsive Web Design',
-      'Flexbox & CSS Grid',
+      'Tailwind CSS',
       'VS Code',
       'Git & GitHub',
-      'Figma / UI Design Tools',
-      'Web Browsers & Developer Tools',
-      'Domain & Web Hosting Basics',
-      'SEO-Friendly Web Design',
+      'Figma',
+      'Canva',
+      'Chrome DevTools',
+      'WordPress',
+      'Responsive Web Design',
+      'UI/UX Design',
+      'REST APIs',
+      'ChatGPT for Web Designing',
     ],
+    audience: [
+      {
+        label: '12th Pass Students',
+        copy: 'The mix of visual design and coding makes web designing an easy place to begin. You will cover HTML, CSS, layouts, colour, typography, responsive design, forms and basic JavaScript — a useful skill to carry alongside your academics.',
+      },
+      {
+        label: 'College Students & Graduates',
+        copy: 'Websites should be learned by building them, not from a textbook. Whatever your field — computer science, engineering, commerce or management — coding exercises in HTML, CSS, JavaScript, responsive layouts and UI design strengthen your college projects and portfolio.',
+      },
+      {
+        label: 'Job Seekers & Freshers',
+        copy: 'Basic HTML is not much use to an employer. They want candidates who understand a design requirement, build a working layout and fix what breaks. Design thinking, responsive skill, debugging and a practical portfolio are what get you hired in Phagwara.',
+      },
+      {
+        label: 'Working Professionals',
+        copy: 'In IT, marketing, business, design, content or operations? Web designing lets you build and manage sites yourself. HTML, CSS, responsive design, JavaScript, UI and layout become an addition to your current skill set, not a career change.',
+      },
+      {
+        label: 'Entrepreneurs & Business Owners',
+        copy: 'You do not need to be a developer. Knowing how sites, landing pages, user experience and online presence fit together makes briefing a designer far easier — and makes you a better judge of what you get back.',
+      },
+      {
+        label: 'Aspiring Designers & Freelancers',
+        copy: 'A good base for designing digital experiences: HTML, CSS, JavaScript, responsive and UI design, and project work you can later bill for — business sites, landing pages, portfolios, e-commerce pages and blogs.',
+      },
+    ],
+    whyChooseUs: [
+      {
+        title: 'Web designing skills are in high demand',
+        copy: 'It goes well beyond making something look good. Websites, landing pages, portfolios, e-commerce interfaces and responsive digital products are all in demand, and HTML, CSS, JavaScript, responsive and UI design underpin all of them.',
+      },
+      {
+        title: 'Learning how web designing actually works',
+        copy: 'HTML tags alone are not web design. Visual thinking, layout structure, coding logic and how a site is built — typography, Flexbox and Grid, responsive design, components, forms, the DOM, UI/UX principles, testing and version control.',
+      },
+      {
+        title: 'Practical training is how design is learned',
+        copy: 'Video lessons help. Designing layouts, writing the HTML and CSS, making it responsive and solving real site problems teaches far more. Hands-on assignments are where responsive development and UI creation actually stick.',
+      },
+      {
+        title: 'Skills that open several career paths',
+        copy: 'Depending on your interest, this leads into web design, UI design, front-end development, website development, responsive design, WordPress or freelancing.',
+      },
+    ],
+    whyNow: {
+      title: 'Learn Web Designing Skills You Can Put Into Practice',
+      points: [
+        'Real projects take you past theory into a portfolio that demonstrates what you can build.',
+        'A strong portfolio shows HTML, CSS, responsive design, JavaScript, UI and website development in one place.',
+        'Web Designer roles in Punjab start around ₹18,000 – ₹30,000 a month for a fresher with a working portfolio.',
+        'Focus on building websites and solving design problems rather than memorising tags.',
+      ],
+    },
     roles: [
       'Web Designer',
+      'Front-End Developer',
       'UI Designer',
-      'Frontend Developer',
-      'WordPress Designer',
-      'UI/UX Designer',
+      'Website Developer',
+      'Responsive Web Designer',
+      'WordPress Web Designer',
+      'Web Designer with AI',
       'Freelance Web Designer',
     ],
     roleDetails: [
       {
         role: 'Web Designer',
-        copy: 'Create attractive, responsive websites for businesses, organisations and individuals.',
+        copy: 'Design and build websites with HTML, CSS, JavaScript and responsive design — page structure, layouts, stylesheets, forms and UI. The most common path after this course.',
+      },
+      {
+        role: 'Front-End Developer',
+        copy: 'Build responsive, user-friendly interfaces with HTML, CSS, JavaScript and modern front-end tooling.',
       },
       {
         role: 'UI Designer',
-        copy: 'Build visually appealing interfaces through layout, typography, colour, components and design principles.',
+        copy: 'Design the interface itself — typography, colour, spacing and layout — into something consistent and genuinely usable.',
       },
       {
-        role: 'Frontend Developer',
-        copy: 'Build the visual and interactive parts of a website with HTML, CSS and JavaScript.',
+        role: 'Website Developer',
+        copy: 'Build complete websites for businesses, professionals and organisations using HTML, CSS, JavaScript, responsive design and CMS platforms.',
       },
-      { role: 'WordPress Designer', copy: 'Build and customise websites on WordPress.' },
       {
-        role: 'UI/UX Designer',
-        copy: 'Shape the user experience through usability, navigation, visual layout and interaction.',
+        role: 'Responsive Web Designer',
+        copy: 'Build sites that work properly on desktop, tablet and phone through flexible layouts, responsive CSS and media queries.',
+      },
+      {
+        role: 'WordPress Web Designer',
+        copy: 'Build and customise WordPress sites — themes, page builders, layouts, content sections and the customisation businesses ask for.',
+      },
+      {
+        role: 'Web Designer with AI',
+        copy: 'Combine design skill with AI tooling for better layouts, coding help and faster debugging. AI assists — design fundamentals are what let you judge its output.',
       },
       {
         role: 'Freelance Web Designer',
-        copy: 'Design websites independently for clients, startups, businesses or personal brands.',
+        copy: 'Build a freelance practice designing sites for businesses in Phagwara, Jalandhar and beyond, growing a portfolio from real client work.',
       },
     ],
     hiring: [
-      'Design and digital agencies',
-      'In-house marketing teams',
-      'Freelance website projects',
-      'Startups building a first product',
+      'Software development companies building websites, applications and business solutions',
+      'Digital marketing agencies needing websites, landing pages and UI designs',
+      'IT startups and technology companies building websites and digital products',
+      'E-commerce companies needing responsive online stores and interfaces',
     ],
-    nextSteps: ['Frontend development', 'React', 'WordPress development', 'UI/UX design'],
-    industries: ['Digital agencies', 'Startups', 'E-commerce', 'Freelance & studio work'],
+    nextSteps: [
+      'Front-end development with React',
+      'Full-stack web development',
+      'UI/UX design in depth',
+      'WordPress & CMS development',
+    ],
+    industries: ['Digital agencies', 'IT startups', 'E-commerce', 'Software development'],
+    /*
+     * Client-supplied bands, monthly rather than the derived LPA figures used
+     * elsewhere in the catalogue — that is the unit a fresher in this market
+     * recognises. `scale` is the midpoint in ₹/month, and remote sits *below*
+     * Punjab at the fresher end on purpose: freelance income ramps rather than
+     * starting at a salary.
+     */
     salary: {
       role: 'Web Designer',
-      summary: 'Turns a brief into a responsive, accessible interface that a developer can build from.',
-      starting: '₹2–3 LPA',
-      after2: '₹3.5–6.5 LPA',
+      summary:
+        'Designs and builds responsive websites and interfaces. Earnings depend on your design skills, portfolio, experience, company and location.',
+      starting: '₹18,000–₹30,000/month',
+      after2: '₹30,000–₹50,000/month',
       markets: [
         {
-          name: 'Punjab / Tricity',
-          fresher: '₹2–3 LPA',
-          after2: '₹3.5–6.5 LPA',
-          scale: { fresher: 2.5, after2: 5 },
+          name: 'Punjab — Web Designer',
+          fresher: '₹18,000–₹30,000/month',
+          after2: '₹30,000–₹50,000/month',
+          scale: { fresher: 24000, after2: 40000 },
         },
         {
-          name: 'Delhi NCR',
-          fresher: '₹2.5–4.5 LPA',
-          after2: '₹5–9 LPA',
-          scale: { fresher: 3.5, after2: 7 },
+          name: 'Delhi / NCR — Web Design & Front-End',
+          fresher: '₹25,000–₹40,000/month',
+          after2: '₹40,000–₹70,000+/month',
+          scale: { fresher: 32500, after2: 55000 },
         },
         {
-          name: 'Remote / Freelance',
-          fresher: '₹3–5 LPA',
-          after2: '₹5.5–10 LPA',
-          scale: { fresher: 3.88, after2: 7.75 },
+          name: 'Remote / Freelance Web Designing',
+          fresher: '₹10,000–₹25,000/month',
+          after2: '₹30,000–₹80,000+/month',
+          scale: { fresher: 17500, after2: 55000 },
         },
       ],
     },
     careerFaqs: [
       {
-        q: 'What job roles open up after Web Designing?',
-        a: 'Graduates move into Web Designer, UI Designer, Frontend Developer, WordPress Designer and similar roles. Every business in Phagwara that wants a website needs someone who can make it look right on a phone — and most local agencies are short of exactly that person.',
+        q: 'What job roles open up after web designing?',
+        a: 'Web Designer, Front-End Developer, UI Designer, Website Developer and WordPress Designer. Web design sits behind business sites, digital agencies, startups, e-commerce and online services, which is what makes it such a portable first skill.',
       },
       {
         q: 'What can I earn, and how fast does it grow?',
-        a: 'A fresher with a working portfolio starts around ₹15,000 – ₹27,000 a month in the Phagwara market. With two years of delivery experience that typically doubles, and specialists who keep learning move well beyond it.',
+        a: 'A fresher with a working portfolio starts around ₹18,000 – ₹30,000 a month in the Punjab market, rising to ₹30,000 – ₹50,000 with two years of delivery experience. Delhi/NCR runs higher, and front-end specialists move well beyond it.',
       },
       {
         q: 'Can I freelance or work remotely with this skill?',
-        a: 'Yes. A Phagwara address costs you nothing on a remote brief. Students bill clients in Delhi, Dubai and Canada. The course covers client handling, proposals and reporting so you can price and defend your work, not just do it.',
+        a: 'Yes — web design is one of the easiest skills to freelance with locally, because every business needs a site. Freelance income ramps rather than starting at a salary: around ₹10,000 – ₹25,000 a month early on, and ₹30,000 – ₹80,000+ once you have shipped real client sites.',
       },
       {
         q: 'Which industries hire for this in Punjab?',
-        a: 'Beyond IT companies, the agro and food processing units, immigration consultancies, hospitals, schools, hotels and the university belt around Phagwara all now hire for these skills directly.',
+        a: 'Software development companies, digital marketing agencies needing sites and landing pages, IT startups building digital products, and e-commerce companies needing responsive storefronts — plus freelance and remote work.',
       },
       {
         q: 'Can I continue to higher studies or a specialisation later?',
-        a: 'The certificate and portfolio stand on their own, and they stack. Most students move on to an adjacent techcadd track. The tools overlap, so the second course is faster than the first.',
+        a: 'The certificate and portfolio stand on their own, and they stack. Web designing is the foundation under front-end development, full-stack and UI/UX tracks, so the second course is faster than the first.',
       },
     ],
     projects: [
       {
-        name: 'Responsive business landing page',
-        summary: 'A single-page site built mobile-first, from a layout sketch to a deployed page.',
-        tech: ['HTML5', 'CSS3', 'Flexbox'],
+        name: 'Web Designing & Layout Thinking',
+        summary:
+          'Design a page that builds your design thinking across HTML structure, CSS styling, colour, typography, spacing, sections and responsive layout. You build it yourself, so you know how every part works.',
+        tech: ['HTML', 'CSS'],
         level: 'Beginner',
-        skills: ['Layout', 'Responsive design', 'Typography'],
+        skills: ['Layout Thinking', 'Web Designing'],
       },
       {
-        name: 'Personal portfolio website',
-        summary: 'A multi-page portfolio with navigation, a working contact form and validation.',
-        tech: ['HTML5', 'CSS3', 'JavaScript'],
-        level: 'Intermediate',
-        skills: ['Forms & validation', 'Navigation', 'Visual hierarchy'],
+        name: 'Responsive Business Website',
+        summary:
+          'Build a business site with navigation, hero, service sections, forms, buttons and a responsive layout — and see how the sections combine into something professional.',
+        tech: ['HTML', 'CSS'],
+        level: 'Beginner',
+        skills: ['Responsive Design', 'Web Design'],
       },
       {
-        name: 'Bootstrap e-commerce front page',
-        summary: 'Product grid, cards and navbar assembled with Bootstrap, then optimised for speed and mobile.',
-        tech: ['Bootstrap', 'CSS3', 'JavaScript'],
+        name: 'Portfolio Website Project',
+        summary:
+          'Design a portfolio site presenting your skills, projects, services and contact details — practical work in organising content so a reader finds what matters.',
+        tech: ['HTML', 'CSS'],
         level: 'Intermediate',
-        skills: ['Bootstrap components', 'Grid layout', 'Optimisation'],
+        skills: ['Portfolio Design', 'UI Design'],
+      },
+      {
+        name: 'Interactive JavaScript Website',
+        summary:
+          'Build an interactive site using JavaScript to add functionality — how a page responds to a user, handles forms and drives dynamic elements.',
+        tech: ['JavaScript', 'DOM'],
+        level: 'Intermediate',
+        skills: ['Interactivity', 'Web Development'],
+      },
+      {
+        name: 'Landing Page Design Project',
+        summary:
+          'Build a professional landing page from a real business need: structuring content, creating visual hierarchy, placing calls-to-action and making it work on every device.',
+        tech: ['HTML', 'CSS'],
+        level: 'Intermediate',
+        skills: ['Landing Page', 'Conversion Layout'],
+      },
+      {
+        name: 'Web Designing Problem-Solving Project',
+        summary:
+          'Turn real website requirements into working pages. Learn to solve design problems, build better layouts, respond to different devices and write clean code.',
+        tech: ['CSS', 'Responsive Design'],
+        level: 'Advanced',
+        skills: ['Problem Solving', 'Clean Code'],
+      },
+      {
+        name: 'AI & Web Designing Project',
+        summary:
+          'Explore where web designing meets AI on a practical project — how AI assists with design, coding, content structure and modern UI development.',
+        tech: ['AI Tools', 'UI Design'],
+        level: 'Advanced',
+        skills: ['Web Technologies', 'AI-Assisted Design'],
+      },
+      {
+        name: 'End-to-End Web Designing Capstone',
+        summary:
+          'Use everything to build a complete website: ideate, design, develop, test responsiveness, debug and present the finished site as your portfolio piece.',
+        tech: ['Web Design', 'Website Development'],
+        level: 'Advanced',
+        skills: ['Website Development', 'Portfolio'],
       },
     ],
+    workingLoop: [
+      {
+        title: 'Understand',
+        copy: 'Translate a real business objective into a design concept — the audience, the requirements, the page structure, and the layout, colour and typography that suit them.',
+        artefact: 'Website Design & Project Brief',
+      },
+      {
+        title: 'Build',
+        copy: 'Build the site with a trainer beside you: responsive layouts, real pages, interactivity, forms, and testing across screen sizes with modern tooling.',
+        artefact: 'Responsive Website & Front-End Development',
+      },
+      {
+        title: 'Present & Optimise',
+        copy: 'Put the site into your portfolio and present it — the design concept, structure, responsive layouts, interface choices, and how you tested and optimised it.',
+        artefact: 'End-to-End Website Design & Optimisation',
+      },
+    ],
+    industryReady: [
+      {
+        title: 'Industry-ready training programme',
+        copy: 'Practical subjects — HTML, CSS, JavaScript, responsive design, UI/UX, layout creation, forms and web development — that turn fundamentals into working skill.',
+      },
+      {
+        title: 'Learn by building real projects',
+        copy: 'Practical projects and exercises: creating responsive layouts, writing code, designing interfaces, debugging pages and building genuinely useful websites.',
+      },
+      {
+        title: 'Create a web design portfolio',
+        copy: 'Industry-relevant websites you can put on a CV — work that demonstrates your design ability in interviews and job applications.',
+      },
+      {
+        title: 'Career guidance and placement services',
+        copy: 'CV help, technical interview practice, project presentation and career development across web design, UI, front-end, web development and freelancing.',
+      },
+    ],
+    whyTechcadd: [
+      {
+        title: 'Trainers who make web designing easy to follow',
+        copy: 'HTML, CSS, JavaScript, layout concepts and design principles explained with simple, practical examples rather than definitions — which is what a beginner actually needs.',
+      },
+      {
+        title: 'Learning through practical projects',
+        copy: 'Projects make the theory mean something. You learn through real work covering websites, responsive layouts, UI design, forms, JavaScript and front-end development.',
+      },
+      {
+        title: 'Small batches so doubts get cleared',
+        copy: 'Design and coding get much easier when you can clear a doubt in real time and practise the concept while you are still stuck on it.',
+      },
+      {
+        title: 'A practical portfolio you build yourself',
+        copy: 'You finish with a project portfolio covering website layouts, responsive design, UI components, JavaScript interaction and front-end development — real examples to discuss in an interview.',
+      },
+      {
+        title: 'Career and placement guidance',
+        copy: 'Because web design spans agencies, startups, e-commerce and online business, guidance is career-oriented: resume building, mock interviews, project presentation and portfolio direction.',
+      },
+      {
+        title: 'Web designing taught the practical way',
+        copy: 'The goal is solving a website requirement with design and coding logic, not copying pages. That means practical HTML, CSS, responsive design, JavaScript, UI and front-end technologies.',
+      },
+    ],
+    comparison: {
+      rows: [
+        {
+          feature: 'Web designing curriculum',
+          techcadd:
+            'Industry-focused training covering HTML, CSS, JavaScript, responsive design, UI/UX, layouts and advanced concepts',
+          others: 'Often focuses mainly on basic HTML and CSS',
+        },
+        {
+          feature: 'Learning style',
+          techcadd:
+            'Practical, design and coding-focused learning built around real website requirements',
+          others: 'Can be more theory-oriented',
+        },
+        {
+          feature: 'Practical projects',
+          techcadd:
+            'Students work on website assignments and project-based tasks to strengthen design and problem-solving skills',
+          others: 'Practical exposure may be limited',
+        },
+        {
+          feature: 'Designing skills',
+          techcadd:
+            'Focus on layout design, responsive development, UI, debugging and writing clean front-end code',
+          others: 'May cover concepts without enough website practice',
+        },
+        {
+          feature: 'Advanced web design',
+          techcadd:
+            'Exposure to responsive layouts, JavaScript, UI tools, APIs and modern website development',
+          others: 'Advanced topics can vary by institute',
+        },
+        {
+          feature: 'Problem solving',
+          techcadd:
+            'Regular design and coding exercises designed to improve logical thinking and development confidence',
+          others: 'Problem-solving practice may receive less attention',
+        },
+        {
+          feature: 'Portfolio building',
+          techcadd: 'Projects and assignments that help students showcase their web designing skills',
+          others: 'Portfolio development may not be a major focus',
+        },
+        {
+          feature: 'Career support',
+          techcadd: 'CV guidance, interview preparation, portfolio support and career-oriented guidance',
+          others: 'Career assistance varies between institutes',
+        },
+        {
+          feature: 'Doubt support',
+          techcadd:
+            'Trainer guidance to help students understand design concepts and solve coding challenges',
+          others: 'Support may be limited to classroom sessions',
+        },
+        {
+          feature: 'Certification',
+          techcadd: 'Course completion certification supported by practical learning and project exposure',
+          others: 'Certification and practical exposure can vary',
+        },
+      ],
+      note: 'The right-hand column represents common market patterns, not a comparison with any specific institute. Before choosing a web designing institute in Phagwara, ask how much coding and design practice is included, whether students build real websites, how trainers handle doubts, and what career support is provided.',
+    },
+    durations: [
+      {
+        length: '3 Months',
+        tier: 'Foundation',
+        heading: 'Learn basic web designing skills',
+        blurb:
+          'Step by step through coding and website projects, until building a page and making it responsive stops feeling difficult.',
+        skills: ['HTML', 'CSS', 'VS Code', 'Basic Git', 'Responsive design', 'AI-assisted coding'],
+        recommendedFor:
+          'Web Design Trainee, Web Design Intern, Junior Web Designer, and anyone starting a web designing course in Phagwara.',
+      },
+      {
+        length: '6 Months',
+        tier: 'Professional',
+        heading: 'Become good at web designing',
+        blurb:
+          'Work with JavaScript, responsive layouts, UI design, forms and website development, with advanced coding and design skills.',
+        skills: ['JavaScript', 'Bootstrap', 'Tailwind CSS', 'Git & GitHub', 'Figma', 'WordPress'],
+        recommendedFor: 'Web Designer, Junior Web Developer, Front-End Developer, UI Designer.',
+      },
+      {
+        length: '9 Months',
+        tier: 'Advanced',
+        heading: 'Master web designing',
+        blurb:
+          'Responsive development, JavaScript, UI/UX, modern CSS, APIs and WordPress — building complete website projects end to end.',
+        skills: ['Figma', 'WordPress', 'REST APIs', 'Chrome DevTools', 'Tailwind CSS', 'AI tools'],
+        recommendedFor:
+          'Web Designer, Front-End Developer, UI Designer, Website Developer, Freelance Web Designer, and the advanced front-end path.',
+      },
+    ],
+    capabilities: [
+      { capability: 'HTML fundamentals', included: [true, true, true] },
+      { capability: 'CSS fundamentals', included: [true, true, true] },
+      { capability: 'Website layouts', included: [true, true, true] },
+      { capability: 'Responsive design', included: [true, true, true] },
+      { capability: 'Flexbox & CSS Grid', included: [true, true, true] },
+      { capability: 'Forms & components', included: [true, true, true] },
+      { capability: 'Basic UI design', included: [true, true, true] },
+      { capability: 'Advanced CSS', included: [false, true, true] },
+      { capability: 'JavaScript fundamentals', included: [false, true, true] },
+      { capability: 'DOM & interactivity', included: [false, true, true] },
+      { capability: 'Bootstrap / Tailwind CSS', included: [false, true, true] },
+      { capability: 'WordPress', included: [false, true, true] },
+      { capability: 'Git & GitHub', included: [false, true, true] },
+      { capability: 'Figma & UI workflow', included: [false, false, true] },
+      { capability: 'API integration', included: [false, false, true] },
+      { capability: 'Advanced responsive design', included: [false, false, true] },
+      { capability: 'Advanced projects', included: [false, false, true] },
+    ],
+    durationNote:
+      'The programme is nested, not parallel. The 3-month course lays the foundation in design and coding. The 6-month track includes that and adds JavaScript, responsive development, UI and website development. The 9-month programme advances into front-end development, APIs, UI workflows and complete website projects. Choose 3 months for HTML, CSS, layouts and responsive basics; 6 months to add JavaScript, UI design and real website development; 9 months for advanced front-end, UI/UX, APIs and WordPress.',
     instructor: {
       heading: 'Why learn web designing with us?',
-      intro: 'Design is judged by what ends up on the screen, so the sessions are built around building. Every concept arrives attached to a page you are making, and every page is reviewed the way client work would be.',
+      intro:
+        'Web designing is not a list of HTML tags. The focus here is on how a site is structured, how it is designed, and how real problems get solved with modern web technology — through practical coding, assignments and projects.',
       points: [
         {
-          title: 'Learning through practice',
-          copy: 'Go beyond theory with website exercises, design assignments and project-based training.',
+          title: 'Design and code together',
+          copy: 'Layout thinking and CSS are taught as one subject, because separating them is what produces designers who cannot build and coders who cannot design.',
         },
         {
-          title: 'A program for beginners',
-          copy: 'Start at the basics and move toward building responsive, professional websites.',
+          title: 'Responsive from the start',
+          copy: 'Every project is tested on a phone. Responsive design is a habit here, not a chapter near the end.',
         },
         {
-          title: 'Training with real-world tools',
-          copy: 'Work with HTML, CSS, JavaScript, Bootstrap, VS Code, Git, GitHub and Figma.',
+          title: 'Projects that become a portfolio',
+          copy: 'Eight practical projects covering layout, business sites, portfolios, interactivity, landing pages, problem solving, AI and a capstone site you own.',
         },
         {
-          title: 'Practical website creation',
-          copy: 'Build real websites, landing pages, portfolio sites and responsive layouts.',
-        },
-        {
-          title: 'Guided sessions with support',
-          copy: 'Learn through worked examples, practical work, problem solving and continuous support.',
-        },
-        {
-          title: 'Technical & creative career skills',
-          copy: 'Develop the mix of technical and creative skill that internships, freelance projects and interviews ask for.',
+          title: 'The front-end path stays open',
+          copy: 'This is the foundation under React, full-stack and UI/UX work — the syllabus is written to lead there rather than stop.',
         },
       ],
     },
     extraFaqs: [
       {
-        q: 'What is the duration of the Web Designing course in Phagwara?',
-        a: 'techcadd runs Web Designing over 2 months depending on the track you choose. Weekday, evening and weekend batches cover the same syllabus, and 1-on-1 training is available if you would rather set your own pace. Every class runs for 2 hours, whichever format you choose.',
+        q: 'What is the Web Designing Course in Phagwara at Techcadd?',
+        a: 'It is designed to help beginners and aspiring web designers learn website design through practical, career-focused training. Students learn HTML, CSS, responsive design, JavaScript, UI concepts, website layouts and real-world web designing with hands-on practice.',
       },
       {
-        q: 'What is the fee for the Web Designing course in Phagwara?',
-        a: 'Fees depend on the batch format and whether you take the course on its own or as part of a longer track. EMI options are available. Call the centre or book a free demo and a counsellor will give you the exact figure for the format you want.',
+        q: 'Who can join a Web Designing Course in Phagwara?',
+        a: 'It suits 12th-pass students, college students, graduates, freshers, job seekers and working professionals. Beginners can start from the basics without prior coding experience, while those with design or development knowledge can strengthen their skills.',
       },
       {
-        q: 'Who can join the Web Designing course?',
-        a: '10th / 12th Pass Onward. The first modules start from fundamentals, so no prior experience is assumed.',
+        q: 'Is web designing a good career option for freshers?',
+        a: 'Yes. Web designing is used across business websites, digital agencies, startups, e-commerce platforms and online services. After gaining practical skills, freshers can explore roles such as Web Designer, UI Designer, Front-End Developer and Website Developer.',
       },
       {
-        q: 'What jobs can I get after the Web Designing course?',
-        a: 'Graduates move into Web Designer, UI Designer, Frontend Developer, WordPress Designer and similar roles. Every business in Phagwara that wants a website needs someone who can make it look right on a phone — and most local agencies are short of exactly that person.',
+        q: 'What will I learn in the Web Designing Course?',
+        a: 'HTML, CSS, JavaScript, responsive design, Flexbox, CSS Grid, forms, UI design, layouts, website components, basic DOM concepts, debugging, Git and practical website development — plus how modern tools fit into a design workflow.',
       },
       {
-        q: 'What salary can a fresher expect after this course in Phagwara?',
-        a: 'Web Designer roles start around ₹15,000 – ₹27,000 a month for a fresher with a working portfolio, rising to ₹3.5–6.5 LPA with two years of delivery experience. Specialists move beyond that.',
+        q: 'Is the Web Designing course practical or theory-based?',
+        a: 'Learning becomes much easier when you actually create and test webpages. The approach focuses on hands-on coding, website exercises, responsive design, debugging, mini-projects and real website development rather than theory alone.',
       },
       {
-        q: 'Is this course suitable for beginners?',
-        a: 'Yes. Web Designing begins from fundamentals, and the pace is set so nothing is assumed.',
+        q: 'Will I work on web designing projects during the course?',
+        a: 'Yes. Practical learning includes webpage projects, responsive business websites, portfolio sites, landing pages, interactive pages and complete website development projects — which also strengthen your portfolio when applying for jobs or internships.',
       },
       {
-        q: 'What are the prerequisites?',
-        a: 'Basic computer familiarity. Anything else the track needs is introduced in the first module.',
+        q: 'Can I learn web designing after 12th?',
+        a: 'Absolutely. Students can start after 12th, especially if interested in creativity, coding, website development or digital careers. It provides a strong foundation to build on during college and beyond.',
+      },
+      {
+        q: 'Can web designing help me get a job or internship?',
+        a: 'Yes, but web designing alone is not enough. Employers also look for practical websites, responsive design skills, UI understanding, coding fundamentals, problem-solving ability and portfolio projects. A job-oriented course helps you build these through practical training and project work.',
+      },
+      {
+        q: 'Does the course include responsive web design?',
+        a: 'Responsive design is a core part of modern website development. The course covers responsive layouts, Flexbox, CSS Grid, media queries and mobile-friendly design, so your sites work across different screen sizes.',
+      },
+      {
+        q: 'How do I choose the best Web Designing Course in Phagwara?',
+        a: 'Do not choose on fees or certificates alone. Check the syllabus, practical coding sessions, trainer experience, project work, responsive design practice, tools covered, UI/UX concepts, doubt support, career guidance and placement assistance. A good course should take you from HTML and CSS basics to actually designing and building websites.',
       },
     ],
-    whyNow: {
-      title: 'Web Designing Is Powering the Next Generation of Industry Leaders',
-      points: [
-        'Live client work from week one, supervised by a trainer, not slides, not simulations.',
-        'Web Designer roles in Punjab start around ₹15,000 – ₹27,000 a month for a fresher with a working portfolio.',
-      ],
-    },
     relatedCourses: [
-      'mern-stack-course-in-phagwara',
-      'digital-marketing-course-in-phagwara',
       'web-development-course-in-phagwara',
+      'mern-stack-course-in-phagwara',
+      'graphic-designing-course-in-phagwara',
+      'digital-marketing-course-in-phagwara',
+      'php-full-stack-course-in-phagwara',
       'python-course-in-phagwara',
-      'java-course-in-phagwara',
-      'c-course-in-phagwara',
     ],
     keywords: [
-      'best web designing course in phagwara',
+      'web designing course in phagwara',
       'web designing courses in phagwara',
-      'web designing certification courses in phagwara',
-      'html css javascript classes phagwara',
-      'responsive web design training in phagwara',
+      'web designing training institute in phagwara',
+      'web designing classes in phagwara',
+      'web designing course after 12th in phagwara',
+      'web designing certification course in phagwara',
     ],
   }),
 
   makeCourse({
     slug: 'web-development-course-in-phagwara',
     label: 'Web Development',
-    title: 'Best Web Development Course & Training in Phagwara',
+    title: 'Web Development Course in Phagwara',
     category: 'programming',
     categoryTitle: 'Programming',
     icon: 'code',
-    duration: '5 Months',
+    duration: '3 – 9 Months',
     level: 'Beginner to Advanced',
     eligibility: '12th Pass Onward',
-    summary: 'Front end to back end — JavaScript, a modern framework and a database, ending with a full deployed web application.',
-    overview: 'Launch your career in web development with structured training in Phagwara. You learn to create responsive, interactive and functional websites using HTML, CSS, JavaScript, frontend frameworks, backend technologies, databases, APIs and the tools professional teams actually use. Designed for beginners, students, freshers and aspiring developers who want practical, industry-relevant skills rather than theory.',
-    demand: 'Web development is the broadest entry point in the industry: the same skills serve an agency job, a product team and a freelance client list.',
+    summary:
+      'Learn web development from first tag to a deployed application — HTML, CSS, JavaScript, responsive design, APIs, databases and live projects, with placement assistance.',
+    overview:
+      'techcadd’s Web Development Programming Course in Phagwara is an industry-oriented course that teaches students, graduates, job seekers and beginners how modern websites and web applications are actually built. It covers HTML, CSS, JavaScript, responsive design, frontend development, backend fundamentals, databases, APIs and the tools professionals use day to day. The training is built on practical knowledge rather than theory: you learn through coding exercises, assignments and real projects, seeing how sites are created for businesses, startups and digital platforms. The approach is beginner-friendly throughout, developing design sense, problem solving and coding ability together — by the end you can design, code, test and ship a modern web application.',
+    demand:
+      'Websites are the one thing every business, agency and startup in Punjab needs, and the gap is not people who know HTML — it is people who can build something responsive, interactive and maintainable.',
     modules: [
       {
-        title: 'Introduction to web development',
-        summary: 'How websites and web applications work — frontend and backend concepts, terminology and the development environment.',
-        topics: ['How the web works', 'Frontend vs backend', 'Web terminology', 'Environment setup'],
-        duration: '1 week',
-        lessons: 6,
-      },
-      {
-        title: 'HTML5 & website structure',
-        summary: 'HTML elements, headings, paragraphs, links, images, lists, tables, forms, semantic tags and page structure.',
-        topics: ['Elements & structure', 'Links & images', 'Tables & forms', 'Semantic tags'],
-        duration: '1 week',
-        lessons: 8,
-      },
-      {
-        title: 'CSS3 & web designing',
-        summary: 'Selectors, properties, colour, typography, spacing, positioning, layouts, Flexbox, Grid, transitions and animations.',
-        topics: ['Selectors & properties', 'Flexbox', 'CSS Grid', 'Transitions & animations'],
-        duration: '2 weeks',
+        title: 'Web Development Fundamentals',
+        summary:
+          'Build your knowledge from scratch and grow as a developer step by step, writing clean, well-structured pages.',
+        topics: [
+          'HTML structure, elements, forms and semantic markup',
+          'CSS styling, layouts and responsive design',
+          'Website components and navigation',
+          'Building simple sites to develop coding confidence',
+        ],
+        duration: '3 weeks',
         lessons: 12,
       },
       {
-        title: 'Responsive web design',
-        summary: 'Building sites that adapt to desktop, tablet and mobile with responsive layouts, flexible elements and media queries.',
-        topics: ['Media queries', 'Flexible layouts', 'Mobile-first', 'Cross-device testing'],
-        duration: '1 week',
-        lessons: 8,
-      },
-      {
-        title: 'JavaScript programming',
-        summary: 'Variables, data types, operators, conditions, loops, functions, arrays, objects and the logic web development needs.',
-        topics: ['Variables & types', 'Functions', 'Arrays & objects', 'Programming logic'],
-        duration: '2 weeks',
+        title: 'CSS, Responsive Design & UI Development',
+        summary:
+          'Get deeper into website design and learn how modern interfaces are actually put together.',
+        topics: [
+          'Responsive layouts for different screen sizes',
+          'Flexbox, Grid and modern CSS',
+          'Spacing, typography and visual hierarchy',
+          'Mobile-friendly website interfaces',
+        ],
+        duration: '3 weeks',
         lessons: 12,
       },
       {
-        title: 'DOM & website interactivity',
-        summary: 'The Document Object Model, events, forms, validation, dynamic content and user interaction.',
-        topics: ['DOM traversal', 'Events', 'Forms & validation', 'Dynamic content'],
-        duration: '1 week',
-        lessons: 10,
+        title: 'JavaScript & Interactive Websites',
+        summary:
+          'Find out how a website stops being a document and starts responding to the person using it.',
+        topics: [
+          'Variables, functions, conditions and loops',
+          'DOM manipulation and event handling',
+          'Dynamic forms and interactive components',
+          'Building functional website features',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
       },
       {
-        title: 'Modern JavaScript & APIs',
-        summary: 'ES6 features, modules, asynchronous programming, promises, the Fetch API, JSON and dynamic data.',
-        topics: ['ES6 features', 'Modules', 'Promises & async', 'Fetch & JSON'],
-        duration: '2 weeks',
-        lessons: 10,
+        title: 'Frontend Development, APIs & Web Integration',
+        summary:
+          'Find out how a frontend connects to real services that somebody else owns.',
+        topics: [
+          'Modern frontend development concepts',
+          'APIs and external data integration',
+          'JSON and browser-based requests',
+          'Building dynamic website functionality',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
       },
       {
-        title: 'Frontend development with React',
-        summary: 'React fundamentals — components, props, state, events, forms, hooks and routing.',
-        topics: ['Components & props', 'State & events', 'Hooks', 'Routing'],
-        duration: '2 weeks',
+        title: 'Backend & Database Fundamentals',
+        summary:
+          'Find out how modern sites handle information behind the scenes, and where the data actually lives.',
+        topics: [
+          'Server-side development basics',
+          'Databases and data storage concepts',
+          'How frontend and backend communicate',
+          'Authentication and web application workflows',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Modern Web Application Development',
+        summary:
+          'Advance from pages to applications — components, structure and the practices teams actually use.',
+        topics: [
+          'How modern web applications are structured',
+          'Reusable components and application workflows',
+          'Frontend frameworks and development practices',
+          'Performance and optimisation concepts',
+        ],
+        duration: '4 weeks',
         lessons: 14,
       },
       {
-        title: 'Backend development',
-        summary: 'Server-side programming, routing, requests and responses, middleware and authentication with Node.js and Express.js.',
-        topics: ['Node.js', 'Express routing', 'Middleware', 'Authentication concepts'],
+        title: 'AI-Powered Web Development',
+        summary:
+          'Learn how AI tooling changed the way sites get built — and how to use it without depending on it.',
+        topics: [
+          'AI assistants for understanding code and troubleshooting',
+          'Generating and improving ideas with effective prompts',
+          'Using AI ethically without over-reliance',
+          'Faster debugging, documentation and development',
+        ],
         duration: '2 weeks',
-        lessons: 12,
-      },
-      {
-        title: 'Databases & API integration',
-        summary: 'Database concepts, CRUD, SQL, connecting applications to data, REST APIs and frontend-backend communication.',
-        topics: ['SQL & CRUD', 'Database connection', 'REST APIs', 'JSON handling'],
-        duration: '2 weeks',
-        lessons: 12,
-      },
-      {
-        title: 'Git, GitHub & deployment',
-        summary: 'Version control with Git and GitHub, project basics, hosting, domains and publishing a site.',
-        topics: ['Git basics', 'GitHub workflow', 'Hosting & domains', 'Deployment'],
-        duration: '1 week',
         lessons: 8,
       },
       {
-        title: 'Projects & career preparation',
-        summary: 'Build websites and applications, troubleshoot, create a portfolio and prepare for interviews.',
-        topics: ['Project build', 'Debugging', 'Portfolio', 'Interview preparation'],
-        duration: '2 weeks',
-        lessons: 10,
+        title: 'Web Projects, Git & Developer Workflow',
+        summary:
+          'Apply your skills the way a team does — version controlled, organised and maintainable by someone else.',
+        topics: [
+          'Building projects against real website requirements',
+          'Git and version control workflow',
+          'Developer workflow and project organisation',
+          'Writing clean, reusable, maintainable code',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Live Web Projects & Career Preparation',
+        summary:
+          'Apply everything in one end-to-end project, then learn to explain it the way an interviewer needs to hear it.',
+        topics: [
+          'An end-to-end web development project',
+          'Assignments based on real-world scenarios',
+          'Explaining your projects confidently in interviews',
+          'Careers in frontend, backend, full stack and freelance work',
+        ],
+        duration: '4 weeks',
+        lessons: 14,
       },
     ],
     outcomes: [
-      'Website structure and development fundamentals',
-      'HTML5 and semantic web development',
-      'CSS3 and modern website styling',
-      'Responsive and mobile-friendly design',
-      'JavaScript programming and logic building',
-      'DOM manipulation and interactive websites',
-      'Modern JavaScript and asynchronous programming',
-      'React frontend development',
-      'Backend development fundamentals',
-      'REST APIs and JSON',
-      'Database connectivity and CRUD operations',
-      'Git and GitHub',
-      'Website hosting and deployment',
-      'Debugging and problem solving',
-      'Real-world website and application development',
+      'Build and style complete websites with semantic HTML and modern CSS',
+      'Lay out responsive interfaces with Flexbox and Grid',
+      'Add interactivity and dynamic behaviour with JavaScript and the DOM',
+      'Consume REST APIs and handle JSON in the browser',
+      'Understand how backends, databases and authentication fit together',
+      'Ship an end-to-end web application you can defend in an interview',
     ],
     tools: [
       'HTML5',
@@ -3027,653 +3389,1291 @@ export const PROGRAMMING_COURSES: CourseContent[] = [
       'JavaScript',
       'VS Code',
       'Git & GitHub',
-      'React',
-      'Node.js',
+      'Bootstrap',
+      'Tailwind CSS',
+      'React Basics',
+      'Node.js Basics',
       'Express.js',
-      'SQL & Databases',
-      'REST APIs & JSON',
-      'Responsive Web Design',
-      'Browser Developer Tools',
-      'Web Hosting & Deployment',
+      'MongoDB',
+      'MySQL',
+      'REST APIs',
+      'JSON',
+      'Figma Basics',
+      'OpenAI & AI Tools',
+      'ChatGPT for Development',
     ],
+    audience: [
+      {
+        label: '12th Pass Students',
+        copy: 'Learning HTML, CSS and JavaScript step by step makes it easy to see how modern sites work. You will cover website structure, styling, responsive layouts, JavaScript basics, forms and interactive elements — a useful skill to carry alongside your academics.',
+      },
+      {
+        label: 'College Learners & Graduates',
+        copy: 'Web development should be learned through projects, not textbooks. Whatever your discipline — computer science, engineering, commerce, management or design — coding practice in frontend development, responsive design, JavaScript and databases strengthens your college projects and portfolio.',
+      },
+      {
+        label: 'Job Seekers & Freshers',
+        copy: 'Knowing basic HTML tags does not move an employer. They want candidates who can build responsive, functional, user-friendly sites. Coding skill, design understanding, debugging and a practical portfolio matter far more than collecting certificates.',
+      },
+      {
+        label: 'Working Professionals',
+        copy: 'Already in IT, marketing, operations, design or business? Web development helps you understand digital products and build them yourself. Website creation, responsive design, JavaScript and APIs become an additional skill, not a career change.',
+      },
+      {
+        label: 'Entrepreneurs & Business Owners',
+        copy: 'You do not need to be a developer. Understanding websites, digital platforms, online stores and the technology behind them makes talking to developers far easier and the opportunities far more obvious.',
+      },
+      {
+        label: 'Aspiring Developers & Freelancers',
+        copy: 'A strong foundation for building real digital solutions: frontend development, responsive websites, JavaScript, backend basics, databases, APIs and project work you can later bill for.',
+      },
+    ],
+    whyChooseUs: [
+      {
+        title: 'Web development skills are in demand',
+        copy: 'It reaches far beyond software companies. Every business needs a website, landing page, digital platform or web application, and frontend, responsive design, JavaScript, backend and problem-solving skills open several doors at once.',
+      },
+      {
+        title: 'Understanding how modern websites really work',
+        copy: 'Not memorising tags or copying templates. How the technologies fit together — HTML structure, CSS and responsive design, JavaScript and interactivity, UI development, forms, APIs, databases, debugging and Git.',
+      },
+      {
+        title: 'Practical training is how development is learned',
+        copy: 'Tutorials help. Designing, coding and debugging your own site teaches far more. Hands-on assignments and project work are where responsive design, JavaScript and frontend development actually stick.',
+      },
+      {
+        title: 'Skills that open several career paths',
+        copy: 'Depending on your interest, this leads to Frontend Developer, Web Designer, JavaScript Developer, Full Stack Developer, UI Developer, Backend Developer or freelance work.',
+      },
+    ],
+    whyNow: {
+      title: 'Gain Web Development Skills You Can Apply In Real Life',
+      points: [
+        'Practical projects take your skills past theory into a portfolio that shows you can design and build.',
+        'A strong portfolio demonstrates responsive design, frontend development, JavaScript, APIs and real functionality.',
+        'Web Developer roles in Punjab start around ₹18,000 – ₹30,000 a month for a fresher with a working portfolio.',
+        'Concentrate on building projects and solving development problems rather than memorising code.',
+      ],
+    },
     roles: [
-      'Frontend Developer',
-      'Backend Developer',
-      'Full Stack Developer',
       'Web Developer',
-      'React Developer',
-      'Web Application Developer',
+      'Frontend Developer',
+      'Full Stack Developer',
+      'UI Developer',
+      'JavaScript Developer',
+      'Backend Web Developer',
+      'Web Developer with AI',
       'Freelance Web Developer',
-      'Software Development Foundation',
     ],
     roleDetails: [
       {
-        role: 'Frontend Developer',
-        copy: 'Create responsive, interactive website interfaces using HTML, CSS, JavaScript and React.',
+        role: 'Web Developer',
+        copy: 'Build responsive websites and digital platforms with modern web technologies — structure, CSS, JavaScript, responsive design and APIs. The most common path after this course.',
       },
       {
-        role: 'Backend Developer',
-        copy: 'Build server-side applications, APIs, business logic and database-connected solutions.',
+        role: 'Frontend Developer',
+        copy: 'Work on the visual and interactive side of sites and applications using HTML, CSS, JavaScript and frontend frameworks.',
       },
       {
         role: 'Full Stack Developer',
-        copy: 'Work across frontend, backend, databases and APIs on complete web applications.',
+        copy: 'Handle both ends to build complete applications — interfaces, servers, databases, APIs and everything connecting them.',
       },
       {
-        role: 'Web Developer',
-        copy: 'Design, develop, maintain and improve websites and web-based solutions.',
+        role: 'UI Developer',
+        copy: 'Build visually structured, responsive interfaces using layouts, components, CSS frameworks and interactive elements.',
       },
       {
-        role: 'React Developer',
-        copy: 'Build modern, interactive user interfaces using React and JavaScript.',
+        role: 'JavaScript Developer',
+        copy: 'Build interactive sites and dynamic applications with JavaScript, browser APIs, frontend frameworks and application logic.',
       },
       {
-        role: 'Web Application Developer',
-        copy: 'Develop functional web applications around business requirements and user needs.',
+        role: 'Backend Web Developer',
+        copy: 'Work behind the scenes on reliable server-side systems — databases, APIs, authentication and the technologies underneath them.',
+      },
+      {
+        role: 'Web Developer with AI',
+        copy: 'Combine web development with AI tooling for smarter digital experiences. AI assists with coding and debugging — fundamentals are what let you judge its output.',
       },
       {
         role: 'Freelance Web Developer',
-        copy: 'Build websites and applications for clients and independent projects.',
-      },
-      {
-        role: 'Software Development Foundation',
-        copy: 'Build a base that supports future growth into software engineering and advanced programming.',
+        copy: 'Build a freelance practice creating sites and applications for businesses in Phagwara, Jalandhar and further out.',
       },
     ],
     hiring: [
-      'Web and digital agencies',
-      'Product startups',
-      'In-house engineering teams',
-      'Freelance and contract projects',
+      'Software development companies creating websites, applications and business solutions',
+      'Digital agencies and technology companies building websites and online platforms',
+      'E-commerce companies building customer-facing web experiences',
+      'Startups developing web applications and digital products',
     ],
-    nextSteps: ['MERN stack', 'Next.js', 'TypeScript', 'Cloud & DevOps'],
-    industries: ['Product companies', 'Digital agencies', 'Startups', 'Freelance & remote work'],
+    nextSteps: [
+      'MERN stack development',
+      'React in depth',
+      'Backend with Node & Express',
+      'Full stack application architecture',
+    ],
+    industries: ['Software development', 'Digital agencies', 'E-commerce', 'Startups'],
+    /*
+     * Client-supplied bands, monthly rather than the derived LPA figures used
+     * elsewhere in the catalogue — that is the unit a fresher in this market
+     * recognises. `scale` is the midpoint in ₹/month, and remote sits *below*
+     * Punjab at the fresher end on purpose: freelance income ramps rather than
+     * starting at a salary.
+     */
     salary: {
       role: 'Web Developer',
-      summary: 'Builds and ships full websites, from database schema through to deployed interface.',
-      starting: '₹2.5–4 LPA',
-      after2: '₹5–9 LPA',
+      summary:
+        'Builds responsive websites and web applications end to end. Earnings depend on your development skills, portfolio, experience, company and location.',
+      starting: '₹18,000–₹30,000/month',
+      after2: '₹30,000–₹50,000/month',
       markets: [
         {
-          name: 'Punjab / Tricity',
-          fresher: '₹2.5–4 LPA',
-          after2: '₹5–9 LPA',
-          scale: { fresher: 3.3, after2: 7 },
+          name: 'Punjab — Web Developer',
+          fresher: '₹18,000–₹30,000/month',
+          after2: '₹30,000–₹50,000/month',
+          scale: { fresher: 24000, after2: 40000 },
         },
         {
-          name: 'Delhi NCR',
-          fresher: '₹3.5–6 LPA',
-          after2: '₹7–12.5 LPA',
-          scale: { fresher: 4.62, after2: 9.8 },
+          name: 'Delhi / NCR — Web & Frontend Development',
+          fresher: '₹25,000–₹40,000/month',
+          after2: '₹40,000–₹70,000+/month',
+          scale: { fresher: 32500, after2: 55000 },
         },
         {
-          name: 'Remote / Freelance',
-          fresher: '₹3.5–6.5 LPA',
-          after2: '₹8–14 LPA',
-          scale: { fresher: 5.12, after2: 10.85 },
+          name: 'Remote / Freelance Web Development',
+          fresher: '₹10,000–₹25,000/month',
+          after2: '₹30,000–₹80,000+/month',
+          scale: { fresher: 17500, after2: 55000 },
         },
       ],
     },
     careerFaqs: [
       {
-        q: 'What job roles open up after Web Development?',
-        a: 'Graduates move into Frontend Developer, Backend Developer, Full Stack Developer, Web Developer and similar roles. Web development is the broadest entry point in the industry: the same skills serve an agency job, a product team and a freelance client list.',
+        q: 'What job roles open up after web development?',
+        a: 'Web Developer, Frontend Developer, UI Developer, JavaScript Developer and Junior Full Stack Developer. Web development sits behind software companies, digital agencies, e-commerce, startups and online business, which is what makes it so portable.',
       },
       {
         q: 'What can I earn, and how fast does it grow?',
-        a: 'A fresher with a working portfolio starts around ₹20,000 – ₹35,000 a month in the Phagwara market. With two years of delivery experience that typically doubles, and specialists who keep learning move well beyond it.',
+        a: 'A fresher with a working portfolio starts around ₹18,000 – ₹30,000 a month in the Punjab market, rising to ₹30,000 – ₹50,000 with two years of delivery experience. Delhi/NCR runs higher, and full stack specialists move well beyond it.',
       },
       {
         q: 'Can I freelance or work remotely with this skill?',
-        a: 'Yes. A Phagwara address costs you nothing on a remote brief. Students bill clients in Delhi, Dubai and Canada. The course covers client handling, proposals and reporting so you can price and defend your work, not just do it.',
+        a: 'Yes — websites and web apps are among the easiest things to freelance with, locally and remotely. Freelance income ramps rather than starting at a salary: around ₹10,000 – ₹25,000 a month early on, and ₹30,000 – ₹80,000+ once you have delivered real client work.',
       },
       {
         q: 'Which industries hire for this in Punjab?',
-        a: 'Beyond IT companies, the agro and food processing units, immigration consultancies, hospitals, schools, hotels and the university belt around Phagwara all now hire for these skills directly.',
+        a: 'Software development companies, digital agencies building sites and online platforms, e-commerce companies building customer-facing experiences, and startups developing web products — plus freelance and remote projects.',
       },
       {
         q: 'Can I continue to higher studies or a specialisation later?',
-        a: 'The certificate and portfolio stand on their own, and they stack. Most students move on to an adjacent techcadd track. The tools overlap, so the second course is faster than the first.',
+        a: 'The certificate and portfolio stand on their own, and they stack. Web development is the foundation under MERN, React and full stack tracks, so the second course is faster than the first.',
       },
     ],
     projects: [
       {
-        name: 'Responsive multi-page website',
-        summary: 'A complete site built mobile-first, from semantic HTML through to deployment.',
-        tech: ['HTML5', 'CSS3', 'JavaScript'],
+        name: 'Responsive Website Development',
+        summary:
+          'Build a responsive site covering HTML structure, CSS styling, layouts, navigation and mobile responsiveness. You build it yourself, so you understand how every component works.',
+        tech: ['HTML', 'CSS'],
         level: 'Beginner',
-        skills: ['Responsive design', 'Semantic HTML', 'Deployment'],
+        skills: ['Responsive Design', 'Web Development'],
       },
       {
-        name: 'React dashboard with a live API',
-        summary: 'Components, state and routing, fed by data fetched asynchronously and rendered as it arrives.',
-        tech: ['React', 'REST APIs', 'JSON'],
+        name: 'Interactive JavaScript Website',
+        summary:
+          'Build a working site using functions, user interactions, DOM manipulation and dynamic content — and see how the frontend pieces combine into one experience.',
+        tech: ['JavaScript', 'DOM'],
+        level: 'Beginner',
+        skills: ['Interactivity', 'Frontend Development'],
+      },
+      {
+        name: 'Modern Business Website',
+        summary:
+          'Work on a real business site: organising content, building responsive sections and designing a professional digital experience rather than copying an example.',
+        tech: ['HTML', 'CSS'],
         level: 'Intermediate',
-        skills: ['Hooks', 'Async data', 'Routing'],
+        skills: ['UI Development', 'Web Design'],
       },
       {
-        name: 'Full stack task application',
-        summary: 'An Express API over a database, consumed by a React front end, with authentication and CRUD.',
-        tech: ['Node.js', 'Express.js', 'SQL', 'React'],
+        name: 'Web Application Interface',
+        summary:
+          'Build an application interface people actually interact with — components, forms, navigation and the interactions that tie them together.',
+        tech: ['JavaScript', 'UI Components'],
+        level: 'Intermediate',
+        skills: ['Frontend Development', 'User Experience'],
+      },
+      {
+        name: 'API Integration Project',
+        summary:
+          'Learn how a web application talks to external services. Build something that fetches, processes and displays dynamic information over a REST API.',
+        tech: ['REST API', 'JSON'],
+        level: 'Intermediate',
+        skills: ['API Integration', 'JavaScript'],
+      },
+      {
+        name: 'Web Development Problem-Solving Project',
+        summary:
+          'Turn practical website requirements into working solutions. Improve your development logic, handle browser issues, debug errors and write cleaner frontend code.',
+        tech: ['JavaScript', 'Debugging'],
         level: 'Advanced',
-        skills: ['REST design', 'CRUD', 'Auth concepts'],
+        skills: ['Problem Solving', 'Clean Code'],
+      },
+      {
+        name: 'AI-Powered Website Project',
+        summary:
+          'See how web development works alongside AI on a practical project — AI tools, intelligent interfaces and the workflows behind emerging digital experiences.',
+        tech: ['AI Tools', 'Modern Web Apps'],
+        level: 'Advanced',
+        skills: ['Artificial Intelligence', 'AI-Assisted Development'],
+      },
+      {
+        name: 'End-to-End Web Development Capstone',
+        summary:
+          'Bring everything together: plan, design, code, test, fix what breaks, and present the finished website or application as your portfolio piece.',
+        tech: ['Web Development', 'Website Development'],
+        level: 'Advanced',
+        skills: ['Coding', 'Portfolio'],
       },
     ],
+    workingLoop: [
+      {
+        title: 'Understand',
+        copy: 'Turn a realistic website requirement into a development plan — the business objective, the audience, the user experience and the features it actually needs.',
+        artefact: 'Website Planning & Development Brief',
+      },
+      {
+        title: 'Build',
+        copy: 'Build modern sites with a trainer beside you: responsive layouts, real sections, navigation, interactive functionality, optimisation and AI-assisted workflows.',
+        artefact: 'Responsive Website & Interactive Web Application',
+      },
+      {
+        title: 'Test & Optimise',
+        copy: 'Test for responsiveness, functionality and user experience, then present your design choices, development process and optimisation approach.',
+        artefact: 'End-to-End Website Development & Optimisation',
+      },
+    ],
+    industryReady: [
+      {
+        title: 'Industry-ready training course',
+        copy: 'Practical topics — HTML, CSS, JavaScript, responsive design, frontend development, APIs, databases and problem solving — that turn knowledge into industry-relevant skill.',
+      },
+      {
+        title: 'Learn by doing web development projects',
+        copy: 'Practise on real websites and applications: responsive layouts, clean code, debugging, interactive features and genuinely useful web solutions.',
+      },
+      {
+        title: 'Develop a web development portfolio',
+        copy: 'Industry-relevant projects you can put on a CV — work that demonstrates your design, coding and problem-solving ability in interviews and applications.',
+      },
+      {
+        title: 'Career guidance and placement support',
+        copy: 'Resume guidance, technical interview preparation, project presentation and career development across frontend, web design, full stack and freelance development.',
+      },
+    ],
+    whyTechcadd: [
+      {
+        title: 'Trainers who explain web development simply',
+        copy: 'Web development is a good place to begin, and it should feel that way. Trainers explain development concepts, coding logic and responsive design with simple, practical examples.',
+      },
+      {
+        title: 'Live and practical projects',
+        copy: 'Projects make the concepts mean something. You learn through hands-on work spanning responsive websites, interactive interfaces, APIs, databases and modern applications.',
+      },
+      {
+        title: 'Small batches so doubts get cleared',
+        copy: 'Development becomes far easier when you can clear a doubt in real time — solving a coding issue or fixing a layout while you are still stuck on it.',
+      },
+      {
+        title: 'A practical portfolio you build yourself',
+        copy: 'You finish with a project portfolio demonstrating responsive sites, interactive interfaces, JavaScript applications and modern web solutions — real work to show in an interview.',
+      },
+      {
+        title: 'Career and placement guidance',
+        copy: 'Because web development spans software companies, agencies, startups, e-commerce and online business, guidance is career-oriented: resume building, mock interviews and project presentation.',
+      },
+      {
+        title: 'Web development taught the practical way',
+        copy: 'The aim is understanding how to build sites and solve development problems, not memorising code — practical HTML, CSS, JavaScript, responsive design, APIs, databases and applications.',
+      },
+    ],
+    comparison: {
+      rows: [
+        {
+          feature: 'Web development curriculum',
+          techcadd:
+            'Industry-focused training covering HTML, CSS, JavaScript, responsive design, frontend concepts, APIs and modern development',
+          others: 'Often focuses mainly on basic website concepts',
+        },
+        {
+          feature: 'Learning style',
+          techcadd: 'Practical, coding-focused learning built around real website requirements',
+          others: 'Can be more theory-oriented',
+        },
+        {
+          feature: 'Practical projects',
+          techcadd: 'Students work on websites and project-based development tasks',
+          others: 'Practical exposure may be limited',
+        },
+        {
+          feature: 'Development skills',
+          techcadd: 'Focus on responsive design, coding, debugging and interactive development',
+          others: 'May cover concepts without enough practice',
+        },
+        {
+          feature: 'Modern development',
+          techcadd: 'Exposure to APIs, frontend tools, AI-assisted workflows and web applications',
+          others: 'Advanced topics can vary by institute',
+        },
+        {
+          feature: 'Problem solving',
+          techcadd: 'Regular development exercises designed to improve practical confidence',
+          others: 'Problem-solving practice may receive less attention',
+        },
+        {
+          feature: 'Portfolio building',
+          techcadd: 'Projects and assignments that help students showcase web development skills',
+          others: 'Portfolio development may not be a major focus',
+        },
+        {
+          feature: 'Career support',
+          techcadd: 'CV guidance, interview preparation, portfolio support and career-oriented guidance',
+          others: 'Career assistance varies between institutes',
+        },
+        {
+          feature: 'Doubt support',
+          techcadd: 'Trainer guidance to help understand coding and development challenges',
+          others: 'Support may be limited to classroom sessions',
+        },
+        {
+          feature: 'Certification',
+          techcadd: 'Course completion certification supported by practical learning and project exposure',
+          others: 'Certification and practical exposure can vary',
+        },
+      ],
+      note: 'The right-hand column represents common market patterns, not a comparison with any specific institute. Before choosing a web development institute in Phagwara, ask how much practical coding is included, whether students build real projects, how trainers handle doubts, and what career support is provided.',
+    },
+    durations: [
+      {
+        length: '3 Months',
+        tier: 'Foundation',
+        heading: 'Learn the basics of web development',
+        blurb:
+          'Fundamental skills step by step through practical coding and beginner-friendly projects, until building a site stops feeling difficult.',
+        skills: ['HTML', 'CSS', 'JavaScript Basics', 'VS Code', 'Responsive design', 'Basic Git'],
+        recommendedFor:
+          'Web Development Trainee, Frontend Intern, Junior Web Designer, and anyone starting a web development course in Phagwara.',
+      },
+      {
+        length: '6 Months',
+        tier: 'Professional',
+        heading: 'Get proficient in modern web development',
+        blurb:
+          'Work with JavaScript, APIs, frontend tools, databases and web applications while sharpening your coding and problem-solving.',
+        skills: ['JavaScript', 'Bootstrap', 'Tailwind CSS', 'React Basics', 'Node.js Basics', 'APIs'],
+        recommendedFor:
+          'Frontend Developer, Junior Web Developer, UI Developer, JavaScript Developer.',
+      },
+      {
+        length: '9 Months',
+        tier: 'Advanced',
+        heading: 'Master web application development',
+        blurb:
+          'Combine frontend with backend concepts, databases, APIs, advanced projects and modern development workflows.',
+        skills: ['React', 'Node.js', 'Express.js', 'MongoDB', 'MySQL', 'REST API', 'AI tools'],
+        recommendedFor:
+          'Web Developer, Full Stack Developer, Frontend Developer, Backend Developer, and advanced freelance pathways.',
+      },
+    ],
+    capabilities: [
+      { capability: 'HTML & web fundamentals', included: [true, true, true] },
+      { capability: 'CSS & responsive design', included: [true, true, true] },
+      { capability: 'JavaScript basics', included: [true, true, true] },
+      { capability: 'Website layout development', included: [true, true, true] },
+      { capability: 'Interactive websites', included: [true, true, true] },
+      { capability: 'Advanced JavaScript', included: [false, true, true] },
+      { capability: 'APIs & data integration', included: [false, true, true] },
+      { capability: 'Frontend framework basics', included: [false, true, true] },
+      { capability: 'Backend development', included: [false, true, true] },
+      { capability: 'Git & GitHub', included: [false, true, true] },
+      { capability: 'Databases', included: [false, false, true] },
+      { capability: 'Full stack development', included: [false, false, true] },
+      { capability: 'Advanced projects', included: [false, false, true] },
+      { capability: 'AI & web development integration', included: [false, false, true] },
+    ],
+    durationNote:
+      'The programme is nested, not parallel. The 3-month course builds your website development foundation. The 6-month track includes those fundamentals and moves into JavaScript, APIs, frontend tools and practical applications. The 9-month programme builds further with advanced development, backend concepts, databases and full stack projects. Choose 3 months for structure, CSS, responsive design and JavaScript basics; 6 months to build modern sites, interactive interfaces and API-driven frontends; 9 months to add backend, databases and full stack application development.',
     instructor: {
       heading: 'Why learn web development with us?',
-      intro: 'Web development is judged by what runs. Every concept here arrives attached to something you are building, and every build goes through review the way real work does.',
+      intro:
+        'Web development is about far more than HTML and CSS syntax. The emphasis here is on how sites are designed, coded, tested and developed to solve real requirements — through practical coding, assignments, projects and the technologies the industry actually uses.',
       points: [
         {
-          title: 'Practical learning approach',
-          copy: 'Coding exercises, assignments, website tasks and hands-on projects rather than theory alone.',
+          title: 'Build from the first session',
+          copy: 'You write and run your own pages immediately. Reading about layout teaches nothing that building one does not teach faster.',
         },
         {
-          title: 'Industry-relevant curriculum',
-          copy: 'Technologies and practices widely used for building modern websites and web applications.',
+          title: 'Responsive as a habit',
+          copy: 'Every project is checked on a phone. Responsive design is how you work here, not a chapter near the end.',
         },
         {
-          title: 'Step-by-step training',
-          copy: 'Progress from HTML and CSS to JavaScript, React, backend, databases, APIs and deployment.',
+          title: 'Projects that become a portfolio',
+          copy: 'Eight practical projects covering responsive sites, interactivity, business sites, application interfaces, APIs, problem solving, AI and a capstone you own.',
         },
         {
-          title: 'Real-world projects',
-          copy: 'Projects that build coding confidence, problem-solving ability and portfolio quality.',
-        },
-        {
-          title: 'Expert guidance',
-          copy: 'Structured support with practical demonstrations, coding assistance, debugging help and doubt solving.',
-        },
-        {
-          title: 'Career-focused skills',
-          copy: 'Frontend, backend, database, API and version-control skills for internships, interviews and freelancing.',
+          title: 'The full stack path stays open',
+          copy: 'This is the foundation under MERN, React and backend work — the syllabus is written to lead there rather than stop.',
         },
       ],
     },
     extraFaqs: [
       {
-        q: 'What is the duration of the Web Development course in Phagwara?',
-        a: 'techcadd runs Web Development over 5 months depending on the track you choose. Weekday, evening and weekend batches cover the same syllabus, and 1-on-1 training is available if you would rather set your own pace. Every class runs for 2 hours, whichever format you choose.',
+        q: 'What is the Web Development Programming Course in Phagwara at techcadd?',
+        a: 'It is designed to help beginners and aspiring developers learn website development through practical, career-focused training. Students learn HTML, CSS, JavaScript, responsive design, frontend concepts, APIs and real-world development with hands-on practice.',
       },
       {
-        q: 'What is the fee for the Web Development course in Phagwara?',
-        a: 'Fees depend on the batch format and whether you take the course on its own or as part of a longer track. EMI options are available. Call the centre or book a free demo and a counsellor will give you the exact figure for the format you want.',
+        q: 'Who can join a Web Development Programming Course in Phagwara?',
+        a: 'It suits 12th-pass students, college students, graduates, freshers, job seekers and working professionals. Beginners can start from the basics without prior coding experience, while those with some knowledge can strengthen their development skills.',
       },
       {
-        q: 'Who can join the Web Development course?',
-        a: '12th Pass Onward. The first modules start from fundamentals, so no prior experience is assumed.',
+        q: 'Is web development a good career option for freshers?',
+        a: 'Yes. Web development is used across software development, digital agencies, e-commerce, startups and online businesses. After gaining practical skills, freshers can explore roles such as Web Developer, Frontend Developer, UI Developer, JavaScript Developer and Junior Full Stack Developer.',
       },
       {
-        q: 'What jobs can I get after the Web Development course?',
-        a: 'Graduates move into Frontend Developer, Backend Developer, Full Stack Developer, Web Developer and similar roles. Web development is the broadest entry point in the industry: the same skills serve an agency job, a product team and a freelance client list.',
+        q: 'What will I learn in the Web Development Programming Course?',
+        a: 'HTML, CSS, responsive design, JavaScript, website layouts, DOM manipulation, APIs, frontend development, backend basics and database concepts — plus how modern AI tools are used in development workflows.',
       },
       {
-        q: 'What salary can a fresher expect after this course in Phagwara?',
-        a: 'Web Developer roles start around ₹20,000 – ₹35,000 a month for a fresher with a working portfolio, rising to ₹5–9 LPA with two years of delivery experience. Specialists move beyond that.',
+        q: 'Is the web development course practical or theory-based?',
+        a: 'Learning becomes much easier when you design and build sites yourself. The approach focuses on hands-on coding, development exercises, debugging, mini-projects and real-world problem solving rather than theory alone.',
       },
       {
-        q: 'Is this course suitable for beginners?',
-        a: 'Yes. Web Development begins from fundamentals, and the pace is set so nothing is assumed.',
+        q: 'Will I work on web development projects during the course?',
+        a: 'Yes. Practical learning includes responsive websites, business websites, interactive JavaScript projects, API-based applications and end-to-end development projects — which also strengthen your portfolio when applying for jobs or internships.',
       },
       {
-        q: 'What are the prerequisites?',
-        a: 'Basic computer familiarity. Anything else the track needs is introduced in the first module.',
+        q: 'Can I learn web development after 12th?',
+        a: 'Absolutely. Students can start after 12th, especially if interested in coding, website creation, software development or technology careers. It provides a strong foundation to build on during college and beyond.',
+      },
+      {
+        q: 'Can web development help me get a job or internship?',
+        a: 'Yes, but basic web technologies alone are not enough. Employers also look for practical projects, responsive design skills, JavaScript knowledge, problem-solving ability, Git and relevant development skills. A job-oriented course helps you build these through practical training and project work.',
+      },
+      {
+        q: 'Does the course include modern web technologies?',
+        a: 'It introduces responsive design, JavaScript, APIs, frontend tools, backend fundamentals and modern development workflows, building a foundation before moving toward advanced frontend or full stack development.',
+      },
+      {
+        q: 'How do I choose the best Web Development Course in Phagwara?',
+        a: 'Do not choose on fees or certificates alone. Check the syllabus, practical coding sessions, trainer experience, project work, development exercises, tools covered, doubt support, career guidance and placement assistance. A good course should take you from website basics to actually building modern web projects.',
       },
     ],
-    whyNow: {
-      title: 'Web Development Is Powering the Next Generation of Industry Leaders',
-      points: [
-        'Live client work from week one, supervised by a trainer, not slides, not simulations.',
-        'Web Developer roles in Punjab start around ₹20,000 – ₹35,000 a month for a fresher with a working portfolio.',
-      ],
-    },
     relatedCourses: [
-      'mern-stack-course-in-phagwara',
       'web-designing-course-in-phagwara',
-      'java-course-in-phagwara',
+      'mern-stack-course-in-phagwara',
+      'mean-stack-course-in-phagwara',
+      'php-full-stack-course-in-phagwara',
       'python-course-in-phagwara',
-      'c-course-in-phagwara',
-      'c-plus-plus-course-in-phagwara',
+      'java-course-in-phagwara',
     ],
     keywords: [
-      'best web development course in phagwara',
-      'web development training in phagwara',
-      'react and node js training in phagwara',
-      'frontend and backend course phagwara',
-      'full stack web development classes in phagwara',
+      'web development course in phagwara',
+      'web development courses in phagwara',
+      'web development training institute in phagwara',
+      'web development programming course in phagwara',
+      'web development course after 12th in phagwara',
+      'web development certification course in phagwara',
     ],
   }),
 
   makeCourse({
     slug: 'mern-stack-course-in-phagwara',
     label: 'MERN Stack',
-    title: 'Best MERN Stack Course & Training in Phagwara',
+    title: 'MERN Stack Course in Phagwara',
     category: 'programming',
     categoryTitle: 'Programming',
     icon: 'layers',
-    duration: '6 Months',
-    level: 'Intermediate to Advanced',
-    eligibility: 'Graduate / Final-year',
-    summary: 'MongoDB, Express, React and Node — the most in-demand JavaScript stack for building and shipping production apps.',
-    overview: 'Start your full-stack career with structured MERN training in Phagwara. You build modern web applications with MongoDB, Express.js, React.js and Node.js, alongside JavaScript, REST APIs, databases and real project work. Designed to take beginners through to industry-ready: the track starts at web fundamentals and finishes with a complete, authenticated, deployed application.',
-    demand: 'MERN is the stack most Indian startups actually build on, which makes it the fastest route from training to a paying developer role.',
+    duration: '3 – 9 Months',
+    level: 'Beginner to Advanced',
+    eligibility: '12th Pass Onward',
+    summary:
+      'Learn full-stack development end to end — React, Node.js, Express and MongoDB, with APIs, authentication, deployment and live projects.',
+    overview:
+      'Techcadd’s MERN Stack Programming Course in Phagwara is an industry-oriented course that teaches students, graduates, job seekers and beginners how modern web applications are built with MongoDB, Express.js, React and Node.js. It covers frontend development, backend development, databases, APIs, authentication and complete full-stack application development. The training is based on practical knowledge rather than theory: you learn through coding exercises, assignments and real projects, seeing how frontend and backend technologies actually fit together. The approach is beginner-friendly throughout, developing programming logic, development skill and problem solving alongside the syntax — by the end you can design, develop, debug and deploy a MERN application of your own.',
+    demand:
+      'MERN is the stack most Punjab startups and software agencies actually build on, and one developer who can work across the whole of it is worth more to them than two who can only do half.',
     modules: [
       {
-        title: 'Web development fundamentals',
-        summary: 'HTML, CSS, responsive design, page structure and the styling behind a modern website.',
-        topics: ['HTML structure', 'CSS styling', 'Responsive design', 'Page layout'],
-        duration: '2 weeks',
-        lessons: 10,
-      },
-      {
-        title: 'JavaScript fundamentals',
-        summary: 'Variables, data types, operators, functions, arrays, objects, conditions and loops, with coding practice throughout.',
-        topics: ['Variables & types', 'Functions', 'Arrays & objects', 'Conditions & loops'],
-        duration: '2 weeks',
-        lessons: 12,
-      },
-      {
-        title: 'Advanced JavaScript',
-        summary: 'ES6+ features, arrow functions, destructuring, spread, promises, asynchronous programming and modules.',
-        topics: ['ES6+ syntax', 'Destructuring & spread', 'Promises & async', 'Modules'],
-        duration: '2 weeks',
-        lessons: 10,
-      },
-      {
-        title: 'React.js fundamentals',
-        summary: 'Components, JSX, props, state, events, conditional rendering, lists and forms.',
-        topics: ['Components & JSX', 'Props & state', 'Events', 'Lists & forms'],
-        duration: '3 weeks',
-        lessons: 14,
-      },
-      {
-        title: 'React.js development',
-        summary: 'Hooks, React Router, the Context API, API integration, forms and state management in an interactive application.',
-        topics: ['Hooks', 'React Router', 'Context API', 'State management'],
-        duration: '3 weeks',
-        lessons: 14,
-      },
-      {
-        title: 'Node.js & Express.js',
-        summary: 'Node.js fundamentals and backend development with Express — routing, middleware, controllers and server-side JavaScript.',
-        topics: ['Node.js basics', 'Express routing', 'Middleware', 'Controllers'],
+        title: 'Web Development Fundamentals',
+        summary:
+          'Build your knowledge from scratch and grow as a developer step by step, writing clean, understandable code.',
+        topics: [
+          'HTML, CSS, JavaScript and modern web structure',
+          'Responsive layouts and user interfaces',
+          'Variables, functions, conditions and loops',
+          'Building simple pages to develop programming logic',
+        ],
         duration: '3 weeks',
         lessons: 12,
       },
       {
-        title: 'MongoDB & database management',
-        summary: 'Collections, documents, CRUD, queries, relationships and managing data inside a web application.',
-        topics: ['Collections & documents', 'CRUD', 'Queries', 'Relationships'],
-        duration: '2 weeks',
+        title: 'JavaScript, Logic & Problem-Solving',
+        summary:
+          'Get deeper into programming and learn how developers actually think about a problem.',
+        topics: [
+          'Solving coding problems with JavaScript',
+          'Functions, arrays, objects and asynchronous programming',
+          'Error handling and debugging techniques',
+          'Breaking large problems into smaller development tasks',
+        ],
+        duration: '3 weeks',
         lessons: 12,
       },
       {
-        title: 'REST APIs & JSON',
-        summary: 'Building and consuming REST APIs — HTTP methods, JSON, the request-response cycle and frontend-backend communication.',
-        topics: ['HTTP methods', 'JSON', 'Request & response', 'API consumption'],
-        duration: '2 weeks',
-        lessons: 10,
-      },
-      {
-        title: 'Authentication & security',
-        summary: 'User registration, login, password handling, JWT authentication, authorisation and route protection.',
-        topics: ['Registration & login', 'Password handling', 'JWT', 'Route protection'],
-        duration: '2 weeks',
-        lessons: 10,
-      },
-      {
-        title: 'Full stack application',
-        summary: 'Integrating a React frontend with Node.js, Express and MongoDB into one complete database-driven application.',
-        topics: ['Frontend-backend wiring', 'Data flow', 'Error handling', 'Application structure'],
-        duration: '3 weeks',
+        title: 'React Frontend Development',
+        summary:
+          'Find out how professional frontend applications are structured, and build interfaces that respond.',
+        topics: [
+          'Components, props, state and hooks',
+          'Dynamic and interactive user interfaces',
+          'Routing and frontend application flow',
+          'Building responsive React applications',
+        ],
+        duration: '4 weeks',
         lessons: 14,
       },
       {
-        title: 'Git, GitHub & deployment',
-        summary: 'Version control, repository management, collaborating on a project and deploying a full stack application.',
-        topics: ['Git basics', 'Repositories', 'Collaboration', 'Deployment'],
-        duration: '1 week',
+        title: 'Node.js, Express.js & Backend Development',
+        summary:
+          'Find out how server-side applications work once the browser is no longer the whole story.',
+        topics: [
+          'Node.js and backend programming concepts',
+          'Building APIs with Express.js',
+          'Server-side routing and middleware',
+          'Connecting applications to external services',
+        ],
+        duration: '4 weeks',
+        lessons: 14,
+      },
+      {
+        title: 'MongoDB & Database Development',
+        summary:
+          'Find out how modern applications manage real-world data, and build something that keeps it.',
+        topics: [
+          'Creating and managing databases',
+          'Collections, documents and database operations',
+          'CRUD operations and data relationships',
+          'MongoDB with backend integration',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Full-Stack MERN Application Development',
+        summary:
+          'Combine both halves — the point where separate technologies start behaving like one product.',
+        topics: [
+          'Connecting React applications to Node.js APIs',
+          'How data moves across a complete application',
+          'Authentication and application workflows',
+          'Building modern full-stack web applications',
+        ],
+        duration: '4 weeks',
+        lessons: 14,
+      },
+      {
+        title: 'AI-Powered MERN Stack Development',
+        summary:
+          'Learn how AI tooling changed the way developers write and learn code — and how not to lean on it.',
+        topics: [
+          'AI assistants for understanding code and troubleshooting',
+          'Generating and improving ideas with effective prompts',
+          'Using AI ethically without over-reliance',
+          'Faster debugging, documentation and development workflows',
+        ],
+        duration: '2 weeks',
         lessons: 8,
       },
       {
-        title: 'Projects & career preparation',
-        summary: 'MERN projects, debugging, portfolio building and interview preparation.',
-        topics: ['Capstone project', 'Debugging', 'Portfolio', 'Interview preparation'],
-        duration: '2 weeks',
-        lessons: 10,
+        title: 'MERN Projects, Git & Developer Workflow',
+        summary:
+          'Apply your skills the way a team does — version controlled, organised and readable by someone else.',
+        topics: [
+          'Building projects against real-world requirements',
+          'Git and version control workflow',
+          'Developer workflow and project organisation',
+          'Writing readable, reusable code',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Live MERN Projects & Career Preparation',
+        summary:
+          'Apply everything in one end-to-end full-stack project, then learn to explain it to an interviewer.',
+        topics: [
+          'An end-to-end full-stack project',
+          'Development assignments from real-world scenarios',
+          'Explaining your code and projects confidently in interviews',
+          'Career paths in frontend, backend and full-stack development',
+        ],
+        duration: '4 weeks',
+        lessons: 14,
       },
     ],
     outcomes: [
-      'Web development and JavaScript fundamentals',
-      'React frontend development',
-      'Node.js and Express.js backend development',
-      'MongoDB and database management',
-      'REST APIs, authentication and Git',
-      'Full stack projects and deployment',
+      'Build responsive React interfaces with components, state and hooks',
+      'Write server-side APIs with Node.js and Express',
+      'Model, query and manage data in MongoDB',
+      'Wire a frontend to a backend and move data across the whole stack',
+      'Implement authentication and protect application routes',
+      'Ship a deployed full-stack application you can defend in an interview',
     ],
     tools: [
-      'HTML & CSS',
+      'HTML5',
+      'CSS3',
       'JavaScript',
       'React.js',
       'Node.js',
       'Express.js',
       'MongoDB',
-      'Mongoose',
-      'Git & GitHub',
-      'REST APIs & JSON',
-      'JWT Authentication',
-      'React Router',
       'VS Code',
-      'NPM & Package Management',
-      'Deployment & Hosting',
+      'Git & GitHub',
+      'REST APIs',
+      'Postman',
+      'JWT Authentication',
+      'Mongoose',
+      'Redux / State Management',
+      'OpenAI & AI Tools',
+      'ChatGPT for Development',
     ],
+    audience: [
+      {
+        label: '12th Pass Students',
+        copy: 'Learning HTML, CSS, JavaScript and modern web technologies shows you how sites and applications actually work. You will cover frontend basics, React, backend development, databases, APIs and problem solving — a useful skill alongside your academics.',
+      },
+      {
+        label: 'College Learners & Graduates',
+        copy: 'Web development should be taught through projects, not textbooks. Whatever your discipline, coding practice in React, Node.js, databases and APIs strengthens both your college projects and your development portfolio.',
+      },
+      {
+        label: 'Job Seekers & Freshers',
+        copy: 'Theoretical knowledge does not move an employer. They want practical development skill and problem solving. This builds coding logic, frontend and backend ability, debugging experience and the portfolio that beats a certificate.',
+      },
+      {
+        label: 'Working Professionals',
+        copy: 'Already in IT, operations, marketing or testing? MERN improves your technical understanding of how modern applications are built. Frontend, backend, databases and APIs become an additional advantage without a career change.',
+      },
+      {
+        label: 'Entrepreneurs & Business Owners',
+        copy: 'You do not need to be a developer. Understanding full-stack basics makes websites, applications, databases and digital products legible — and makes briefing a developer far easier.',
+      },
+      {
+        label: 'Aspiring Developers & Freelancers',
+        copy: 'A strong foundation for modern digital solutions: frontend, backend, APIs, databases, authentication and project building you can later bill for as websites, applications and full-stack work.',
+      },
+    ],
+    whyChooseUs: [
+      {
+        title: 'MERN Stack skills are in demand',
+        copy: 'Modern web development goes well past static sites. Startups and software companies need developers who understand frontend, backend, databases and APIs — and React, Node.js, MongoDB and Express make one person useful across all of it.',
+      },
+      {
+        title: 'Understanding how MERN really works',
+        copy: 'Not memorising code. How the halves fit together — HTML, CSS and JavaScript, React and components, state management, Node and Express, MongoDB, REST APIs, authentication, debugging and Git.',
+      },
+      {
+        title: 'Practical training is how development is learned',
+        copy: 'Tutorials help. Coding, debugging and building your own application teaches far more. Hands-on assignments are where frontend, backend, database management and API integration actually stick.',
+      },
+      {
+        title: 'Skills that open several career paths',
+        copy: 'Depending on your interest, this leads to MERN Stack Developer, React Developer, Node.js Developer, Full-Stack Developer, Backend Developer or Web Application Developer.',
+      },
+    ],
+    whyNow: {
+      title: 'Gain MERN Stack Skills You Can Apply In Real Life',
+      points: [
+        'Practical projects take your skills past theory into a portfolio that demonstrates real development ability.',
+        'A strong portfolio shows frontend development, backend logic, databases, APIs and complete applications in one place.',
+        'MERN Stack Developer roles in Punjab start around ₹18,000 – ₹30,000 a month for a fresher with a working portfolio.',
+        'Concentrate on building projects and solving development problems rather than memorising syntax.',
+      ],
+    },
     roles: [
       'MERN Stack Developer',
-      'Frontend Developer',
-      'Backend Developer',
-      'Full Stack Developer',
-      'React.js Developer',
-      'Node.js Developer',
-      'Software Developer',
+      'React Developer',
+      'Node.js Backend Developer',
+      'Full-Stack Web Developer',
+      'JavaScript Developer',
+      'MERN Application Developer',
+      'Developer with AI',
+      'Freelance MERN Stack Developer',
     ],
     roleDetails: [
       {
         role: 'MERN Stack Developer',
-        copy: 'Build full stack web applications with MongoDB, Express.js, React.js and Node.js.',
+        copy: 'Build complete web applications with MongoDB, Express.js, React and Node.js — frontend, backend, databases and APIs. The most common path after this course.',
       },
       {
-        role: 'Frontend Developer',
-        copy: 'Create interactive, responsive interfaces with React.js, JavaScript, HTML and CSS.',
+        role: 'React Developer',
+        copy: 'Work on modern interfaces and frontend applications using components, state management, routing and APIs.',
       },
       {
-        role: 'Backend Developer',
-        copy: 'Build server-side applications, APIs, authentication systems and database-driven solutions.',
+        role: 'Node.js Backend Developer',
+        copy: 'Work behind the scenes on reliable server-side systems with Node.js, Express.js, databases, APIs and authentication.',
       },
       {
-        role: 'Full Stack Developer',
-        copy: 'Work across frontend, backend, APIs and databases on complete web applications.',
+        role: 'Full-Stack Web Developer',
+        copy: 'Build complete applications across both halves — interfaces, server-side logic, databases, APIs and deployment.',
       },
       {
-        role: 'React.js Developer',
-        copy: 'Build modern, interactive frontend applications with React.js and its ecosystem.',
+        role: 'JavaScript Developer',
+        copy: 'Build interactive applications and digital solutions in JavaScript: clean code, debugging and integrating the pieces into something useful.',
       },
       {
-        role: 'Node.js Developer',
-        copy: 'Build backend services, APIs and server-side applications with Node.js.',
+        role: 'MERN Application Developer',
+        copy: 'Build database-driven applications on the full stack — React, Node.js, Express and MongoDB together as one platform.',
       },
       {
-        role: 'Software Developer',
-        copy: 'Develop and improve software and web-based applications using full stack programming.',
+        role: 'Developer with AI',
+        copy: 'Combine development skill with AI tooling to build more, faster. AI helps with coding and debugging — solid fundamentals are what let you judge its output.',
+      },
+      {
+        role: 'Freelance MERN Stack Developer',
+        copy: 'Build a freelance practice creating sites and applications for businesses in Phagwara, Jalandhar and further out.',
       },
     ],
     hiring: [
-      'Product startups and SaaS teams',
-      'Digital agencies building web apps',
-      'Remote contract work',
-      'In-house engineering teams',
+      'Software development companies creating websites, applications and business solutions',
+      'IT startups and technology companies building modern web applications',
+      'Digital product companies working on frontend and backend platforms',
+      'Software agencies developing business websites and web applications',
     ],
-    nextSteps: ['Next.js', 'TypeScript', 'Cloud & DevOps', 'System design'],
-    industries: ['Product companies', 'SaaS', 'E-commerce', 'IT services'],
+    nextSteps: [
+      'Next.js & server-side rendering',
+      'TypeScript for full-stack',
+      'Cloud deployment & DevOps basics',
+      'System design for web applications',
+    ],
+    industries: ['Software development', 'IT startups', 'Digital products', 'Software agencies'],
+    /*
+     * Client-supplied bands, monthly rather than the derived LPA figures used
+     * elsewhere in the catalogue — that is the unit a fresher in this market
+     * recognises. `scale` is the midpoint in ₹/month, and remote sits *below*
+     * Punjab at the fresher end on purpose: freelance income ramps rather than
+     * starting at a salary.
+     */
     salary: {
       role: 'MERN Stack Developer',
-      summary: 'Owns a feature end to end — MongoDB schema, Express API, React interface, deployment.',
-      starting: '₹3–5 LPA',
-      after2: '₹6–12 LPA',
+      summary:
+        'Builds complete web applications across React, Node, Express and MongoDB. Earnings depend on your development skills, portfolio, experience, company and location.',
+      starting: '₹18,000–₹30,000/month',
+      after2: '₹30,000–₹50,000/month',
       markets: [
         {
-          name: 'Punjab / Tricity',
-          fresher: '₹3–5 LPA',
-          after2: '₹6–12 LPA',
-          scale: { fresher: 4, after2: 9 },
+          name: 'Punjab — MERN Stack Developer',
+          fresher: '₹18,000–₹30,000/month',
+          after2: '₹30,000–₹50,000/month',
+          scale: { fresher: 24000, after2: 40000 },
         },
         {
-          name: 'Delhi NCR',
-          fresher: '₹4–7 LPA',
-          after2: '₹8.5–17 LPA',
-          scale: { fresher: 5.6, after2: 12.6 },
+          name: 'Delhi / NCR — Full-Stack Development',
+          fresher: '₹25,000–₹40,000/month',
+          after2: '₹40,000–₹70,000+/month',
+          scale: { fresher: 32500, after2: 55000 },
         },
         {
-          name: 'Remote / Freelance',
-          fresher: '₹4.5–8 LPA',
-          after2: '₹9.5–18.5 LPA',
-          scale: { fresher: 6.2, after2: 13.95 },
+          name: 'Remote / Freelance Web Development',
+          fresher: '₹10,000–₹25,000/month',
+          after2: '₹30,000–₹80,000+/month',
+          scale: { fresher: 17500, after2: 55000 },
         },
       ],
     },
     careerFaqs: [
       {
         q: 'What job roles open up after MERN Stack?',
-        a: 'Graduates move into MERN Stack Developer, Frontend Developer, Backend Developer, Full Stack Developer and similar roles. MERN is the stack most Indian startups actually build on, which makes it the fastest route from training to a paying developer role.',
+        a: 'MERN Stack Developer, React Developer, Node.js Developer, Junior Full-Stack Developer and Backend Developer. Because the stack covers both halves, one skillset maps onto several different job titles.',
       },
       {
         q: 'What can I earn, and how fast does it grow?',
-        a: 'A fresher with a working portfolio starts around ₹25,000 – ₹42,000 a month in the Phagwara market. With two years of delivery experience that typically doubles, and specialists who keep learning move well beyond it.',
+        a: 'A fresher with a working portfolio starts around ₹18,000 – ₹30,000 a month in the Punjab market, rising to ₹30,000 – ₹50,000 with two years of delivery experience. Delhi/NCR runs higher, and full-stack specialists move well beyond it.',
       },
       {
         q: 'Can I freelance or work remotely with this skill?',
-        a: 'Yes. A Phagwara address costs you nothing on a remote brief. Students bill clients in Delhi, Dubai and Canada. The course covers client handling, proposals and reporting so you can price and defend your work, not just do it.',
+        a: 'Yes — full-stack work travels particularly well, since one person can deliver a whole product. Freelance income ramps rather than starting at a salary: around ₹10,000 – ₹25,000 a month early on, and ₹30,000 – ₹80,000+ once you have shipped real client applications.',
       },
       {
         q: 'Which industries hire for this in Punjab?',
-        a: 'Beyond IT companies, the agro and food processing units, immigration consultancies, hospitals, schools, hotels and the university belt around Phagwara all now hire for these skills directly.',
+        a: 'Software development companies, IT startups building modern web applications, digital product companies working across frontend and backend, and software agencies building business websites — plus freelance and remote projects.',
       },
       {
         q: 'Can I continue to higher studies or a specialisation later?',
-        a: 'The certificate and portfolio stand on their own, and they stack. Most students move on to an adjacent techcadd track. The tools overlap, so the second course is faster than the first.',
+        a: 'The certificate and portfolio stand on their own, and they stack. MERN leads naturally into Next.js, TypeScript, cloud deployment and system design, so the second course is faster than the first.',
       },
     ],
     projects: [
       {
-        name: 'React frontend for a live API',
-        summary: 'Components, routing and state management, rendering data fetched asynchronously.',
-        tech: ['React.js', 'REST APIs', 'JSON'],
+        name: 'Frontend Web Development Project',
+        summary:
+          'Build a responsive frontend covering HTML, CSS, JavaScript, layouts, components and interactive elements. You build the interface yourself and understand how every section works.',
+        tech: ['HTML', 'CSS', 'JavaScript'],
         level: 'Beginner',
-        skills: ['Components', 'Hooks', 'API integration'],
+        skills: ['Responsive Design', 'Frontend Development'],
       },
       {
-        name: 'Authenticated REST API',
-        summary: 'Express and MongoDB behind registration, login, JWT sessions and protected routes.',
-        tech: ['Node.js', 'Express.js', 'MongoDB', 'JWT'],
+        name: 'React Application Development',
+        summary:
+          'Build a working frontend application with components, props, state, hooks and user interactions — and see how the pieces combine into a modern application.',
+        tech: ['React.js', 'Hooks'],
+        level: 'Beginner',
+        skills: ['Components', 'Frontend Development'],
+      },
+      {
+        name: 'MongoDB Database Project',
+        summary:
+          'Work with real application data: organise, store, retrieve and manage it in MongoDB. Database operations learned practically rather than from a textbook.',
+        tech: ['MongoDB', 'Mongoose'],
         level: 'Intermediate',
-        skills: ['REST design', 'Authentication', 'CRUD'],
+        skills: ['CRUD Operations', 'Database Design'],
       },
       {
-        name: 'Full stack MERN capstone',
-        summary: 'A complete database-driven application — React front end, Express API, MongoDB, deployed and version-controlled.',
-        tech: ['MongoDB', 'Express.js', 'React.js', 'Node.js'],
+        name: 'Node.js & Backend Development',
+        summary:
+          'Build a backend that handles requests, manages routes, connects to a database and exposes useful APIs — server-side programming you can actually run.',
+        tech: ['Node.js', 'Express.js'],
+        level: 'Intermediate',
+        skills: ['Backend Development', 'APIs'],
+      },
+      {
+        name: 'REST API Integration Project',
+        summary:
+          'Learn how a frontend talks to a backend. Build something that requests, processes and displays real-time information across the stack.',
+        tech: ['REST API', 'JSON'],
+        level: 'Intermediate',
+        skills: ['API Integration', 'Full-Stack Development'],
+      },
+      {
+        name: 'MERN Problem-Solving Project',
+        summary:
+          'Turn real development requirements into working applications. Improve your programming logic, debugging, application flow and clean coding practice.',
+        tech: ['JavaScript', 'Debugging'],
         level: 'Advanced',
-        skills: ['Full stack architecture', 'Deployment', 'Git workflow'],
+        skills: ['Problem Solving', 'Clean Code'],
+      },
+      {
+        name: 'AI & MERN Stack Project',
+        summary:
+          'See how full-stack development works alongside AI on a practical project — APIs, data processing, AI integrations and modern development technique.',
+        tech: ['AI Tools', 'API Integration'],
+        level: 'Advanced',
+        skills: ['Artificial Intelligence', 'Modern Web Development'],
+      },
+      {
+        name: 'End-to-End MERN Capstone',
+        summary:
+          'Bring everything together: ideate, design, develop, test, fix what breaks, and present the finished application as your portfolio piece.',
+        tech: ['MERN Stack', 'Full-Stack Development'],
+        level: 'Advanced',
+        skills: ['Web Application', 'Portfolio'],
       },
     ],
+    workingLoop: [
+      {
+        title: 'Understand',
+        copy: 'Turn a realistic application requirement into a development strategy — user needs, application structure, the features it needs and the technologies that suit them.',
+        artefact: 'Application Planning & Development Brief',
+      },
+      {
+        title: 'Build',
+        copy: 'Build with a trainer beside you: frontend interfaces, backend APIs, database structures, authentication and complete application features, with AI-assisted workflows.',
+        artefact: 'React Application & Full-Stack Development',
+      },
+      {
+        title: 'Present & Optimise',
+        copy: 'Present the architecture, frontend design, backend APIs, database structure, features, testing and optimisation — then take it into your professional portfolio.',
+        artefact: 'End-to-End MERN Stack Application & Optimisation',
+      },
+    ],
+    industryReady: [
+      {
+        title: 'Industry-ready training course',
+        copy: 'Practical topics — HTML, CSS, JavaScript, React, Node.js, Express, MongoDB, APIs, authentication and problem solving — that turn coding knowledge into development skill.',
+      },
+      {
+        title: 'Learn by doing MERN projects',
+        copy: 'Practical projects and exercises that build the ability to write clean code, debug applications, manage data and ship useful full-stack applications.',
+      },
+      {
+        title: 'Develop a MERN project portfolio',
+        copy: 'Industry-relevant projects you can put on a CV — work that demonstrates your frontend, backend and problem-solving ability in interviews and job searches.',
+      },
+      {
+        title: 'Career guidance and placement support',
+        copy: 'Resume guidance, technical interview preparation, project presentation and career development across frontend, backend, React, Node.js and full-stack roles.',
+      },
+    ],
+    whyTechcadd: [
+      {
+        title: 'Trainers who explain MERN simply',
+        copy: 'Full-stack development is a lot to take on at once. Trainers here explain frontend and backend concepts with simple, practical examples so the two halves connect rather than compete.',
+      },
+      {
+        title: 'Live and practical MERN projects',
+        copy: 'Projects make the theory mean something. You learn through hands-on work spanning frontend interfaces, backend applications, databases, APIs, authentication and complete full-stack development.',
+      },
+      {
+        title: 'Small batches so doubts get cleared',
+        copy: 'Programming is far easier when you can clear a doubt in real time and practise the concept while you are still stuck on it.',
+      },
+      {
+        title: 'A practical portfolio you build yourself',
+        copy: 'You finish with a portfolio demonstrating frontend development, backend programming, databases, APIs and complete web applications — strong projects to discuss in interviews.',
+      },
+      {
+        title: 'Career and placement guidance',
+        copy: 'Because MERN spans frontend, backend and full-stack work, guidance is career-oriented: resume building, mock interviews, project presentation and direction toward the role that fits.',
+      },
+      {
+        title: 'MERN taught the practical way',
+        copy: 'The aim is solving development problems and building applications, not memorising code — practical frontend, JavaScript, React, Node.js, Express.js, MongoDB, APIs and full-stack work.',
+      },
+    ],
+    comparison: {
+      rows: [
+        {
+          feature: 'MERN Stack curriculum',
+          techcadd:
+            'Industry-focused training covering frontend, backend, React, Node.js, MongoDB, APIs and application development',
+          others: 'Often focuses mainly on basic development concepts',
+        },
+        {
+          feature: 'Learning style',
+          techcadd: 'Practical, coding-focused learning built around real development problems',
+          others: 'Can be more theory-oriented',
+        },
+        {
+          feature: 'Practical projects',
+          techcadd:
+            'Students work on development assignments and project-based tasks to strengthen full-stack skills',
+          others: 'Practical exposure may be limited',
+        },
+        {
+          feature: 'Programming skills',
+          techcadd: 'Focus on frontend logic, backend development, debugging and database handling',
+          others: 'May cover concepts without enough coding practice',
+        },
+        {
+          feature: 'Advanced development',
+          techcadd: 'Exposure to APIs, authentication, databases and complete full-stack workflows',
+          others: 'Advanced topics can vary by institute',
+        },
+        {
+          feature: 'Problem solving',
+          techcadd:
+            'Regular coding exercises designed to improve logical thinking and development confidence',
+          others: 'Problem-solving practice may receive less attention',
+        },
+        {
+          feature: 'Portfolio building',
+          techcadd: 'Projects and assignments that help students showcase their MERN Stack skills',
+          others: 'Portfolio development may not be a major focus',
+        },
+        {
+          feature: 'Career support',
+          techcadd: 'CV guidance, interview preparation, portfolio support and career-oriented guidance',
+          others: 'Career assistance varies between institutes',
+        },
+        {
+          feature: 'Doubt support',
+          techcadd:
+            'Trainer guidance to help students understand development concepts and solve coding challenges',
+          others: 'Support may be limited to classroom sessions',
+        },
+        {
+          feature: 'Certification',
+          techcadd: 'Course completion certification supported by practical learning and project exposure',
+          others: 'Certification and practical exposure can vary',
+        },
+      ],
+      note: 'The right-hand column represents common market patterns, not a comparison with any specific institute. Before choosing a MERN Stack institute in Phagwara, ask how much coding practice is included, whether students build real projects, how trainers handle doubts, and what career support is provided.',
+    },
+    durations: [
+      {
+        length: '3 Months',
+        tier: 'Foundation',
+        heading: 'Learn the basics of web development',
+        blurb:
+          'Fundamental web development step by step through practical coding and beginner-friendly projects, until frontend work feels natural.',
+        skills: ['HTML', 'CSS', 'JavaScript', 'React Basics', 'VS Code', 'Basic Git'],
+        recommendedFor:
+          'Web Development Trainee, Frontend Intern, Junior Web Developer, and anyone starting a MERN Stack course in Phagwara.',
+      },
+      {
+        length: '6 Months',
+        tier: 'Professional',
+        heading: 'Get proficient in MERN development',
+        blurb:
+          'Real-world full-stack work: React, Node.js, Express, MongoDB, APIs and authentication, with advanced coding and problem solving.',
+        skills: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'REST APIs', 'Postman', 'Auth'],
+        recommendedFor:
+          'MERN Stack Developer, Junior Full-Stack Developer, React Developer, Node.js Developer.',
+      },
+      {
+        length: '9 Months',
+        tier: 'Advanced',
+        heading: 'Master full-stack MERN development',
+        blurb:
+          'Advanced projects, APIs, databases, authentication, deployment and AI-powered development workflows, end to end.',
+        skills: ['React.js', 'Node.js', 'MongoDB', 'REST API', 'Redux', 'Deployment', 'AI tools'],
+        recommendedFor:
+          'MERN Stack Developer, Full-Stack Developer, Backend Developer, React Developer, and advanced web pathways.',
+      },
+    ],
+    capabilities: [
+      { capability: 'HTML & CSS fundamentals', included: [true, true, true] },
+      { capability: 'JavaScript programming', included: [true, true, true] },
+      { capability: 'React basics', included: [true, true, true] },
+      { capability: 'Components & hooks', included: [true, true, true] },
+      { capability: 'Frontend projects', included: [true, true, true] },
+      { capability: 'Advanced React', included: [false, true, true] },
+      { capability: 'MongoDB & database development', included: [false, true, true] },
+      { capability: 'APIs', included: [false, true, true] },
+      { capability: 'Backend development', included: [false, true, true] },
+      { capability: 'Node.js & Express.js', included: [false, true, true] },
+      { capability: 'Authentication', included: [false, true, true] },
+      { capability: 'Git & GitHub', included: [false, true, true] },
+      { capability: 'Advanced full-stack projects', included: [false, false, true] },
+      { capability: 'State management', included: [false, false, true] },
+      { capability: 'Deployment', included: [false, false, true] },
+      { capability: 'AI & development integration', included: [false, false, true] },
+    ],
+    durationNote:
+      'The programme is nested, not parallel. The 3-month course builds your web development foundation. The 6-month track includes those fundamentals and moves into React, backend development, databases, APIs and authentication. The 9-month programme builds further with advanced full-stack development, complex projects, deployment and AI-powered workflows. Choose 3 months for HTML, CSS, JavaScript and React fundamentals; 6 months to build full-stack applications with databases and APIs; 9 months to add advanced projects, deployment and modern AI-assisted development.',
     instructor: {
-      heading: 'Why learn MERN stack development with us?',
-      intro: 'The stack only clicks when one language carries you from a button click to a database write. The sessions are built around that path, so every concept lands attached to an application you are already running.',
+      heading: 'Why learn MERN Stack with us?',
+      intro:
+        'MERN is about more than syntax. The emphasis here is on how applications are designed, developed and debugged across frontend and backend together — through practical coding, assignments, projects and the technologies the industry actually runs.',
       points: [
         {
-          title: 'Learning through practice',
-          copy: 'Go beyond theory with coding exercises, assignments, application development and projects.',
+          title: 'Both halves, connected',
+          copy: 'Frontend and backend are taught so they meet. The moment React first reads from your own API is the moment the stack makes sense.',
         },
         {
-          title: 'Beginner-oriented program',
-          copy: 'Start with web development fundamentals and move gradually into frontend and backend development.',
+          title: 'Coding, not watching',
+          copy: 'You write, run and debug your own applications from the first session. That is where development is actually learned.',
         },
         {
-          title: 'Industry-relevant technologies',
-          copy: 'Work with React.js, Node.js, Express.js, MongoDB, Git, GitHub and APIs.',
+          title: 'Projects that become a portfolio',
+          copy: 'Eight practical projects covering frontend, React, MongoDB, Node, APIs, problem solving, AI and a full-stack capstone you own.',
         },
         {
-          title: 'Real-world projects',
-          copy: 'Build applications that strengthen problem solving, development experience and your portfolio.',
-        },
-        {
-          title: 'Guided sessions',
-          copy: 'Live demonstrations, coding, problem solving, debugging and development support.',
-        },
-        {
-          title: 'Technology career skills',
-          copy: 'Full stack programming and project skills for interviews, internships, freelancing and software development.',
+          title: 'The modern stack',
+          copy: 'React with hooks, Express APIs, Mongoose and JWT — the current stack, not what it looked like five years ago.',
         },
       ],
     },
     extraFaqs: [
       {
-        q: 'What is the duration of the MERN Stack course in Phagwara?',
-        a: 'techcadd runs MERN Stack over 6 months depending on the track you choose. Weekday, evening and weekend batches cover the same syllabus, and 1-on-1 training is available if you would rather set your own pace. Every class runs for 2 hours, whichever format you choose.',
+        q: 'What is the MERN Stack Programming Course in Phagwara at Techcadd?',
+        a: 'It is designed to help beginners and aspiring developers learn full-stack web development through practical, career-focused training. Students learn frontend development, JavaScript, React, Node.js, Express.js, MongoDB, APIs and real-world development with hands-on practice.',
       },
       {
-        q: 'What is the fee for the MERN Stack course in Phagwara?',
-        a: 'Fees depend on the batch format and whether you take the course on its own or as part of a longer track. EMI options are available. Call the centre or book a free demo and a counsellor will give you the exact figure for the format you want.',
+        q: 'Who can join a MERN Stack Programming Course in Phagwara?',
+        a: 'It suits 12th-pass students, college students, graduates, freshers, job seekers and working professionals. Beginners can start with basic web development, while those with programming knowledge can strengthen their full-stack skills.',
       },
       {
-        q: 'Who can join the MERN Stack course?',
-        a: 'Graduate / Final-year. The first modules start from fundamentals, so no prior experience is assumed.',
+        q: 'Is MERN Stack a good career option for freshers?',
+        a: 'Yes. MERN is widely used across web development, software development, business applications and modern digital products. After gaining practical skills, freshers can explore roles such as MERN Stack Developer, Junior Full-Stack Developer, React Developer, Node.js Developer and Backend Developer.',
       },
       {
-        q: 'What jobs can I get after the MERN Stack course?',
-        a: 'Graduates move into MERN Stack Developer, Frontend Developer, Backend Developer, Full Stack Developer and similar roles. MERN is the stack most Indian startups actually build on, which makes it the fastest route from training to a paying developer role.',
+        q: 'What will I learn in the MERN Stack Programming Course?',
+        a: 'HTML, CSS, JavaScript, React.js, Node.js, Express.js, MongoDB, APIs, authentication, routing, database operations and full-stack development — plus Git, GitHub and modern AI-assisted development workflows.',
       },
       {
-        q: 'What salary can a fresher expect after this course in Phagwara?',
-        a: 'MERN Stack Developer roles start around ₹25,000 – ₹42,000 a month for a fresher with a working portfolio, rising to ₹6–12 LPA with two years of delivery experience. Specialists move beyond that.',
+        q: 'Is the MERN Stack course practical or theory-based?',
+        a: 'Learning becomes much easier when you build and test applications yourself. The approach focuses on hands-on coding, development exercises, debugging, mini-projects and real application development rather than theory alone.',
       },
       {
-        q: 'Who can join this course?',
-        a: 'Anyone comfortable with basic programming. If you have never written JavaScript, start with Full Stack Web Development instead — it covers the fundamentals first.',
+        q: 'Will I work on MERN Stack projects during the course?',
+        a: 'Yes. Practical learning includes frontend projects, React applications, backend APIs, database-driven applications and end-to-end MERN projects — which also strengthen your portfolio when applying for jobs or internships.',
       },
       {
-        q: 'What are the prerequisites?',
-        a: 'Basic programming logic and some HTML/CSS exposure. The first modules cover web fundamentals and the JavaScript you need.',
+        q: 'Can I learn MERN Stack after 12th?',
+        a: 'Absolutely. Students can start after 12th, especially if interested in coding, web development, software development or technology careers. It provides a strong development foundation to build on during college and beyond.',
+      },
+      {
+        q: 'Can MERN Stack help me get a job or internship?',
+        a: 'Yes, but the technologies alone are not enough. Employers also look for problem-solving ability, practical projects, programming fundamentals, databases, Git and relevant development skills. A job-oriented course helps you build these through practical training and project work.',
+      },
+      {
+        q: 'Does the course include AI-powered development?',
+        a: 'Modern development increasingly uses AI for coding assistance, debugging, documentation and workflow. The course introduces AI-assisted practice while keeping the focus on strong programming fundamentals.',
+      },
+      {
+        q: 'How do I choose the best MERN Stack Course in Phagwara?',
+        a: 'Do not choose on fees or certificates alone. Check the syllabus, practical coding sessions, trainer experience, project work, development exercises, tools covered, doubt support, career guidance and placement assistance. A good course should take you from web development basics to building complete full-stack projects.',
       },
     ],
-    whyNow: {
-      title: 'MERN Stack Is Powering the Next Generation of Industry Leaders',
-      points: [
-        'Live client work from week one, supervised by a trainer, not slides, not simulations.',
-        'MERN Stack Developer roles in Punjab start around ₹25,000 – ₹42,000 a month for a fresher with a working portfolio.',
-      ],
-    },
     relatedCourses: [
       'web-development-course-in-phagwara',
-      'java-course-in-phagwara',
-      'data-analytics-course-in-phagwara',
+      'mean-stack-course-in-phagwara',
+      'php-full-stack-course-in-phagwara',
+      'web-designing-course-in-phagwara',
       'python-course-in-phagwara',
-      'c-course-in-phagwara',
-      'c-plus-plus-course-in-phagwara',
+      'java-course-in-phagwara',
     ],
     keywords: [
-      'best mern stack training in phagwara',
       'mern stack course in phagwara',
-      'mern certification courses in phagwara',
-      'react node mongodb training in phagwara',
-      'full stack javascript classes in phagwara',
+      'mern stack courses in phagwara',
+      'mern stack training institute in phagwara',
+      'mern stack programming course in phagwara',
+      'full stack developer course in phagwara',
+      'mern stack course after 12th in phagwara',
     ],
   }),
 
   makeCourse({
     slug: 'mean-stack-course-in-phagwara',
     label: 'MEAN Stack',
-    title: 'Best MEAN Stack Course & Training in Phagwara',
+    title: 'MEAN Stack Course in Phagwara',
     category: 'programming',
     categoryTitle: 'Programming',
     icon: 'layers',
-    duration: '6 Months',
-    level: 'Intermediate to Advanced',
-    eligibility: 'Graduate / Final-year',
-    summary: 'MongoDB, Express, Angular and Node — the enterprise-favoured alternative stack, built around TypeScript throughout.',
-    overview: 'Take the first step toward a full-stack career with structured MEAN training in Phagwara. You study MongoDB, Express.js, Angular and Node.js alongside JavaScript, database management, REST APIs and modern web development practice. Suitable for beginners: the track starts at web fundamentals and builds through frontend, backend and database work to a complete application.',
-    demand: 'Angular is what enterprise and service companies standardise on, so MEAN skills reach the steadier, better-paid end of the agency market.',
+    duration: '3 – 9 Months',
+    level: 'Beginner to Advanced',
+    eligibility: '12th Pass Onward',
+    summary:
+      'Learn full-stack development on Angular — MongoDB, Express, Angular and Node.js, with REST APIs, authentication and live projects.',
+    overview:
+      'Techcadd’s MEAN Stack Development Course in Phagwara is an industry-oriented course that teaches students, graduates, job seekers and beginners how to build modern web applications with MongoDB, Express.js, Angular and Node.js. It covers frontend development, backend development, databases, APIs, authentication and full-stack application development. The training is based on practical knowledge rather than theory: you learn through coding exercises, assignments and real projects, seeing how frontend, backend and database technologies fit together. The approach is beginner-friendly throughout, developing programming logic, development skill and problem solving alongside the syntax — by the end you can design, develop, debug and deploy a MEAN application of your own.',
+    demand:
+      'Angular remains the framework of choice in enterprise and agency work, and a developer who can pair it with a Node backend is doing the job two hires would otherwise cover.',
     modules: [
       {
-        title: 'Web development fundamentals',
-        summary: 'HTML, CSS, JavaScript basics, page structure, responsive design and the fundamentals modern web development needs.',
-        topics: ['HTML structure', 'CSS styling', 'Responsive design', 'Web fundamentals'],
-        duration: '2 weeks',
-        lessons: 10,
-      },
-      {
-        title: 'JavaScript programming',
-        summary: 'Variables, data types, operators, functions, arrays, objects, loops, conditions, ES6 features and asynchronous programming.',
-        topics: ['Core syntax', 'Functions & objects', 'ES6 features', 'Async programming'],
-        duration: '2 weeks',
+        title: 'Web Development & JavaScript Fundamentals',
+        summary:
+          'Build your knowledge from scratch and grow as a developer step by step, writing clean, understandable JavaScript.',
+        topics: [
+          'JavaScript fundamentals, variables, data types and operators',
+          'Conditions, loops and functions',
+          'Arrays, objects and JSON data',
+          'Writing clean, readable code',
+        ],
+        duration: '3 weeks',
         lessons: 12,
       },
       {
-        title: 'Angular fundamentals',
-        summary: 'Angular architecture, components, templates, directives, data binding, modules, services, routing and forms.',
-        topics: ['Components & templates', 'Directives', 'Data binding', 'Routing & forms'],
-        duration: '3 weeks',
+        title: 'Angular Development, Components & Problem-Solving',
+        summary:
+          'Get deeper into frontend development and learn how modern applications are structured.',
+        topics: [
+          'Building interfaces from Angular components',
+          'Data binding, directives and services',
+          'Routing and component communication',
+          'Breaking application problems into development tasks',
+        ],
+        duration: '4 weeks',
         lessons: 14,
       },
       {
-        title: 'Advanced Angular development',
-        summary: 'Services, dependency injection, reactive forms, HTTP requests, route guards, authentication concepts and API integration.',
-        topics: ['Dependency injection', 'Reactive forms', 'HTTP & interceptors', 'Route guards'],
+        title: 'MongoDB Database Development',
+        summary:
+          'Understand how modern applications store and manage data, and design something that holds up.',
+        topics: [
+          'Databases, collections and documents',
+          'CRUD operations and JSON data',
+          'Schema design and data modelling',
+          'Integrating databases with applications',
+        ],
         duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Node.js, Express.js & REST APIs',
+        summary:
+          'Discover how backend applications work once the browser is no longer the whole story.',
+        topics: [
+          'Node.js fundamentals and server-side development',
+          'Building applications with Express.js',
+          'Routing and middleware',
+          'REST API development',
+        ],
+        duration: '4 weeks',
         lessons: 14,
       },
       {
-        title: 'Node.js fundamentals',
-        summary: 'How Node.js works, building server-side applications, npm, modules, asynchronous operations and backend services.',
-        topics: ['Node runtime', 'npm & modules', 'Async operations', 'Backend services'],
-        duration: '2 weeks',
-        lessons: 10,
+        title: 'Full-Stack Application Development',
+        summary:
+          'Learn how frontend, backend and database work together — the point where it becomes one product.',
+        topics: [
+          'Connecting Angular applications to Node.js servers',
+          'Integrating MongoDB databases',
+          'Authentication and user management',
+          'APIs and real-world application workflows',
+        ],
+        duration: '4 weeks',
+        lessons: 14,
       },
       {
-        title: 'Express.js & backend development',
-        summary: 'Routing, middleware, request and response handling, controllers, authentication, validation and error handling.',
-        topics: ['Routing', 'Middleware', 'Controllers', 'Validation & errors'],
+        title: 'Authentication, Security & Modern Applications',
+        summary:
+          'Advance into the parts of an application that decide who is allowed to do what.',
+        topics: [
+          'Authentication concepts and user access workflows',
+          'JWT and protected routes',
+          'Validation and secure API concepts',
+          'Modern application architecture',
+        ],
         duration: '3 weeks',
         lessons: 12,
       },
       {
-        title: 'MongoDB database',
-        summary: 'Collections, documents, CRUD, queries, relationships, indexing and database management for web applications.',
-        topics: ['Collections & documents', 'CRUD', 'Queries', 'Indexing'],
+        title: 'AI-Powered MEAN Stack Development',
+        summary:
+          'Learn how AI tooling changed the way developers write and understand code — without leaning on it.',
+        topics: [
+          'AI assistants for understanding code and troubleshooting',
+          'Generating and improving ideas with effective prompts',
+          'Using AI ethically without over-reliance',
+          'Faster debugging, documentation and development workflows',
+        ],
         duration: '2 weeks',
-        lessons: 12,
-      },
-      {
-        title: 'MongoDB with Node.js',
-        summary: 'Connecting MongoDB to Node applications — schemas, models, validation and working with application data.',
-        topics: ['Mongoose schemas', 'Models', 'Validation', 'Data operations'],
-        duration: '2 weeks',
-        lessons: 10,
-      },
-      {
-        title: 'REST APIs & JSON',
-        summary: 'Building and consuming REST APIs, HTTP methods, JSON handling, connecting frontend to backend and managing responses.',
-        topics: ['HTTP methods', 'JSON', 'API design', 'Frontend integration'],
-        duration: '2 weeks',
-        lessons: 10,
-      },
-      {
-        title: 'Authentication & security',
-        summary: 'Registration, login, password handling, authentication workflows, authorisation, tokens and basic security practice.',
-        topics: ['Registration & login', 'Password handling', 'JWT & tokens', 'Authorisation'],
-        duration: '2 weeks',
-        lessons: 10,
-      },
-      {
-        title: 'Git, GitHub & deployment',
-        summary: 'Version control, repository management, branches, collaboration and the basics of deploying a web application.',
-        topics: ['Git basics', 'Branches', 'Collaboration', 'Deployment'],
-        duration: '1 week',
         lessons: 8,
       },
       {
-        title: 'Projects & career preparation',
-        summary: 'Full-stack projects, debugging, API integration, portfolio development and interview-oriented preparation.',
-        topics: ['Capstone project', 'Debugging', 'Portfolio', 'Interview preparation'],
-        duration: '2 weeks',
-        lessons: 10,
+        title: 'MEAN Projects, Git & Developer Workflow',
+        summary:
+          'Apply your skills the way a team does — version controlled, organised and maintainable.',
+        topics: [
+          'Building projects against real-world requirements',
+          'Git and version control workflows',
+          'Project organisation and developer workflow',
+          'Writing readable, maintainable code',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Live MEAN Projects & Career Preparation',
+        summary:
+          'Apply everything in one end-to-end full-stack project, then learn to present it convincingly.',
+        topics: [
+          'An end-to-end full-stack project',
+          'Development assignments from real-world scenarios',
+          'Explaining your applications confidently in interviews',
+          'Careers in full-stack, frontend, backend and software engineering',
+        ],
+        duration: '4 weeks',
+        lessons: 14,
       },
     ],
     outcomes: [
-      'Web development and HTML/CSS fundamentals',
-      'JavaScript and TypeScript programming',
-      'Angular frontend development',
-      'Node.js and Express.js backend development',
-      'MongoDB and database integration',
-      'Full stack projects and deployment skills',
+      'Build component-driven interfaces in Angular with services and routing',
+      'Write server-side APIs with Node.js and Express',
+      'Model, query and manage data in MongoDB',
+      'Connect an Angular frontend to your own backend and database',
+      'Implement JWT authentication and protect application routes',
+      'Ship a complete full-stack application you can defend in an interview',
     ],
     tools: [
       'MongoDB',
@@ -3681,548 +4681,1145 @@ export const PROGRAMMING_COURSES: CourseContent[] = [
       'Angular',
       'Node.js',
       'JavaScript',
-      'HTML5 & CSS3',
+      'TypeScript',
       'VS Code',
       'Git & GitHub',
-      'REST APIs & JSON',
-      'MongoDB Compass',
-      'npm',
+      'Angular CLI',
       'Postman',
-      'Authentication & JWT',
-      'Web Application Deployment',
+      'MongoDB Compass',
+      'REST APIs',
+      'JWT Authentication',
+      'OpenAI & AI Tools',
+      'ChatGPT for Development',
     ],
+    audience: [
+      {
+        label: '12th Pass Students',
+        copy: 'Learning frontend and backend concepts step by step shows you how modern applications work. You will cover JavaScript, Angular components, Node.js, Express.js, MongoDB, APIs and problem solving — a useful skill alongside your academics.',
+      },
+      {
+        label: 'College Learners & Graduates',
+        copy: 'Web development should be taught through projects, not textbooks. Whatever your discipline, coding practice in frontend development, backend development, databases and APIs strengthens both your college projects and your portfolio.',
+      },
+      {
+        label: 'Job Seekers & Freshers',
+        copy: 'Basic syntax does not impress an employer. Companies want candidates who can build projects and solve real development problems. This builds frontend, backend, database and debugging skill along with the confidence to show it.',
+      },
+      {
+        label: 'Working Professionals',
+        copy: 'Already in IT, operations, testing, marketing or business? MEAN improves your technical skill and shows you how modern applications are built. Angular, Node.js, Express, MongoDB and APIs expand what you can do without a career change.',
+      },
+      {
+        label: 'Entrepreneurs & Business Owners',
+        copy: 'You do not need to be a developer. Understanding full-stack basics makes websites, applications, databases, APIs and digital products legible — and makes briefing a developer far easier.',
+      },
+      {
+        label: 'Aspiring Developers & Freelancers',
+        copy: 'A strong foundation for modern digital solutions: frontend, backend, APIs, databases, authentication and project building you can later bill for as websites, applications and custom software.',
+      },
+    ],
+    whyChooseUs: [
+      {
+        title: 'MEAN Stack skills are in demand',
+        copy: 'Full-stack development goes well past basic website creation. Businesses, startups and technology companies need developers who understand interfaces, backend systems, databases and APIs — and MEAN covers all four with one language.',
+      },
+      {
+        title: 'Understanding how MEAN really works',
+        copy: 'Not memorising code. How the technologies combine — JavaScript fundamentals, Angular components, MongoDB collections and JSON, Node and Express routing, middleware, error handling, validation, APIs and debugging.',
+      },
+      {
+        title: 'Practical training is how development is learned',
+        copy: 'Tutorials help. Building and debugging applications teaches far more. Hands-on assignments are where frontend, backend, database integration and API development actually stick.',
+      },
+      {
+        title: 'Skills that open several career paths',
+        copy: 'Depending on your interest, this leads to MEAN Stack Developer, Angular Developer, Node.js Developer, Backend Developer, Full-Stack Web Developer or Software Developer.',
+      },
+    ],
+    whyNow: {
+      title: 'Gain MEAN Stack Skills You Can Apply In Real Life',
+      points: [
+        'Practical projects take your skills past theory into a portfolio that demonstrates real development ability.',
+        'A strong portfolio shows frontend development, backend logic, databases, APIs and complete applications together.',
+        'MEAN Stack Developer roles in Punjab start around ₹18,000 – ₹30,000 a month for a fresher with a working portfolio.',
+        'Focus on building projects and solving real problems rather than memorising code.',
+      ],
+    },
     roles: [
       'MEAN Stack Developer',
-      'Full Stack Developer',
-      'Frontend Developer',
-      'Backend Developer',
+      'MEAN Stack Backend Developer',
+      'Full-Stack Web Developer',
       'Angular Developer',
       'Node.js Developer',
-      'Web Application Developer',
-      'Foundation in Full-Stack Development',
+      'MEAN Stack Software Developer',
+      'MEAN Developer with AI',
+      'Freelance MEAN Stack Developer',
     ],
     roleDetails: [
       {
         role: 'MEAN Stack Developer',
-        copy: 'Build entire web applications with MongoDB, Express.js, Angular and Node.js.',
+        copy: 'Build complete web applications with MongoDB, Express.js, Angular and Node.js — frontend, backend, databases and APIs. The most common path after this course.',
       },
       {
-        role: 'Full Stack Developer',
-        copy: 'Develop both the frontend interface and the backend systems behind modern web applications.',
+        role: 'MEAN Stack Backend Developer',
+        copy: 'Work behind the scenes on reliable server-side applications and APIs using Node.js, Express.js, MongoDB and authentication.',
       },
       {
-        role: 'Frontend Developer',
-        copy: 'Design responsive, interactive interfaces with Angular, JavaScript, HTML and CSS.',
-      },
-      {
-        role: 'Backend Developer',
-        copy: 'Build server-side applications, RESTful APIs, authentication systems and database layers with Node.js and Express.js.',
+        role: 'Full-Stack Web Developer',
+        copy: 'Use both halves to build complete solutions for real business requirements — interfaces, backend logic, databases and the integration between them.',
       },
       {
         role: 'Angular Developer',
-        copy: 'Build scalable, dynamic web applications using Angular.',
+        copy: 'Build interactive, dynamic interfaces in Angular using components, services, routing, forms and APIs.',
       },
       {
         role: 'Node.js Developer',
-        copy: 'Develop backend services, REST APIs and server-side applications with Node.js.',
+        copy: 'Build server-side applications and APIs with Node.js and Express, working across databases, authentication and backend architecture.',
       },
       {
-        role: 'Web Application Developer',
-        copy: 'Design, build, integrate and maintain complete database-driven web applications.',
+        role: 'MEAN Stack Software Developer',
+        copy: 'Combine frontend, backend and database work into modern applications, APIs and scalable digital platforms.',
       },
       {
-        role: 'Foundation in Full-Stack Development',
-        copy: 'Build a grounding in modern web technologies and move a step further into full-stack development.',
+        role: 'MEAN Developer with AI',
+        copy: 'Pair full-stack skill with AI tooling to build smarter applications faster. AI assists with coding and debugging — fundamentals are what let you judge its output.',
+      },
+      {
+        role: 'Freelance MEAN Stack Developer',
+        copy: 'Build a freelance practice developing sites and applications for businesses in Phagwara, Jalandhar and further out.',
       },
     ],
     hiring: [
-      'Enterprise and service companies',
-      'IT consultancies',
-      'Product teams on Angular',
-      'Remote contract work',
+      'Software development companies creating websites, applications and business solutions',
+      'IT startups and technology companies using Angular and Node.js',
+      'Web development agencies building modern business applications',
+      'SaaS and product companies developing scalable web platforms',
     ],
-    nextSteps: ['TypeScript in depth', 'NgRx state management', 'Cloud & DevOps', 'System design'],
-    industries: ['Product companies', 'Enterprise software', 'SaaS', 'IT services'],
+    nextSteps: [
+      'Advanced Angular & RxJS',
+      'TypeScript in depth',
+      'Cloud deployment & DevOps basics',
+      'System design for web applications',
+    ],
+    industries: ['Software development', 'IT startups', 'Web agencies', 'SaaS & product companies'],
+    /*
+     * Client-supplied bands, monthly rather than the derived LPA figures used
+     * elsewhere in the catalogue — that is the unit a fresher in this market
+     * recognises. `scale` is the midpoint in ₹/month, and remote sits *below*
+     * Punjab at the fresher end on purpose: freelance income ramps rather than
+     * starting at a salary.
+     */
     salary: {
       role: 'MEAN Stack Developer',
-      summary: 'Builds structured, TypeScript-first web applications on Angular and Node.',
-      starting: '₹3–5 LPA',
-      after2: '₹6–11 LPA',
+      summary:
+        'Builds complete web applications across Angular, Node, Express and MongoDB. Earnings depend on your development skills, portfolio, experience, company and location.',
+      starting: '₹18,000–₹30,000/month',
+      after2: '₹30,000–₹50,000/month',
       markets: [
         {
-          name: 'Punjab / Tricity',
-          fresher: '₹3–5 LPA',
-          after2: '₹6–11 LPA',
-          scale: { fresher: 4, after2: 8.5 },
+          name: 'Punjab — MEAN Stack Developer',
+          fresher: '₹18,000–₹30,000/month',
+          after2: '₹30,000–₹50,000/month',
+          scale: { fresher: 24000, after2: 40000 },
         },
         {
-          name: 'Delhi NCR',
-          fresher: '₹4–7 LPA',
-          after2: '₹8.5–15.5 LPA',
-          scale: { fresher: 5.6, after2: 11.9 },
+          name: 'Delhi / NCR — Full-Stack & Web Development',
+          fresher: '₹25,000–₹40,000/month',
+          after2: '₹40,000–₹70,000+/month',
+          scale: { fresher: 32500, after2: 55000 },
         },
         {
-          name: 'Remote / Freelance',
-          fresher: '₹4.5–8 LPA',
-          after2: '₹9.5–17 LPA',
-          scale: { fresher: 6.2, after2: 13.18 },
+          name: 'Remote / Freelance Full-Stack',
+          fresher: '₹10,000–₹25,000/month',
+          after2: '₹30,000–₹80,000+/month',
+          scale: { fresher: 17500, after2: 55000 },
         },
       ],
     },
     careerFaqs: [
       {
         q: 'What job roles open up after MEAN Stack?',
-        a: 'Graduates move into MEAN Stack Developer, Full Stack Developer, Frontend Developer, Backend Developer and similar roles. Angular is what enterprise and service companies standardise on, so MEAN skills reach the steadier, better-paid end of the agency market.',
+        a: 'MEAN Stack Developer, Angular Developer, Node.js Developer, Junior Full-Stack Developer and Backend Developer. Because the stack covers frontend, backend and database, one skillset maps onto several job titles.',
       },
       {
         q: 'What can I earn, and how fast does it grow?',
-        a: 'A fresher with a working portfolio starts around ₹25,000 – ₹42,000 a month in the Phagwara market. With two years of delivery experience that typically doubles, and specialists who keep learning move well beyond it.',
+        a: 'A fresher with a working portfolio starts around ₹18,000 – ₹30,000 a month in the Punjab market, rising to ₹30,000 – ₹50,000 with two years of delivery experience. Delhi/NCR runs higher, and full-stack specialists move well beyond it.',
       },
       {
         q: 'Can I freelance or work remotely with this skill?',
-        a: 'Yes. A Phagwara address costs you nothing on a remote brief. Students bill clients in Delhi, Dubai and Canada. The course covers client handling, proposals and reporting so you can price and defend your work, not just do it.',
+        a: 'Yes — full-stack work travels well, since one person can deliver a whole product. Freelance income ramps rather than starting at a salary: around ₹10,000 – ₹25,000 a month early on, and ₹30,000 – ₹80,000+ once you have shipped real client applications.',
       },
       {
         q: 'Which industries hire for this in Punjab?',
-        a: 'Beyond IT companies, the agro and food processing units, immigration consultancies, hospitals, schools, hotels and the university belt around Phagwara all now hire for these skills directly.',
+        a: 'Software development companies, IT startups running Angular and Node.js, web development agencies building business applications, and SaaS and product companies — plus freelance and remote projects.',
       },
       {
-        q: 'Can I continue to higher studies or a specialisation later?',
-        a: 'The certificate and portfolio stand on their own, and they stack. Most students move on to an adjacent techcadd track. The tools overlap, so the second course is faster than the first.',
+        q: 'Should I learn MEAN or MERN?',
+        a: 'Both cover the same ground with a different frontend: MEAN uses Angular, MERN uses React. Angular is more common in enterprise and agency work and is more opinionated, which many beginners find easier to follow. Either one makes the other quicker to pick up later.',
       },
     ],
     projects: [
       {
-        name: 'Angular frontend over a REST API',
-        summary: 'Components, routing and reactive forms, fed by data fetched over HTTP.',
-        tech: ['Angular', 'TypeScript', 'REST APIs'],
+        name: 'JavaScript Logic & Development Project',
+        summary:
+          'Build a JavaScript application covering variables, data types, operators, conditions, loops, functions and programming logic. You write it yourself and understand how each concept works.',
+        tech: ['JavaScript', 'Programming Basics'],
         level: 'Beginner',
-        skills: ['Components', 'Routing', 'HTTP'],
+        skills: ['Logical Thinking', 'Programming Fundamentals'],
       },
       {
-        name: 'Authenticated Express API',
-        summary: 'Express and MongoDB behind registration, login, token sessions and protected routes.',
-        tech: ['Node.js', 'Express.js', 'MongoDB', 'JWT'],
+        name: 'Angular Frontend Application',
+        summary:
+          'Build a working frontend using Angular components, services, routing, forms and user interactions — and see how the pieces combine into a modern application.',
+        tech: ['Angular', 'Components'],
+        level: 'Beginner',
+        skills: ['Routing', 'Frontend Development'],
+      },
+      {
+        name: 'MongoDB Database Project',
+        summary:
+          'Work with real application data: organise, store, retrieve and manage it in MongoDB. Database development learned practically rather than from a textbook.',
+        tech: ['MongoDB', 'JSON'],
         level: 'Intermediate',
-        skills: ['REST design', 'Authentication', 'Validation'],
+        skills: ['CRUD Operations', 'Database Development'],
       },
       {
-        name: 'Full stack MEAN capstone',
-        summary: 'An Angular front end on an Express API and MongoDB, version-controlled and deployed.',
-        tech: ['MongoDB', 'Express.js', 'Angular', 'Node.js'],
+        name: 'Node.js & Express.js Backend Project',
+        summary:
+          'Build a backend that handles requests and business logic, with routes, middleware, APIs and a database behind it.',
+        tech: ['Node.js', 'Express.js'],
+        level: 'Intermediate',
+        skills: ['Backend Development', 'APIs'],
+      },
+      {
+        name: 'REST API Integration Project',
+        summary:
+          'Learn how frontend and backend communicate. Build something that creates, processes and displays real-time information over REST APIs.',
+        tech: ['REST API', 'JSON'],
+        level: 'Intermediate',
+        skills: ['API Integration', 'Node.js Development'],
+      },
+      {
+        name: 'Full-Stack Problem-Solving Project',
+        summary:
+          'Turn real requirements into working MEAN applications. Develop your problem solving, sharpen development logic, handle errors and build cleaner applications.',
+        tech: ['JavaScript', 'Debugging'],
         level: 'Advanced',
-        skills: ['Full stack architecture', 'Deployment', 'Git workflow'],
+        skills: ['Problem Solving', 'Clean Code'],
+      },
+      {
+        name: 'AI & MEAN Stack Project',
+        summary:
+          'See how a modern application integrates AI on a practical project — APIs, AI tools, application workflows and current development technique.',
+        tech: ['AI Tools', 'APIs'],
+        level: 'Advanced',
+        skills: ['Artificial Intelligence', 'Web Applications'],
+      },
+      {
+        name: 'End-to-End MEAN Capstone',
+        summary:
+          'Bring everything together: plan, design, develop, test, fix what breaks, and present the finished application as your portfolio piece.',
+        tech: ['MEAN Stack', 'Full-Stack Development'],
+        level: 'Advanced',
+        skills: ['Web Application', 'Portfolio'],
       },
     ],
+    workingLoop: [
+      {
+        title: 'Understand',
+        copy: 'Turn a realistic business requirement into an application strategy — user needs, the features it needs, the database structure behind them and the technologies that suit.',
+        artefact: 'Application Planning & Development Brief',
+      },
+      {
+        title: 'Build',
+        copy: 'Build with a trainer beside you: Angular interfaces, Node.js services, Express APIs, MongoDB databases and authentication, with AI-assisted workflows.',
+        artefact: 'Full-Stack Web Application Development',
+      },
+      {
+        title: 'Present & Optimise',
+        copy: 'Present the strategy, architecture, frontend, backend, database, APIs and how you optimised it — then take the application into your professional portfolio.',
+        artefact: 'End-to-End MEAN Stack Application & Optimisation',
+      },
+    ],
+    industryReady: [
+      {
+        title: 'Industry-ready training course',
+        copy: 'Practical topics — Angular, Node.js, Express.js, MongoDB, APIs, authentication and full-stack application development — that turn knowledge into working skill.',
+      },
+      {
+        title: 'Learn by doing MEAN projects',
+        copy: 'Practical projects and exercises that build the ability to create user interfaces, APIs, databases and complete web applications.',
+      },
+      {
+        title: 'Develop a MEAN project portfolio',
+        copy: 'Industry-relevant full-stack projects you can put on a CV — applications that demonstrate your development and problem-solving ability in interviews.',
+      },
+      {
+        title: 'Career guidance and placement support',
+        copy: 'Resume guidance, technical interview preparation, project presentation and career development across MEAN, full-stack, Angular, Node.js and software engineering.',
+      },
+    ],
+    whyTechcadd: [
+      {
+        title: 'Trainers who explain MEAN simply',
+        copy: 'Full-stack development is a lot to take on at once. Trainers here explain the concepts with simple, practical examples so four technologies feel like one subject.',
+      },
+      {
+        title: 'Live and practical MEAN projects',
+        copy: 'Projects make the concepts meaningful. You learn through hands-on work spanning frontend interfaces, backend systems, databases, APIs and complete application development.',
+      },
+      {
+        title: 'Small batches so doubts get cleared',
+        copy: 'Development is far easier when you can clear a doubt in real time and practise the concept while you are still stuck on it.',
+      },
+      {
+        title: 'A practical portfolio you build yourself',
+        copy: 'You finish with projects demonstrating Angular, Node.js, Express.js, MongoDB, APIs and full-stack development — real work a fresher can discuss in an interview.',
+      },
+      {
+        title: 'Career and placement guidance',
+        copy: 'Because MEAN spans web, software and backend development, guidance is career-oriented: resume building, mock interviews, project presentation and direction toward the right role.',
+      },
+      {
+        title: 'MEAN taught the practical way',
+        copy: 'The aim is understanding how complete applications are built, not memorising code — practical Angular, Node.js, Express.js, MongoDB, APIs, authentication and application development.',
+      },
+    ],
+    comparison: {
+      rows: [
+        {
+          feature: 'MEAN Stack curriculum',
+          techcadd:
+            'Industry-focused training covering MongoDB, Express.js, Angular, Node.js, APIs and application development',
+          others: 'Often focuses mainly on individual technology basics',
+        },
+        {
+          feature: 'Learning style',
+          techcadd: 'Practical, development-focused learning built around real application problems',
+          others: 'Can be more theory-oriented',
+        },
+        {
+          feature: 'Practical projects',
+          techcadd: 'Students work on full-stack assignments and project-based tasks',
+          others: 'Practical exposure may be limited',
+        },
+        {
+          feature: 'Development skills',
+          techcadd: 'Focus on frontend, backend, databases, APIs and debugging',
+          others: 'May cover concepts without enough development practice',
+        },
+        {
+          feature: 'Advanced development',
+          techcadd:
+            'Exposure to authentication, APIs, database integration and full-stack architecture',
+          others: 'Advanced topics can vary by institute',
+        },
+        {
+          feature: 'Problem solving',
+          techcadd: 'Regular development exercises designed to improve technical thinking',
+          others: 'Problem-solving practice may receive less attention',
+        },
+        {
+          feature: 'Portfolio building',
+          techcadd: 'Projects and assignments that help showcase full-stack development skills',
+          others: 'Portfolio development may not be a major focus',
+        },
+        {
+          feature: 'Career support',
+          techcadd: 'CV guidance, interview preparation and portfolio support',
+          others: 'Career assistance varies between institutes',
+        },
+        {
+          feature: 'Doubt support',
+          techcadd:
+            'Trainer guidance to understand development concepts and solve technical challenges',
+          others: 'Support may be limited to classroom sessions',
+        },
+        {
+          feature: 'Certification',
+          techcadd: 'Course completion certification supported by practical learning and project exposure',
+          others: 'Certification and practical exposure can vary',
+        },
+      ],
+      note: 'The right-hand column represents common market patterns, not a comparison with any specific institute. Before choosing a MEAN Stack institute in Phagwara, ask how much practical development is included, whether students build real projects, how trainers handle doubts, and what career support is provided.',
+    },
+    durations: [
+      {
+        length: '3 Months',
+        tier: 'Foundation',
+        heading: 'Learn the basics of MEAN development',
+        blurb:
+          'Fundamental web development step by step through practical coding and beginner-friendly projects, until the stack stops feeling like four separate things.',
+        skills: ['JavaScript', 'HTML', 'CSS', 'Angular Basics', 'Node.js Basics', 'Git basics'],
+        recommendedFor:
+          'Web Development Trainee, Development Intern, Junior Web Developer, and anyone starting a MEAN Stack course in Phagwara.',
+      },
+      {
+        length: '6 Months',
+        tier: 'Professional',
+        heading: 'Get proficient in MEAN development',
+        blurb:
+          'Real-world full-stack work: MongoDB, APIs, authentication and application development, with advanced frontend and backend skill.',
+        skills: ['MongoDB', 'Express.js', 'Angular', 'Node.js', 'REST APIs', 'Postman', 'JWT'],
+        recommendedFor:
+          'MEAN Stack Developer, Junior Full-Stack Developer, Angular Developer, Node.js Developer.',
+      },
+      {
+        length: '9 Months',
+        tier: 'Advanced',
+        heading: 'Master MEAN Stack development',
+        blurb:
+          'Advanced application architecture, databases, APIs, authentication, deployment and AI-powered development workflows.',
+        skills: ['Angular', 'Node.js', 'MongoDB Compass', 'REST APIs', 'JWT', 'GitHub', 'AI tools'],
+        recommendedFor:
+          'MEAN Stack Developer, Full-Stack Developer, Backend Developer, Angular Developer, and advanced web pathways.',
+      },
+    ],
+    capabilities: [
+      { capability: 'JavaScript fundamentals', included: [true, true, true] },
+      { capability: 'Variables & data types', included: [true, true, true] },
+      { capability: 'Functions & programming logic', included: [true, true, true] },
+      { capability: 'Angular basics', included: [true, true, true] },
+      { capability: 'Node.js basics', included: [true, true, true] },
+      { capability: 'MongoDB basics', included: [true, true, true] },
+      { capability: 'Advanced Angular', included: [false, true, true] },
+      { capability: 'MongoDB & database integration', included: [false, true, true] },
+      { capability: 'REST APIs', included: [false, true, true] },
+      { capability: 'Backend development', included: [false, true, true] },
+      { capability: 'Express.js', included: [false, true, true] },
+      { capability: 'Authentication', included: [false, true, true] },
+      { capability: 'Git & GitHub', included: [false, true, true] },
+      { capability: 'Advanced full-stack projects', included: [false, false, true] },
+      { capability: 'Application architecture', included: [false, false, true] },
+      { capability: 'AI & development integration', included: [false, false, true] },
+    ],
+    durationNote:
+      'The programme is nested, not parallel. The 3-month course builds your web development foundation. The 6-month track includes those fundamentals and moves into databases, APIs, backend development and full-stack applications. The 9-month programme builds further with advanced development, larger projects and modern AI-assisted workflows. Choose 3 months for JavaScript, Angular and Node.js fundamentals; 6 months to build full-stack applications with MongoDB, APIs and authentication; 9 months to add advanced architecture and AI-powered practice.',
     instructor: {
-      heading: 'Why learn MEAN stack development with us?',
-      intro: 'Angular rewards structure, and the stack only makes sense once one language carries you from a form field to a database write. The sessions follow that path, so every concept arrives attached to something already running.',
+      heading: 'Why learn MEAN Stack with us?',
+      intro:
+        'MEAN is about more than four technology names. The emphasis here is on how a complete application is designed, developed and connected across frontend, backend and database — through practical coding, assignments and projects.',
       points: [
         {
-          title: 'Learning through practice',
-          copy: 'Apply theory through coding practice, assignments, API integration and full-stack projects.',
+          title: 'One language, both ends',
+          copy: 'JavaScript runs the whole stack here, which is exactly what makes MEAN approachable — you are not learning two languages at once.',
         },
         {
-          title: 'Beginner-level program',
-          copy: 'Start from the basics and progress through frontend, backend, database and application development.',
+          title: 'Coding, not watching',
+          copy: 'You write, run and debug your own applications from the first session. That is where development is actually learned.',
         },
         {
-          title: 'Industry relevance',
-          copy: 'Train on the tools teams actually use — MongoDB, Express.js, Angular, Node.js, Git, GitHub, Postman and APIs.',
+          title: 'Projects that become a portfolio',
+          copy: 'Eight practical projects covering JavaScript, Angular, MongoDB, Node, APIs, problem solving, AI and a full-stack capstone you own.',
         },
         {
-          title: 'Real-world projects',
-          copy: 'Build applications that strengthen development skill, problem solving and your portfolio.',
-        },
-        {
-          title: 'Guided sessions',
-          copy: 'Well-structured sessions with live coding, debugging and doubt solving.',
-        },
-        {
-          title: 'Technology career skills',
-          copy: 'Frontend, backend, database, API and deployment skills for internships, interviews and freelancing.',
+          title: 'Angular taught properly',
+          copy: 'Components, services, routing and forms as a structure you build with, rather than a list of features to memorise.',
         },
       ],
     },
     extraFaqs: [
       {
-        q: 'What is the duration of the MEAN Stack course in Phagwara?',
-        a: 'techcadd runs MEAN Stack over 6 months depending on the track you choose. Weekday, evening and weekend batches cover the same syllabus, and 1-on-1 training is available if you would rather set your own pace. Every class runs for 2 hours, whichever format you choose.',
+        q: 'What is the MEAN Stack Development Course in Phagwara at Techcadd?',
+        a: 'It is designed to help beginners and aspiring developers learn full-stack development through practical, career-focused training. Students learn MongoDB, Express.js, Angular, Node.js, JavaScript, APIs, databases and real-world development with hands-on practice.',
       },
       {
-        q: 'What is the fee for the MEAN Stack course in Phagwara?',
-        a: 'Fees depend on the batch format and whether you take the course on its own or as part of a longer track. EMI options are available. Call the centre or book a free demo and a counsellor will give you the exact figure for the format you want.',
+        q: 'Who can join a MEAN Stack Development Course in Phagwara?',
+        a: 'It suits 12th-pass students, college students, graduates, freshers, job seekers and working professionals. Beginners can start step by step, while those with programming knowledge can strengthen their full-stack skills.',
       },
       {
-        q: 'Who can join the MEAN Stack course?',
-        a: 'Graduate / Final-year. The first modules start from fundamentals, so no prior experience is assumed.',
+        q: 'Is MEAN Stack a good career option for freshers?',
+        a: 'Yes. MEAN technologies are widely used for web development, frontend and backend development, APIs, databases and software applications. After gaining practical skills, freshers can explore roles such as MEAN Stack Developer, Junior Full-Stack Developer, Angular Developer, Node.js Developer and Backend Developer.',
       },
       {
-        q: 'What jobs can I get after the MEAN Stack course?',
-        a: 'Graduates move into MEAN Stack Developer, Full Stack Developer, Frontend Developer, Backend Developer and similar roles. Angular is what enterprise and service companies standardise on, so MEAN skills reach the steadier, better-paid end of the agency market.',
+        q: 'What will I learn in the MEAN Stack Development Course?',
+        a: 'JavaScript, Angular, Node.js, Express.js, MongoDB, database operations, APIs, authentication, routing, backend development and full-stack application development — plus Git, GitHub and AI-assisted development workflows.',
       },
       {
-        q: 'What salary can a fresher expect after this course in Phagwara?',
-        a: 'MEAN Stack Developer roles start around ₹25,000 – ₹42,000 a month for a fresher with a working portfolio, rising to ₹6–11 LPA with two years of delivery experience. Specialists move beyond that.',
+        q: 'Is the MEAN Stack course practical or theory-based?',
+        a: 'Learning becomes easier when you build and test applications yourself. The approach focuses on hands-on coding, development exercises, debugging, mini-projects and real-world problem solving rather than theory alone.',
       },
       {
-        q: 'Is this course suitable for beginners?',
-        a: 'Yes. MEAN Stack Development begins from fundamentals, and the pace is set so nothing is assumed.',
+        q: 'Will I work on MEAN Stack projects during the course?',
+        a: 'Yes. Practical learning includes frontend applications, backend APIs, MongoDB database projects, authentication systems and end-to-end MEAN applications — which also strengthen your portfolio.',
       },
       {
-        q: 'What are the prerequisites?',
-        a: 'Basic computer familiarity. Anything else the track needs is introduced in the first module.',
+        q: 'Can I learn MEAN Stack after 12th?',
+        a: 'Absolutely. Students can start after 12th, especially if interested in coding, web development, software development or technology careers. It provides a foundation to build on during college and beyond.',
+      },
+      {
+        q: 'Can MEAN Stack help me get a job or internship?',
+        a: 'Yes, but the technologies alone are not enough. Employers also look for practical projects, development fundamentals, databases, APIs, Git and problem-solving skills. A job-oriented course helps you build these through practical training and projects.',
+      },
+      {
+        q: 'Does the course include AI-powered development?',
+        a: 'Modern development increasingly uses AI for coding, debugging, documentation and workflow. The course introduces AI-assisted practice while keeping the focus on strong technical fundamentals.',
+      },
+      {
+        q: 'How do I choose the best MEAN Stack Course in Phagwara?',
+        a: 'Do not choose on fees or certificates alone. Check the syllabus, practical development sessions, trainer experience, project work, tools covered, doubt support, portfolio development, career guidance and placement assistance. A good course should take you from learning technologies to actually building complete applications.',
       },
     ],
-    whyNow: {
-      title: 'MEAN Stack Is Powering the Next Generation of Industry Leaders',
-      points: [
-        'Live client work from week one, supervised by a trainer, not slides, not simulations.',
-        'MEAN Stack Developer roles in Punjab start around ₹25,000 – ₹42,000 a month for a fresher with a working portfolio.',
-      ],
-    },
     relatedCourses: [
       'mern-stack-course-in-phagwara',
       'web-development-course-in-phagwara',
+      'php-full-stack-course-in-phagwara',
+      'web-designing-course-in-phagwara',
       'java-course-in-phagwara',
       'python-course-in-phagwara',
-      'c-course-in-phagwara',
-      'c-plus-plus-course-in-phagwara',
     ],
     keywords: [
-      'best mean stack course in phagwara',
-      'mean stack training in phagwara',
-      'angular and node js classes in phagwara',
-      'mongodb express angular node course in phagwara',
-      'full stack javascript training in phagwara',
+      'mean stack course in phagwara',
+      'mean stack development course in phagwara',
+      'mean stack training institute in phagwara',
+      'mean stack classes in phagwara',
+      'angular course in phagwara',
+      'mean stack course after 12th in phagwara',
     ],
   }),
 
   makeCourse({
     slug: 'php-full-stack-course-in-phagwara',
     label: 'PHP Full Stack',
-    title: 'Best PHP Full Stack Course & Training in Phagwara',
+    title: 'PHP Full Stack Course in Phagwara',
     category: 'programming',
     categoryTitle: 'Programming',
-    icon: 'database',
-    duration: '5 Months',
+    icon: 'layers',
+    duration: '3 – 9 Months',
     level: 'Beginner to Advanced',
     eligibility: '12th Pass Onward',
-    summary: 'PHP and MySQL power a huge share of the live web — learn the language, a framework and real database-driven development.',
-    overview: 'Kick-start your web development career with structured PHP Full Stack training in Phagwara. You learn frontend technologies, backend programming in PHP, MySQL databases, APIs and practical project development. Built for beginners and aspiring developers: the track starts at how the web works and finishes with dynamic, database-driven applications you have built yourself.',
-    demand: 'PHP and Laravel still run most small-business websites, and local agencies in Phagwara and Jalandhar hire for it consistently rather than in waves.',
+    summary:
+      'Learn full-stack development on PHP — PHP, MySQL, HTML, CSS and JavaScript, with APIs, sessions, authentication and live projects.',
+    overview:
+      'Techcadd’s PHP Full Stack Development Course in Phagwara is an industry-oriented course that teaches students, graduates, job seekers and beginners how to build dynamic web applications using PHP, MySQL, HTML, CSS and JavaScript. It covers frontend development, backend programming, databases, APIs, authentication and complete web application development. The training is based on practical knowledge rather than theory: you learn through coding exercises, assignments and real projects, seeing how frontend, backend and database technologies fit together. The approach is beginner-friendly throughout, developing programming logic, development skill and problem solving alongside the syntax — by the end you can design, develop, debug and deploy a PHP application of your own.',
+    demand:
+      'A large share of the business sites, CMS installs and eCommerce stores already running in Punjab are PHP, and somebody has to maintain and extend them — which is steady work the newer stacks do not compete for.',
     modules: [
       {
-        title: 'Web development fundamentals',
-        summary: 'How websites work — HTML and CSS basics, browsers, servers, responsive layouts and core web concepts.',
-        topics: ['How the web works', 'Browsers & servers', 'HTML basics', 'Responsive layout'],
-        duration: '1 week',
-        lessons: 8,
-      },
-      {
-        title: 'HTML & CSS',
-        summary: 'Structured pages with HTML and responsive interfaces with CSS — layouts, forms, navigation, Flexbox and Grid.',
-        topics: ['Page structure', 'Forms & navigation', 'Flexbox', 'CSS Grid'],
-        duration: '2 weeks',
-        lessons: 12,
-      },
-      {
-        title: 'JavaScript fundamentals',
-        summary: 'Variables, functions, conditions, loops, arrays, objects, DOM manipulation and events for interactive pages.',
-        topics: ['Core syntax', 'Arrays & objects', 'DOM manipulation', 'Events'],
-        duration: '2 weeks',
-        lessons: 12,
-      },
-      {
-        title: 'Frontend development',
-        summary: 'User-friendly interfaces built with responsive design principles, reusable components, forms and validation.',
-        topics: ['Responsive design', 'Reusable components', 'Forms', 'Client-side validation'],
-        duration: '2 weeks',
-        lessons: 10,
-      },
-      {
-        title: 'PHP fundamentals',
-        summary: 'PHP syntax, variables, data types, operators, conditions, loops, functions, arrays, forms, sessions and cookies.',
-        topics: ['Syntax & types', 'Functions & arrays', 'Form handling', 'Sessions & cookies'],
-        duration: '3 weeks',
-        lessons: 14,
-      },
-      {
-        title: 'Object-oriented PHP',
-        summary: 'Classes, objects, constructors, inheritance, polymorphism, encapsulation and abstraction for organised applications.',
-        topics: ['Classes & objects', 'Constructors', 'Inheritance & polymorphism', 'Encapsulation'],
-        duration: '2 weeks',
-        lessons: 12,
-      },
-      {
-        title: 'MySQL & database management',
-        summary: 'Database concepts and MySQL in practice — creating tables, inserting, retrieving, updating and deleting records.',
-        topics: ['Tables & schemas', 'SELECT & queries', 'Joins', 'Relational design'],
-        duration: '2 weeks',
-        lessons: 12,
-      },
-      {
-        title: 'PHP & MySQL connectivity',
-        summary: 'Connecting PHP to MySQL and building database-driven features — registration, login, CRUD, search and data management.',
-        topics: ['Database connection', 'CRUD operations', 'Registration & login', 'Search'],
-        duration: '2 weeks',
-        lessons: 12,
-      },
-      {
-        title: 'PHP framework development',
-        summary: 'An introduction to Laravel — routing, controllers, models, views, forms, authentication and MVC architecture.',
+        title: 'Web Development & Programming Fundamentals',
+        summary:
+          'Build your knowledge from scratch and grow as a developer step by step, writing clean, understandable code.',
         topics: [
-          'MVC architecture',
-          'Routing & controllers',
-          'Models & views',
-          'Laravel authentication',
+          'HTML, CSS and JavaScript fundamentals',
+          'Variables, data types, conditions and loops',
+          'Functions, arrays and forms',
+          'Writing clean, readable code',
         ],
         duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'PHP Programming & Backend Development',
+        summary:
+          'Get deeper into server-side programming and learn how a dynamic application actually works.',
+        topics: [
+          'Building backend functionality in PHP',
+          'Variables, functions, arrays and control structures',
+          'Form handling and data processing',
+          'Sessions and cookies',
+        ],
+        duration: '4 weeks',
         lessons: 14,
       },
       {
-        title: 'APIs & JSON',
-        summary: 'How applications communicate through APIs, exchange data as JSON, and connect a frontend to backend services.',
-        topics: ['REST concepts', 'JSON', 'Consuming APIs', 'Frontend integration'],
-        duration: '1 week',
+        title: 'MySQL Database Development',
+        summary:
+          'Understand how applications store and manage data, and design a schema that holds up.',
+        topics: [
+          'Databases, tables and relationships',
+          'CRUD operations and SQL queries',
+          'Database design and data management',
+          'Connecting PHP applications to databases',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'PHP, APIs & Server-Side Applications',
+        summary:
+          'Discover how backend applications handle real requests from people who are not you.',
+        topics: [
+          'Server-side PHP development',
+          'Building dynamic applications',
+          'Request handling and validation',
+          'API concepts and data processing',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'Full-Stack Web Application Development',
+        summary:
+          'Learn how frontend, backend and database work together — where it becomes one product.',
+        topics: [
+          'Connecting frontend interfaces to PHP applications',
+          'Integrating MySQL databases',
+          'Authentication and user management',
+          'Forms, APIs and real application workflows',
+        ],
+        duration: '4 weeks',
+        lessons: 14,
+      },
+      {
+        title: 'Authentication, Security & Modern Applications',
+        summary:
+          'Advance into the parts of an application that decide who is allowed to do what.',
+        topics: [
+          'Authentication concepts and user access workflows',
+          'Sessions, password security and protected pages',
+          'Validation and secure database concepts',
+          'Modern application architecture',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
+      },
+      {
+        title: 'AI-Powered PHP Full Stack Development',
+        summary:
+          'Learn how AI tooling changed the way developers write and understand code — without leaning on it.',
+        topics: [
+          'AI assistants for understanding code and troubleshooting',
+          'Generating and improving ideas with effective prompts',
+          'Using AI ethically without over-reliance',
+          'Faster debugging, documentation and development workflows',
+        ],
+        duration: '2 weeks',
         lessons: 8,
       },
       {
-        title: 'Authentication & web security',
-        summary: 'Login systems, sessions, user roles, form validation, password handling and essential security practice.',
-        topics: ['Login & sessions', 'User roles', 'Server-side validation', 'Password handling'],
-        duration: '2 weeks',
-        lessons: 10,
+        title: 'PHP Projects, Git & Developer Workflow',
+        summary:
+          'Apply your skills the way a team does — version controlled, organised and maintainable.',
+        topics: [
+          'Building projects against real-world requirements',
+          'Git and version control workflows',
+          'Project organisation and developer workflow',
+          'Writing readable, maintainable code',
+        ],
+        duration: '3 weeks',
+        lessons: 12,
       },
       {
-        title: 'Projects & career preparation',
-        summary: 'Full stack projects, debugging, portfolio development, Git workflows and interview-oriented preparation.',
-        topics: ['Capstone project', 'Debugging', 'Git workflow', 'Interview preparation'],
-        duration: '2 weeks',
-        lessons: 10,
+        title: 'Live PHP Full Stack Projects & Career Preparation',
+        summary:
+          'Apply everything in one end-to-end full-stack project, then learn to present it convincingly.',
+        topics: [
+          'An end-to-end full-stack project',
+          'Development assignments from real-world scenarios',
+          'Explaining your applications confidently in interviews',
+          'Careers in full-stack, frontend, backend and software engineering',
+        ],
+        duration: '4 weeks',
+        lessons: 14,
       },
     ],
     outcomes: [
-      'Frontend development fundamentals',
-      'Core PHP programming',
-      'MySQL database management',
-      'Backend development and authentication',
-      'APIs, Git and deployment',
-      'Full stack projects and development skills',
+      'Build dynamic, database-driven pages with PHP',
+      'Design and query MySQL schemas with confidence',
+      'Handle forms, validation, sessions and cookies properly',
+      'Connect a frontend to your own PHP backend and database',
+      'Implement authentication and protect pages behind a login',
+      'Ship a complete web application you can defend in an interview',
     ],
     tools: [
-      'HTML5 & CSS3',
-      'JavaScript',
       'PHP',
       'MySQL',
-      'Laravel',
+      'HTML5',
+      'CSS3',
+      'JavaScript',
       'Bootstrap',
       'VS Code',
       'Git & GitHub',
-      'REST APIs & JSON',
+      'XAMPP',
       'phpMyAdmin',
-      'CRUD Operations',
-      'Responsive Web Design',
+      'Postman',
+      'REST APIs',
+      'Authentication & Sessions',
+      'OpenAI & AI Tools',
+      'ChatGPT for Development',
     ],
+    audience: [
+      {
+        label: '12th Pass Students',
+        copy: 'Learning frontend and backend concepts step by step shows you how modern sites work. You will cover HTML, CSS, JavaScript, PHP, MySQL, databases, APIs and problem solving — a useful skill alongside your academics.',
+      },
+      {
+        label: 'College Learners & Graduates',
+        copy: 'Web development should be taught through projects, not textbooks. Whatever your discipline, coding practice in frontend development, backend programming, databases and APIs strengthens both your college projects and your portfolio.',
+      },
+      {
+        label: 'Job Seekers & Freshers',
+        copy: 'Basic syntax does not impress an employer. Companies want candidates who can build projects and solve real problems. This builds frontend, backend, database and debugging skill along with the confidence to show it.',
+      },
+      {
+        label: 'Working Professionals',
+        copy: 'Already in IT, operations, testing, marketing or business? PHP Full Stack improves your technical skill and shows how modern applications are built. PHP, MySQL, frontend work and APIs expand what you can do without a career change.',
+      },
+      {
+        label: 'Entrepreneurs & Business Owners',
+        copy: 'You do not need to be a developer. Understanding full-stack basics makes websites, applications, databases, APIs and digital products legible — and makes briefing a developer far easier.',
+      },
+      {
+        label: 'Aspiring Developers & Freelancers',
+        copy: 'A strong foundation for modern digital solutions: frontend, backend, APIs, databases, authentication and project building you can later bill for as websites, applications and custom software.',
+      },
+    ],
+    whyChooseUs: [
+      {
+        title: 'PHP Full Stack skills are in demand',
+        copy: 'Full-stack development goes well past basic website creation. Businesses and technology companies need developers who understand interfaces, backend systems, databases and application logic — and PHP still runs a very large share of the web.',
+      },
+      {
+        title: 'Understanding how PHP Full Stack really works',
+        copy: 'Not memorising code. How the technologies combine — PHP fundamentals, HTML, CSS and JavaScript, MySQL and data management, server-side logic, form handling and validation, sessions and authentication, APIs and CRUD.',
+      },
+      {
+        title: 'Practical training is how development is learned',
+        copy: 'Tutorials help. Building and debugging applications teaches far more. Hands-on assignments are where frontend, backend, database integration and API development actually stick.',
+      },
+      {
+        title: 'Skills that open several career paths',
+        copy: 'Depending on your interest, this leads to PHP Full Stack Developer, PHP Developer, Backend Developer, Full-Stack Web Developer or Software Developer.',
+      },
+    ],
+    whyNow: {
+      title: 'Gain PHP Full Stack Skills You Can Apply In Real Life',
+      points: [
+        'Practical projects take your skills past theory into a portfolio that demonstrates real development ability.',
+        'A strong portfolio shows frontend development, backend logic, databases, APIs and complete applications together.',
+        'PHP Full Stack Developer roles in Punjab start around ₹18,000 – ₹30,000 a month for a fresher with a working portfolio.',
+        'Focus on building projects and solving real problems rather than memorising code.',
+      ],
+    },
     roles: [
+      'PHP Full Stack Developer',
+      'PHP Backend Developer',
+      'Full-Stack Web Developer',
       'PHP Developer',
-      'Full Stack Developer',
-      'Backend Developer',
-      'Web Developer',
-      'Laravel Developer',
-      'MySQL Database Developer',
-      'Software Developer',
+      'Web Application Developer',
+      'PHP Full Stack Software Developer',
+      'PHP Developer with AI',
+      'Freelance PHP Full Stack Developer',
     ],
     roleDetails: [
       {
+        role: 'PHP Full Stack Developer',
+        copy: 'Build complete web applications with PHP, MySQL, HTML, CSS and JavaScript — frontend, backend, databases and APIs. The most common path after this course.',
+      },
+      {
+        role: 'PHP Backend Developer',
+        copy: 'Work behind the scenes on reliable server-side applications and database systems using PHP, MySQL, APIs and authentication.',
+      },
+      {
+        role: 'Full-Stack Web Developer',
+        copy: 'Use both halves to build complete solutions for real business requirements — interfaces, backend logic, databases and the integration between them.',
+      },
+      {
         role: 'PHP Developer',
-        copy: 'Build dynamic websites, server-side applications, APIs and backend solutions using PHP.',
+        copy: 'Build dynamic, database-driven websites in PHP, working with forms, sessions, MySQL, APIs and application logic.',
       },
       {
-        role: 'Full Stack Developer',
-        copy: 'Work across frontend, backend, databases and application functionality to deliver complete web solutions.',
+        role: 'Web Application Developer',
+        copy: 'Build complete applications across frontend and backend, with databases, authentication, APIs and server-side architecture underneath.',
       },
       {
-        role: 'Backend Developer',
-        copy: 'Create server-side applications, database-driven systems, APIs and business logic.',
+        role: 'PHP Full Stack Software Developer',
+        copy: 'Combine frontend, backend and database work into dynamic applications, APIs and scalable digital platforms.',
       },
       {
-        role: 'Web Developer',
-        copy: 'Design and build responsive, interactive, dynamic websites across frontend and backend.',
+        role: 'PHP Developer with AI',
+        copy: 'Pair full-stack skill with AI tooling to build smarter applications faster. AI assists with coding and debugging — fundamentals are what let you judge its output.',
       },
       {
-        role: 'Laravel Developer',
-        copy: 'Build structured, scalable applications with the Laravel framework and MVC architecture.',
-      },
-      {
-        role: 'MySQL Database Developer',
-        copy: 'Manage application databases, queries, records, relationships and data-driven functionality.',
-      },
-      {
-        role: 'Software Developer',
-        copy: 'Apply programming, database, API and application skills to build and maintain software.',
+        role: 'Freelance PHP Full Stack Developer',
+        copy: 'Build a freelance practice developing sites and applications for businesses in Phagwara, Jalandhar and further out.',
       },
     ],
     hiring: [
-      'Web agencies and studios',
-      'E-commerce and CMS teams',
-      'Freelance website maintenance',
-      'In-house IT teams',
+      'Software development companies creating websites, applications and business solutions',
+      'IT companies using PHP and MySQL technologies',
+      'Web development agencies building dynamic business applications',
+      'eCommerce and product companies developing web platforms',
     ],
-    nextSteps: ['Laravel in depth', 'REST API design', 'Cloud & DevOps', 'JavaScript frameworks'],
-    industries: ['Digital agencies', 'IT services', 'E-commerce', 'Freelance & contract work'],
+    nextSteps: [
+      'Laravel framework',
+      'WordPress plugin & theme development',
+      'Advanced MySQL & query optimisation',
+      'Cloud deployment & DevOps basics',
+    ],
+    industries: ['Software development', 'IT services', 'Web agencies', 'eCommerce'],
+    /*
+     * Client-supplied bands, monthly rather than the derived LPA figures used
+     * elsewhere in the catalogue — that is the unit a fresher in this market
+     * recognises. `scale` is the midpoint in ₹/month, and remote sits *below*
+     * Punjab at the fresher end on purpose: freelance income ramps rather than
+     * starting at a salary.
+     */
     salary: {
-      role: 'PHP Developer',
-      summary: 'Builds and maintains database-driven websites and Laravel applications.',
-      starting: '₹2–3.5 LPA',
-      after2: '₹4.5–8 LPA',
+      role: 'PHP Full Stack Developer',
+      summary:
+        'Builds dynamic, database-driven web applications across PHP, MySQL and the frontend. Earnings depend on your development skills, portfolio, experience, company and location.',
+      starting: '₹18,000–₹30,000/month',
+      after2: '₹30,000–₹50,000/month',
       markets: [
         {
-          name: 'Punjab / Tricity',
-          fresher: '₹2–3.5 LPA',
-          after2: '₹4.5–8 LPA',
-          scale: { fresher: 2.9, after2: 6.25 },
+          name: 'Punjab — PHP Full Stack Developer',
+          fresher: '₹18,000–₹30,000/month',
+          after2: '₹30,000–₹50,000/month',
+          scale: { fresher: 24000, after2: 40000 },
         },
         {
-          name: 'Delhi NCR',
-          fresher: '₹3–5 LPA',
-          after2: '₹6.5–11 LPA',
-          scale: { fresher: 4.06, after2: 8.75 },
+          name: 'Delhi / NCR — Full-Stack & Web Development',
+          fresher: '₹25,000–₹40,000/month',
+          after2: '₹40,000–₹70,000+/month',
+          scale: { fresher: 32500, after2: 55000 },
         },
         {
-          name: 'Remote / Freelance',
-          fresher: '₹3.5–5.5 LPA',
-          after2: '₹7–12.5 LPA',
-          scale: { fresher: 4.5, after2: 9.69 },
+          name: 'Remote / Freelance PHP Development',
+          fresher: '₹10,000–₹25,000/month',
+          after2: '₹30,000–₹80,000+/month',
+          scale: { fresher: 17500, after2: 55000 },
         },
       ],
     },
     careerFaqs: [
       {
         q: 'What job roles open up after PHP Full Stack?',
-        a: 'Graduates move into PHP Developer, Full Stack Developer, Backend Developer, Web Developer and similar roles. PHP and Laravel still run most small-business websites, and local agencies in Phagwara and Jalandhar hire for it consistently rather than in waves.',
+        a: 'PHP Full Stack Developer, PHP Developer, Backend Developer, Junior Full-Stack Developer and Web Application Developer. Because the stack covers frontend, backend and database, one skillset maps onto several job titles.',
       },
       {
         q: 'What can I earn, and how fast does it grow?',
-        a: 'A fresher with a working portfolio starts around ₹18,000 – ₹30,000 a month in the Phagwara market. With two years of delivery experience that typically doubles, and specialists who keep learning move well beyond it.',
+        a: 'A fresher with a working portfolio starts around ₹18,000 – ₹30,000 a month in the Punjab market, rising to ₹30,000 – ₹50,000 with two years of delivery experience. Delhi/NCR runs higher, and developers who add Laravel move well beyond it.',
       },
       {
         q: 'Can I freelance or work remotely with this skill?',
-        a: 'Yes. A Phagwara address costs you nothing on a remote brief. Students bill clients in Delhi, Dubai and Canada. The course covers client handling, proposals and reporting so you can price and defend your work, not just do it.',
+        a: 'Yes — PHP is particularly good for freelance work locally, because so many existing business sites, CMS installs and stores run on it and need maintaining. Freelance income ramps rather than starting at a salary: around ₹10,000 – ₹25,000 a month early on, and ₹30,000 – ₹80,000+ once you have delivered real client work.',
       },
       {
         q: 'Which industries hire for this in Punjab?',
-        a: 'Beyond IT companies, the agro and food processing units, immigration consultancies, hospitals, schools, hotels and the university belt around Phagwara all now hire for these skills directly.',
+        a: 'Software development companies, IT companies running PHP and MySQL, web development agencies building dynamic business applications, and eCommerce and product companies — plus freelance and remote projects.',
       },
       {
-        q: 'Can I continue to higher studies or a specialisation later?',
-        a: 'The certificate and portfolio stand on their own, and they stack. Most students move on to an adjacent techcadd track. The tools overlap, so the second course is faster than the first.',
+        q: 'Is PHP still worth learning?',
+        a: 'Yes, for a specific reason: a very large share of the sites already running — business sites, WordPress installs, eCommerce stores — are PHP, and that existing code has to be maintained and extended. That is steady, local, less-contested work than the newer stacks, and Laravel keeps the modern end of it current.',
       },
     ],
     projects: [
       {
-        name: 'Dynamic website with admin panel',
-        summary: 'A content-driven site with a protected admin area, backed by MySQL.',
-        tech: ['PHP', 'MySQL', 'Bootstrap'],
+        name: 'PHP Programming & Logic Project',
+        summary:
+          'Build a PHP application covering variables, data types, operators, conditions, loops, functions and programming logic. You write it yourself and understand how each concept works.',
+        tech: ['PHP', 'Programming Basics'],
         level: 'Beginner',
-        skills: ['CRUD', 'Sessions', 'Templating'],
+        skills: ['Logical Thinking', 'Programming Fundamentals'],
       },
       {
-        name: 'User authentication system',
-        summary: 'Registration, login, roles and password handling built the way a real application needs it.',
+        name: 'Frontend Web Application',
+        summary:
+          'Build a working frontend with HTML, CSS, JavaScript and Bootstrap — and see how the elements combine into a modern, responsive application.',
+        tech: ['HTML', 'CSS', 'JavaScript'],
+        level: 'Beginner',
+        skills: ['Bootstrap', 'Frontend Development'],
+      },
+      {
+        name: 'MySQL Database Project',
+        summary:
+          'Work with real application data: organise, store, retrieve and manage it in MySQL. Database development learned practically rather than from a textbook.',
+        tech: ['MySQL', 'SQL'],
+        level: 'Intermediate',
+        skills: ['CRUD Operations', 'Database Development'],
+      },
+      {
+        name: 'PHP Backend Development Project',
+        summary:
+          'Build a backend that handles requests and business logic — forms, sessions, databases and the server-side functionality behind them.',
         tech: ['PHP', 'MySQL'],
         level: 'Intermediate',
-        skills: ['Authentication', 'Validation', 'Security practice'],
+        skills: ['Backend Development', 'Web Applications'],
       },
       {
-        name: 'Laravel eCommerce application',
-        summary: 'Products, cart and orders on an MVC structure, with authentication and a JSON API.',
-        tech: ['Laravel', 'PHP', 'MySQL', 'REST APIs'],
+        name: 'API Integration Project',
+        summary:
+          'Learn how applications exchange information. Build something that processes and displays real-time data over requests, JSON and APIs.',
+        tech: ['REST API', 'JSON'],
+        level: 'Intermediate',
+        skills: ['API Integration', 'PHP Development'],
+      },
+      {
+        name: 'Full-Stack Problem-Solving Project',
+        summary:
+          'Turn real requirements into working PHP applications. Develop your problem solving, sharpen development logic, handle errors and build cleaner applications.',
+        tech: ['PHP', 'Debugging'],
         level: 'Advanced',
-        skills: ['MVC', 'Eloquent models', 'API design'],
+        skills: ['Problem Solving', 'Clean Code'],
+      },
+      {
+        name: 'AI & PHP Full Stack Project',
+        summary:
+          'See how a modern application integrates AI on a practical project — APIs, AI tools, application workflows and current development technique.',
+        tech: ['AI Tools', 'APIs'],
+        level: 'Advanced',
+        skills: ['Artificial Intelligence', 'Web Applications'],
+      },
+      {
+        name: 'End-to-End PHP Full Stack Capstone',
+        summary:
+          'Bring everything together: plan, design, develop, test, fix what breaks, and present the finished application as your portfolio piece.',
+        tech: ['PHP Full Stack', 'Web Development'],
+        level: 'Advanced',
+        skills: ['Full-Stack Development', 'Portfolio'],
       },
     ],
+    workingLoop: [
+      {
+        title: 'Understand',
+        copy: 'Turn a realistic business requirement into an application strategy — user needs, the features it needs, the database structure behind them and the technologies that suit.',
+        artefact: 'Application Planning & Development Brief',
+      },
+      {
+        title: 'Build',
+        copy: 'Build with a trainer beside you: frontend interfaces, PHP backend functionality, MySQL databases and authentication workflows, with AI-assisted tooling.',
+        artefact: 'Full-Stack Web Application Development',
+      },
+      {
+        title: 'Present & Optimise',
+        copy: 'Present the strategy, architecture, frontend, backend, database, APIs and how you optimised it — then take the application into your professional portfolio.',
+        artefact: 'End-to-End PHP Full Stack Application & Optimisation',
+      },
+    ],
+    industryReady: [
+      {
+        title: 'Industry-ready training course',
+        copy: 'Practical topics — PHP, MySQL, frontend development, backend programming, APIs, authentication and complete application development — that turn knowledge into working skill.',
+      },
+      {
+        title: 'Learn by doing PHP projects',
+        copy: 'Practical projects and exercises that build the ability to create user interfaces, backend functionality, databases and complete web applications.',
+      },
+      {
+        title: 'Develop a PHP project portfolio',
+        copy: 'Industry-relevant full-stack projects you can put on a CV — applications that demonstrate your development and problem-solving ability in interviews.',
+      },
+      {
+        title: 'Career guidance and placement support',
+        copy: 'Resume guidance, technical interview preparation, project presentation and career development across PHP, full-stack, backend development and software engineering.',
+      },
+    ],
+    whyTechcadd: [
+      {
+        title: 'Trainers who explain PHP Full Stack simply',
+        copy: 'Full-stack development is a lot to take on at once. Trainers here explain the concepts with simple, practical examples so the technologies feel like one subject rather than several.',
+      },
+      {
+        title: 'Live and practical PHP projects',
+        copy: 'Projects make the concepts meaningful. You learn through hands-on work spanning frontend interfaces, backend systems, databases, APIs and complete application development.',
+      },
+      {
+        title: 'Small batches so doubts get cleared',
+        copy: 'Development is far easier when you can clear a doubt in real time and practise the concept while you are still stuck on it.',
+      },
+      {
+        title: 'A practical portfolio you build yourself',
+        copy: 'You finish with projects demonstrating PHP, MySQL, frontend technologies, APIs and full-stack development — real work a fresher can discuss in an interview.',
+      },
+      {
+        title: 'Career and placement guidance',
+        copy: 'Because PHP spans web, software and backend development, guidance is career-oriented: resume building, mock interviews, project presentation and direction toward the right role.',
+      },
+      {
+        title: 'PHP Full Stack taught the practical way',
+        copy: 'The aim is understanding how complete applications are built, not memorising code — practical PHP, MySQL, APIs, authentication, database integration and application development.',
+      },
+    ],
+    comparison: {
+      rows: [
+        {
+          feature: 'PHP Full Stack curriculum',
+          techcadd:
+            'Industry-focused training covering PHP, MySQL, frontend development, APIs and application development',
+          others: 'Often focuses mainly on individual technology basics',
+        },
+        {
+          feature: 'Learning style',
+          techcadd: 'Practical, development-focused learning built around real application problems',
+          others: 'Can be more theory-oriented',
+        },
+        {
+          feature: 'Practical projects',
+          techcadd: 'Students work on full-stack assignments and project-based tasks',
+          others: 'Practical exposure may be limited',
+        },
+        {
+          feature: 'Development skills',
+          techcadd: 'Focus on frontend, backend, databases, APIs and debugging',
+          others: 'May cover concepts without enough development practice',
+        },
+        {
+          feature: 'Advanced development',
+          techcadd:
+            'Exposure to authentication, APIs, database integration and full-stack architecture',
+          others: 'Advanced topics can vary by institute',
+        },
+        {
+          feature: 'Problem solving',
+          techcadd: 'Regular development exercises designed to improve technical thinking',
+          others: 'Problem-solving practice may receive less attention',
+        },
+        {
+          feature: 'Portfolio building',
+          techcadd: 'Projects and assignments that help showcase full-stack development skills',
+          others: 'Portfolio development may not be a major focus',
+        },
+        {
+          feature: 'Career support',
+          techcadd: 'CV guidance, interview preparation and portfolio support',
+          others: 'Career assistance varies between institutes',
+        },
+        {
+          feature: 'Doubt support',
+          techcadd:
+            'Trainer guidance to understand development concepts and solve technical challenges',
+          others: 'Support may be limited to classroom sessions',
+        },
+        {
+          feature: 'Certification',
+          techcadd: 'Course completion certification supported by practical learning and project exposure',
+          others: 'Certification and practical exposure can vary',
+        },
+      ],
+      note: 'The right-hand column represents common market patterns, not a comparison with any specific institute. Before choosing a PHP Full Stack institute in Phagwara, ask how much practical development is included, whether students build real projects, how trainers handle doubts, and what career support is provided.',
+    },
+    durations: [
+      {
+        length: '3 Months',
+        tier: 'Foundation',
+        heading: 'Learn the basics of PHP Full Stack',
+        blurb:
+          'Fundamental web development step by step through practical coding and beginner-friendly projects, until building a dynamic page feels natural.',
+        skills: ['HTML', 'CSS', 'JavaScript', 'PHP Basics', 'MySQL Basics', 'Git basics'],
+        recommendedFor:
+          'Web Development Trainee, Development Intern, Junior Web Developer, and anyone starting a PHP Full Stack course in Phagwara.',
+      },
+      {
+        length: '6 Months',
+        tier: 'Professional',
+        heading: 'Get proficient in PHP Full Stack',
+        blurb:
+          'Real-world full-stack work: MySQL, APIs, authentication and complete web applications, with advanced frontend and backend skill.',
+        skills: ['PHP', 'MySQL', 'REST APIs', 'Postman', 'Git & GitHub', 'Authentication'],
+        recommendedFor:
+          'PHP Full Stack Developer, Junior Full-Stack Developer, PHP Developer, Backend Developer.',
+      },
+      {
+        length: '9 Months',
+        tier: 'Advanced',
+        heading: 'Master PHP Full Stack development',
+        blurb:
+          'Advanced application architecture, databases, APIs, authentication, deployment and AI-powered development workflows.',
+        skills: ['PHP', 'MySQL', 'phpMyAdmin', 'XAMPP', 'REST APIs', 'GitHub', 'AI tools'],
+        recommendedFor:
+          'PHP Full Stack Developer, Full-Stack Developer, Backend Developer, PHP Developer, and advanced web pathways.',
+      },
+    ],
+    capabilities: [
+      { capability: 'HTML & CSS fundamentals', included: [true, true, true] },
+      { capability: 'JavaScript fundamentals', included: [true, true, true] },
+      { capability: 'PHP programming basics', included: [true, true, true] },
+      { capability: 'Variables & data types', included: [true, true, true] },
+      { capability: 'Functions & programming logic', included: [true, true, true] },
+      { capability: 'MySQL basics', included: [true, true, true] },
+      { capability: 'Advanced PHP development', included: [false, true, true] },
+      { capability: 'Database integration', included: [false, true, true] },
+      { capability: 'REST APIs', included: [false, true, true] },
+      { capability: 'Backend development', included: [false, true, true] },
+      { capability: 'Authentication', included: [false, true, true] },
+      { capability: 'Git & GitHub', included: [false, true, true] },
+      { capability: 'Advanced full-stack projects', included: [false, false, true] },
+      { capability: 'Application architecture', included: [false, false, true] },
+      { capability: 'AI & development integration', included: [false, false, true] },
+    ],
+    durationNote:
+      'The programme is nested, not parallel. The 3-month course builds your web development foundation. The 6-month track includes those fundamentals and moves into databases, APIs, backend development and full-stack applications. The 9-month programme builds further with advanced development, larger projects and modern AI-assisted workflows. Choose 3 months for HTML, CSS, JavaScript, PHP and MySQL fundamentals; 6 months to build full-stack applications with databases, APIs and authentication; 9 months to add advanced architecture and AI-powered practice.',
     instructor: {
-      heading: 'Why learn PHP full stack development with us?',
-      intro: 'PHP is still what a large share of the web runs on, and it is best learned by shipping something that stores real data. Every concept here arrives attached to a page, a form or a table you are already working on.',
+      heading: 'Why learn PHP Full Stack with us?',
+      intro:
+        'PHP Full Stack is about more than syntax. The emphasis here is on how a complete application is designed, developed and connected across frontend, backend and database — through practical coding, assignments and projects.',
       points: [
         {
-          title: 'Learning by practicing',
-          copy: 'Move beyond theory with coding exercises, assignments, practical tasks and project-based development.',
+          title: 'A working application early',
+          copy: 'PHP gets you to a dynamic, database-backed page faster than most stacks. You reach that point early and keep building on it.',
         },
         {
-          title: 'Beginner-friendly program',
-          copy: 'Start from fundamental web concepts and progress toward frontend, backend, database and full stack work.',
+          title: 'Coding, not watching',
+          copy: 'You write, run and debug your own applications from the first session. That is where development is actually learned.',
         },
         {
-          title: 'Industry-relevant tools',
-          copy: 'Work with PHP, MySQL, Laravel, JavaScript, Git, GitHub, APIs and Bootstrap.',
+          title: 'Projects that become a portfolio',
+          copy: 'Eight practical projects covering PHP logic, frontend, MySQL, backend, APIs, problem solving, AI and a full-stack capstone you own.',
         },
         {
-          title: 'Real-world projects',
-          copy: 'Build websites and applications that sharpen problem solving and strengthen your portfolio.',
-        },
-        {
-          title: 'Guided sessions',
-          copy: 'Structured classes with practical demonstrations, coding practice, debugging and doubt solving.',
-        },
-        {
-          title: 'Technology career skills',
-          copy: 'Programming and project skills for internships, interviews, freelancing and professional development roles.',
+          title: 'Security taught as you go',
+          copy: 'Sessions, password handling and validation arrive with the features that need them, not as an afterthought at the end.',
         },
       ],
     },
     extraFaqs: [
       {
-        q: 'What is the duration of the PHP Full Stack course in Phagwara?',
-        a: 'techcadd runs PHP Full Stack over 5 months depending on the track you choose. Weekday, evening and weekend batches cover the same syllabus, and 1-on-1 training is available if you would rather set your own pace. Every class runs for 2 hours, whichever format you choose.',
+        q: 'What is the PHP Full Stack Development Course in Phagwara at Techcadd?',
+        a: 'It is designed to help beginners and aspiring developers learn complete web development through practical, career-focused training. Students learn PHP, MySQL, HTML, CSS, JavaScript, APIs, databases and real-world development with hands-on practice.',
       },
       {
-        q: 'What is the fee for the PHP Full Stack course in Phagwara?',
-        a: 'Fees depend on the batch format and whether you take the course on its own or as part of a longer track. EMI options are available. Call the centre or book a free demo and a counsellor will give you the exact figure for the format you want.',
+        q: 'Who can join a PHP Full Stack Development Course in Phagwara?',
+        a: 'It suits 12th-pass students, college students, graduates, freshers, job seekers and working professionals. Beginners can start step by step, while those with programming knowledge can strengthen their full-stack skills.',
       },
       {
-        q: 'Who can join the PHP Full Stack course?',
-        a: '12th Pass Onward. The first modules start from fundamentals, so no prior experience is assumed.',
+        q: 'Is PHP Full Stack a good career option for freshers?',
+        a: 'Yes. PHP Full Stack technologies are widely used for web development, backend development, APIs, databases and dynamic web applications. After gaining practical skills, freshers can explore roles such as PHP Full Stack Developer, Junior Full-Stack Developer, PHP Developer, Backend Developer and Web Developer.',
       },
       {
-        q: 'What jobs can I get after the PHP Full Stack course?',
-        a: 'Graduates move into PHP Developer, Full Stack Developer, Backend Developer, Web Developer and similar roles. PHP and Laravel still run most small-business websites, and local agencies in Phagwara and Jalandhar hire for it consistently rather than in waves.',
+        q: 'What will I learn in the PHP Full Stack Development Course?',
+        a: 'HTML, CSS, JavaScript, PHP, MySQL, database operations, APIs, authentication, sessions, backend programming and full-stack web application development — plus Git, GitHub and AI-assisted development workflows.',
       },
       {
-        q: 'What salary can a fresher expect after this course in Phagwara?',
-        a: 'PHP Developer roles start around ₹18,000 – ₹30,000 a month for a fresher with a working portfolio, rising to ₹4.5–8 LPA with two years of delivery experience. Specialists move beyond that.',
+        q: 'Is the PHP Full Stack course practical or theory-based?',
+        a: 'Learning becomes easier when you build and test applications yourself. The approach focuses on hands-on coding, development exercises, debugging, mini-projects and real-world problem solving rather than theory alone.',
       },
       {
-        q: 'Is this course suitable for beginners?',
-        a: 'Yes. PHP Full Stack begins from fundamentals, and the pace is set so nothing is assumed.',
+        q: 'Will I work on PHP Full Stack projects during the course?',
+        a: 'Yes. Practical learning includes frontend applications, PHP backend projects, MySQL database projects, authentication systems and end-to-end PHP Full Stack applications — which also strengthen your portfolio.',
       },
       {
-        q: 'What are the prerequisites?',
-        a: 'Basic computer familiarity. Anything else the track needs is introduced in the first module.',
+        q: 'Can I learn PHP Full Stack after 12th?',
+        a: 'Absolutely. Students can start after 12th, especially if interested in coding, web development, software development or technology careers. It provides a foundation to build on during college and beyond.',
+      },
+      {
+        q: 'Can PHP Full Stack help me get a job or internship?',
+        a: 'Yes, but the technologies alone are not enough. Employers also look for practical projects, development fundamentals, databases, APIs, Git and problem-solving skills. A job-oriented course helps you build these through practical training and projects.',
+      },
+      {
+        q: 'Does the course include AI-powered development?',
+        a: 'Modern development increasingly uses AI for coding, debugging, documentation and workflow. The course introduces AI-assisted practice while keeping the focus on strong technical fundamentals.',
+      },
+      {
+        q: 'How do I choose the best PHP Full Stack Course in Phagwara?',
+        a: 'Do not choose on fees or certificates alone. Check the syllabus, practical development sessions, trainer experience, project work, tools covered, doubt support, portfolio development, career guidance and placement assistance. A good course should take you from learning technologies to actually building complete applications.',
       },
     ],
-    whyNow: {
-      title: 'PHP Full Stack Is Powering the Next Generation of Industry Leaders',
-      points: [
-        'Live client work from week one, supervised by a trainer, not slides, not simulations.',
-        'PHP Developer roles in Punjab start around ₹18,000 – ₹30,000 a month for a fresher with a working portfolio.',
-      ],
-    },
     relatedCourses: [
-      'web-development-course-in-phagwara',
       'mern-stack-course-in-phagwara',
+      'mean-stack-course-in-phagwara',
+      'web-development-course-in-phagwara',
+      'wordpress-course-in-phagwara',
       'web-designing-course-in-phagwara',
       'python-course-in-phagwara',
-      'java-course-in-phagwara',
-      'c-course-in-phagwara',
     ],
     keywords: [
-      'best php full stack course in phagwara',
-      'php full stack training in phagwara',
-      'php certification courses in phagwara',
-      'laravel training phagwara',
-      'php mysql classes in phagwara',
+      'php full stack course in phagwara',
+      'php full stack development course in phagwara',
+      'php training institute in phagwara',
+      'php full stack classes in phagwara',
+      'php course in phagwara',
+      'php full stack course after 12th in phagwara',
     ],
   }),
 ]
