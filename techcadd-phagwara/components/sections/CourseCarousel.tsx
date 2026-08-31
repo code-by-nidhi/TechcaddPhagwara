@@ -9,6 +9,7 @@ import {
   type KeyboardEvent,
   type TouchEvent,
 } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import Icon, { type IconName } from '@/components/ui/Icon'
 import {
@@ -25,7 +26,49 @@ interface CarouselCard {
   category: string
   summary: string
   icon: IconName
+  image: string
 }
+
+/**
+ * One illustration per course, from the existing `public/images/course`
+ * asset set. Keyed by slug rather than title so it survives the catalogue's
+ * own copy edits; anything not covered here (a course added to the catalogue
+ * without a matching illustration) falls back to a generic dev-workspace shot
+ * rather than rendering a broken image.
+ */
+const COURSE_IMAGES: Record<string, string> = {
+  'python-course-in-phagwara': '/images/course/Python.png',
+  'java-course-in-phagwara': '/images/course/Java.png',
+  'c-course-in-phagwara': '/images/course/C.png',
+  'c-plus-plus-course-in-phagwara': '/images/course/C%2B%2B.png',
+  'kotlin-course-in-phagwara': '/images/course/Kotlin.png',
+  'web-designing-course-in-phagwara': '/images/course/Web%20Design.png',
+  'web-development-course-in-phagwara': '/images/course/Full_Stack.png',
+  'mern-stack-course-in-phagwara': '/images/course/MERN.png',
+  'mean-stack-course-in-phagwara': '/images/course/MEAN.png',
+  'php-full-stack-course-in-phagwara': '/images/course/PHP.png',
+  'artificial-intelligence-course-in-phagwara': '/images/course/AI.png',
+  'machine-learning-course-in-phagwara': '/images/course/ML.png',
+  'deep-learning-course-in-phagwara': '/images/course/Deep_Learning.png',
+  'data-science-course-in-phagwara': '/images/course/Data_science.png',
+  'data-analytics-course-in-phagwara': '/images/course/Data_Analytics.png',
+  'power-bi-course-in-phagwara': '/images/course/PowerBI.png',
+  'tableau-course-in-phagwara': '/images/course/tableau.png',
+  'digital-marketing-course-in-phagwara': '/images/course/Digital_Marketing.png',
+  'social-media-marketing-course-in-phagwara': '/images/course/SMM.png',
+  'google-ads-course-in-phagwara': '/images/course/Google_ADS.png',
+  'seo-course-in-phagwara': '/images/course/SEO.png',
+  'wordpress-course-in-phagwara': '/images/course/Wordpress.png',
+  'shopify-course-in-phagwara': '/images/course/Shopify.png',
+  'cybersecurity-course-in-phagwara': '/images/course/CyberSecurity.png',
+  'ethical-hacking-course-in-phagwara': '/images/course/Ethical_Hacking.png',
+  'cloud-computing-course-in-phagwara': '/images/course/Cloud_Computing.png',
+  'linux-course-in-phagwara': '/images/course/Linux.png',
+}
+
+const DEFAULT_COURSE_IMAGE = '/images/course/Web_development.png'
+
+const courseImage = (slug: string) => COURSE_IMAGES[slug] ?? DEFAULT_COURSE_IMAGE
 
 /**
  * The ten courses the ring shows.
@@ -70,7 +113,14 @@ function buildCards(catalog: CourseMenuCategory[]): CarouselCard[] {
   for (const { slug, title } of FEATURED) {
     const entry = bySlug.get(slug)
     if (!entry) continue
-    cards.push({ slug, title, category: entry.category, summary: entry.summary, icon: entry.icon })
+    cards.push({
+      slug,
+      title,
+      category: entry.category,
+      summary: entry.summary,
+      icon: entry.icon,
+      image: courseImage(slug),
+    })
   }
 
   const MIN_CARDS = 8
@@ -85,6 +135,7 @@ function buildCards(catalog: CourseMenuCategory[]): CarouselCard[] {
         category: entry.category,
         summary: entry.summary,
         icon: entry.icon,
+        image: courseImage(slug),
       })
     }
   }
@@ -230,7 +281,16 @@ export default function CourseCarousel({
                   <span className="ccard__glow" aria-hidden="true" />
 
                   <span className="ccard__image">
-                    <Icon name={card.icon} size={30} />
+                    <Image
+                      src={card.image}
+                      alt=""
+                      fill
+                      sizes="280px"
+                      className="ccard__photo"
+                    />
+                    <span className="ccard__icon" aria-hidden="true">
+                      <Icon name={card.icon} size={18} />
+                    </span>
                   </span>
 
                   <span className="ccard__category">{card.category}</span>
