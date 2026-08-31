@@ -1,0 +1,1141 @@
+/* =========================================================================
+   /contact — the standalone contact page.
+
+   Prefixed `cp-` throughout so nothing here collides with `contact.css`,
+   which styles the homepage's Contact section. The two look related on
+   purpose but share no rules: one is a band inside a long scroll, the other
+   is a page with its own hero, and giving them a common base would mean
+   every change to one had to be checked against the other.
+
+   Written as plain CSS rather than Tailwind because Tailwind's scanner only
+   walks `components/courses` and `app/[slug]` (see tailwind.css) — a utility
+   class written here would simply never be generated.
+   ========================================================================= */
+
+.contact-page {
+  overflow-x: clip;
+}
+
+/* ------------------------------------------------------------------ hero */
+
+.cp-hero {
+  position: relative;
+  isolation: isolate;
+  padding-block: calc(var(--nav-h) + clamp(2.75rem, 6vw, 4.5rem)) clamp(3rem, 6vw, 4.75rem);
+  background: var(--grad-deep);
+  color: #fff;
+  overflow: hidden;
+}
+
+/* A soft wash from the upper right, over a fine dot grid. Both are drawn
+   rather than shipped as images so they stay crisp at any density. */
+.cp-hero::before,
+.cp-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.cp-hero::before {
+  background: radial-gradient(115% 90% at 82% 18%, rgba(59, 130, 246, 0.5) 0%, rgba(4, 18, 74, 0) 62%);
+}
+
+.cp-hero::after {
+  opacity: 0.3;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.cp-hero .course-breadcrumb,
+.cp-hero .course-breadcrumb a {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.cp-hero .course-breadcrumb a:hover {
+  color: #fff;
+}
+
+.cp-hero__title {
+  margin: 1.15rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.15rem, 5vw, 3.65rem);
+  font-weight: 800;
+  line-height: 1.07;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.cp-hero__title span {
+  display: block;
+  color: #9ec5ff;
+}
+
+.cp-hero__lead {
+  max-width: 46rem;
+  margin: 1.15rem 0 0;
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.cp-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.85rem;
+}
+
+.cp-hero__trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.25rem, 4vw, 3rem);
+  margin: 2.5rem 0 0;
+  padding: 1.35rem 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  list-style: none;
+}
+
+.cp-hero__trust li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+}
+
+.cp-hero__trust b {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.cp-hero__trust span {
+  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.cp-hero__trust i {
+  font-style: normal;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+/* --------------------------------------------------------------- buttons */
+
+.cp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.82rem 1.5rem;
+  border-radius: var(--r-pill);
+  font-family: var(--font-display);
+  font-size: 0.94rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
+}
+
+.cp-btn--sm {
+  padding: 0.66rem 1.15rem;
+  font-size: 0.87rem;
+}
+
+.cp-btn--primary {
+  background: #fff;
+  color: var(--c-navy);
+  box-shadow: 0 14px 32px -14px rgba(4, 18, 74, 0.7);
+}
+
+.cp-btn--ghost {
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  color: #fff;
+}
+
+.cp-btn:hover {
+  transform: translateY(-2px);
+}
+
+.cp-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* On a light ground the primary button has to invert, or white-on-white
+   disappears. Scoped by section rather than given its own modifier so the
+   markup stays the same wherever the button is reused. */
+.section .cp-btn--primary,
+.cp-final .cp-btn--primary {
+  background: var(--grad-soft);
+  color: #fff;
+  box-shadow: 0 14px 32px -14px rgba(37, 99, 255, 0.75);
+}
+
+.section .cp-btn--ghost,
+.cp-final .cp-btn--ghost {
+  border-color: var(--border-strong);
+  color: var(--ink);
+}
+
+.section .cp-btn--ghost:hover,
+.cp-final .cp-btn--ghost:hover {
+  background: rgba(37, 99, 255, 0.07);
+}
+
+/* ---------------------------------------------------------- support desks */
+
+.desks {
+  display: grid;
+  grid-template-columns: minmax(0, 264px) minmax(0, 1fr);
+  gap: 0;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--card-solid);
+  box-shadow: var(--sh-md);
+  overflow: hidden;
+}
+
+.desks__tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.15rem;
+  background: var(--grad-soft);
+}
+
+.desks__tab {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.88);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--t-fast), color var(--t-fast), transform var(--t-fast);
+}
+
+.desks__tab i {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.desks__tab:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.desks__tab.is-active {
+  background: #fff;
+  color: var(--c-navy);
+  box-shadow: var(--sh-sm);
+}
+
+.desks__tab.is-active i {
+  background: rgba(37, 99, 255, 0.12);
+  color: var(--c-azure);
+}
+
+.desks__panel {
+  padding: clamp(1.5rem, 3vw, 2.35rem);
+}
+
+.desks__panel:focus-visible {
+  outline: 2px solid var(--c-azure);
+  outline-offset: -4px;
+}
+
+.desks__head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.desks__avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--grad-soft);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.desks__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.desks__role {
+  margin: 0.15rem 0 0;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--c-azure);
+}
+
+.desks__blurb {
+  margin: 1.1rem 0 0;
+  font-size: 0.97rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.desks__handles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.5rem 1.25rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.desks__handles li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--ink-2);
+}
+
+.desks__handles svg {
+  flex: none;
+  margin-top: 0.28rem;
+  color: var(--c-azure);
+}
+
+.desks__lines {
+  display: grid;
+  gap: 0.55rem;
+  margin: 1.5rem 0 0;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+.desks__lines > div {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.desks__lines dt {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(37, 99, 255, 0.08);
+  color: var(--c-azure);
+}
+
+.desks__lines dd {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--ink-2);
+}
+
+.desks__lines a {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.desks__lines a:hover {
+  color: var(--c-azure);
+  text-decoration: underline;
+}
+
+.desks__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.desks__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.05rem;
+  border-radius: var(--r-pill);
+  color: #fff;
+  font-size: 0.87rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform var(--t-fast), filter var(--t-fast);
+}
+
+.desks__btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+.desks__btn--call {
+  background: var(--c-azure);
+}
+
+.desks__btn--wa {
+  background: #25d366;
+}
+
+.desks__btn--mail {
+  background: #f59e0b;
+}
+
+/* ------------------------------------------------- virtual counselling -- */
+
+.cp-counselling {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  margin-top: 1.25rem;
+  padding: 1.35rem clamp(1.25rem, 3vw, 1.85rem);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--c-azure);
+  border-radius: var(--r-md);
+  background: var(--card-solid);
+  box-shadow: var(--sh-sm);
+}
+
+.cp-counselling__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--r-sm);
+  background: rgba(37, 99, 255, 0.1);
+  color: var(--c-azure);
+}
+
+.cp-counselling b {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  color: var(--ink);
+}
+
+.cp-counselling p {
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ink-3);
+}
+
+.cp-counselling > div {
+  flex: 1 1 auto;
+}
+
+/* ------------------------------------------------------------- enquiry -- */
+
+.cp-enquiry {
+  position: relative;
+  isolation: isolate;
+  padding-block: var(--section-y);
+  background: var(--grad-deep);
+  color: #fff;
+  scroll-margin-top: calc(var(--nav-h) + 12px);
+  overflow: hidden;
+}
+
+.cp-enquiry::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(100% 80% at 15% 100%, rgba(59, 130, 246, 0.4) 0%, rgba(4, 18, 74, 0) 60%);
+  pointer-events: none;
+}
+
+.cp-enquiry__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 480px);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.cp-enquiry__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.4vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.cp-enquiry__title span {
+  color: #6cb2ff;
+}
+
+.cp-enquiry__sub {
+  margin: 2rem 0 1rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cp-steps {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.cp-steps li {
+  display: flex;
+  gap: 0.85rem;
+}
+
+.cp-steps__n {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.16);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.cp-steps b {
+  display: block;
+  font-size: 0.97rem;
+  color: #fff;
+}
+
+.cp-steps p {
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.cp-enquiry__alt {
+  margin: 1.85rem 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.cp-enquiry__alt a {
+  color: #9ec5ff;
+  font-weight: 600;
+}
+
+.cp-enquiry__socials {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1.35rem;
+}
+
+.cp-enquiry__socials span {
+  margin-right: 0.2rem;
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.cp-enquiry__socials a {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.85);
+  transition: background var(--t-fast), transform var(--t-fast);
+}
+
+.cp-enquiry__socials a:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
+}
+
+/* ----------------------------------------------------------- the form -- */
+
+.cpform {
+  padding: clamp(1.5rem, 3vw, 2.15rem);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--r-lg);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+}
+
+.cpform__title {
+  margin: 0 0 1.35rem;
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #fff;
+}
+
+.cpfield {
+  margin-bottom: 1rem;
+}
+
+.cpfield label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.cpfield input,
+.cpfield select,
+.cpfield textarea {
+  width: 100%;
+  padding: 0.72rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--r-sm);
+  background: rgba(4, 18, 74, 0.35);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+
+.cpfield textarea {
+  resize: vertical;
+  min-height: 84px;
+}
+
+.cpfield input::placeholder,
+.cpfield textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.cpfield input:focus-visible,
+.cpfield select:focus-visible,
+.cpfield textarea:focus-visible {
+  outline: none;
+  border-color: #6cb2ff;
+  box-shadow: 0 0 0 3px rgba(108, 178, 255, 0.22);
+}
+
+.cpfield input[aria-invalid='true'],
+.cpfield select[aria-invalid='true'] {
+  border-color: #ff9a9a;
+}
+
+/* The native select's own menu inherits the page, not this panel, so its
+   options need an explicit light ground — white-on-white is unreadable in
+   Chrome on Windows. */
+.cpfield select option {
+  background: #fff;
+  color: var(--ink);
+}
+
+.cpfield__phone {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--r-sm);
+  background: rgba(4, 18, 74, 0.35);
+  overflow: hidden;
+}
+
+.cpfield__phone span {
+  display: grid;
+  place-items: center;
+  padding-inline: 0.85rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.07);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.cpfield__phone input {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.cpfield__phone input:focus-visible {
+  box-shadow: none;
+}
+
+.cpfield__phone:focus-within {
+  border-color: #6cb2ff;
+  box-shadow: 0 0 0 3px rgba(108, 178, 255, 0.22);
+}
+
+.cpfield__captcha {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.cpfield__sum {
+  flex: none;
+  padding: 0.62rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.1);
+  font-family: var(--font-display);
+  font-size: 0.94rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #fff;
+  user-select: none;
+}
+
+.cpfield__refresh {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+
+.cpfield__refresh:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.cpfield__error {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  color: #ffb4b4;
+}
+
+.cpform__error {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.9rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgba(255, 154, 154, 0.4);
+  border-radius: var(--r-sm);
+  background: rgba(220, 38, 38, 0.16);
+  font-size: 0.87rem;
+  color: #ffd7d7;
+}
+
+.cpform__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.88rem 1.5rem;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: var(--grad-soft);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.97rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform var(--t-fast), box-shadow var(--t-fast);
+}
+
+.cpform__submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px -16px rgba(37, 99, 255, 0.9);
+}
+
+.cpform__submit:disabled {
+  opacity: 0.65;
+  cursor: progress;
+}
+
+.cpform__note {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.9rem 0 0;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ---- the state after a successful submission --------------------------- */
+
+.cpform--done {
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  padding-block: clamp(2.25rem, 5vw, 3.25rem);
+  text-align: center;
+}
+
+.cpform__tick {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  margin-bottom: 0.5rem;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.18);
+  color: #4ade80;
+}
+
+.cpform--done h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.cpform--done p {
+  margin: 0.35rem 0 0;
+  max-width: 26rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.cpform__done-note a {
+  color: #9ec5ff;
+  font-weight: 600;
+}
+
+.cpform__again {
+  margin-top: 1.25rem;
+  padding: 0.6rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: #fff;
+  font-size: 0.87rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--t-fast);
+}
+
+.cpform__again:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ------------------------------------------------------------- results -- */
+
+.cp-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cp-results li {
+  padding: 1.6rem 1.35rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--card-solid);
+  box-shadow: var(--sh-sm);
+  text-align: center;
+}
+
+.cp-results b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1;
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cp-results i {
+  font-style: normal;
+  font-size: 0.62em;
+}
+
+.cp-results span {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.87rem;
+  font-weight: 600;
+  color: var(--ink-3);
+}
+
+.cp-results__note {
+  margin: 1.15rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--ink-4);
+}
+
+/* --------------------------------------------------------------- visit -- */
+
+.cp-visit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vw, 2rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.cp-visit__map {
+  position: relative;
+  min-height: 340px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--bg-2);
+  box-shadow: var(--sh-sm);
+  overflow: hidden;
+}
+
+.cp-visit__map iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.cp-visit__cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+  align-content: start;
+}
+
+.cp-card {
+  padding: 1.15rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--card-solid);
+  box-shadow: var(--sh-xs);
+  text-decoration: none;
+  transition: transform var(--t-fast), box-shadow var(--t-fast);
+}
+
+.cp-card:is(a):hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sh-md);
+}
+
+.cp-card__icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 0.7rem;
+  border-radius: var(--r-sm);
+  background: rgba(37, 99, 255, 0.1);
+  color: var(--c-azure);
+}
+
+.cp-card b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.cp-card p {
+  margin: 0.4rem 0 0;
+  font-size: 0.93rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.cp-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.65rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--c-azure);
+  text-decoration: none;
+}
+
+.cp-card a:hover {
+  text-decoration: underline;
+}
+
+.cp-card__quiet {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--ink-4);
+}
+
+/* The WhatsApp card spans the row — it is an action, not a fact like the
+   four above it, and a full-width target reads that way. */
+.cp-card--wa {
+  grid-column: 1 / -1;
+  border-color: rgba(37, 211, 102, 0.35);
+  background: rgba(37, 211, 102, 0.07);
+}
+
+.cp-card--wa .cp-card__icon {
+  background: rgba(37, 211, 102, 0.16);
+  color: #16a34a;
+}
+
+/* ----------------------------------------------------------- final cta -- */
+
+.cp-final {
+  padding-block: clamp(2.5rem, 5vw, 3.5rem);
+  border-top: 1px solid var(--border-soft);
+  background: var(--bg);
+}
+
+.cp-final__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.cp-final h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.6vw, 1.75rem);
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.cp-final p {
+  margin: 0.35rem 0 0;
+  font-size: 0.94rem;
+  color: var(--ink-3);
+}
+
+.cp-final__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+/* ---------------------------------------------------------- responsive -- */
+
+@media (max-width: 1024px) {
+  .cp-enquiry__grid,
+  .cp-visit {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* The form leads on a narrow screen: someone who has scrolled this far has
+     read the pitch, and making them scroll past it again to reach the fields
+     is the commonest reason a mobile enquiry is abandoned. */
+  .cp-enquiry__grid .cpform {
+    order: -1;
+  }
+}
+
+@media (max-width: 860px) {
+  .desks {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Horizontal, scrollable tabs — four full-width rows above the panel push
+     the content itself off the first screen. */
+  .desks__tabs {
+    flex-direction: row;
+    gap: 0.45rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .desks__tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .desks__tab {
+    width: auto;
+    flex: none;
+    white-space: nowrap;
+  }
+
+  .desks__tab i {
+    display: none;
+  }
+
+  .cp-counselling {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+@media (max-width: 560px) {
+  .cp-visit__cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cp-hero__trust {
+    gap: 0.9rem;
+  }
+
+  .cp-hero__trust li {
+    width: 100%;
+  }
+
+  .cp-final__inner,
+  .cp-final__actions {
+    width: 100%;
+  }
+
+  .cp-final__actions .cp-btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+
+/* Everything on this page that moves does so on hover or focus only, so
+   there is no entrance animation to disable — but the button lifts still
+   count as motion for anyone who has asked for less of it. */
+@media (prefers-reduced-motion: reduce) {
+  .cp-btn,
+  .desks__btn,
+  .cp-card,
+  .cpform__submit,
+  .cp-enquiry__socials a {
+    transition: none;
+  }
+
+  .cp-btn:hover,
+  .desks__btn:hover,
+  .cp-card:is(a):hover,
+  .cpform__submit:hover:not(:disabled),
+  .cp-enquiry__socials a:hover {
+    transform: none;
+  }
+}

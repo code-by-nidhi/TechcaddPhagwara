@@ -299,7 +299,7 @@ export function makeNavLinks(
       ],
     },
     { label: 'Branches', href: '#', items: branchLinks },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Contact', href: '/contact' },
   ]
 }
 
