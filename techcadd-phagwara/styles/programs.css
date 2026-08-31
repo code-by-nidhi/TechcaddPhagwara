@@ -194,12 +194,192 @@
   color: var(--ink-3);
 }
 
+/*
+ * Dark premium glassmorphism skin — background and surfaces only, per
+ * direction. No markup changes: the grid pattern, the glow behind the
+ * heading, the container's gradient border and each icon's halo are all
+ * `::before`/`::after` on existing elements rather than new ones. Every
+ * other rule here recolors or re-treats an existing selector for contrast
+ * and depth against the new dark background — content, spacing, the grid's
+ * column/gap structure and section layout are untouched.
+ */
+.benefits {
+  overflow: hidden;
+  background: linear-gradient(160deg, #041b63 0%, #0a2e8a 100%);
+}
+
+.benefits::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(122, 184, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(122, 184, 255, 0.08) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 85% 70% at 50% 20%, #000 25%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 20%, #000 25%, transparent 85%);
+}
+
+.benefits::after {
+  content: '';
+  position: absolute;
+  top: -8%;
+  left: 50%;
+  width: 48rem;
+  height: 32rem;
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.35), transparent 70%);
+  filter: blur(70px);
+}
+
+.benefits .shell,
+.benefits .float-icons {
+  position: relative;
+  z-index: 1;
+}
+
+.benefits .eyebrow {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.benefits .sec-head__title {
+  color: #ffffff;
+}
+
+.benefits .gradient-text {
+  background: linear-gradient(100deg, #93c5fd 0%, #3b82f6 50%, #93c5fd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.benefits .sec-head__lead {
+  color: #cbd5e1;
+}
+
+/* ------------------------------------------------------- card container -- */
+
+/* the large glass panel wrapping every card — ambient blue glow behind it,
+   a gradient border via a masked `::before` (same technique `.mega`'s ring
+   and `.nav__link--ai`'s border use elsewhere in this codebase), and the
+   existing 1px `gap` is what already paints the hairline divider lines
+   between cards (it shows the panel's own background through the seams) —
+   kept exactly as-is, just recoloured. */
+.benefits .benefits__grid {
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: transparent;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 40px 90px rgba(2, 8, 30, 0.45);
+}
+
+.benefits .benefits__grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(160deg, rgba(147, 197, 253, 0.5), rgba(59, 130, 246, 0.05) 60%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.benefits .benefits__grid::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(60% 80% at 50% 0%, rgba(59, 130, 246, 0.28), transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------ card -- */
+
+.benefits .benefit {
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 20px 40px -12px rgba(2, 8, 30, 0.4);
+  transition: transform 0.4s var(--ease), background 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.benefits .benefit:hover {
+  transform: translateY(-9px);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 26px 50px -10px rgba(2, 8, 30, 0.5),
+    0 0 40px -6px rgba(59, 130, 246, 0.55);
+}
+
+.benefits .benefit h3 {
+  color: #ffffff;
+}
+
+.benefits .benefit p {
+  color: #cbd5e1;
+}
+
+/* --------------------------------------------------------------- icon -- */
+
+.benefits .benefit__icon {
+  position: relative;
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.35), rgba(37, 99, 235, 0.18));
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* radial highlight sitting behind the icon square */
+.benefits .benefit__icon::before {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.4), transparent 72%);
+  opacity: 0.7;
+  filter: blur(8px);
+  transition: opacity 0.4s var(--ease);
+}
+
+.benefits .benefit:hover .benefit__icon::before {
+  opacity: 1;
+}
+
+/* higher specificity than the light-theme `.benefit:hover .benefit__icon`
+   above (which this skin would otherwise still inherit) — keeps the same
+   rotate/scale micro-interaction but stays glass instead of snapping to an
+   opaque fill on hover. */
+.benefits .benefit:hover .benefit__icon {
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.55), rgba(37, 99, 235, 0.32));
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 12px 30px -4px rgba(59, 130, 246, 0.6);
+}
+
 /* ------------------------------------------------------- 3. AI labs ----- */
 
 .labs {
   position: relative;
   z-index: 1;
   overflow: hidden;
+  background: #ffffff;
 }
 
 .labs__panel {

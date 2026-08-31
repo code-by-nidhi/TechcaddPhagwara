@@ -227,22 +227,49 @@
   pointer-events: none;
 }
 
+/*
+ * Premium glass chips. Two things worth knowing before touching this rule:
+ *
+ * 1. `transform` here is the JS-driven parallax offset (`--px`/`--py`, from
+ *    `useMouseParallax`) — but `float-soft`'s own keyframes also animate
+ *    `transform`, and a running CSS animation always wins that property
+ *    over a plain declaration. So the parallax offset only ever shows
+ *    through between keyframe steps in practice; that's pre-existing and
+ *    out of scope here. For `:hover` this matters directly: naively adding
+ *    `transform: translateY(-4px) scale(1.05)` there would have been
+ *    silently ignored while `float-soft` keeps running. The hover rule
+ *    below drops `float-soft` from its `animation` list instead, which
+ *    hands `transform` back to the plain declaration for as long as the
+ *    pointer stays over the chip.
+ * 2. The glow pulse added below animates `box-shadow`, not `transform` —
+ *    deliberately, so it can keep running through hover without fighting
+ *    the point above.
+ */
 .ai-tool {
   position: absolute;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 0.85rem 0.45rem 0.45rem;
+  gap: 0.85rem;
+  padding: 0.85rem 1.6rem 0.85rem 0.7rem;
   border-radius: var(--r-pill);
-  background: rgba(255, 255, 255, 0.82);
-  border: 1px solid var(--border);
-  box-shadow: var(--sh-sm);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(219, 234, 254, 0.85);
+  box-shadow:
+    /* crisp single-pixel highlight along the top edge — the "glass
+       reflection" line, distinct from the soft ambient glow below */
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.6),
+    inset 0 0 24px rgba(59, 130, 246, 0.2),
+    0 0 0 1px rgba(59, 130, 246, 0.25),
+    0 0 22px rgba(59, 130, 246, 0.55),
+    0 0 50px rgba(59, 130, 246, 0.35),
+    0 16px 32px -8px rgba(2, 8, 30, 0.65);
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
   font-family: var(--font-display);
-  font-size: 0.78rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  color: var(--ink-2);
+  letter-spacing: 0.03em;
+  color: #ffffff;
   white-space: nowrap;
   pointer-events: auto;
   transform: translate3d(
@@ -250,29 +277,123 @@
     calc(var(--py, 0) * var(--depth, 10px)),
     0
   );
-  transition: transform 0.6s var(--ease-soft), box-shadow var(--t-mid), border-color var(--t-mid);
-  animation: float-soft var(--dur, 15s) var(--ease-soft) infinite;
-  animation-delay: var(--delay, 0s);
+  transition: transform 0.4s var(--ease-soft), box-shadow 0.4s var(--ease-soft),
+    border-color 0.4s var(--ease-soft), background 0.4s var(--ease-soft);
+  animation: float-soft var(--dur, 15s) var(--ease-soft) infinite,
+    ai-badge-pulse 4s var(--ease-soft) infinite alternate;
+  animation-delay: var(--delay, 0s), 0s;
+}
+
+@keyframes ai-badge-pulse {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 1.5px 0 rgba(255, 255, 255, 0.6),
+      inset 0 0 24px rgba(59, 130, 246, 0.2),
+      0 0 0 1px rgba(59, 130, 246, 0.25),
+      0 0 22px rgba(59, 130, 246, 0.55),
+      0 0 50px rgba(59, 130, 246, 0.35),
+      0 16px 32px -8px rgba(2, 8, 30, 0.65);
+  }
+  50% {
+    box-shadow:
+      inset 0 1.5px 0 rgba(255, 255, 255, 0.7),
+      inset 0 0 30px rgba(59, 130, 246, 0.32),
+      0 0 0 1px rgba(96, 165, 250, 0.4),
+      0 0 32px rgba(59, 130, 246, 0.75),
+      0 0 70px rgba(59, 130, 246, 0.5),
+      0 16px 32px -8px rgba(2, 8, 30, 0.65);
+  }
+}
+
+/* hover replaces `float-soft` entirely (see the architecture note above)
+   with its own float — lift + scale stay constant while a gentle bob keeps
+   the "floating" feel going the whole time the pointer is over the chip */
+@keyframes ai-badge-hover-float {
+  0%,
+  100% {
+    transform: translate3d(
+        calc(var(--px, 0) * var(--depth, 10px)),
+        calc(var(--py, 0) * var(--depth, 10px)),
+        0
+      )
+      translateY(-6px) scale(1.08);
+  }
+  50% {
+    transform: translate3d(
+        calc(var(--px, 0) * var(--depth, 10px)),
+        calc(var(--py, 0) * var(--depth, 10px)),
+        0
+      )
+      translateY(-9px) scale(1.08);
+  }
 }
 
 .ai-tool:hover {
-  box-shadow: var(--sh-glow);
-  border-color: var(--violet);
+  animation: ai-badge-hover-float 2.2s var(--ease-soft) infinite,
+    ai-badge-pulse 2.4s var(--ease-soft) infinite alternate;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #ffffff;
   z-index: 3;
 }
 
+/*
+ * The icon's own fill (`tool.color`, each AI product's real brand colour —
+ * Midjourney, GitHub Copilot and Notion AI are all genuinely near-black) is
+ * an *inline* style in Journey.tsx, so nothing in this stylesheet's own
+ * `background` can touch it — that's why it stayed dark through two earlier
+ * passes at this. Fixed with a glass sheen on `::before` instead: a real
+ * (non-inline) background layered on top, which brightens every icon,
+ * including the near-black ones, without changing the brand colour itself.
+ */
 .ai-tool__mark {
+  position: relative;
   display: grid;
   place-items: center;
-  width: 27px;
-  height: 27px;
+  width: 42px;
+  height: 42px;
   flex: none;
-  border-radius: 9px;
+  border-radius: 50%;
   color: #fff;
-  font-size: 0.64rem;
+  font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.02em;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  box-shadow:
+    inset 0 -4px 7px rgba(0, 0, 0, 0.3),
+    0 0 0 3px rgba(59, 130, 246, 0.22),
+    0 0 20px 0px rgba(59, 130, 246, 0.95);
+  transition: box-shadow 0.4s var(--ease-soft), transform 0.4s var(--ease-soft);
   animation: spin-tilt 9s var(--ease-soft) infinite;
+}
+
+/*
+ * `tool.short` ("GPT", "GM", "CL"…) is a bare text node in Journey.tsx, not
+ * wrapped in its own element — so it can't be given a z-index to sit above
+ * this pseudo-element the way `.ai-tool__mark span` would suggest (that
+ * selector matches nothing here). A `position: absolute` layer always
+ * paints above in-flow text in the same stacking context regardless of
+ * z-index, so instead of fighting that, the gradient is kept confined to
+ * the top ~40% of the circle — the letters sit vertically centred
+ * (`place-items: center`), so this reads as a glass highlight from a light
+ * source above, and never overlaps the text at all.
+ */
+.ai-tool__mark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 42%);
+  pointer-events: none;
+}
+
+.ai-tool:hover .ai-tool__mark {
+  box-shadow:
+    inset 0 -4px 7px rgba(0, 0, 0, 0.3),
+    0 0 0 4px rgba(96, 165, 250, 0.32),
+    0 0 30px 2px rgba(59, 130, 246, 1);
+  animation: spin-slow 1.6s linear infinite;
 }
 
 @keyframes spin-tilt {
@@ -283,36 +404,6 @@
   50% {
     transform: rotate(9deg);
   }
-}
-
-.ai-tool:hover .ai-tool__mark {
-  animation: spin-slow 1.6s linear infinite;
-}
-
-/* ------------------------------------------------------------- the CTA -- */
-
-.journey__cta {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-top: clamp(2.5rem, 5vw, 4rem);
-  padding: clamp(1.4rem, 3vw, 2.2rem);
-  border-radius: var(--r-xl);
-  text-align: center;
-  background: linear-gradient(115deg, rgba(37, 99, 255, 0.08), rgba(59, 130, 246, 0.08));
-  border: 1px solid var(--border);
-}
-
-.journey__cta p {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(1rem, 1.6vw, 1.2rem);
-  font-weight: 700;
-  color: var(--ink);
 }
 
 /* ---------------------------------------------------------- responsive -- */
@@ -350,3 +441,158 @@
     display: none;
   }
 }
+
+/*
+ * Dark premium glassmorphism skin — background and surfaces only, per
+ * direction. No markup changes: the grid pattern and the two ambient glows
+ * (heading + roadmap) are `::before`/`::after` on `.journey` itself, and
+ * `.journey__inner` picks up `z-index: 1` so its real content — the wire,
+ * the milestone cards, the floating AI-tool badges, the CTA — paints above
+ * them. Everything else here recolors an existing selector for contrast
+ * and depth; content, spacing, the roadmap's grid/gap structure and the
+ * milestone step count are untouched.
+ *
+ * `.milestone__card` is also `.glass` in the markup (a shared card base
+ * used across the site — see `.glass` in base.css) — overridden here at
+ * `.journey .milestone__card` rather than touching `.glass` itself, so
+ * every other section still using that shared class is unaffected.
+ */
+.journey {
+  background: linear-gradient(160deg, #021b5b 0%, #062a7a 45%, #0a3baf 100%);
+}
+
+.journey::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(122, 184, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(122, 184, 255, 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.journey::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(40rem 28rem at 50% 4%, rgba(59, 130, 246, 0.4), transparent 70%),
+    radial-gradient(50rem 34rem at 50% 50%, rgba(14, 70, 216, 0.3), transparent 72%),
+    radial-gradient(30rem 24rem at 15% 80%, rgba(37, 99, 235, 0.22), transparent 70%);
+}
+
+/* `.shell` (not just `.journey__inner`) — the section heading is a sibling
+   of `.journey__inner`, not a descendant of it, so it needs its own lift
+   above the new `::before`/`::after` overlays too. */
+.journey .shell {
+  position: relative;
+  z-index: 1;
+}
+
+.journey .eyebrow {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.journey .sec-head__title {
+  color: #ffffff;
+}
+
+.journey .gradient-text {
+  background: linear-gradient(100deg, #93c5fd 0%, #3b82f6 50%, #93c5fd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.journey .sec-head__lead {
+  color: #cbd5e1;
+}
+
+.journey .wire__base {
+  stroke: rgba(147, 197, 253, 0.22);
+}
+
+/* an extra soft, wide halo around the whole connector — layered on top of
+   the SVG's own `#wireGlow` filter (Journey.tsx), not a replacement for it */
+.journey .roadmap__wire {
+  filter: drop-shadow(0 0 14px rgba(59, 130, 246, 0.45));
+}
+
+.journey .milestone__card {
+  background: rgba(10, 30, 90, 0.55);
+  border-color: rgba(147, 197, 253, 0.22);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 20px 40px rgba(2, 8, 30, 0.4),
+    0 0 30px -10px rgba(59, 130, 246, 0.35);
+}
+
+.journey .milestone__card:hover {
+  border-color: rgba(147, 197, 253, 0.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 26px 50px rgba(2, 8, 30, 0.5),
+    0 0 40px -6px rgba(59, 130, 246, 0.55);
+}
+
+.journey .milestone__step {
+  color: #93c5fd;
+}
+
+.journey .milestone__card h3 {
+  color: #ffffff;
+}
+
+.journey .milestone__card p {
+  color: #cbd5e1;
+}
+
+/* the ring that lets the wire read as passing "behind" each node — was the
+   light page background, which would show as a stray white halo here */
+.journey .milestone__node::before {
+  background: #062a7a;
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+/*
+ * Layered glass node: a translucent fill (rather than the light theme's
+ * opaque gradient) lets the solid `::before` ring and the wire further
+ * behind it read through slightly, and the "extra rings" come from
+ * stacking multiple `box-shadow` layers on the node itself — a solid-color
+ * ring plus a soft blurred halo — rather than adding new elements.
+ */
+.journey .milestone__node {
+  background: rgba(20, 45, 130, 0.55);
+  border: 1.5px solid rgba(147, 197, 253, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 0 0 6px rgba(59, 130, 246, 0.14),
+    0 0 42px 4px rgba(59, 130, 246, 0.4),
+    0 16px 40px rgba(2, 8, 30, 0.5),
+    inset 0 1px 2px rgba(255, 255, 255, 0.28);
+}
+
+.journey .milestone__node:hover {
+  box-shadow:
+    0 0 0 8px rgba(59, 130, 246, 0.2),
+    0 0 60px 6px rgba(59, 130, 246, 0.55),
+    0 24px 54px rgba(2, 8, 30, 0.6),
+    inset 0 1px 2px rgba(255, 255, 255, 0.32);
+}
+
+.journey .milestone__node::after {
+  border-color: rgba(96, 165, 250, 0.6);
+}
+
+.journey .milestone__index {
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.5), var(--sh-sm);
+}
+
