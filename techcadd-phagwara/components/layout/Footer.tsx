@@ -101,8 +101,8 @@ export default function Footer({
               <h3>{col.title}</h3>
               <ul>
                 {col.links.map((link) => (
-                  <li key={link}>
-                    <SmartLink href="#courses">{link}</SmartLink>
+                  <li key={link.href}>
+                    <SmartLink href={link.href}>{link.label}</SmartLink>
                   </li>
                 ))}
               </ul>
