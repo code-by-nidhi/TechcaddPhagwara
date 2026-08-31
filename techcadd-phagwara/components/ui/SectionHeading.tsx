@@ -20,6 +20,13 @@ export interface SectionHeadingProps {
    * and unchanged.
    */
   reveal?: boolean
+  /**
+   * The heading level this renders at. Sections are `h2` under the page's
+   * own `h1`, which is the default — but a detail page's hero heading IS
+   * the page title, and a course page that ranks for "Python Course in
+   * Phagwara" should not ship without an `h1`.
+   */
+  as?: 'h1' | 'h2'
 }
 
 /**
@@ -34,6 +41,7 @@ export default function SectionHeading({
   align = 'left',
   children,
   reveal = true,
+  as: Title = 'h2',
 }: SectionHeadingProps) {
   const titleWords = String(title).split(' ').length
 
@@ -48,7 +56,7 @@ export default function SectionHeading({
         </span>
       )}
 
-      <h2 className="sec-head__title">
+      <Title className="sec-head__title">
         <SplitText text={title} reveal={reveal} />
         {highlight && (
           <>
@@ -56,7 +64,7 @@ export default function SectionHeading({
             <SplitText text={highlight} className="gradient-text" start={titleWords} reveal={reveal} />
           </>
         )}
-      </h2>
+      </Title>
 
       {lead && (
         <p className="sec-head__lead" data-reveal={reveal ? 'up' : undefined} data-reveal-delay={reveal ? '160' : undefined}>

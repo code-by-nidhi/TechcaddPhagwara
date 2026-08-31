@@ -75,6 +75,13 @@ export interface CourseCategory {
 
 export interface Course {
   id: string
+  /**
+   * The `data/coursePages.ts` slug this card opens. Optional: three cards
+   * (UI/UX, Graphic Design, AutoCAD) describe tracks that have no course
+   * page yet, and a card with no slug keeps its enquiry CTA rather than
+   * pointing at a course it is not about.
+   */
+  slug?: string
   category: string
   title: string
   blurb: string
@@ -180,7 +187,9 @@ export interface Faq {
 
 export interface FooterColumn {
   title: string
-  links: string[]
+  /** `href` is a real route for a course page, or a `#section` on the
+      homepage — `SmartLink` already tells the two apart. */
+  links: { label: string; href: string }[]
 }
 
 export interface Social {
@@ -403,6 +412,7 @@ export const courseCategories: CourseCategory[] = [
 export const courses: Course[] = [
   {
     id: 'ai-ml',
+    slug: 'artificial-intelligence-course-in-phagwara',
     category: 'ai',
     title: 'Artificial Intelligence & Machine Learning',
     blurb:
@@ -419,6 +429,7 @@ export const courses: Course[] = [
   },
   {
     id: 'data-science',
+    slug: 'data-science-course-in-phagwara',
     category: 'ai',
     title: 'Data Science & Analytics',
     blurb: 'Statistics, Pandas, SQL, Power BI and predictive modelling on real business datasets.',
@@ -433,6 +444,7 @@ export const courses: Course[] = [
   },
   {
     id: 'full-stack',
+    slug: 'web-development-course-in-phagwara',
     category: 'dev',
     title: 'Full Stack Web Development',
     blurb:
@@ -448,6 +460,7 @@ export const courses: Course[] = [
   },
   {
     id: 'python',
+    slug: 'python-course-in-phagwara',
     category: 'dev',
     title: 'Python Programming',
     blurb: 'Core to advanced Python, OOP, automation scripting and API development.',
@@ -461,6 +474,7 @@ export const courses: Course[] = [
   },
   {
     id: 'digital-marketing',
+    slug: 'digital-marketing-course-in-phagwara',
     category: 'marketing',
     title: 'Digital Marketing & AI Growth',
     blurb:
@@ -503,6 +517,7 @@ export const courses: Course[] = [
   },
   {
     id: 'cloud',
+    slug: 'cloud-computing-course-in-phagwara',
     category: 'it',
     title: 'Cloud Computing with AWS',
     blurb: 'EC2, S3, IAM, networking, containers and CI/CD pipelines with certification preparation.',
@@ -516,6 +531,7 @@ export const courses: Course[] = [
   },
   {
     id: 'cyber',
+    slug: 'cybersecurity-course-in-phagwara',
     category: 'it',
     title: 'Cyber Security & Ethical Hacking',
     blurb: 'Network security, penetration testing labs, OWASP Top 10 and incident response drills.',
@@ -529,6 +545,7 @@ export const courses: Course[] = [
   },
   {
     id: 'java',
+    slug: 'java-course-in-phagwara',
     category: 'dev',
     title: 'Java & Spring Boot',
     blurb: 'Core Java, OOP, JDBC, Spring Boot REST services and microservice fundamentals.',
@@ -555,6 +572,7 @@ export const courses: Course[] = [
   },
   {
     id: 'app-dev',
+    slug: 'kotlin-course-in-phagwara',
     category: 'dev',
     title: 'Android App Development',
     blurb: 'Kotlin, Jetpack Compose, Firebase and Play Store publishing end to end.',
@@ -1022,27 +1040,34 @@ export const footerLinks: FooterColumn[] = [
   {
     title: 'Programs',
     links: [
-      'Artificial Intelligence',
-      'Data Science',
-      'Full Stack Development',
-      'Digital Marketing',
-      'UI/UX Design',
-      'Cloud & AWS',
+      { label: 'Artificial Intelligence', href: '/artificial-intelligence-course-in-phagwara' },
+      { label: 'Data Science', href: '/data-science-course-in-phagwara' },
+      { label: 'Web Development', href: '/web-development-course-in-phagwara' },
+      { label: 'Digital Marketing', href: '/digital-marketing-course-in-phagwara' },
+      { label: 'Web Designing', href: '/web-designing-course-in-phagwara' },
+      { label: 'Cloud Computing', href: '/cloud-computing-course-in-phagwara' },
     ],
   },
   {
     title: 'Institute',
-    links: ['About Us', 'Our Faculty', 'AI Labs', 'Gallery', 'Achievements', 'Careers'],
+    links: [
+      { label: 'About Us', href: '#about' },
+      { label: 'Our Faculty', href: '#faculty' },
+      { label: 'AI Labs', href: '#labs' },
+      { label: 'Gallery', href: '#gallery' },
+      { label: 'Achievements', href: '#achievements' },
+      { label: 'Courses', href: '#courses' },
+    ],
   },
   {
     title: 'Support',
     links: [
-      'Contact Us',
-      'FAQs',
-      'Placement Cell',
-      'Fee & EMI',
-      'Privacy Policy',
-      'Terms of Service',
+      { label: 'Contact Us', href: '#contact' },
+      { label: 'FAQs', href: '#faq' },
+      { label: 'Placement Cell', href: '#placement' },
+      { label: 'Student Stories', href: '#testimonials' },
+      { label: 'Learning Modes', href: '#modes' },
+      { label: 'Why Techcadd', href: '#benefits' },
     ],
   },
 ]

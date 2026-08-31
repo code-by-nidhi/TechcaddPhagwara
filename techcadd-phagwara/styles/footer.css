@@ -322,3 +322,21 @@
     grid-column: 1 / -1;
   }
 }
+
+/* The footer wordmark — same asset as the navbar, navy cut for the light
+   ground, and sized off its own 899:242 aspect so height is the only knob. */
+.footer__logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer__logo-img {
+  height: 44px;
+  width: auto;
+}
+
+@media (max-width: 520px) {
+  .footer__logo-img {
+    height: 36px;
+  }
+}

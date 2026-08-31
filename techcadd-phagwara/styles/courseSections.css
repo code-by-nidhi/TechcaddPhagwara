@@ -1,0 +1,1308 @@
+/* ==========================================================================
+   Course page — alternating dark / light bands
+
+   The page template (`app/[slug]/page.tsx`) hands each band a tone worked
+   out from its own index, so the page reads dark, light, dark, light all the
+   way down however many sections a given course has copy for. Everything
+   here is scoped to `.section--dark` / `.section--light` or to a
+   `.course-*` block, so no homepage section is affected.
+   ========================================================================== */
+
+/* --------------------------------------------------------------- tones -- */
+
+/*
+ * `--on` is the ink colour for whichever band you are inside. Every element
+ * below reads from it and from the three `--on-*` steps rather than naming
+ * a colour twice, so a band flips theme by redefining four variables.
+ */
+.section--dark,
+.section--light {
+  position: relative;
+  isolation: isolate;
+}
+
+.section--dark {
+  --on: #ffffff;
+  --on-2: rgba(255, 255, 255, 0.82);
+  --on-3: rgba(255, 255, 255, 0.62);
+  --on-line: rgba(255, 255, 255, 0.14);
+  --on-card: rgba(255, 255, 255, 0.05);
+  --on-card-hover: rgba(255, 255, 255, 0.09);
+  color: var(--on);
+  background:
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1.4px) 0 0 / 26px 26px,
+    linear-gradient(135deg, #050f3d 0%, #0a1f68 45%, #103ba6 100%);
+}
+
+.section--light {
+  --on: var(--ink);
+  --on-2: var(--ink-2);
+  --on-3: var(--ink-3);
+  --on-line: var(--border);
+  --on-card: var(--card-solid);
+  --on-card-hover: #ffffff;
+  color: var(--on);
+  background: #ffffff;
+}
+
+/* The shared heading is authored for the light theme — inside a dark band
+   its three parts take the band's ink instead. */
+.section--dark .sec-head__title,
+.section--dark .sec-head__title .word {
+  color: var(--on);
+}
+
+.section--dark .sec-head__lead {
+  color: var(--on-2);
+}
+
+.section--dark .eyebrow {
+  color: var(--on);
+  border-color: var(--on-line);
+  background: var(--on-card);
+}
+
+.section--dark .eyebrow i,
+.section--dark .eyebrow svg {
+  color: #fde68a;
+}
+
+/* The gradient-text run is a navy→azure ramp: invisible on navy. On a dark
+   band it becomes the pale end of the same ramp instead. */
+.section--dark .gradient-text,
+.section--dark .gradient-text .word {
+  background: linear-gradient(120deg, #bfdbfe 0%, #93c5fd 55%, #e0f2fe 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------------------------------------------------------------- chip -- */
+
+.course-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--r-pill);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--on);
+  border: 1px solid var(--on-line);
+  background: var(--on-card);
+}
+
+.course-chip--accent {
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.4);
+  background: rgba(251, 191, 36, 0.08);
+}
+
+.section--light .course-chip--accent {
+  color: #a16207;
+  border-color: rgba(161, 98, 7, 0.28);
+  background: rgba(251, 191, 36, 0.12);
+}
+
+/* ---------------------------------------------------------------- hero -- */
+
+.course-hero {
+  padding-top: calc(var(--nav-h) + clamp(1.6rem, 4vw, 3.2rem));
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+/* Copy left, artwork right. The artwork is the first thing to go when the
+   column would squeeze the headline, not the other way round. */
+.chero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+}
+
+@media (max-width: 980px) {
+  .chero__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chero__art {
+    display: none;
+  }
+}
+
+.course-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.86rem;
+  color: var(--on-3);
+}
+
+.course-breadcrumb a {
+  color: var(--on-3);
+  transition: color var(--t-fast);
+}
+
+.course-breadcrumb a:hover {
+  color: var(--on);
+}
+
+.course-breadcrumb [aria-current='page'] {
+  color: var(--on);
+  font-weight: 600;
+}
+
+.course-hero__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.4rem;
+}
+
+/* The hero headline is the page's h1 and carries the whole first screen —
+   it runs larger here than the shared section heading's default. */
+.chero .sec-head__title {
+  font-size: clamp(2.1rem, 4.2vw, 3.3rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.chero .sec-head__lead {
+  max-width: 52ch;
+}
+
+.course-hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 2rem;
+}
+
+.course-hero__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.8rem;
+  list-style: none;
+}
+
+.course-hero__pills li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem 0.5rem 0.5rem;
+  border-radius: var(--r-pill);
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--on-2);
+  border: 1px solid var(--on-line);
+  background: var(--on-card);
+}
+
+.course-hero__pills i {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: #78350f;
+  background: #fbbf24;
+}
+
+/* ------------------------------------------------------- hero artwork -- */
+
+.chero__art {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: clamp(320px, 34vw, 440px);
+}
+
+.chero__art-img {
+  width: 100%;
+  height: auto;
+  max-width: 560px;
+}
+
+.chero__orbit {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(100%, 400px);
+  aspect-ratio: 1;
+}
+
+/* A wash behind the mesh so the tiles read against the band rather than
+   floating on flat navy. */
+.chero__orbit::before {
+  content: '';
+  position: absolute;
+  inset: -12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.28), transparent 68%);
+  filter: blur(10px);
+}
+
+.chero__ring {
+  position: absolute;
+  inset: 14%;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  animation: chero-spin 46s linear infinite;
+}
+
+.chero__ring--2 {
+  inset: 30%;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.1);
+  animation-duration: 34s;
+  animation-direction: reverse;
+}
+
+@keyframes chero-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.chero__core {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #60a5fa 60%, #a78bfa);
+  box-shadow:
+    0 0 0 10px rgba(59, 130, 246, 0.12),
+    0 0 46px rgba(59, 130, 246, 0.55);
+}
+
+.chero__sat {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  color: #bfdbfe;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(9, 24, 74, 0.86);
+  box-shadow: 0 10px 26px rgba(2, 8, 30, 0.4);
+  animation: chero-float 6s var(--ease-soft) infinite;
+}
+
+@keyframes chero-float {
+  0%,
+  100% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: -9px;
+  }
+}
+
+/* The rings and the drift are decoration — motion-sensitive visitors get the
+   same layout, held still. */
+@media (prefers-reduced-motion: reduce) {
+  .chero__ring,
+  .chero__sat {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------- facts + stats strips -- */
+
+.course-facts__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.6rem 2rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding-top: 2.6rem;
+  border-top: 1px solid var(--on-line);
+}
+
+.course-facts__grid dt {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--on-3);
+  margin-bottom: 0.55rem;
+}
+
+.course-facts__grid dd {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--on);
+}
+
+/*
+ * The stats strip runs edge to edge on a darker ground. It sits inside the
+ * hero's `.shell`, so it is pulled back out to the viewport width with a
+ * negative margin and re-centres its own content with a nested shell.
+ */
+.chero__stats {
+  margin: clamp(2.5rem, 5vw, 4rem) calc(50% - 50vw) 0;
+  padding: clamp(2rem, 4vw, 3rem) 0;
+  background: linear-gradient(100deg, #030a2b 0%, #071a5c 55%, #0d2f8f 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chero__stats .shell {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 2rem;
+}
+
+.course-stat b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.2vw, 2.7rem);
+  font-weight: 800;
+  line-height: 1.05;
+  color: #fbbf24;
+}
+
+.course-stat span {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.course-stat em {
+  display: block;
+  margin-top: 0.15rem;
+  font-style: normal;
+  font-size: 0.83rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ------------------------------------------------------------ overview -- */
+
+/* The overview is a centred column: the heading centres via
+   `align="center"`, and the prose and the video panel below it centre as
+   blocks. The paragraph's own text stays left-aligned — centring ten lines
+   of running prose costs more in readability than it gains. */
+.course-overview__body {
+  margin-top: 2rem;
+  margin-inline: auto;
+  max-width: 78ch;
+  font-size: clamp(1rem, 0.6vw + 0.86rem, 1.12rem);
+  line-height: 1.85;
+  color: var(--on-2);
+}
+
+/* ------------------------------------------------- what you get / lists -- */
+
+.course-get__list,
+.course-whynow__list {
+  display: grid;
+  gap: 0.95rem;
+  margin-top: 2.2rem;
+  list-style: none;
+  max-width: 70ch;
+}
+
+.course-get__list li,
+.course-whynow__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  color: var(--on-2);
+  line-height: 1.65;
+}
+
+.course-get__list i,
+.course-whynow__list i,
+.course-cert__item i {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  margin-top: 0.15rem;
+  border-radius: 8px;
+  color: #60a5fa;
+  border: 1px solid var(--on-line);
+  background: var(--on-card);
+}
+
+.section--light .course-get__list i,
+.section--light .course-whynow__list i,
+.section--light .course-cert__item i {
+  color: #1d4ed8;
+  background: rgba(37, 99, 235, 0.08);
+  border-color: rgba(37, 99, 235, 0.18);
+}
+
+.course-whynow .btn {
+  margin-top: 2.4rem;
+}
+
+/* ------------------------------------------------------------- cards -- */
+
+/* One card treatment, shared by personas, why-techcadd, projects and the
+   working loop, so a dark band never has four slightly different panels. */
+.course-card,
+.course-project,
+.course-loop__steps > div,
+.course-why__grid > div {
+  padding: 1.7rem;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--on-line);
+  background: var(--on-card);
+  transition: background var(--t-fast), transform var(--t-fast), border-color var(--t-fast);
+}
+
+.course-card:hover,
+.course-project:hover,
+.course-why__grid > div:hover {
+  background: var(--on-card-hover);
+  border-color: var(--on-line);
+  transform: translateY(-3px);
+}
+
+.section--light .course-card,
+.section--light .course-project,
+.section--light .course-loop__steps > div,
+.section--light .course-why__grid > div {
+  box-shadow: var(--sh-sm);
+}
+
+.course-card h3,
+.course-project h3,
+.course-loop__steps h3,
+.course-why__grid h3 {
+  font-family: var(--font-display);
+  font-size: 1.06rem;
+  font-weight: 700;
+  color: var(--on);
+  margin-bottom: 0.6rem;
+}
+
+.course-card p,
+.course-project p,
+.course-loop__steps p,
+.course-why__grid p {
+  font-size: 0.94rem;
+  line-height: 1.65;
+  color: var(--on-2);
+}
+
+.course-card em,
+.course-loop__steps em,
+.course-syllabus__list em {
+  display: inline-block;
+  margin-bottom: 0.9rem;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  color: #60a5fa;
+}
+
+.section--light .course-card em,
+.section--light .course-loop__steps em,
+.section--light .course-syllabus__list em {
+  color: #2563eb;
+}
+
+.course-personas__grid,
+.course-why__grid,
+.course-projects__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1.4rem;
+  margin-top: 2.6rem;
+}
+
+/* ------------------------------------------------------------ syllabus -- */
+
+.course-syllabus__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .course-syllabus__head {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+}
+
+.course-syllabus__intro {
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: var(--on-2);
+}
+
+.course-syllabus__list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2.8rem;
+  list-style: none;
+  counter-reset: none;
+}
+
+.course-syllabus__list li {
+  display: flex;
+  gap: 1.2rem;
+  padding: 1.5rem 1.7rem;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--on-line);
+  background: var(--on-card);
+}
+
+.course-syllabus__list em {
+  margin: 0;
+  flex: none;
+}
+
+.course-syllabus__list h3 {
+  font-family: var(--font-display);
+  font-size: 1.04rem;
+  font-weight: 700;
+  color: var(--on);
+  margin-bottom: 0.35rem;
+}
+
+.course-syllabus__list p {
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: var(--on-2);
+}
+
+/* --------------------------------------------------------------- tools -- */
+
+.course-tools__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.course-tool {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1rem 1.2rem;
+  border-radius: var(--r-md);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.93rem;
+  color: var(--on);
+  border: 1px solid var(--on-line);
+  background: var(--on-card);
+  transition: transform var(--t-fast), background var(--t-fast);
+}
+
+.course-tool:hover {
+  transform: translateY(-3px);
+  background: var(--on-card-hover);
+}
+
+.course-tool i {
+  display: grid;
+  place-items: center;
+  color: #60a5fa;
+}
+
+.section--light .course-tool {
+  box-shadow: var(--sh-sm);
+}
+
+.section--light .course-tool i {
+  color: #2563eb;
+}
+
+/* ------------------------------------------------------- certification -- */
+
+.course-cert__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin: 2.6rem 0;
+}
+
+.course-cert__item {
+  display: flex;
+  gap: 0.9rem;
+  padding: 1.35rem 1.5rem;
+  border-radius: var(--r-md);
+  border: 1px solid var(--on-line);
+  background: var(--on-card);
+}
+
+.course-cert__item h3 {
+  font-family: var(--font-display);
+  font-size: 0.99rem;
+  font-weight: 700;
+  color: var(--on);
+  margin-bottom: 0.25rem;
+}
+
+.course-cert__item p {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--on-3);
+}
+
+/* -------------------------------------------------------------- salary -- */
+
+.course-salary__panel {
+  margin-top: 2.8rem;
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  border-radius: var(--r-xl);
+  border: 1px solid var(--on-line);
+  background: var(--on-card);
+}
+
+.course-salary__panel header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.6rem;
+  padding-bottom: 1.8rem;
+  border-bottom: 1px solid var(--on-line);
+}
+
+.course-salary__eyebrow {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #60a5fa;
+  margin-bottom: 0.5rem;
+}
+
+.course-salary__panel h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--on);
+}
+
+.course-salary__panel header p {
+  margin-top: 0.4rem;
+  max-width: 44ch;
+  font-size: 0.92rem;
+  color: var(--on-3);
+}
+
+.course-salary__bands {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.course-salary__bands > div {
+  padding: 0.9rem 1.2rem;
+  border-radius: var(--r-md);
+  border: 1px solid var(--on-line);
+  background: var(--on-card);
+}
+
+.course-salary__bands span {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-3);
+  margin-bottom: 0.35rem;
+}
+
+.course-salary__bands b {
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: var(--on);
+}
+
+.course-salary__bands .is-accent b {
+  color: #60a5fa;
+}
+
+.section--light .course-salary__bands .is-accent b {
+  color: #2563eb;
+}
+
+.course-salary__markets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.8rem;
+}
+
+.course-salary__market {
+  padding: 1.3rem 1.4rem;
+  border-radius: var(--r-md);
+  border: 1px solid var(--on-line);
+  background: var(--on-card);
+}
+
+.course-salary__market h4 {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--on-3);
+  margin-bottom: 1rem;
+}
+
+.course-salary__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  font-size: 0.88rem;
+  color: var(--on-2);
+}
+
+.course-salary__row b {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--on);
+}
+
+.course-salary__bar {
+  height: 5px;
+  margin: 0.5rem 0 1rem;
+  border-radius: 999px;
+  background: var(--on-line);
+  overflow: hidden;
+}
+
+.course-salary__bar i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #2563eb, #60a5fa);
+}
+
+.course-salary__note {
+  margin-top: 1.6rem;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: var(--on-3);
+}
+
+.course-salary__hiring {
+  margin-top: 1.6rem;
+  padding: clamp(1.4rem, 2.6vw, 2rem);
+  border-radius: var(--r-xl);
+  border: 1px solid var(--on-line);
+  background: var(--on-card);
+}
+
+.course-salary__hiring h3 {
+  font-family: var(--font-display);
+  font-size: 1.06rem;
+  font-weight: 700;
+  color: var(--on);
+  margin-bottom: 1.1rem;
+}
+
+.course-salary__hiring ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.7rem;
+  list-style: none;
+}
+
+.course-salary__hiring li {
+  position: relative;
+  padding: 0.75rem 1rem 0.75rem 1.9rem;
+  border-radius: var(--r-sm);
+  font-size: 0.9rem;
+  color: var(--on-2);
+  border: 1px solid var(--on-line);
+  background: var(--on-card);
+}
+
+.course-salary__hiring li::before {
+  content: '';
+  position: absolute;
+  left: 0.9rem;
+  top: 1.15rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #60a5fa;
+}
+
+/* ------------------------------------------------------------ projects -- */
+
+.course-project__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 1.1rem;
+}
+
+.course-project__tags span {
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--r-pill);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--on-2);
+  border: 1px solid var(--on-line);
+  background: var(--on-card);
+}
+
+.course-project .course-chip {
+  margin-bottom: 1.1rem;
+}
+
+/* -------------------------------------------------------- working loop -- */
+
+.course-loop__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+  gap: 2.6rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .course-loop__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.course-loop__steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+}
+
+/* ------------------------------------------------------------- reviews -- */
+
+.course-reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.3rem;
+  margin-top: 2.6rem;
+}
+
+.course-review {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.6rem;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--on-line);
+  background: var(--on-card);
+}
+
+.section--light .course-review {
+  box-shadow: var(--sh-sm);
+}
+
+.course-review__stars {
+  display: flex;
+  gap: 0.15rem;
+  color: #fbbf24;
+}
+
+.course-review blockquote {
+  flex: 1;
+  font-size: 0.94rem;
+  line-height: 1.7;
+  color: var(--on-2);
+}
+
+.course-review figcaption {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--on-line);
+}
+
+.course-review__avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #60a5fa);
+}
+
+.course-review figcaption b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  color: var(--on);
+}
+
+.course-review figcaption em {
+  display: block;
+  font-style: normal;
+  font-size: 0.8rem;
+  color: var(--on-3);
+}
+
+/* ----------------------------------------------------------------- faq -- */
+
+.course-faq__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 0.9rem;
+  margin-top: 2.6rem;
+  align-items: start;
+}
+
+.course-faq__item {
+  border-radius: var(--r-md);
+  border: 1px solid var(--on-line);
+  background: var(--on-card);
+  overflow: hidden;
+}
+
+.course-faq__item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.15rem 1.35rem;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-display);
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--on);
+}
+
+/* the default disclosure triangle, in both engines */
+.course-faq__item summary::-webkit-details-marker {
+  display: none;
+}
+
+.course-faq__item summary::marker {
+  content: '';
+}
+
+/* A CSS-only plus that becomes a minus when open — no JavaScript, so the
+   whole page stays a server component. */
+.course-faq__item summary i {
+  position: relative;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(251, 191, 36, 0.15);
+}
+
+.course-faq__item summary i::before,
+.course-faq__item summary i::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 2px;
+  border-radius: 2px;
+  background: #fbbf24;
+  transform: translate(-50%, -50%);
+  transition: transform var(--t-fast), opacity var(--t-fast);
+}
+
+.course-faq__item summary i::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.course-faq__item[open] summary i::after {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.course-faq__item p {
+  padding: 0 1.35rem 1.3rem;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--on-2);
+}
+
+.section--light .course-faq__item summary i {
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.section--light .course-faq__item summary i::before,
+.section--light .course-faq__item summary i::after {
+  background: #2563eb;
+}
+
+/* ----------------------------------------------------------------- cta -- */
+
+.course-cta__band {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: clamp(1.8rem, 3.4vw, 2.8rem);
+  border-radius: var(--r-xl);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1.4px) 0 0 / 24px 24px,
+    linear-gradient(120deg, #071440 0%, #0f3596 60%, #1749c2 100%);
+}
+
+.course-cta__band h2 {
+  margin: 1rem 0 0.6rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.course-cta__band p {
+  max-width: 46ch;
+  font-size: 0.94rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.course-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.course-cta__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.4rem;
+  border-radius: var(--r-pill);
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #0b1f5c;
+  background: #ffffff;
+  transition: transform var(--t-fast);
+}
+
+.course-cta__phone:hover {
+  transform: translateY(-2px);
+}
+
+/* ------------------------------------------------------------- related -- */
+
+.course-related {
+  margin-top: clamp(3rem, 6vw, 5rem);
+}
+
+.course-related__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin-top: 2.4rem;
+}
+
+.course-related__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.5rem;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--on-line);
+  background: var(--on-card);
+  transition: transform var(--t-fast), border-color var(--t-fast);
+}
+
+.course-related__card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+}
+
+.section--light .course-related__card {
+  box-shadow: var(--sh-sm);
+}
+
+.course-related__cat {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #2563eb;
+}
+
+.section--dark .course-related__cat {
+  color: #93c5fd;
+}
+
+.course-related__card b {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--on);
+}
+
+.course-related__card p {
+  flex: 1;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--on-3);
+}
+
+.course-related__card em {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+  font-style: normal;
+  font-family: var(--font-display);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.section--dark .course-related__card em {
+  color: #93c5fd;
+}
+
+/* ------------------------------------------------------------- contact -- */
+
+/*
+ * The homepage contact section is reused verbatim (it owns the working
+ * `/api/contact` wiring). It renders its own light `.section`, so the dark
+ * skin is applied from this wrapper rather than by forking the component.
+ */
+.course-contact .contact {
+  color: #ffffff;
+  background:
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1.4px) 0 0 / 26px 26px,
+    linear-gradient(135deg, #050f3d 0%, #0a1f68 45%, #103ba6 100%);
+}
+
+.course-contact .sec-head__title,
+.course-contact .sec-head__title .word {
+  color: #ffffff;
+}
+
+.course-contact .sec-head__lead {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* --------------------------------------------------------- small print -- */
+
+@media (max-width: 640px) {
+  .course-salary__bands {
+    width: 100%;
+  }
+
+  .course-salary__bands > div {
+    flex: 1;
+  }
+
+  .course-cta__band,
+  .course-cta__actions {
+    width: 100%;
+  }
+}
+
+/* ------------------------------------------------------------- video -- */
+
+.course-video {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  margin-inline: auto;
+  max-width: 860px;
+}
+
+.course-video__frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  border: 1px solid var(--on-line);
+  /* The ground behind a poster that has not loaded, and the whole surface
+     when no poster is set at all. */
+  background: linear-gradient(135deg, #1e40af 0%, #0b1f6b 45%, #050f3d 100%);
+}
+
+.course-video__poster {
+  object-fit: cover;
+}
+
+/* Both the <video> and the YouTube <iframe> fill the frame identically. */
+.course-video__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+
+.course-video__play {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  padding-left: 5px; /* optically centres the triangle */
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #0b1f5c;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 12px 40px rgba(2, 8, 30, 0.45);
+  transition: transform var(--t-fast), background var(--t-fast);
+}
+
+.course-video__play:hover {
+  transform: scale(1.07);
+  background: #ffffff;
+}
+
+/* A halo that keeps the button readable over a busy poster frame. */
+.course-video__play::before {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* No source configured: the same mark, without the affordances. */
+.course-video__play.is-idle {
+  cursor: default;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.course-video figcaption {
+  margin-top: 0.9rem;
+  text-align: center;
+  font-size: 0.86rem;
+  color: var(--on-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .course-video__play {
+    transition: none;
+  }
+}
