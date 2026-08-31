@@ -24,6 +24,7 @@ import StickyEnrolBar from '@/components/courses/StickyEnrolBar'
 
 import { COURSE_CONTENT, getCourse, getRelated } from '@/data/courses'
 import { brand } from '@/data/site'
+import { courseImage } from '@/lib/course-image'
 import { SITE_URL } from '@/lib/site-config'
 
 /** One static page per course — no route is generated for an unknown slug. */
@@ -147,7 +148,7 @@ export default async function CoursePage({ params }: PageProps) {
       </noscript>
 
       <main id="main">
-        <CourseHero course={course} />
+        <CourseHero course={course} image={courseImage(course.slug)} />
         <CourseOverview course={course} />
         <IndustryReady course={course} />
         <WhoCanJoin course={course} />

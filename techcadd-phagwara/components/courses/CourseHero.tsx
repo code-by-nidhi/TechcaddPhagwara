@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { FiArrowRight, FiCheck } from 'react-icons/fi'
@@ -17,7 +18,14 @@ import CourseHeroArt from './CourseHeroArt'
  * and the centre-wide stat band. They share a section so the gradient runs
  * behind all three without a seam.
  */
-export default function CourseHero({ course }: { course: CourseContent }) {
+export default function CourseHero({
+  course,
+  image,
+}: {
+  course: CourseContent
+  /** Public URL of the course's artwork; the drawn panel stands in without it. */
+  image?: string
+}) {
   return (
     <section className="relative overflow-hidden bg-[#0B1739]">
       {/* Ground: a wide blue wash from the lower right, over a dot grid. The
@@ -118,7 +126,23 @@ export default function CourseHero({ course }: { course: CourseContent }) {
 
           {/* -------------------------------------------------------- art -- */}
           <motion.div variants={fadeUp} className="lg:pl-4">
-            <CourseHeroArt course={course} />
+            {image ? (
+              /* The illustration is decorative — the course name it carries is
+                 already the <h1> a few inches to the left, so repeating it in
+                 alt text would have a screen reader read the title twice. */
+              <div className="relative mx-auto aspect-[3/2] w-full max-w-[560px] overflow-hidden rounded-[28px] border border-white/15 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.75)]">
+                <Image
+                  src={image}
+                  alt=""
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 560px, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            ) : (
+              <CourseHeroArt course={course} />
+            )}
           </motion.div>
         </motion.div>
 

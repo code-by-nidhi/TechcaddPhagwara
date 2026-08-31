@@ -43,16 +43,31 @@ function ReviewCard({ review }: { review: CourseReview }) {
   )
 }
 
+/*
+ * Slides needed before Embla will loop.
+ *
+ * `loop: true` is not a promise — Embla measures the slides against the
+ * container and quietly disables looping when there is not enough to wrap
+ * with, which stops AutoScroll dead and leaves a static, clipped row. A card
+ * is ~330px plus a 16px gap, so twelve slides is ~4,150px: comfortably past
+ * twice the width of a 1920px display, which is the case that was failing.
+ *
+ * Three reviews doubled came to ~2,060px. On a 1,356px viewport that is only
+ * 1.5x the container, and the marquee never started.
+ */
+const MIN_SLIDES = 12
+
 /**
  * One continuously scrolling row.
  *
- * `loop` needs enough slides to fill the viewport twice or Embla refuses to
- * wrap and the row simply stops at the end, so the list is doubled before it
- * is handed over. The duplicate is `aria-hidden` — a screen reader should hear
- * six reviews, not twelve.
+ * The source list is repeated until it clears `MIN_SLIDES`, so the rail loops
+ * at any viewport rather than only on narrow ones. Every copy after the first
+ * is `aria-hidden` — a screen reader should hear three reviews, not twelve.
  */
 function Rail({ reviews, direction }: { reviews: CourseReview[]; direction: 1 | -1 }) {
   const reduced = useReducedMotion()
+
+  const copies = Math.max(2, Math.ceil(MIN_SLIDES / Math.max(reviews.length, 1)))
 
   const [ref] = useEmblaCarousel(
     { loop: true, dragFree: true, align: 'start', watchDrag: true },
@@ -71,14 +86,19 @@ function Rail({ reviews, direction }: { reviews: CourseReview[]; direction: 1 | 
   return (
     <div className="overflow-hidden" ref={ref}>
       <ul className="flex gap-4">
-        {reviews.map((review) => (
-          <ReviewCard key={review.name} review={review} />
-        ))}
-        {reviews.map((review) => (
-          <div key={`dup-${review.name}`} aria-hidden className="contents">
-            <ReviewCard review={review} />
-          </div>
-        ))}
+        {Array.from({ length: copies }, (_, copy) =>
+          reviews.map((review) => (
+            <div
+              key={`${copy}-${review.name}`}
+              className="contents"
+              /* only the first pass is read out; the rest are visual filler
+                 that exists so the row has something to loop through. */
+              aria-hidden={copy > 0 || undefined}
+            >
+              <ReviewCard review={review} />
+            </div>
+          )),
+        )}
       </ul>
     </div>
   )
