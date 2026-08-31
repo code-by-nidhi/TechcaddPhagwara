@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Icon from '@/components/ui/Icon'
-import Button from '@/components/ui/Button'
 import SectionHeading from '@/components/ui/SectionHeading'
 import { useMouseParallax } from '@/hooks/useMouseParallax'
 import { loadGsap, prefersReducedMotion } from '@/lib/gsap'
@@ -253,13 +252,6 @@ export default function Journey() {
                 </div>
               </article>
             ))}
-          </div>
-
-          <div className="journey__cta" data-reveal="up">
-            <p>Milestone one starts with a free counselling call. No fee, no commitment.</p>
-            <Button href="#contact" arrow>
-              Start your roadmap
-            </Button>
           </div>
         </div>
       </div>
