@@ -843,57 +843,199 @@
   background: rgba(255, 255, 255, 0.12);
 }
 
-/* ------------------------------------------------------------- results -- */
+/* ----------------------------------------------------- placement record -- */
 
-.cp-results {
+/* Two columns rather than four equal cards. The figures need a claim next to
+   them to mean anything — four numbers alone in a band read as decoration,
+   which is exactly how the first cut of this section looked. */
+.cp-record {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 1rem;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.cp-record__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.9rem;
+  padding: 0.36rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  background: var(--card-solid);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--c-azure);
+}
+
+.cp-record__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.4vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.cp-record__lead {
+  margin: 1rem 0 0;
+  font-size: 0.97rem;
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+
+.cp-record__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.25rem;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--c-azure);
+  text-decoration: none;
+}
+
+.cp-record__link:hover {
+  gap: 0.6rem;
+  text-decoration: underline;
+}
+
+/* One panel with hairlines between the figures, not four detached cards —
+   they are one dataset and should read as a table would. */
+.cp-record__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.cp-results li {
-  padding: 1.6rem 1.35rem;
   border: 1px solid var(--border);
-  border-radius: var(--r-md);
+  border-radius: var(--r-lg);
   background: var(--card-solid);
-  box-shadow: var(--sh-sm);
-  text-align: center;
+  box-shadow: var(--sh-md);
+  overflow: hidden;
 }
 
-.cp-results b {
+.cp-record__grid li {
+  position: relative;
+  padding: clamp(1.5rem, 3vw, 2.1rem);
+}
+
+/* Hairlines drawn as borders on the cells themselves, so the grid keeps its
+   rounded corners — a gap-with-background rule would square them off. */
+.cp-record__grid li:nth-child(-n + 2) {
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.cp-record__grid li:nth-child(odd) {
+  border-right: 1px solid var(--border-soft);
+}
+
+.cp-record__icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0.9rem;
+  border-radius: 10px;
+  background: rgba(37, 99, 255, 0.09);
+  color: var(--c-azure);
+}
+
+.cp-record__grid b {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+  font-size: clamp(1.9rem, 3.6vw, 2.6rem);
   font-weight: 800;
   line-height: 1;
+  letter-spacing: -0.02em;
   background: var(--grad-text);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-.cp-results i {
+.cp-record__grid i {
   font-style: normal;
-  font-size: 0.62em;
+  font-size: 0.55em;
+  letter-spacing: 0;
 }
 
-.cp-results span {
+.cp-record__label {
   display: block;
-  margin-top: 0.5rem;
-  font-size: 0.87rem;
+  margin-top: 0.55rem;
+  font-size: 0.86rem;
   font-weight: 600;
   color: var(--ink-3);
 }
 
-.cp-results__note {
-  margin: 1.15rem 0 0;
-  font-size: 0.85rem;
-  line-height: 1.6;
+/* ------------------------------------------------------ hiring partners -- */
+
+.cp-partners {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.cp-partners__label {
+  margin: 0 0 1.15rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   text-align: center;
   color: var(--ink-4);
+}
+
+/* Full-bleed: the strip runs edge to edge, faded at both ends so names
+   arrive and leave rather than being chopped off at the shell's gutter. */
+.cp-partners__viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.cp-partners__track {
+  display: flex;
+  width: max-content;
+  animation: cp-marquee 46s linear infinite;
+}
+
+/* Two identical passes sit side by side; shifting by half the track's width
+   lands the second exactly where the first began, so the loop has no seam. */
+@keyframes cp-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.cp-partners__viewport:hover .cp-partners__track {
+  animation-play-state: paused;
+}
+
+.cp-partners__set {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0 0.375rem;
+  list-style: none;
+}
+
+.cp-partners__set li {
+  padding: 0.62rem 1.35rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  background: var(--card-solid);
+  box-shadow: var(--sh-xs);
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--ink-2);
 }
 
 /* --------------------------------------------------------------- visit -- */
@@ -1048,7 +1190,8 @@
 
 @media (max-width: 1024px) {
   .cp-enquiry__grid,
-  .cp-visit {
+  .cp-visit,
+  .cp-record {
     grid-template-columns: minmax(0, 1fr);
   }
 
@@ -1100,6 +1243,20 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
+  /* One figure per row: two columns at this width leaves "Placement Success
+     Rate" wrapping onto three lines under a number half its height. */
+  .cp-record__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cp-record__grid li:nth-child(odd) {
+    border-right: 0;
+  }
+
+  .cp-record__grid li:not(:last-child) {
+    border-bottom: 1px solid var(--border-soft);
+  }
+
   .cp-hero__trust {
     gap: 0.9rem;
   }
@@ -1123,6 +1280,29 @@
    there is no entrance animation to disable — but the button lifts still
    count as motion for anyone who has asked for less of it. */
 @media (prefers-reduced-motion: reduce) {
+  /* The marquee stops and the strip wraps into a static block instead. The
+     duplicate pass exists only to make the loop seamless, so it goes. */
+  .cp-partners__track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
+  }
+
+  .cp-partners__set {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+
+  .cp-partners__set[data-dup] {
+    display: none;
+  }
+
+  .cp-record__link:hover {
+    gap: 0.4rem;
+  }
+
   .cp-btn,
   .desks__btn,
   .cp-card,

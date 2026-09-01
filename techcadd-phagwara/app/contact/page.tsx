@@ -3,12 +3,12 @@ import Link from 'next/link'
 
 import ContactEnquiry from '@/components/contact/ContactEnquiry'
 import SupportDesks from '@/components/contact/SupportDesks'
-import Icon from '@/components/ui/Icon'
+import Icon, { type IconName } from '@/components/ui/Icon'
 import SectionHeading from '@/components/ui/SectionHeading'
 import { WHAT_HAPPENS_NEXT } from '@/data/contact'
 import { COURSE_CONTENT } from '@/data/courses'
 import { COURSE_STATS } from '@/data/courses/shared'
-import { brand, placementStats, socials } from '@/data/site'
+import { brand, companies, placementStats, socials } from '@/data/site'
 import { SITE_URL } from '@/lib/site-config'
 
 /**
@@ -45,6 +45,20 @@ export const metadata: Metadata = {
  * therefore always available.
  */
 const COURSE_OPTIONS = COURSE_CONTENT.map((course) => course.label)
+
+/**
+ * An icon per placement figure.
+ *
+ * Keyed by label rather than matched positionally: reordering `placementStats`
+ * should not silently hand "Highest Package" the users icon. A figure with no
+ * entry here falls back to the chart glyph rather than rendering nothing.
+ */
+const RECORD_ICONS: Record<string, IconName> = {
+  'Placement Success Rate': 'target',
+  'Students Placed': 'users',
+  'Highest Package': 'trending',
+  'Average Package': 'wallet',
+}
 
 export default function ContactPage() {
   const tel = brand.phoneHref
@@ -180,23 +194,66 @@ export default function ContactPage() {
       </section>
 
       {/* -------------------------------------------------------- results -- */}
-      <section className="section section--tint">
-        <div className="shell">
-          <ul className="cp-results">
+      <section className="section section--tint" id="results">
+        <div className="shell cp-record">
+          <div className="cp-record__copy">
+            <p className="cp-record__eyebrow">
+              <Icon name="award" size={14} aria-hidden="true" />
+              Placement record
+            </p>
+            <h2 className="cp-record__title">
+              Where our students <span className="gradient-text">actually end up</span>
+            </h2>
+            <p className="cp-record__lead">
+              Figures across every {brand.name} branch since 2007 — not this centre alone. Ask a
+              counsellor for {brand.suffix}&rsquo;s own numbers and they will give them to you
+              straight, including the ones that are less flattering.
+            </p>
+            <a className="cp-record__link" href="#enquiry">
+              Ask for the {brand.suffix} numbers
+              <Icon name="arrow" size={14} aria-hidden="true" />
+            </a>
+          </div>
+
+          <ul className="cp-record__grid">
             {placementStats.map((stat) => (
               <li key={stat.label}>
+                <span className="cp-record__icon" aria-hidden="true">
+                  <Icon name={RECORD_ICONS[stat.label] ?? 'chart'} size={16} />
+                </span>
                 <b>
-                  {stat.decimals ? stat.value.toFixed(stat.decimals) : stat.value.toLocaleString('en-IN')}
+                  {stat.decimals
+                    ? stat.value.toFixed(stat.decimals)
+                    : stat.value.toLocaleString('en-IN')}
                   <i>{stat.suffix}</i>
                 </b>
-                <span>{stat.label}</span>
+                <span className="cp-record__label">{stat.label}</span>
               </li>
             ))}
           </ul>
-          <p className="cp-results__note">
-            Figures across all {brand.name} branches since 2007. Ask a counsellor for the{' '}
-            {brand.suffix} centre&rsquo;s own numbers — they will give them to you straight.
-          </p>
+        </div>
+
+        {/* Full-bleed, so it sits outside the shell. */}
+        <div className="cp-partners">
+          <p className="cp-partners__label">Our students have been placed at</p>
+          <div className="cp-partners__viewport">
+            <div className="cp-partners__track">
+              {/* Two passes so the loop is seamless at translateX(-50%). The
+                  second is hidden from assistive tech — it is the same list. */}
+              {[0, 1].map((copy) => (
+                <ul
+                  className="cp-partners__set"
+                  key={copy}
+                  aria-hidden={copy === 1 || undefined}
+                  {...(copy === 1 ? { 'data-dup': '' } : {})}
+                >
+                  {companies.map((company) => (
+                    <li key={company}>{company}</li>
+                  ))}
+                </ul>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
