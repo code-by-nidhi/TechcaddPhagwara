@@ -659,12 +659,15 @@ function MegaMenu({
             {cat.courses.map((course) => (
               <Link
                 key={course.slug}
-                className="mega__link"
+                className="mega__card"
                 href={`/${course.slug}`}
                 role="menuitem"
                 onClick={onSelect}
               >
-                {course.label}
+                <span className="mega__card-icon" aria-hidden="true">
+                  <Icon name={course.icon} size={15} />
+                </span>
+                <span className="mega__card-label">{course.label}</span>
               </Link>
             ))}
           </div>

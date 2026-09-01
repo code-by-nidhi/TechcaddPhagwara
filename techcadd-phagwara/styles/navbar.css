@@ -259,7 +259,7 @@
      above ~600px of viewport and stays scrollable below that; the pull-quote
      in the footer is dropped on short screens so the links get its space. The
      panel itself stays `overflow: hidden` to keep its rounded corners clean. */
-  max-height: min(70vh, 540px);
+  max-height: min(72vh, 580px);
   overflow-y: auto;
   overscroll-behavior: contain;
 }
@@ -309,6 +309,68 @@
   font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 700;
+  color: var(--ink);
+}
+
+/*
+ * A course, as a card.
+ *
+ * Deliberately compact — 43px, against the ~64px a roomier card would want.
+ * Programming carries ten courses and sets the height of the whole grid; at
+ * the comfortable size its last two entries fall below the panel's fold and
+ * are reachable only by noticing the scrollbar, which is the exact bug the
+ * 70vh cap above was raised to fix. Compact keeps all ten in view, and 43px
+ * is still well past the 24px minimum for a pointer target.
+ */
+.mega__card {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.42rem 0.6rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  background: #fff;
+  /* The gap lives on the card, not the column: the grouped panels share
+     `.mega__col` and must keep their tighter text-link rhythm. */
+  margin-bottom: 6px;
+  transition:
+    border-color 0.2s var(--ease-soft),
+    background 0.2s var(--ease-soft),
+    box-shadow 0.2s var(--ease-soft);
+}
+
+.mega__card:hover {
+  border-color: var(--border-strong);
+  background: rgba(37, 99, 255, 0.045);
+  box-shadow: var(--sh-sm);
+}
+
+.mega__card:focus-visible {
+  outline: 2px solid var(--c-azure);
+  outline-offset: 2px;
+}
+
+.mega__card-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 9px;
+  background: rgba(37, 99, 255, 0.08);
+  color: var(--c-azure);
+  transition: background 0.2s var(--ease-soft);
+}
+
+.mega__card:hover .mega__card-icon {
+  background: rgba(37, 99, 255, 0.14);
+}
+
+.mega__card-label {
+  min-width: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25;
   color: var(--ink);
 }
 
@@ -1332,7 +1394,11 @@
 /* On a short screen the links matter and the pull-quote does not, so the
    quote yields its ~90px rather than the Programming column losing its
    last entries. "Browse all courses" stays: it is a way out of the menu. */
-@media (max-height: 760px) {
+/* Cards are taller than the bare links this panel used to hold, so the point
+   at which the pull-quote has to give up its space moved with them: at 768px
+   — the commonest laptop height — the footer was landing just below the fold,
+   putting "Browse all courses" out of reach without a scroll. */
+@media (max-height: 820px) {
   .mega__quote {
     display: none;
   }

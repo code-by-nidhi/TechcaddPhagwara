@@ -21,6 +21,8 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['react-icons', 'react-icons/fi', 'react-icons/fa6'],
   },
 
+  webpack: (config) => { config.cache = false; return config },
+
   poweredByHeader: false,
   compress: true,
 
