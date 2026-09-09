@@ -16,7 +16,19 @@ import type { CourseContent } from '@/data/courses/types'
  * Below a tablet the orbit collapses to a wrapped list — at 360px it
  * either overlaps or shrinks the labels past legibility.
  */
-export default function ToolsMesh({ course }: { course: CourseContent }) {
+export default function ToolsMesh({
+  course,
+  eyebrow = 'The toolchain behind the craft',
+  title,
+}: {
+  course: CourseContent
+  /**
+   * Heading override for the After 12th template, whose section names follow
+   * the branch's wording. Defaults to the course pages' own, unchanged.
+   */
+  eyebrow?: string
+  title?: React.ReactNode
+}) {
   const reduced = useReducedMotion()
   const tools = course.tools.slice(0, 8)
 
@@ -41,7 +53,7 @@ export default function ToolsMesh({ course }: { course: CourseContent }) {
           transition={{ duration: 0.5 }}
           className="text-[10.5px] font-bold uppercase tracking-[0.2em] text-[#93C5FD]"
         >
-          The toolchain behind the craft
+          {eyebrow}
         </motion.p>
 
         <motion.h2
@@ -51,8 +63,12 @@ export default function ToolsMesh({ course }: { course: CourseContent }) {
           transition={{ duration: 0.55, delay: 0.05 }}
           className="mx-auto mt-4 max-w-[30rem] font-[family-name:var(--font-jakarta)] text-[clamp(1.6rem,3vw,2.35rem)] font-extrabold leading-[1.15] tracking-[-0.03em] text-white"
         >
-          One course.
-          <br />A mesh of real tools.
+          {title ?? (
+            <>
+              One course.
+              <br />A mesh of real tools.
+            </>
+          )}
         </motion.h2>
 
         <motion.p

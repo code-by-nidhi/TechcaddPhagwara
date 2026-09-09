@@ -73,7 +73,11 @@ export default function CourseEnquiry({ course }: { course: CourseContent }) {
         }),
       })
 
-      const json: { ok?: boolean; message?: string } = await res.json()
+      /* An empty or non-JSON body would otherwise throw "Unexpected end of
+         JSON input" and surface as a runtime error rather than as the form's
+         own failure message. The sibling forms already guard this the same
+         way — see `ContactEnquiry` and `BookDemoModal`. */
+      const json: { ok?: boolean; message?: string } = await res.json().catch(() => ({}))
 
       if (!res.ok || !json.ok) {
         setStatus('error')

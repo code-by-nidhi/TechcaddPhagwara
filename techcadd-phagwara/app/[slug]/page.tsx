@@ -21,26 +21,68 @@ import CourseCta from '@/components/courses/CourseCta'
 import RelatedCourses from '@/components/courses/RelatedCourses'
 import CourseEnquiry from '@/components/courses/CourseEnquiry'
 import StickyEnrolBar from '@/components/courses/StickyEnrolBar'
+import After12Landing from '@/components/courses/After12Landing'
 
 import { COURSE_CONTENT, getCourse, getRelated } from '@/data/courses'
+import { AFTER12_CONTENT, getAfter12, getAfter12Related } from '@/data/after12'
 import { brand } from '@/data/site'
 import { courseImage } from '@/lib/course-image'
 import { SITE_URL } from '@/lib/site-config'
 
-/** One static page per course — no route is generated for an unknown slug. */
+/** One static page per course and programme — nothing is generated for an unknown slug. */
 export function generateStaticParams() {
-  return COURSE_CONTENT.map((course) => ({ slug: course.slug }))
+  return [...COURSE_CONTENT, ...AFTER12_CONTENT].map((course) => ({ slug: course.slug }))
 }
 
 interface PageProps {
   params: Promise<{ slug: string }>
 }
 
+/**
+ * The two catalogues this route serves, behind one lookup.
+ *
+ * Courses and After 12th programmes share a content type and a component set,
+ * but not a layout: a course renders the sections in this file, an After 12th
+ * programme renders `After12Landing`, which arranges the same components in the
+ * branch template's order and dark/light alternation. `kind` is what the page
+ * branches on, and it is returned here so the decision is made once.
+ *
+ * Courses are looked up first. A slug in both would otherwise resolve by
+ * whichever array happened to be searched first, and the After 12th slugs all
+ * carry an `after-12th-` prefix precisely so the case cannot arise silently.
+ */
+function resolveSlug(slug: string) {
+  const course = getCourse(slug)
+  if (course) {
+    return {
+      kind: 'course' as const,
+      course,
+      related: getRelated(slug),
+      breadcrumb: { label: 'Courses', href: '/#courses' },
+      relatedTitle: 'Related courses',
+    }
+  }
+
+  const program = getAfter12(slug)
+  if (program) {
+    return {
+      kind: 'after-12th' as const,
+      course: program,
+      related: getAfter12Related(slug),
+      breadcrumb: { label: 'After 12th', href: '/#journey' },
+      relatedTitle: 'Popular courses',
+    }
+  }
+
+  return null
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const course = getCourse(slug)
-  if (!course) return {}
+  const resolved = resolveSlug(slug)
+  if (!resolved) return {}
 
+  const { course } = resolved
   const url = `${SITE_URL}/${course.slug}`
 
   return {
@@ -64,10 +106,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function CoursePage({ params }: PageProps) {
   const { slug } = await params
-  const course = getCourse(slug)
-  if (!course) notFound()
+  const resolved = resolveSlug(slug)
+  if (!resolved) notFound()
 
-  const related = getRelated(slug)
+  const { kind, course, related, breadcrumb, relatedTitle } = resolved
   const url = `${SITE_URL}/${course.slug}`
 
   /*
@@ -113,7 +155,12 @@ export default async function CoursePage({ params }: PageProps) {
         '@id': `${url}#breadcrumb`,
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-          { '@type': 'ListItem', position: 2, name: 'Courses', item: `${SITE_URL}/#courses` },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: breadcrumb.label,
+            item: `${SITE_URL}${breadcrumb.href.replace(/^\//, '/')}`,
+          },
           { '@type': 'ListItem', position: 3, name: course.label, item: url },
         ],
       },
@@ -147,27 +194,34 @@ export default async function CoursePage({ params }: PageProps) {
         />
       </noscript>
 
-      <main id="main">
-        <CourseHero course={course} image={courseImage(course.slug)} />
-        <CourseOverview course={course} />
-        <IndustryReady course={course} />
-        <WhoCanJoin course={course} />
-        <WhyProgram course={course} />
-        <WhyNow course={course} />
-        <CourseModules course={course} />
-        <DurationTiers course={course} />
-        <ToolsMesh course={course} />
-        <Certification course={course} />
-        <CareerOutcomes course={course} />
-        <Projects course={course} />
-        <WorkingLoop course={course} />
-        <Reviews course={course} />
-        <Comparison course={course} />
-        <CourseFaq course={course} />
-        <CourseCta course={course} />
-        <RelatedCourses courses={related} />
-        <CourseEnquiry course={course} />
-      </main>
+      {kind === 'after-12th' ? (
+        /* The branch template — same components, the branch's own order and
+           dark/light alternation. See `After12Landing` for why it is a separate
+           arrangement rather than a prop on the list below. */
+        <After12Landing course={course} related={related} relatedTitle={relatedTitle} />
+      ) : (
+        <main id="main">
+          <CourseHero course={course} image={courseImage(course.slug)} breadcrumb={breadcrumb} />
+          <CourseOverview course={course} />
+          <IndustryReady course={course} />
+          <WhoCanJoin course={course} />
+          <WhyProgram course={course} />
+          <WhyNow course={course} />
+          <CourseModules course={course} />
+          <DurationTiers course={course} />
+          <ToolsMesh course={course} />
+          <Certification course={course} />
+          <CareerOutcomes course={course} />
+          <Projects course={course} />
+          <WorkingLoop course={course} />
+          <Reviews course={course} />
+          <Comparison course={course} />
+          <CourseFaq course={course} />
+          <CourseCta course={course} />
+          <RelatedCourses courses={related} title={relatedTitle} />
+          <CourseEnquiry course={course} />
+        </main>
+      )}
 
       <StickyEnrolBar course={course} />
 

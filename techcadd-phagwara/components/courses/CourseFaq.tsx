@@ -18,7 +18,22 @@ import { Reveal, Section, SectionHead, fadeUp } from './shared'
  * open turns the section into a wall of prose and the remaining questions
  * scroll off.
  */
-export default function CourseFaq({ course }: { course: CourseContent }) {
+export default function CourseFaq({
+  course,
+  tone = 'dark',
+}: {
+  course: CourseContent
+/**
+   * Which band this section paints.
+   *
+   * Defaults to the tone the course pages have always used. The After 12th
+   * pages run a strict dark/light alternation (see `After12Landing`), so they
+   * pass the opposite value — which is a prop rather than a fork because the
+   * `.course-dark` rules in `styles/tailwind.css` already invert everything
+   * inside a `Section`.
+   */
+  tone?: 'light' | 'dark'
+}) {
   const [open, setOpen] = useState<string | null>(course.faqs[0]?.q ?? null)
 
   if (!course.faqs.length) return null
@@ -29,7 +44,7 @@ export default function CourseFaq({ course }: { course: CourseContent }) {
   ]
 
   return (
-    <Section id="faq" tone="dark">
+    <Section id="faq" tone={tone}>
       <Reveal>
         <SectionHead eyebrow="Got questions?" title="Frequently Asked Questions" />
 

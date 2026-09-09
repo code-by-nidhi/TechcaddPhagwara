@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { courseSlugs } from '@/data/courses'
+import { after12Slugs } from '@/data/after12'
 import { allInternshipPages } from '@/data/internshipPages'
-import { allAfter12Pages } from '@/data/after12Pages'
 import { SITE_URL } from '@/lib/site-config'
 
 /**
@@ -34,14 +34,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
-    ...allInternshipPages.map((p) => ({
-      url: `${SITE_URL}/internship-training/${p.slug}`,
+    /* After 12th programmes are served from the root alongside the courses,
+       so they are listed the same way — see `data/after12/index.ts` for why
+       the two catalogues stay separate arrays. */
+    ...after12Slugs().map((slug) => ({
+      url: `${SITE_URL}/${slug}`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
-      priority: 0.7,
+      priority: 0.8,
     })),
-    ...allAfter12Pages.map((p) => ({
-      url: `${SITE_URL}/after-12th/${p.slug}`,
+    ...allInternshipPages.map((p) => ({
+      url: `${SITE_URL}/internship-training/${p.slug}`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.7,

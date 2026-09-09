@@ -12,11 +12,26 @@ import { Ordinal, Reveal, Section, SectionHead, fadeUp } from './shared'
  * is the useful signal — it tells a reader arriving from an unusual starting
  * point that theirs is probably one of the six.
  */
-export default function WhoCanJoin({ course }: { course: CourseContent }) {
+export default function WhoCanJoin({
+  course,
+  tone = 'dark',
+}: {
+  course: CourseContent
+/**
+   * Which band this section paints.
+   *
+   * Defaults to the tone the course pages have always used. The After 12th
+   * pages run a strict dark/light alternation (see `After12Landing`), so they
+   * pass the opposite value — which is a prop rather than a fork because the
+   * `.course-dark` rules in `styles/tailwind.css` already invert everything
+   * inside a `Section`.
+   */
+  tone?: 'light' | 'dark'
+}) {
   if (!course.audience.length) return null
 
   return (
-    <Section id="eligibility" tone="dark">
+    <Section id="eligibility" tone={tone}>
       <Reveal>
         <SectionHead
           eyebrow="Eligibility"

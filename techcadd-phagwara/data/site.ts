@@ -287,7 +287,7 @@ export function makeNavLinks(
         title: cat.title,
         items: cat.programs.map((p) => ({
           label: p.label,
-          href: `/after-12th/${p.slug}`,
+          href: p.href ?? `/after-12th/${p.slug}`,
           note: p.duration,
         })),
       })),
@@ -324,6 +324,15 @@ export interface NavCatalogEntry {
   label: string
   slug: string
   duration: string
+  /**
+   * An explicit destination, overriding the segment's default prefix.
+   *
+   * The After 12th programmes are served from the site root — their slugs
+   * carry their own `after-12th-` prefix — while the older entries still sit
+   * under `/after-12th/`. Rather than teach this function which is which, the
+   * catalogue states the address when it is not the default.
+   */
+  href?: string
 }
 
 export type NavCatalog = { title: string; programs: NavCatalogEntry[] }[]

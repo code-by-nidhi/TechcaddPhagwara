@@ -66,7 +66,17 @@ function arrowDelta(key: string): number {
   return 0
 }
 
-export default function CourseModules({ course }: { course: CourseContent }) {
+export default function CourseModules({
+  course,
+  title,
+}: {
+  course: CourseContent
+  /**
+   * Heading override for the After 12th template, whose section names follow
+   * the branch's wording. Defaults to the course pages' own, unchanged.
+   */
+  title?: React.ReactNode
+}) {
   const stages = useMemo(() => toStages(course.modules), [course.modules])
   const [active, setActive] = useState(1)
 
@@ -97,9 +107,14 @@ export default function CourseModules({ course }: { course: CourseContent }) {
               variants={fadeUp}
               className="mt-5 font-[family-name:var(--font-jakarta)] text-[clamp(1.7rem,3.2vw,2.6rem)] font-extrabold leading-[1.12] tracking-[-0.03em] text-[#0F172A]"
             >
-              What you will
-              <br />
-              actually <em className="font-[family-name:var(--font-manrope)] italic">build</em>
+              {title ?? (
+                <>
+                  What you will
+                  <br />
+                  actually{' '}
+                  <em className="font-[family-name:var(--font-manrope)] italic">build</em>
+                </>
+              )}
             </motion.h2>
           </div>
 

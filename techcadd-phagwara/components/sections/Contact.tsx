@@ -72,7 +72,9 @@ export default function Contact({
         body: JSON.stringify(form),
       })
 
-      const data: { ok?: boolean; message?: string } = await res.json()
+      /* Guarded so an empty body fails as a form error rather than an
+         uncaught "Unexpected end of JSON input". */
+      const data: { ok?: boolean; message?: string } = await res.json().catch(() => ({}))
 
       if (!res.ok || !data.ok) {
         setStatus('error')

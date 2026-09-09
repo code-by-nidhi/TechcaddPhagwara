@@ -21,10 +21,17 @@ import CourseHeroArt from './CourseHeroArt'
 export default function CourseHero({
   course,
   image,
+  breadcrumb = { label: 'Courses', href: '/#courses' },
 }: {
   course: CourseContent
   /** Public URL of the course's artwork; the drawn panel stands in without it. */
   image?: string
+  /**
+   * The middle crumb. Defaults to Courses because that is where twenty-seven
+   * of these pages live; the after-12th programmes sit under their own
+   * section and would otherwise claim a parent they do not belong to.
+   */
+  breadcrumb?: { label: string; href: string }
 }) {
   return (
     <section className="relative overflow-hidden bg-[#0B1739]">
@@ -58,8 +65,8 @@ export default function CourseHero({
                 Home
               </Link>
               <span aria-hidden>/</span>
-              <Link href="/#courses" className="transition-colors hover:text-white">
-                Courses
+              <Link href={breadcrumb.href} className="transition-colors hover:text-white">
+                {breadcrumb.label}
               </Link>
               <span aria-hidden>/</span>
               <span aria-current="page" className="text-white/85">

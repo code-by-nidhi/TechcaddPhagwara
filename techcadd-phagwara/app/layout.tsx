@@ -8,6 +8,7 @@ import SiteEffects from '@/components/fx/SiteEffects'
 import ScrollReset from '@/components/layout/ScrollReset'
 import FloatingDock from '@/components/fx/FloatingDock'
 import { makeNavLinks, type NavDropdownItem } from '@/data/site'
+import { after12NavCatalog } from '@/data/after12'
 import {
   getAfter12Catalog,
   getBlogs,
@@ -264,7 +265,16 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
       .map((page) => ({ label: page.label, href: `/${page.slug}` })),
   ]
 
-  const navLinks = makeNavLinks(internship, after12, headerPages)
+  /*
+    The After 12th menu.
+
+    Derived from `data/after12`, which is what renders the pages, so a
+    programme added there is linked here on the same commit. The CMS's own
+    After 12th catalogue is no longer read for the menu: every programme in it
+    now has a page at the site root, and its old `/after-12th/` addresses are
+    served as redirects.
+  */
+  const navLinks = makeNavLinks(internship, after12NavCatalog(), headerPages)
 
   return (
     <html lang="en" className={`${jakarta.variable} ${manrope.variable}`}>

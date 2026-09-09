@@ -13,9 +13,24 @@ import { Ordinal, Reveal, Section, SectionHead, fadeUp } from './shared'
  * that applies to every course. Splitting it that way keeps the specific
  * claim short enough to be checkable, which is the only reason it persuades.
  */
-export default function WhyProgram({ course }: { course: CourseContent }) {
+export default function WhyProgram({
+  course,
+  tone = 'light',
+}: {
+  course: CourseContent
+/**
+   * Which band this section paints.
+   *
+   * Defaults to the tone the course pages have always used. The After 12th
+   * pages run a strict dark/light alternation (see `After12Landing`), so they
+   * pass the opposite value — which is a prop rather than a fork because the
+   * `.course-dark` rules in `styles/tailwind.css` already invert everything
+   * inside a `Section`.
+   */
+  tone?: 'light' | 'dark'
+}) {
   return (
-    <Section id="why">
+    <Section id="why" tone={tone}>
       <Reveal>
         <SectionHead
           eyebrow="The case for it"
