@@ -7,7 +7,7 @@ import WhoCanJoin from './WhoCanJoin'
 import WhyProgram from './WhyProgram'
 import WhyNow from './WhyNow'
 import Certification from './Certification'
-import CareerOutcomes from './CareerOutcomes'
+import After12Careers from './After12Careers'
 import Projects from './Projects'
 import WorkingLoop from './WorkingLoop'
 import RelatedCourses from './RelatedCourses'
@@ -62,7 +62,7 @@ export default function After12Landing({
       <After12Hero course={course} />
 
       {/* 02 — light */}
-      <CourseOverview course={course} />
+      <CourseOverview course={course} media={false} />
 
       {/* 03 — dark */}
       <WhatYouWillLearn course={course} />
@@ -74,7 +74,7 @@ export default function After12Landing({
       <ToolsMesh course={course} eyebrow="The toolchain" title="Tools you will actually work in" />
 
       {/* 06 — light */}
-      <WhoCanJoin course={course} tone="light" />
+      <WhoCanJoin course={course} tone="light" layout="rows" />
 
       {/* 07 — dark */}
       <WhyProgram course={course} tone="dark" />
@@ -86,19 +86,26 @@ export default function After12Landing({
       <Certification course={course} />
 
       {/* 10 — light (tinted) */}
-      <CareerOutcomes course={course} />
+      <After12Careers course={course} />
 
       {/* 11 — dark */}
-      <Projects course={course} />
+      <Projects course={course} layout="grid" />
 
       {/* 12 light, then 13 dark — both from this one component */}
-      <WorkingLoop course={course} />
+      <WorkingLoop course={course} layout="stacked" />
 
       {/* 14 — dark */}
       <RelatedCourses courses={related} title={relatedTitle} tone="dark" />
 
       {/* 15 — light */}
-      <CourseFaq course={course} tone="light" />
+      <CourseFaq
+        course={course}
+        tone="light"
+        center
+        eyebrow="FAQs"
+        title="Frequently asked questions"
+        sub="Find answers to the questions students ask before enrolling."
+      />
 
       {/* 16 — dark */}
       <CourseEnquiry course={course} />

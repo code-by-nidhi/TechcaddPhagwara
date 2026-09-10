@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { WHY_TECHCADD, WORKING_LOOP } from '@/data/courses/shared'
 import type { CourseContent } from '@/data/courses/types'
-import { Reveal, fadeUp } from './shared'
+import { Reveal, SectionHead, fadeUp } from './shared'
 
 /**
  * Two bands that belong together: the loop every project runs through, and the
@@ -15,47 +15,112 @@ import { Reveal, fadeUp } from './shared'
  * that names its own artefacts supplies them; otherwise they fall back to that
  * course's projects, in order.
  */
-export default function WorkingLoop({ course }: { course: CourseContent }) {
+export default function WorkingLoop({
+  course,
+  layout = 'split',
+}: {
+  course: CourseContent
+  /**
+   * `stacked` is the After 12th treatment — centred header over three cards.
+   * `split` is the course pages' heading column beside a row of ruled steps.
+   * Only the first band changes; the "why techcadd" band below is shared.
+   */
+  layout?: 'split' | 'stacked'
+}) {
   const why = course.whyTechcadd ?? WHY_TECHCADD
   const loop = course.workingLoop ?? WORKING_LOOP
+  const stacked = layout === 'stacked'
 
   return (
     <>
       <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8">
-          <Reveal className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
-            <motion.div variants={fadeUp}>
-              <p className="text-[10.5px] font-bold uppercase tracking-[0.2em] text-[#2563EB]">
-                The working loop
-              </p>
-              <h2 className="mt-4 font-[family-name:var(--font-jakarta)] text-[clamp(1.4rem,2.6vw,2rem)] font-extrabold leading-[1.2] tracking-[-0.025em] text-[#0F172A]">
-                Learn it. Build it. Make it yours.
-              </h2>
-              <p className="mt-4 max-w-[24rem] text-[14px] leading-[1.8] text-[#475569]">
-                Every project moves through the same loop: understand the brief, build with
-                guidance, then explain the decisions behind your work.
-              </p>
-            </motion.div>
+          {stacked ? (
+            /*
+              The After 12th treatment: header centred over three equal cards,
+              rather than a heading column beside a row of ruled steps. The
+              deliverable under each step is set off by a rule and given the
+              card's own weight — it is the concrete half of an otherwise
+              generic process, so it should not read as a footnote.
+            */
+            <Reveal>
+              <SectionHead
+                center
+                eyebrow="The working loop"
+                title="Learn it. Build it. Make it yours."
+                sub="Every project moves through the same loop: understand the brief, build with guidance, then explain the decisions behind your work."
+              />
 
-            <motion.ol variants={fadeUp} className="grid gap-8 sm:grid-cols-3">
-              {loop.map((step, i) => (
-                <li key={step.title} className="sm:border-l sm:border-slate-200 sm:pl-6 sm:first:border-0 sm:first:pl-0">
-                  <span className="text-[11px] font-bold tracking-[0.18em] text-[#2563EB]">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <h3 className="mt-3 font-[family-name:var(--font-jakarta)] text-[15px] font-bold text-[#0F172A]">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-[13px] leading-[1.7] text-[#475569]">{step.copy}</p>
-                  {('artefact' in step ? step.artefact : course.projects[i]?.name) && (
-                    <p className="mt-4 text-[12px] font-medium text-[#94A3B8]">
-                      {'artefact' in step ? step.artefact : course.projects[i]?.name}
-                    </p>
-                  )}
-                </li>
-              ))}
-            </motion.ol>
-          </Reveal>
+              <ol className="mt-11 grid gap-5 sm:grid-cols-3">
+                {loop.map((step, i) => {
+                  const artefact = 'artefact' in step ? step.artefact : course.projects[i]?.name
+
+                  return (
+                    <motion.li
+                      key={step.title}
+                      variants={fadeUp}
+                      className="flex flex-col rounded-[20px] bg-[#EEF2FB] p-6 shadow-[0_12px_34px_-24px_rgba(15,23,42,0.5)] sm:p-7"
+                    >
+                      <span className="grid h-9 w-9 place-items-center rounded-full bg-white font-[family-name:var(--font-jakarta)] text-[11px] font-bold text-[#2563EB]">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <h3 className="mt-5 font-[family-name:var(--font-jakarta)] text-[15.5px] font-bold text-[#0F172A]">
+                        {step.title}
+                      </h3>
+                      <p className="mt-2.5 text-[13.5px] leading-[1.75] text-[#475569]">
+                        {step.copy}
+                      </p>
+                      {artefact && (
+                        /* `mt-auto` keeps the rule on the card's own bottom
+                           edge, so three cards of unequal copy still line their
+                           deliverables up across the row. */
+                        <p className="mt-auto border-t border-slate-300/70 pt-4 text-[12.5px] font-bold text-[#0F172A]">
+                          {artefact}
+                        </p>
+                      )}
+                    </motion.li>
+                  )
+                })}
+              </ol>
+            </Reveal>
+          ) : (
+            <Reveal className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
+              <motion.div variants={fadeUp}>
+                <p className="text-[10.5px] font-bold uppercase tracking-[0.2em] text-[#2563EB]">
+                  The working loop
+                </p>
+                <h2 className="mt-4 font-[family-name:var(--font-jakarta)] text-[clamp(1.4rem,2.6vw,2rem)] font-extrabold leading-[1.2] tracking-[-0.025em] text-[#0F172A]">
+                  Learn it. Build it. Make it yours.
+                </h2>
+                <p className="mt-4 max-w-[24rem] text-[14px] leading-[1.8] text-[#475569]">
+                  Every project moves through the same loop: understand the brief, build with
+                  guidance, then explain the decisions behind your work.
+                </p>
+              </motion.div>
+
+              <motion.ol variants={fadeUp} className="grid gap-8 sm:grid-cols-3">
+                {loop.map((step, i) => (
+                  <li
+                    key={step.title}
+                    className="sm:border-l sm:border-slate-200 sm:pl-6 sm:first:border-0 sm:first:pl-0"
+                  >
+                    <span className="text-[11px] font-bold tracking-[0.18em] text-[#2563EB]">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="mt-3 font-[family-name:var(--font-jakarta)] text-[15px] font-bold text-[#0F172A]">
+                      {step.title}
+                    </h3>
+                    <p className="mt-2 text-[13px] leading-[1.7] text-[#475569]">{step.copy}</p>
+                    {('artefact' in step ? step.artefact : course.projects[i]?.name) && (
+                      <p className="mt-4 text-[12px] font-medium text-[#94A3B8]">
+                        {'artefact' in step ? step.artefact : course.projects[i]?.name}
+                      </p>
+                    )}
+                  </li>
+                ))}
+              </motion.ol>
+            </Reveal>
+          )}
         </div>
       </section>
 

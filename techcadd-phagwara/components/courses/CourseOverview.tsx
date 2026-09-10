@@ -40,7 +40,20 @@ function emphasise(text: string, tools: string[]): ReactNode[] {
   )
 }
 
-export default function CourseOverview({ course }: { course: CourseContent }) {
+export default function CourseOverview({
+  course,
+  media = true,
+}: {
+  course: CourseContent
+  /**
+   * Whether the lab photograph follows the prose.
+   *
+   * The course pages carry it; the After 12th template does not, because the
+   * band immediately below it is already a full-width diagram and two pieces
+   * of artwork back to back push the curriculum below a second scroll.
+   */
+  media?: boolean
+}) {
   return (
     <Section id="overview">
       <Reveal>
@@ -53,25 +66,27 @@ export default function CourseOverview({ course }: { course: CourseContent }) {
           {emphasise(course.overview, course.tools)}
         </motion.p>
 
-        <motion.figure
-          variants={fadeUp}
-          className="relative mt-12 aspect-[16/7] w-full overflow-hidden rounded-[24px] bg-[#0B1739]"
-        >
-          <Image
-            src="/images/course/lab.webp"
-            alt={`Students working through the ${course.label} track in the techcadd Phagwara lab`}
-            fill
-            sizes="(max-width: 1200px) 100vw, 1136px"
-            className="object-cover"
-          />
-          <div
-            aria-hidden
-            className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,23,57,0.15)_0%,rgba(11,23,57,0.75)_100%)]"
-          />
-          <figcaption className="absolute inset-x-0 bottom-0 p-6 text-[13.5px] font-medium text-white/85 sm:p-8">
-            Every module ends in a working piece a trainer reviews with you — not a quiz.
-          </figcaption>
-        </motion.figure>
+        {media && (
+          <motion.figure
+            variants={fadeUp}
+            className="relative mt-12 aspect-[16/7] w-full overflow-hidden rounded-[24px] bg-[#0B1739]"
+          >
+            <Image
+              src="/images/course/lab.webp"
+              alt={`Students working through the ${course.label} track in the techcadd Phagwara lab`}
+              fill
+              sizes="(max-width: 1200px) 100vw, 1136px"
+              className="object-cover"
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,23,57,0.15)_0%,rgba(11,23,57,0.75)_100%)]"
+            />
+            <figcaption className="absolute inset-x-0 bottom-0 p-6 text-[13.5px] font-medium text-white/85 sm:p-8">
+              Every module ends in a working piece a trainer reviews with you — not a quiz.
+            </figcaption>
+          </motion.figure>
+        )}
       </Reveal>
     </Section>
   )

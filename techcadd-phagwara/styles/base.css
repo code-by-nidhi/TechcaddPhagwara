@@ -125,7 +125,21 @@ body {
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /*
+    Both declarations, in this order, on purpose.
+
+    `hidden` here makes the body a scroll container, which silently breaks
+    `position: sticky` for every descendant — the sticky element then resolves
+    against a scrollport that never scrolls, so it simply never sticks. That is
+    what the stacking cards in `WhoCanJoin` need.
+
+    `clip` prevents the same horizontal overflow without creating a scroll
+    container, so sticky keeps working. Browsers too old to know `clip` ignore
+    the second declaration and keep the first, which is the behaviour they had
+    before — no regression, just no stacking.
+  */
   overflow-x: hidden;
+  overflow-x: clip;
   text-rendering: optimizeLegibility;
 }
 

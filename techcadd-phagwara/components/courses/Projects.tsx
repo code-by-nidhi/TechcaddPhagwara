@@ -8,15 +8,27 @@ function ProjectCard({
   project,
   index,
   tall = false,
+  plain = false,
 }: {
   project: CourseProject
   index: number
   /** Pushes the body to the bottom of a full-height cell. */
   tall?: boolean
+  /**
+   * The even-grid treatment used by the After 12th template.
+   *
+   * Every card is the same height there, so nothing is pushed to the bottom,
+   * and the full tech list is shown rather than the first two — the chips are
+   * the part a reader scans to see whether the stack matches the job they
+   * want, and two of five does not answer that.
+   */
+  plain?: boolean
 }) {
   /* Early pieces are described by the stack they use; the later, heavier ones
-     by what you demonstrate — which is what an interviewer asks about. */
-  const tags = tall ? project.skills : project.tech
+     by what you demonstrate — which is what an interviewer asks about. The
+     even grid keeps every card on `tech` so the rows stay comparable. */
+  const tags = plain ? project.tech : tall ? project.skills : project.tech
+  const shown = plain ? tags : tags.slice(0, 2)
 
   return (
     <motion.article
@@ -24,22 +36,32 @@ function ProjectCard({
       whileHover={{ y: -4 }}
       transition={{ type: 'spring', stiffness: 300, damping: 24 }}
       className={`rounded-[22px] border border-slate-200/80 bg-white p-6 ${
-        tall ? 'flex h-full flex-col' : ''
+        plain ? 'flex h-full flex-col sm:p-7' : tall ? 'flex h-full flex-col' : ''
       }`}
     >
-      <span className="inline-flex w-fit items-center rounded-full border border-amber-300/40 bg-amber-300/10 px-3 py-1 text-[10.5px] font-bold uppercase tracking-[0.14em] text-amber-600">
+      <span
+        className={`inline-flex w-fit items-center rounded-full border border-amber-300/40 bg-amber-300/10 px-3 py-1 text-[10.5px] font-bold uppercase tracking-[0.14em] ${
+          /* On navy, amber-600 sits close to the ground it is printed on.
+             The even grid is the After 12th treatment, where the badge is the
+             card's only accent, so it takes the lighter step of the ramp. */
+          plain ? 'text-amber-300' : 'text-amber-600'
+        }`}
+      >
         Project {String(index + 1).padStart(2, '0')}
       </span>
 
-      <div className={tall ? 'mt-auto pt-12' : 'mt-4'}>
+      {/* The even grid keeps the chips on the card's own bottom edge, so a row
+          of cards lines its chips up regardless of how long each summary runs.
+          The feature layout keeps its original nesting untouched. */}
+      <div className={plain ? 'mt-5 flex flex-1 flex-col' : tall ? 'mt-auto pt-12' : 'mt-4'}>
         <h3 className="font-[family-name:var(--font-jakarta)] text-[16px] font-bold leading-snug text-[#0F172A]">
           {project.name}
         </h3>
         <p className="mt-2.5 text-[13.5px] leading-[1.7] text-[#475569]">{project.summary}</p>
 
-        {tags.length > 0 && (
-          <ul className="mt-5 flex flex-wrap gap-2">
-            {tags.slice(0, 2).map((tag) => (
+        {shown.length > 0 && (
+          <ul className={`flex flex-wrap gap-2 ${plain ? 'mt-auto pt-6' : 'mt-5'}`}>
+            {shown.map((tag) => (
               <li
                 key={tag}
                 className="rounded-full bg-[#F6F9FF] px-3 py-1.5 text-[11.5px] font-medium text-[#334155]"
@@ -57,17 +79,45 @@ function ProjectCard({
 /**
  * The portfolio band.
  *
- * With three or more projects the grid goes asymmetric — the two lighter
- * exercises stacked in one column, the live brief and capstone given a full
- * column each — because those last two are the ones worth dwelling on.
+ * Two arrangements. The course pages use `feature`: with three or more
+ * projects the grid goes asymmetric — the two lighter exercises stacked in one
+ * column, the live brief and capstone given a full column each — because those
+ * last two are the ones worth dwelling on. Eleven of the twenty-seven
+ * catalogue entries only carry two projects, and that layout collapses to an
+ * empty right-hand column for them, so those fall back to an even grid instead
+ * of rendering a hole.
  *
- * Eleven of the twenty-seven catalogue entries only carry two projects, and
- * that layout collapses to an empty right-hand column for them, so those fall
- * back to an even grid instead of rendering a hole.
+ * The After 12th template uses `grid`: every project the same size, two to a
+ * row, heading centred. Its programmes each carry six projects of comparable
+ * weight — six months of monthly deliverables rather than a ramp toward one
+ * capstone — so singling two out would claim an emphasis the syllabus does not
+ * have.
  */
-export default function Projects({ course }: { course: CourseContent }) {
+export default function Projects({
+  course,
+  layout = 'feature',
+}: {
+  course: CourseContent
+  layout?: 'feature' | 'grid'
+}) {
   const projects = course.projects
   if (!projects.length) return null
+
+  if (layout === 'grid') {
+    return (
+      <Section id="projects" tone="dark">
+        <Reveal>
+          <SectionHead center eyebrow="Portfolio" title="Hands-on projects you will ship" />
+
+          <div className="mt-11 grid gap-5 sm:grid-cols-2">
+            {projects.map((project, i) => (
+              <ProjectCard key={project.name} project={project} index={i} plain />
+            ))}
+          </div>
+        </Reveal>
+      </Section>
+    )
+  }
 
   /* The asymmetric layout needs one column for the stacked pair plus one per
      heavier project. Hard-coding three columns leaves a hole on a course that
