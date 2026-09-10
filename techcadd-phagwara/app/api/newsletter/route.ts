@@ -1,24 +1,28 @@
 import { NextResponse } from 'next/server'
 import { clean, isEmail } from '@/lib/validation'
+import { recordSubscriber } from '@/lib/newsletter'
 
 /**
  * Newsletter subscription endpoint for the footer form.
  *
- * Unlike the contact form, this one does NOT go to the CMS: the CMS has no
- * newsletter module — no table, no API, no screen — so there is nowhere in it
- * for an address to land. (The older shared `techcadd_cms` database has a
- * `newsletter_subscribers` table, which is where the idea came from, but this
- * CMS's schema never gained one.)
+ * Two destinations, in the same arrangement the contact form uses: the address
+ * is written to `newsletter_subscribers` in MySQL, and `NEWSLETTER_WEBHOOK_URL`
+ * — Mailchimp, Brevo, Buttondown, or a Zapier hook in front of any of them —
+ * is fired as a secondary if one is configured.
  *
- * So the only destination is `NEWSLETTER_WEBHOOK_URL` — Mailchimp, Brevo,
- * Buttondown, or a Zapier hook in front of any of them. Until one is set, an
- * address typed into the footer is recorded nowhere.
+ * The database is the destination that matters. It is under our own control,
+ * it survives a provider being swapped, and it means the footer form collects
+ * something on a deployment that has no mailing-list provider at all.
  *
- * That last sentence used to be invisible. The handler logged to the console
- * and answered "You are on the list — check your inbox", which promised a
+ * The CMS is deliberately not involved: it has no newsletter module — no
+ * table, no API, no screen — so there is nowhere in it for an address to land.
+ * `scripts/newsletter-standalone.sql` therefore defines this table rather than
+ * mirroring a CMS migration, unlike the enquiries one.
+ *
+ * The messages below say only what is true. An earlier version logged to the
+ * console and answered "You are on the list — check your inbox", promising a
  * confirmation email that nothing was going to send, to a person who had been
- * added to no list. The messages below say only what is true, and the log line
- * says loudly what an operator needs to do about it.
+ * added to no list.
  */
 
 export const dynamic = 'force-dynamic'
@@ -83,29 +87,56 @@ export async function POST(request: Request) {
     )
   }
 
-  const outcome = await subscribe(clean(email, 254).toLowerCase())
+  const address = clean(email, 254).toLowerCase()
 
-  if (outcome === 'failed') {
+  const ip =
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
+    request.headers.get('x-real-ip') ??
+    'unknown'
+
+  const filed = await recordSubscriber(
+    { email: address },
+    {
+      ip,
+      userAgent: (request.headers.get('user-agent') ?? '').slice(0, 255),
+      sourceUrl: (request.headers.get('referer') ?? '').slice(0, 500),
+      source: 'footer',
+    },
+  )
+
+  /*
+    The webhook is a secondary destination and its failure is logged, not
+    surfaced — the same rule the contact route follows. If the row was written
+    the address is safe, and telling a visitor their signup failed because a
+    third-party list provider was briefly down would be untrue.
+  */
+  const outcome = await subscribe(address)
+
+  if (filed.kind === 'failed') {
+    console.error('[newsletter] database write failed', filed.detail)
+  }
+
+  /*
+    Recorded somewhere, by either route, is a success.
+
+    A duplicate counts: the visitor is on the list, which is what they were
+    asking for, and telling them otherwise invites them to try again.
+  */
+  const stored = filed.kind === 'recorded' || filed.kind === 'duplicate'
+
+  if (!stored && outcome !== 'subscribed') {
     return NextResponse.json(
       { ok: false, message: 'Could not subscribe right now. Please try again later.' },
       { status: 502 }
     )
   }
 
-  /*
-    Two different truths, and the visitor is told the right one.
-
-    With a provider configured they are on a list and will get a confirmation.
-    Without one, they are not on any list — so they are pointed at the way to
-    reach us that does work, rather than being thanked for joining something
-    that does not exist.
-  */
   return NextResponse.json({
     ok: true,
     message:
-      outcome === 'subscribed'
-        ? 'You are on the list — check your inbox.'
-        : 'Thanks! Our mailing list is not open yet — use the contact form and a counsellor will keep you posted.',
+      filed.kind === 'duplicate'
+        ? 'You are already on the list — we will keep you posted.'
+        : 'You are on the list — we will keep you posted.',
   })
 }
 
