@@ -117,7 +117,13 @@ export function getAfter12Related(slug: string, limit = 6): CourseSummary[] {
  */
 export function after12NavCatalog(): {
   title: string
-  programs: { label: string; slug: string; duration: string; href: string }[]
+  programs: {
+    label: string
+    slug: string
+    duration: string
+    href: string
+    icon: CourseContent['icon']
+  }[]
 }[] {
   const order = [
     '3-month-programs',
@@ -137,6 +143,7 @@ export function after12NavCatalog(): {
           slug: p.slug,
           duration: p.duration,
           href: `/${p.slug}`,
+          icon: p.icon,
         })),
       }
     })

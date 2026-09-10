@@ -287,6 +287,53 @@
   }
 }
 
+/*
+ * After 12th — five tracks, forty-odd programmes.
+ *
+ * A column per group, so the longest (eleven items) sets the height and the
+ * grid stays one row. In the three-column layout this content wrapped onto a
+ * second row and scrolled inside `max-height`, which is what put a scrollbar
+ * through the panel and cut the last group off entirely.
+ *
+ * The columns are narrower than the Courses panel's four, which is why the
+ * cards below drop to a smaller label: a two-word programme name has to sit on
+ * one line at 210px or the whole column goes ragged.
+ */
+.mega__grid--5 {
+  grid-template-columns: repeat(5, minmax(190px, 1fr));
+  gap: 0 1.5rem;
+}
+
+.mega__grid--5 .mega__card {
+  gap: 0.5rem;
+  padding: 0.36rem 0.5rem;
+}
+
+.mega__grid--5 .mega__card-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+}
+
+.mega__grid--5 .mega__card-label {
+  font-size: 0.8125rem;
+}
+
+/* Five narrow columns stop being readable well before the panel runs out of
+   room, so they pair off first and then stack. */
+@media (max-width: 1180px) {
+  .mega__grid--5 {
+    grid-template-columns: repeat(3, minmax(190px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 860px) {
+  .mega__grid--5 {
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
+  }
+}
+
 .mega__col {
   min-width: 0;
 }

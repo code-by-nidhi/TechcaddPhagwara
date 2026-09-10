@@ -731,15 +731,27 @@ function GroupedMegaMenu({
   onMouseEnter,
   onMouseLeave,
 }: GroupedMegaMenuProps) {
+  /*
+    Two shapes, chosen by how much there is to show.
+
+    Three short columns shrink-to-fit, which is what `mega--fit` was written
+    for — Internship & Training still looks like that. After 12th outgrew it:
+    five groups and forty-odd programmes in a three-column grid wrapped onto a
+    second row and scrolled inside a panel sized for one, which is the state
+    this replaces. Past three groups it takes the Courses panel's full width
+    and a column per group instead.
+  */
+  const wide = groups.length > 3
+
   return (
     <div
-      className="mega mega--fit"
+      className={`mega${wide ? '' : ' mega--fit'}`}
       role="menu"
       aria-label={label}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <div className="mega__grid mega__grid--3">
+      <div className={`mega__grid ${wide ? 'mega__grid--5' : 'mega__grid--3'}`}>
         {groups.map((group, i) => (
           <div key={group.title} className="mega__col">
             <div className="mega__col-head">
@@ -747,7 +759,26 @@ function GroupedMegaMenu({
               <h3 className="mega__col-title">{group.title}</h3>
             </div>
             {group.items.map((item) =>
-              isExternal(item.href) ? (
+              /*
+                An item that carries a glyph is drawn as a card, exactly as the
+                Courses panel draws its courses; one without stays a plain
+                link. That keeps Internship & Training — whose catalogue has no
+                icons — looking as it always did.
+              */
+              item.icon && !isExternal(item.href) && !isHashLink(item.href) ? (
+                <Link
+                  key={item.label}
+                  className="mega__card"
+                  href={item.href}
+                  role="menuitem"
+                  onClick={onSelect}
+                >
+                  <span className="mega__card-icon" aria-hidden="true">
+                    <Icon name={item.icon} size={15} />
+                  </span>
+                  <span className="mega__card-label">{item.label}</span>
+                </Link>
+              ) : isExternal(item.href) ? (
                 <a
                   key={item.label}
                   className="mega__link"

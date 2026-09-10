@@ -28,6 +28,14 @@ export interface NavDropdownItem {
   href: string
   /** one line under the label */
   note?: string
+  /**
+   * Draws the item as an icon card rather than a plain text link.
+   *
+   * The Courses mega panel has always done this; the grouped panels drew bare
+   * links because their catalogues carried no glyph. After 12th does, so it
+   * gets the same treatment — see `GroupedMegaMenu` in `Navbar`.
+   */
+  icon?: IconName
 }
 
 export interface NavDropdownGroup {
@@ -289,6 +297,7 @@ export function makeNavLinks(
           label: p.label,
           href: p.href ?? `/after-12th/${p.slug}`,
           note: p.duration,
+          ...(p.icon ? { icon: p.icon } : {}),
         })),
       })),
     },
@@ -324,6 +333,8 @@ export interface NavCatalogEntry {
   label: string
   slug: string
   duration: string
+  /** Passed through to the panel so the item can render as an icon card. */
+  icon?: IconName
   /**
    * An explicit destination, overriding the segment's default prefix.
    *
