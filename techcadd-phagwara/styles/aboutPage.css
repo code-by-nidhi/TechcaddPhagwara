@@ -1,0 +1,1203 @@
+/* =========================================================================
+   /about — the standalone About page.
+
+   Prefixed `ap-` throughout so nothing here collides with `about.css`, which
+   styles the homepage's `#about` band. The two are related on purpose and
+   share no rules: one is a single section inside a long scroll, the other is a
+   thirteen-band page with its own hero. Giving them a common base would mean
+   every change to one had to be checked against the other.
+
+   Plain CSS rather than Tailwind for the same reason `contactPage.css` is:
+   Tailwind's scanner only walks `components/courses` and `app/[slug]` (see
+   tailwind.css), so a utility class written here would simply never be
+   generated.
+
+   The page alternates light and dark bands. `.ap-band--dark` is the only
+   switch — it repaints its own headings and prose, because `h1..h5` in
+   base.css sets `color: var(--ink)` on the element itself and that beats an
+   inherited white.
+   ========================================================================= */
+
+.about-page {
+  overflow-x: clip;
+}
+
+/* ==================================================== shared band pieces == */
+
+.ap-band {
+  position: relative;
+  isolation: isolate;
+  padding-block: var(--section-y);
+  scroll-margin-top: calc(var(--nav-h) + 12px);
+  background: var(--bg);
+}
+
+/* Every other light band goes plain white, so two light bands in a row still
+   read as two bands. */
+.ap-who,
+.ap-loop,
+.ap-cred,
+.ap-cta {
+  background: #fff;
+}
+
+.ap-band--dark {
+  background: #071232;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* A fine diagonal weave over the navy, drawn rather than shipped so it stays
+   crisp at any pixel density. */
+.ap-band--dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  background:
+    radial-gradient(60% 50% at 15% 0%, rgba(37, 99, 255, 0.22), transparent 62%),
+    radial-gradient(46% 44% at 92% 12%, rgba(59, 130, 246, 0.16), transparent 60%),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.026) 0 1px,
+      transparent 1px 11px
+    );
+}
+
+.ap-band--dark h2,
+.ap-band--dark h3 {
+  color: #fff;
+}
+
+/* ---------------------------------------------------------- headings --- */
+
+.ap-eyebrow {
+  margin-bottom: 0.85rem;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-azure);
+}
+
+.ap-band--dark .ap-eyebrow {
+  color: #6fd0ff;
+}
+
+.ap-title {
+  max-width: 22ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 3.4vw, 2.9rem);
+  font-weight: 800;
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.ap-title em {
+  font-style: normal;
+  color: var(--c-azure);
+}
+
+.ap-band--dark .ap-title em {
+  color: #37c8ff;
+}
+
+/* The arrows between Learn / Practice / Build / Grow. */
+.ap-title i {
+  font-style: normal;
+  color: var(--c-azure);
+}
+
+.ap-prose {
+  max-width: 62ch;
+  margin-top: 1.05rem;
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--ink-2);
+}
+
+.ap-band--dark .ap-prose {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ap-prose--lead {
+  margin-top: 1.4rem;
+}
+
+.ap-note {
+  max-width: 74ch;
+  margin-top: 2.25rem;
+  font-size: 0.8rem;
+  line-height: 1.8;
+  color: var(--ink-3);
+}
+
+.ap-band--dark .ap-note {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Centring is opt-in per element rather than per section: several bands
+   centre the heading block and left-align the grid beneath it. */
+.ap-center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.ap-title.ap-center {
+  max-width: 26ch;
+}
+
+.ap-narrow {
+  max-width: 760px;
+}
+
+.ap-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 2rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--c-azure);
+  transition: gap var(--t-fast);
+}
+
+.ap-link:hover {
+  gap: 0.75rem;
+}
+
+/* ============================================================== the hero == */
+
+.ap-hero {
+  position: relative;
+  isolation: isolate;
+  padding-block: calc(var(--nav-h) + clamp(3.25rem, 7vw, 5.5rem)) clamp(3.5rem, 7vw, 5.5rem);
+  background: var(--grad-deep);
+  color: #fff;
+  overflow: hidden;
+}
+
+.ap-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    var(--grad-mesh),
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.13) 1px, transparent 0) 0 0 / 26px 26px;
+}
+
+.ap-crumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ap-crumb a {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.ap-crumb a:hover {
+  color: #fff;
+}
+
+/*
+ * The first half of the headline is deliberately dimmed and the second half is
+ * not: the sentence names the page's subject twice over, and letting both
+ * halves shout leaves nothing for the eye to land on.
+ */
+.ap-hero__title {
+  max-width: 18ch;
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 5.2vw, 3.9rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.ap-hero__title em {
+  font-style: normal;
+  color: #fff;
+}
+
+.ap-hero__stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  list-style: none;
+}
+
+.ap-hero__stats li {
+  padding-left: 1.15rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.28);
+}
+
+.ap-hero__stats b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.2vw, 2.35rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.ap-hero__stats span {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+/* ============================================================ who we are == */
+
+.ap-who__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  gap: clamp(2.25rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.ap-teach {
+  margin-top: 2.5rem;
+  padding-top: 1.85rem;
+  border-top: 1px solid var(--border);
+}
+
+.ap-teach h3 {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.ap-teach p {
+  margin-top: 0.4rem;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--ink-3);
+}
+
+.ap-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.1rem;
+  list-style: none;
+}
+
+.ap-chips li {
+  padding: 0.34rem 0.72rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  background: #fff;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.ap-who__foot {
+  margin-top: 2.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-soft);
+  font-size: 0.78rem;
+  color: var(--ink-3);
+}
+
+/* ------------------------------------------------------------- collage -- */
+
+/*
+ * One wide photograph over two square-ish ones. A fixed row pattern rather
+ * than `masonry` so the block keeps its shape with the three images this
+ * centre actually has — there is no fourth to fill a gap with.
+ */
+.ap-shots {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.ap-shots figure {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  background: var(--bg-2);
+  box-shadow: var(--sh-md);
+}
+
+.ap-shots__lead {
+  grid-column: 1 / -1;
+}
+
+.ap-shots img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ap-shots figcaption {
+  position: absolute;
+  left: 0.7rem;
+  bottom: 0.7rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 8px;
+  background: rgba(4, 18, 74, 0.72);
+  backdrop-filter: blur(6px);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+/* ============================================================= ecosystem == */
+
+.ap-eco__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  gap: clamp(2.25rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+/* The second photograph steps down and left over the first, so the pair reads
+   as one object rather than two unrelated tiles. */
+.ap-eco__shots {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+
+.ap-eco__shots figure {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--r-md);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.4);
+}
+
+.ap-eco__shots figure:last-child {
+  margin-top: 2.75rem;
+  margin-left: -14%;
+}
+
+.ap-eco__shots img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ======================================================== why it matters == */
+
+.ap-pull {
+  margin-top: 2.75rem;
+  padding: 1.75rem 1.9rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: #f2f7ff;
+  font-size: 0.92rem;
+  line-height: 1.85;
+  text-align: center;
+  color: var(--ink);
+}
+
+/* =========================================================== card grids === */
+
+.ap-grid {
+  display: grid;
+  gap: 1.15rem;
+  margin-top: 2.5rem;
+  list-style: none;
+}
+
+.ap-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ap-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ap-grid--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.ap-card {
+  padding: 1.4rem 1.5rem 1.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.045);
+  transition: border-color var(--t-fast), background var(--t-fast);
+}
+
+.ap-card:hover {
+  border-color: rgba(111, 208, 255, 0.34);
+  background: rgba(255, 255, 255, 0.075);
+}
+
+.ap-card__n {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #6fd0ff;
+}
+
+.ap-card h3 {
+  margin-top: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.ap-card p {
+  margin-top: 0.45rem;
+  font-size: 0.82rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* ================================================================= loop === */
+
+/*
+ * Four steps joined by a dotted rule that runs behind the numbers.
+ * Drawn as a single pseudo-element on the list rather than per item, so the
+ * line never shows a seam where two items meet — and it stops short of the
+ * outer edges so it does not dangle past the first and last node.
+ */
+.ap-loop__steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+  list-style: none;
+  text-align: center;
+}
+
+.ap-loop__steps::before {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: 12.5%;
+  right: 12.5%;
+  border-top: 2px dotted var(--border-strong);
+}
+
+.ap-loop__steps li {
+  position: relative;
+}
+
+.ap-loop__n {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--sh-sm);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--c-azure);
+}
+
+.ap-loop__steps h3 {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.ap-loop__steps p {
+  max-width: 26ch;
+  margin: 0.45rem auto 0;
+  font-size: 0.8rem;
+  line-height: 1.75;
+  color: var(--ink-3);
+}
+
+/* =========================================================== difference == */
+
+.ap-diff__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.9rem 2.5rem;
+  margin-top: 2.75rem;
+  list-style: none;
+}
+
+.ap-diff__list li {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.ap-diff__list svg {
+  flex: none;
+  margin-top: 0.15rem;
+  color: #37c8ff;
+}
+
+.ap-diff__list h3 {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.ap-diff__list p {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* ============================================================== domains === */
+
+.ap-domain {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1.5rem 1.6rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: #fff;
+  box-shadow: var(--sh-sm);
+}
+
+.ap-domain h3 {
+  padding-bottom: 0.85rem;
+  border-bottom: 2px solid var(--c-sky);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.ap-domain ul {
+  margin-top: 1rem;
+  list-style: none;
+}
+
+.ap-domain ul li {
+  position: relative;
+  padding-left: 0.95rem;
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--ink-2);
+}
+
+.ap-domain ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--c-azure);
+}
+
+.ap-domain__more {
+  margin-top: auto;
+  padding-top: 1rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--ink-3);
+}
+
+/* ============================================================= approach === */
+
+.ap-approach__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+  list-style: none;
+}
+
+.ap-approach__grid li {
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.ap-approach__grid h3 {
+  margin-top: 0.85rem;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.ap-approach__grid p {
+  margin-top: 0.55rem;
+  font-size: 0.82rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* ============================================================= industry === */
+
+.ap-industry__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  gap: clamp(2.25rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.ap-industry__shot {
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-lg);
+}
+
+.ap-industry__shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ========================================================== credentials === */
+
+.ap-cred__card {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem 1.6rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--bg);
+}
+
+.ap-cred__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: var(--grad-soft);
+  color: #fff;
+}
+
+.ap-cred__card h3 {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.ap-cred__card p {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  line-height: 1.75;
+  color: var(--ink-2);
+}
+
+/* ============================================================== journey === */
+
+/*
+ * A centre spine with cards alternating either side of it.
+ *
+ * The year badge is positioned against the spine and the card is pushed away
+ * from it, which is what lets both columns share one grid row without the
+ * badges drifting apart as the cards change height.
+ */
+.ap-timeline {
+  position: relative;
+  margin-top: 3.25rem;
+  list-style: none;
+}
+
+.ap-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(111, 208, 255, 0.45) 12%,
+    rgba(111, 208, 255, 0.45) 88%,
+    transparent
+  );
+}
+
+.ap-timeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 0 3.75rem;
+  padding-block: 1.1rem;
+}
+
+.ap-timeline__year {
+  grid-column: 1;
+  justify-self: end;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background: var(--grad-soft);
+  box-shadow: 0 12px 30px rgba(37, 99, 255, 0.35);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.ap-timeline__card {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: end;
+  max-width: 30rem;
+  padding-right: 4.5rem;
+  text-align: right;
+}
+
+/* Odd entries swap to the right-hand side. */
+.ap-timeline li:nth-child(even) .ap-timeline__year {
+  grid-column: 2;
+  justify-self: start;
+}
+
+.ap-timeline li:nth-child(even) .ap-timeline__card {
+  grid-column: 2;
+  justify-self: start;
+  padding-right: 0;
+  padding-left: 4.5rem;
+  text-align: left;
+}
+
+.ap-timeline__card h3 {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.ap-timeline__card p {
+  margin-top: 0.4rem;
+  font-size: 0.82rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* The dot where each entry meets the spine. */
+.ap-timeline li::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #6fd0ff;
+  transform: translate(-50%, -50%);
+}
+
+/* =============================================================== belief === */
+
+.ap-belief__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.72fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.ap-belief__lines {
+  list-style: none;
+}
+
+.ap-belief__lines li {
+  padding-block: 1.1rem;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.ap-belief__lines li.is-accent {
+  border-bottom: 0;
+  color: var(--c-azure);
+}
+
+.ap-belief__note {
+  padding-left: clamp(1rem, 2vw, 2rem);
+  border-left: 1px solid var(--border);
+}
+
+.ap-belief__note p + p {
+  margin-top: 0.9rem;
+}
+
+.ap-belief__note p {
+  font-size: 0.87rem;
+  line-height: 1.85;
+  color: var(--ink-2);
+}
+
+/* --------------------------------------------------------- today card --- */
+
+.ap-today {
+  position: relative;
+  max-width: 620px;
+  margin: clamp(2.75rem, 6vw, 4.5rem) auto 0;
+  padding: 2.25rem 2rem 2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: #fff;
+  box-shadow: var(--sh-lg);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* The gradient hairline across the top of the card. */
+.ap-today::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--grad-sky);
+}
+
+.ap-today__trio {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.ap-today__trio b {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.ap-today__trio b + b {
+  padding-left: 0.9rem;
+  border-left: 1px solid var(--border);
+}
+
+.ap-today__text {
+  max-width: 46ch;
+  margin: 1.15rem auto 0;
+  font-size: 0.84rem;
+  line-height: 1.85;
+  color: var(--ink-2);
+}
+
+.ap-today__sign {
+  margin-top: 1.75rem;
+  padding-top: 1.35rem;
+  border-top: 1px solid var(--border-soft);
+}
+
+.ap-today__sign span {
+  display: block;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.ap-today__sign b {
+  display: block;
+  margin-top: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+/* ================================================================== cta === */
+
+.ap-callback {
+  margin-top: 2rem;
+}
+
+.ap-callback__form {
+  max-width: 430px;
+  margin-inline: auto;
+}
+
+.ap-callback__row {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.ap-callback__row--second {
+  margin-top: 0.6rem;
+}
+
+.ap-callback__input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.78rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  background: #fff;
+  font: inherit;
+  font-size: 0.87rem;
+  color: var(--ink);
+}
+
+.ap-callback__input::placeholder {
+  color: var(--ink-4);
+}
+
+.ap-callback__input:focus-visible {
+  outline: 2px solid var(--c-azure);
+  outline-offset: 1px;
+}
+
+.ap-callback__go {
+  flex: none;
+  padding: 0.78rem 1.5rem;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: var(--c-navy);
+  font-family: var(--font-display);
+  font-size: 0.83rem;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  transition: background var(--t-fast), transform var(--t-fast);
+}
+
+.ap-callback__go:hover:not(:disabled) {
+  background: var(--c-azure);
+  transform: translateY(-1px);
+}
+
+.ap-callback__go:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.ap-callback__msg {
+  margin-top: 0.85rem;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.ap-callback__msg.is-done {
+  color: #0f7a4a;
+}
+
+.ap-callback__msg.is-error {
+  color: #b42318;
+}
+
+.ap-cta__call {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 1.6rem;
+  padding: 0.6rem 1.5rem 0.6rem 0.6rem;
+  border-radius: var(--r-pill);
+  background: var(--grad-soft);
+  box-shadow: var(--sh-md);
+  color: #fff;
+  transition: transform var(--t-fast);
+}
+
+.ap-cta__call:hover {
+  transform: translateY(-2px);
+}
+
+.ap-cta__call > svg {
+  flex: none;
+  padding: 0.55rem;
+  box-sizing: content-box;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.ap-cta__call i {
+  display: block;
+  font-style: normal;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.82;
+}
+
+.ap-cta__call b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.ap-cta .shell {
+  text-align: center;
+}
+
+.ap-cta__ticks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem 1.5rem;
+  margin-top: 1.85rem;
+  list-style: none;
+}
+
+.ap-cta__ticks li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: var(--ink-3);
+}
+
+.ap-cta__ticks svg {
+  color: var(--c-azure);
+}
+
+/* ========================================================== responsive === */
+
+@media (max-width: 1080px) {
+  .ap-grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ap-diff__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .ap-who__grid,
+  .ap-eco__grid,
+  .ap-industry__grid,
+  .ap-belief__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* The photograph leads on desktop and follows on mobile — a reader on a
+     phone should reach the sentence before the picture of it. */
+  .ap-industry__shot {
+    order: 2;
+  }
+
+  .ap-grid--3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ap-approach__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.75rem;
+  }
+
+  .ap-belief__note {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .ap-eco__shots figure:last-child {
+    margin-top: 1.5rem;
+    margin-left: -8%;
+  }
+
+  /* Both columns collapse to one, so the spine moves to the left margin and
+     every card sits to the right of it. */
+  .ap-timeline::before {
+    left: 23px;
+  }
+
+  .ap-timeline li,
+  .ap-timeline li:nth-child(even) .ap-timeline__year,
+  .ap-timeline li:nth-child(even) .ap-timeline__card {
+    grid-template-columns: minmax(0, 1fr);
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  .ap-timeline li {
+    gap: 1rem;
+    padding-left: 4.25rem;
+  }
+
+  .ap-timeline__year {
+    position: absolute;
+    left: 0;
+    top: 1.1rem;
+    grid-row: auto;
+    justify-self: start;
+  }
+
+  .ap-timeline__card,
+  .ap-timeline li:nth-child(even) .ap-timeline__card {
+    grid-row: auto;
+    max-width: none;
+    padding-inline: 0;
+    text-align: left;
+  }
+
+  .ap-timeline li::after {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .ap-hero__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ap-loop__steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.25rem 1.5rem;
+  }
+
+  /* The connector only ever joined a single row of four. */
+  .ap-loop__steps::before {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .ap-grid--2,
+  .ap-grid--3,
+  .ap-grid--4,
+  .ap-diff__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ap-eco__shots {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ap-eco__shots figure:last-child {
+    margin-top: 0.9rem;
+    margin-left: 0;
+  }
+
+  .ap-callback__row {
+    flex-direction: column;
+  }
+
+  .ap-callback__go {
+    width: 100%;
+  }
+}

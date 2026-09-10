@@ -271,13 +271,14 @@ export function makeNavLinks(
     { label: 'Home', href: '#home' },
     {
       label: 'About',
-      href: '#about',
+      href: '/about',
+      /* Four of the About page's own bands, plus the one thing it does not
+         cover: the labs are a homepage section, so that item stays a hash. */
       items: [
-        { label: 'About Us', href: '#about', note: 'Who we are' },
-        /* No founder section exists on this page, so this lands on About —
-           same destination as the Founder item promoted into the bar. */
-        { label: 'Founder Vision', href: '#about', note: 'Why we started' },
-        { label: 'Why Techcadd', href: '#benefits', note: 'What sets us apart' },
+        { label: 'Our Story', href: '/about#story', note: 'Who we are' },
+        { label: 'Who We Teach', href: '/about#who-we-teach', note: 'Every stage of the journey' },
+        { label: 'Why Techcadd', href: '/about#why-techcadd', note: 'What sets us apart' },
+        { label: 'Awards & Accreditation', href: '/about#recognition', note: 'What we can show for it' },
         { label: 'Infrastructure', href: '#labs', note: 'GPU-backed AI labs' },
       ],
     },
@@ -1105,7 +1106,7 @@ export const footerLinks: FooterColumn[] = [
   {
     title: 'Institute',
     links: [
-      { label: 'About Us', href: '#about' },
+      { label: 'About Us', href: '/about' },
       { label: 'Our Faculty', href: '#faculty' },
       { label: 'AI Labs', href: '#labs' },
       { label: 'Gallery', href: '#gallery' },
