@@ -28,19 +28,22 @@ export interface NavDropdownItem {
   href: string
   /** one line under the label */
   note?: string
-  /**
-   * Draws the item as an icon card rather than a plain text link.
-   *
-   * The Courses mega panel has always done this; the grouped panels drew bare
-   * links because their catalogues carried no glyph. After 12th does, so it
-   * gets the same treatment — see `GroupedMegaMenu` in `Navbar`.
-   */
-  icon?: IconName
 }
 
 export interface NavDropdownGroup {
   title: string
   items: NavDropdownItem[]
+}
+
+/** One promoted card beside the list in a Resources-style panel. */
+export interface NavFeaturedItem {
+  label: string
+  href: string
+  /** The two small labels under the title. */
+  meta: [string, string]
+  /** A real photograph in `public/`. There is no placeholder: a card whose
+      image is missing is not rendered. */
+  image: string
 }
 
 export interface NavLink {
@@ -52,6 +55,11 @@ export interface NavLink {
   items?: NavDropdownItem[]
   /** opens a short-list dropdown with category sub-headers */
   groups?: NavDropdownGroup[]
+  /**
+   * Promotes a few of `items` as image cards beside the list, which turns the
+   * compact dropdown into a wide panel. Resources is the only user.
+   */
+  featured?: NavFeaturedItem[]
   /** rendered as the gradient AI capsule instead of a plain link */
   ai?: boolean
 }
@@ -297,7 +305,6 @@ export function makeNavLinks(
           label: p.label,
           href: p.href ?? `/after-12th/${p.slug}`,
           note: p.duration,
-          ...(p.icon ? { icon: p.icon } : {}),
         })),
       })),
     },
@@ -314,6 +321,35 @@ export function makeNavLinks(
            already ten items wide, and content added in the CMS should not
            reflow the navigation. */
         ...extraPages,
+      ],
+      /*
+        Three of the list above, promoted with a photograph.
+        
+        Deliberately only the three the centre has real photographs of — there
+        is no stock imagery in `public/`, and a card is the wrong place to
+        discover that. The second meta label repeats the item's own `note`
+        rather than inventing a badge, so the panel says nothing the compact
+        dropdown did not already say.
+      */
+      featured: [
+        {
+          label: 'Campus Gallery',
+          href: '#gallery',
+          meta: ['Gallery', 'Labs & classrooms'],
+          image: '/images/course/campus1.webp',
+        },
+        {
+          label: 'Student Stories',
+          href: '#testimonials',
+          meta: ['Reviews', 'Rated 4.9 on Google'],
+          image: '/images/course/classroom.webp',
+        },
+        {
+          label: 'Awards & Recognition',
+          href: '#achievements',
+          meta: ['Track record', 'Since 2007'],
+          image: '/images/course/lab.webp',
+        },
       ],
     },
     { label: 'Branches', href: '#', items: branchLinks },
@@ -333,8 +369,6 @@ export interface NavCatalogEntry {
   label: string
   slug: string
   duration: string
-  /** Passed through to the panel so the item can render as an icon card. */
-  icon?: IconName
   /**
    * An explicit destination, overriding the segment's default prefix.
    *

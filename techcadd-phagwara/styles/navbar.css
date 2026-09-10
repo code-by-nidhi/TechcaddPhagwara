@@ -295,28 +295,13 @@
  * second row and scrolled inside `max-height`, which is what put a scrollbar
  * through the panel and cut the last group off entirely.
  *
- * The columns are narrower than the Courses panel's four, which is why the
- * cards below drop to a smaller label: a two-word programme name has to sit on
- * one line at 210px or the whole column goes ragged.
+ * Narrower columns than the Courses panel's four, which is why five of them
+ * fit at all: every panel now lists plain `.mega__link` text, so a column is
+ * as wide as its longest programme name rather than a name plus a glyph.
  */
 .mega__grid--5 {
   grid-template-columns: repeat(5, minmax(190px, 1fr));
   gap: 0 1.5rem;
-}
-
-.mega__grid--5 .mega__card {
-  gap: 0.5rem;
-  padding: 0.36rem 0.5rem;
-}
-
-.mega__grid--5 .mega__card-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 8px;
-}
-
-.mega__grid--5 .mega__card-label {
-  font-size: 0.8125rem;
 }
 
 /* Five narrow columns stop being readable well before the panel runs out of
@@ -369,57 +354,140 @@
  * 70vh cap above was raised to fix. Compact keeps all ten in view, and 43px
  * is still well past the 24px minimum for a pointer target.
  */
-.mega__card {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.42rem 0.6rem;
-  border: 1px solid var(--border-soft);
-  border-radius: 12px;
-  background: #fff;
-  /* The gap lives on the card, not the column: the grouped panels share
-     `.mega__col` and must keep their tighter text-link rhythm. */
-  margin-bottom: 6px;
-  transition:
-    border-color 0.2s var(--ease-soft),
-    background 0.2s var(--ease-soft),
-    box-shadow 0.2s var(--ease-soft);
+/* --------------------------------------------- resources: list + shelf -- */
+
+/*
+ * Resources is a list beside a shelf of photographs.
+ *
+ * Narrower than the Courses panel: its list is nine items, not twenty-seven,
+ * and at 1300px the shelf would float in empty space.
+ */
+.mega--featured {
+  width: fit-content;
+  min-width: min(880px, 92vw);
+  max-width: min(1180px, 92vw);
+  padding: 2.5rem 2.75rem 0;
 }
 
-.mega__card:hover {
-  border-color: var(--border-strong);
-  background: rgba(37, 99, 255, 0.045);
-  box-shadow: var(--sh-sm);
-}
-
-.mega__card:focus-visible {
-  outline: 2px solid var(--c-azure);
-  outline-offset: 2px;
-}
-
-.mega__card-icon {
+.mega__split {
   display: grid;
-  place-items: center;
-  flex: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 9px;
-  background: rgba(37, 99, 255, 0.08);
-  color: var(--c-azure);
-  transition: background 0.2s var(--ease-soft);
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+  gap: 0 2.75rem;
+  padding-bottom: 2.25rem;
 }
 
-.mega__card:hover .mega__card-icon {
-  background: rgba(37, 99, 255, 0.14);
+.mega__rail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-right: 1.5rem;
+  border-right: 1px solid var(--border-soft);
 }
 
-.mega__card-label {
-  min-width: 0;
-  font-size: 0.875rem;
-  font-weight: 600;
-  line-height: 1.25;
+/* Marks a list entry that also appears as a card, so the repetition reads as
+   deliberate rather than as the same link listed twice by accident. */
+.mega__rail-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-left: 0.45rem;
+  border-radius: 50%;
+  background: var(--c-azure);
+  vertical-align: middle;
+}
+
+/* ------------------------------------------------------------- the cards -- */
+
+.mega__feature {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  align-content: start;
+}
+
+.mega__feat {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  transition: transform 0.2s var(--ease-soft);
+}
+
+.mega__feat:hover {
+  transform: translateY(-3px);
+}
+
+.mega__feat:focus-visible {
+  outline: 2px solid var(--c-azure);
+  outline-offset: 4px;
+}
+
+/* Fixed 16:9 box so three cards line their titles up regardless of how each
+   source photograph is proportioned. */
+.mega__feat-art {
+  display: block;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  background: var(--card-solid);
+}
+
+.mega__feat-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mega__feat-title {
+  margin-top: 0.7rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
   color: var(--ink);
 }
+
+.mega__feat:hover .mega__feat-title {
+  color: var(--blue-600);
+}
+
+.mega__feat-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.45rem;
+}
+
+.mega__feat-meta b,
+.mega__feat-meta i {
+  padding: 0.22rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mega__feat-meta b {
+  color: var(--c-azure);
+  background: rgba(37, 99, 255, 0.09);
+}
+
+.mega__feat-meta i {
+  color: var(--ink-2);
+  background: var(--border-soft);
+}
+
+/*
+ * No breakpoints below this.
+ *
+ * The whole desktop bar — and with it every mega panel — is hidden under
+ * 1080px, where the burger drawer takes over. The narrowest this panel is ever
+ * seen at is 1081px, i.e. 92vw ≈ 995px, which still leaves each of the three
+ * cards around 200px. There is nothing to collapse.
+ */
 
 .mega__link {
   display: block;

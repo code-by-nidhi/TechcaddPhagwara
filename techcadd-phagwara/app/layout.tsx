@@ -10,7 +10,6 @@ import FloatingDock from '@/components/fx/FloatingDock'
 import { makeNavLinks, type NavDropdownItem } from '@/data/site'
 import { after12NavCatalog } from '@/data/after12'
 import {
-  getAfter12Catalog,
   getBlogs,
   getBrand,
   getCourseCatalog,
@@ -231,12 +230,11 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
     falls back to the bundled data on its own, so a CMS that is down costs the
     chrome nothing.
   */
-  const [brand, courseCatalog, internship, after12, navPages, socials, blogs, events] =
+  const [brand, courseCatalog, internship, navPages, socials, blogs, events] =
     await Promise.all([
       getBrand(),
       getCourseCatalog(),
       getInternshipCatalog(),
-      getAfter12Catalog(),
       getNavPages(),
       getSocials(),
       // Only to decide whether to advertise the sections at all — see below.

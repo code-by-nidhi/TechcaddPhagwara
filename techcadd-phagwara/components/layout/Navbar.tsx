@@ -21,6 +21,7 @@ import {
   type Brand,
   type NavDropdownGroup,
   type NavDropdownItem,
+  type NavFeaturedItem,
   type NavLink,
 } from '@/data/site'
 import {
@@ -298,7 +299,18 @@ export default function Navbar({
                         onMouseLeave={() => holdPanel(null)}
                       />
                     )}
-                    {link.items && !link.groups && mountedPanels.has(link.label) && (
+                    {link.items && !link.groups && link.featured && mountedPanels.has(link.label) && (
+                      <FeaturedMegaMenu
+                        label={link.label}
+                        items={link.items}
+                        featured={link.featured}
+                        onSelect={() => setOpenPanel(null)}
+                        onNavigate={go}
+                        onMouseEnter={() => holdPanel(link.label)}
+                        onMouseLeave={() => holdPanel(null)}
+                      />
+                    )}
+                    {link.items && !link.groups && !link.featured && mountedPanels.has(link.label) && (
                       <NavDropdown
                         label={link.label}
                         items={link.items}
@@ -659,15 +671,12 @@ function MegaMenu({
             {cat.courses.map((course) => (
               <Link
                 key={course.slug}
-                className="mega__card"
+                className="mega__link"
                 href={`/${course.slug}`}
                 role="menuitem"
                 onClick={onSelect}
               >
-                <span className="mega__card-icon" aria-hidden="true">
-                  <Icon name={course.icon} size={15} />
-                </span>
-                <span className="mega__card-label">{course.label}</span>
+                {course.label}
               </Link>
             ))}
           </div>
@@ -691,6 +700,125 @@ function MegaMenu({
           Browse all courses
           <Icon name="arrow" size={16} />
         </a>
+      </div>
+    </div>
+  )
+}
+
+/* --------------------------------------------------- featured mega menu -- */
+
+interface FeaturedMegaMenuProps {
+  /** Panel `aria-label` — the triggering link's own label. */
+  label: string
+  items: NavDropdownItem[]
+  featured: NavFeaturedItem[]
+  onSelect: () => void
+  onNavigate: (event: MouseEvent<HTMLElement>, href: string) => void
+  /** See `MegaMenuProps` — the same fixed-position detachment applies. */
+  onMouseEnter: () => void
+  onMouseLeave: () => void
+}
+
+/**
+ * A list beside a shelf of promoted cards. Resources is the only user.
+ *
+ * The whole list stays in the rail — nothing is hidden by being promoted —
+ * and the cards repeat three of its entries with a photograph. That repetition
+ * is the point: the card is a way in for someone browsing, the rail is the way
+ * in for someone who already knows what they want.
+ *
+ * A promoted entry is matched to the rail by `href`, which is what marks it in
+ * the list. Matching on label would break the moment an editor renamed one.
+ */
+function FeaturedMegaMenu({
+  label,
+  items,
+  featured,
+  onSelect,
+  onNavigate,
+  onMouseEnter,
+  onMouseLeave,
+}: FeaturedMegaMenuProps) {
+  const promotedHrefs = new Set(featured.map((card) => card.href))
+
+  return (
+    <div
+      className="mega mega--featured"
+      role="menu"
+      aria-label={label}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <div className="mega__split">
+        <div className="mega__rail">
+          {items.map((item) =>
+            isExternal(item.href) ? (
+              <a
+                key={item.label}
+                className="mega__link"
+                href={item.href}
+                role="menuitem"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {item.label}
+              </a>
+            ) : isHashLink(item.href) ? (
+              <a
+                key={item.label}
+                className="mega__link"
+                href={item.href}
+                role="menuitem"
+                aria-disabled={isTrigger(item.href) || undefined}
+                onClick={(e) => {
+                  onNavigate(e, item.href)
+                  onSelect()
+                }}
+              >
+                {item.label}
+                {promotedHrefs.has(item.href) && <span className="mega__rail-dot" aria-hidden="true" />}
+              </a>
+            ) : (
+              <Link
+                key={item.label}
+                className="mega__link"
+                href={item.href}
+                role="menuitem"
+                onClick={onSelect}
+              >
+                {item.label}
+              </Link>
+            )
+          )}
+        </div>
+
+        <div className="mega__feature">
+          {featured.map((card) => (
+            <a
+              key={card.href}
+              className="mega__feat"
+              href={card.href}
+              role="menuitem"
+              onClick={(e) => {
+                onNavigate(e, card.href)
+                onSelect()
+              }}
+            >
+              {/*
+                Decorative: the title sits directly beneath it, so alt text
+                would have a screen reader announce the same thing twice.
+              */}
+              <span className="mega__feat-art">
+                <Image src={card.image} alt="" width={320} height={180} sizes="320px" />
+              </span>
+              <span className="mega__feat-title">{card.label}</span>
+              <span className="mega__feat-meta">
+                <b>{card.meta[0]}</b>
+                <i>{card.meta[1]}</i>
+              </span>
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   )
@@ -759,26 +887,7 @@ function GroupedMegaMenu({
               <h3 className="mega__col-title">{group.title}</h3>
             </div>
             {group.items.map((item) =>
-              /*
-                An item that carries a glyph is drawn as a card, exactly as the
-                Courses panel draws its courses; one without stays a plain
-                link. That keeps Internship & Training — whose catalogue has no
-                icons — looking as it always did.
-              */
-              item.icon && !isExternal(item.href) && !isHashLink(item.href) ? (
-                <Link
-                  key={item.label}
-                  className="mega__card"
-                  href={item.href}
-                  role="menuitem"
-                  onClick={onSelect}
-                >
-                  <span className="mega__card-icon" aria-hidden="true">
-                    <Icon name={item.icon} size={15} />
-                  </span>
-                  <span className="mega__card-label">{item.label}</span>
-                </Link>
-              ) : isExternal(item.href) ? (
+              isExternal(item.href) ? (
                 <a
                   key={item.label}
                   className="mega__link"

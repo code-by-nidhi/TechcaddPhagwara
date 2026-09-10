@@ -58,6 +58,14 @@
 }
 
 .cp-hero__title {
+  /*
+   * `base.css` sets `h1..h5 { color: var(--ink) }`, and an element selector
+   * beats the white this inherits from its dark section — so without this the
+   * heading renders navy-on-navy and disappears. `inherit` rather than `#fff`
+   * so the section stays the single place its text colour is decided.
+   */
+  color: inherit;
+
   margin: 1.15rem 0 0;
   font-family: var(--font-display);
   font-size: clamp(2.15rem, 5vw, 3.65rem);
@@ -472,6 +480,14 @@
 }
 
 .cp-enquiry__title {
+  /*
+   * `base.css` sets `h1..h5 { color: var(--ink) }`, and an element selector
+   * beats the white this inherits from its dark section — so without this the
+   * heading renders navy-on-navy and disappears. `inherit` rather than `#fff`
+   * so the section stays the single place its text colour is decided.
+   */
+  color: inherit;
+
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 3.4vw, 2.6rem);
