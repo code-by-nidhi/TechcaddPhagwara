@@ -192,6 +192,29 @@ p {
   text-wrap: pretty;
 }
 
+/*
+ * Forced line breaks in headings are a desktop decision.
+ *
+ * A `<br>` in an `<h2>` was chosen against a wide measure — "Recognition built
+ * through learning," is thirty-four characters, which at the smallest heading
+ * size this system uses is still about 560px of text. On a 360px phone that
+ * line does not wrap (the break says where the line ends) and simply runs off
+ * the side, where `overflow-x: clip` on the body silently cuts it off rather
+ * than showing a scrollbar — so the bug is invisible until someone reads the
+ * page on a phone and finds a sentence missing its end.
+ *
+ * Dropping the break below 640px hands the line back to normal wrapping, which
+ * is what every one of these headings wants at that width. Nothing is lost:
+ * the heading still breaks, just where it fits rather than where it was drawn.
+ */
+@media (max-width: 640px) {
+  h1 br,
+  h2 br,
+  h3 br {
+    display: none;
+  }
+}
+
 ::selection {
   background: rgba(4, 18, 74, 0.18);
   color: var(--ink);

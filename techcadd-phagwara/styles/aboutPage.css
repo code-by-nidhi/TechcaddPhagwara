@@ -172,56 +172,122 @@
 
 /* ============================================================== the hero == */
 
+/*
+ * A flat navy field with a photograph behind it, not a gradient.
+ *
+ * The colour is set here rather than taken from `--grad-deep`, which runs
+ * navy → #1565c0 → azure and is far brighter and more saturated than this
+ * band wants: against it the dimmed half of the headline stops reading as
+ * dimmed. The three values below are the whole palette for the section.
+ */
 .ap-hero {
+  --hero-navy: #0b1a3f;
+  --hero-glow: rgba(37, 99, 255, 0.42);
+  --hero-dim: #7c8db5;
+
   position: relative;
   isolation: isolate;
-  padding-block: calc(var(--nav-h) + clamp(3.25rem, 7vw, 5.5rem)) clamp(3.5rem, 7vw, 5.5rem);
-  background: var(--grad-deep);
+  display: flex;
+  align-items: center;
+  min-height: min(82vh, 780px);
+  padding-block: calc(var(--nav-h) + clamp(3rem, 6vw, 5rem)) clamp(3.5rem, 7vw, 5.5rem);
+  background: var(--hero-navy);
   color: #fff;
   overflow: hidden;
 }
 
-.ap-hero::before {
+.ap-hero > .shell {
+  width: 100%;
+}
+
+/*
+ * The photograph.
+ *
+ * Anchored right and dimmed to roughly a quarter, because the headline sits on
+ * the left and the picture is atmosphere rather than content — a reader should
+ * register a lab without ever studying it. The blur is what keeps it that way:
+ * at full sharpness the eye tries to read the screens.
+ */
+.ap-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.ap-hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% 45%;
+  opacity: 0.26;
+  filter: blur(3px) saturate(0.6);
+  transform: scale(1.06);
+}
+
+/*
+ * Two washes over the photograph: a blue bloom from the right, and a scrim
+ * that deepens towards the left so the text side stays near-solid navy.
+ * The dot grid is the same one the rest of the site's dark sections use.
+ */
+.ap-hero::before,
+.ap-hero::after {
   content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
+}
+
+.ap-hero::before {
   background:
-    var(--grad-mesh),
-    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.13) 1px, transparent 0) 0 0 / 26px 26px;
+    radial-gradient(62% 70% at 82% 42%, var(--hero-glow), transparent 68%),
+    linear-gradient(
+      90deg,
+      var(--hero-navy) 6%,
+      rgba(11, 26, 63, 0.86) 42%,
+      rgba(11, 26, 63, 0.42) 78%,
+      rgba(11, 26, 63, 0.5) 100%
+    );
 }
 
-.ap-crumb {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+.ap-hero::after {
+  opacity: 0.5;
+  background: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.1) 1px, transparent 0) 0 0 /
+    26px 26px;
+}
+
+.ap-hero__badge {
+  display: inline-block;
+  margin-bottom: clamp(1.25rem, 3vw, 1.85rem);
+  padding: 0.42rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  font-family: var(--font-display);
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.ap-crumb a {
-  color: rgba(255, 255, 255, 0.82);
-}
-
-.ap-crumb a:hover {
-  color: #fff;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /*
  * The first half of the headline is deliberately dimmed and the second half is
  * not: the sentence names the page's subject twice over, and letting both
  * halves shout leaves nothing for the eye to land on.
+ *
+ * The dim half is a flat blue-grey rather than translucent white — over a
+ * photograph, a semi-transparent colour picks up whatever happens to be behind
+ * each line and the three lines stop matching each other.
  */
 .ap-hero__title {
-  max-width: 18ch;
+  max-width: 16ch;
   font-family: var(--font-display);
-  font-size: clamp(2.1rem, 5.2vw, 3.9rem);
+  font-size: clamp(2.1rem, 5.4vw, 4rem);
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 1.14;
   letter-spacing: -0.025em;
-  color: rgba(255, 255, 255, 0.42);
+  color: var(--hero-dim);
 }
 
 .ap-hero__title em {
@@ -233,19 +299,20 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.5rem;
-  margin-top: clamp(2.5rem, 6vw, 4rem);
+  max-width: 900px;
+  margin-top: clamp(2.5rem, 6vw, 4.25rem);
   list-style: none;
 }
 
 .ap-hero__stats li {
   padding-left: 1.15rem;
-  border-left: 2px solid rgba(255, 255, 255, 0.28);
+  border-left: 2px solid #4f7fd4;
 }
 
 .ap-hero__stats b {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3.2vw, 2.35rem);
+  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -256,7 +323,7 @@
   display: block;
   margin-top: 0.4rem;
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.68);
+  color: rgba(255, 255, 255, 0.62);
 }
 
 /* ============================================================ who we are == */
@@ -743,8 +810,18 @@
   padding-block: 1.1rem;
 }
 
+/*
+ * The badge and the card deliberately share one grid cell.
+ *
+ * `grid-row` has to be stated on both. The card is definite in row and
+ * column, so grid places it first; a badge with a definite column but an auto
+ * row would then be pushed to the next free row in that column — i.e. below
+ * its own card — rather than beside it. They do not collide because the card
+ * reserves 4.5rem of padding on its inner edge and the badge is 46px wide.
+ */
 .ap-timeline__year {
   grid-column: 1;
+  grid-row: 1;
   justify-self: end;
   display: grid;
   place-items: center;
@@ -1126,30 +1203,28 @@
     left: 23px;
   }
 
-  .ap-timeline li,
-  .ap-timeline li:nth-child(even) .ap-timeline__year,
-  .ap-timeline li:nth-child(even) .ap-timeline__card {
-    grid-template-columns: minmax(0, 1fr);
-    grid-column: 1;
-    justify-self: start;
-  }
-
   .ap-timeline li {
-    gap: 1rem;
+    grid-template-columns: minmax(0, 1fr);
     padding-left: 4.25rem;
   }
 
-  .ap-timeline__year {
+  /* Lifted out of the grid entirely and parked on the spine, so the card
+     below can simply fill the one remaining column. */
+  .ap-timeline__year,
+  .ap-timeline li:nth-child(even) .ap-timeline__year {
     position: absolute;
     left: 0;
     top: 1.1rem;
-    grid-row: auto;
     justify-self: start;
   }
 
+  /* Both sides read the same way now — the alternation only ever existed to
+     use the width there is no longer any of. */
   .ap-timeline__card,
   .ap-timeline li:nth-child(even) .ap-timeline__card {
+    grid-column: 1;
     grid-row: auto;
+    justify-self: stretch;
     max-width: none;
     padding-inline: 0;
     text-align: left;

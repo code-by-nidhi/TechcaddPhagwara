@@ -69,12 +69,24 @@ export default function AboutPage() {
     <main className="about-page">
       {/* ------------------------------------------------------------ hero */}
       <section className="ap-hero">
+        {/*
+          Atmosphere, not content — dimmed and blurred by `.ap-hero__bg img`,
+          so it is decorative and carries no alt text. `priority` because it is
+          the largest paint above the fold and lazy-loading it would show the
+          flat navy first and then swap.
+        */}
+        <div className="ap-hero__bg">
+          <Image
+            src="/images/course/lab.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+          />
+        </div>
+
         <div className="shell">
-          <nav className="ap-crumb" aria-label="Breadcrumb">
-            <Link href="/">Home</Link>
-            <span aria-hidden="true">/</span>
-            <span aria-current="page">About</span>
-          </nav>
+          <p className="ap-hero__badge">About us</p>
 
           <h1 className="ap-hero__title" data-reveal="up">
             Learn about our people,

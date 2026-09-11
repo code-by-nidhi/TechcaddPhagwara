@@ -184,6 +184,61 @@
   border-top: 1px solid var(--border);
 }
 
+/*
+ * The two things editor-authored prose does that no layout can anticipate.
+ *
+ * This container is the body of every CMS course page, every blog post and
+ * every event page, and what goes into it is typed by a person in an editor —
+ * so it will eventually contain a pasted URL with no spaces in it, and a table
+ * with more columns than a phone is wide. Neither is a mistake worth telling
+ * an editor off about; both simply have to survive.
+ */
+
+/* A long URL or an unbroken token breaks mid-word rather than running off the
+   side. `anywhere` and not `break-word` so the line box can still shrink — the
+   older keyword leaves the overflowing word's width in the intrinsic size. */
+.course-prose {
+  overflow-wrap: anywhere;
+}
+
+/*
+ * A table gets its own horizontal scroll rather than widening the page.
+ *
+ * `display: block` on the table is what makes `overflow-x` apply: a
+ * `table` box ignores it. The cost is that the element stops being a table
+ * box for layout — hence `width: max-content`, without which the columns
+ * would collapse onto the container's width and defeat the scroll.
+ */
+.course-prose table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.94em;
+}
+
+.course-prose th,
+.course-prose td {
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.course-prose th {
+  background: var(--bg-2);
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* An embed pasted as a bare iframe — a map, a video — is given the same
+   treatment images already get. */
+.course-prose iframe {
+  max-width: 100%;
+}
+
 /* --------------------------------------------------------- curriculum ---- */
 
 .course-modules__intro {
@@ -271,7 +326,7 @@
 
 .course-meta__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
   gap: clamp(1.8rem, 4vw, 3rem);
 }
 
@@ -302,7 +357,7 @@
 
 .course-notes__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: 1rem;
 }
 
