@@ -143,6 +143,25 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/*
+ * The same guard again, one level up.
+ *
+ * `overflow-x` on `body` is propagated to the viewport when `html` is
+ * `visible`, and body itself then computes back to `visible` — so the rule
+ * above governs the viewport but leaves nothing clipping at the body box.
+ * Measurably, it did not hold: an element pushed past the right edge still
+ * grew `documentElement.scrollWidth`. Stating it on `html` as well closes
+ * that, and `clip` (not `hidden`) keeps this from becoming a scroll container,
+ * which is what would break `position: sticky` further down the tree.
+ *
+ * This is a net, not a fix. Anything it catches is still content sitting
+ * outside the page and still worth finding — it just stops a stray 56px from
+ * handing the whole site a horizontal scrollbar.
+ */
+html {
+  overflow-x: clip;
+}
+
 img,
 svg,
 video,
@@ -489,6 +508,28 @@ p {
 }
 [data-reveal='right'] {
   transform: translateX(56px);
+}
+
+/*
+ * Horizontal reveals become vertical ones once the layout is single-column.
+ *
+ * The pre-reveal state is real layout: an element waiting to slide in from the
+ * right is sitting 56px to the right of where it belongs, for as long as it is
+ * below the fold — which is most of the page, most of the time. On a wide
+ * screen those 56px are absorbed by the gutter. On a phone, where these
+ * elements are full-width, they are 56px outside the viewport, and the whole
+ * document picks up a horizontal scrollbar because of it. Measured on the
+ * homepage at 360px: the page scrolled to 382px, and `.about__media` — a
+ * `[data-reveal="right"]` that had not fired yet — was the box defining it.
+ *
+ * Sliding up instead keeps the animation and cannot overflow, because the
+ * document scrolls that way anyway.
+ */
+@media (max-width: 1024px) {
+  [data-reveal='left'],
+  [data-reveal='right'] {
+    transform: translateY(46px);
+  }
 }
 [data-reveal='scale'] {
   transform: scale(0.9);

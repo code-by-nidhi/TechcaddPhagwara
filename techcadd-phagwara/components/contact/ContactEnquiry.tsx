@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useState, type ChangeEvent, type FormEvent } from 'react'
+import { useCallback, useEffect, useState, type ChangeEvent, type FormEvent } from 'react'
 import Icon from '@/components/ui/Icon'
 import { brand } from '@/data/site'
 
@@ -37,6 +37,21 @@ const newCaptcha = () => ({
   b: 1 + Math.floor(Math.random() * 9),
 })
 
+/*
+ * The sum the server renders, and the one the client renders first.
+ *
+ * `useState(newCaptcha)` ran `Math.random()` once on the server and again
+ * during hydration, so the two never agreed and React threw "server rendered
+ * text didn't match the client" on every visit to /contact, discarding and
+ * re-rendering the tree. A fixed pair for that first paint makes both sides
+ * agree; the effect below swaps in a real one the moment hydration is done.
+ *
+ * Nothing is weakened by the placeholder existing. It is on screen only for
+ * the frame before hydration, during which this form cannot be submitted at
+ * all — the submit handler does not exist yet.
+ */
+const SSR_CAPTCHA = { a: 3, b: 4 }
+
 function validate(form: FormState, expected: number): FieldErrors {
   const errors: FieldErrors = {}
   if (!form.name.trim()) errors.name = 'Enter your full name'
@@ -56,7 +71,12 @@ export default function ContactEnquiry({ courseOptions }: { courseOptions: strin
   const [errors, setErrors] = useState<FieldErrors>({})
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [feedback, setFeedback] = useState('')
-  const [captcha, setCaptcha] = useState(newCaptcha)
+  const [captcha, setCaptcha] = useState(SSR_CAPTCHA)
+
+  /* Randomise once hydration has matched the server. */
+  useEffect(() => {
+    setCaptcha(newCaptcha())
+  }, [])
 
   const refreshCaptcha = useCallback(() => {
     setCaptcha(newCaptcha())

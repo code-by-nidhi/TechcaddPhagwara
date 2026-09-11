@@ -18,11 +18,31 @@
 
 /* ------------------------------------------------------------------ hero */
 
+/*
+ * The band is painted here rather than taken from `--grad-deep`.
+ *
+ * That token runs #04124A → #1565c0 → #2563FF across 135deg, which puts its
+ * lightest, most saturated stop in the bottom-right corner and turns the whole
+ * panel fairly vivid. The shade this page wants is the opposite balance: deep
+ * navy holding most of the surface, opening to blue only as it travels right,
+ * so the headline sits on near-solid navy and the colour is something you
+ * notice second. Four stops rather than three, because the navy needs to hold
+ * through the first quarter before it starts moving.
+ *
+ * Local to `.cp-hero` — `--grad-deep` is used by other sections and is not
+ * this page's to retune.
+ */
 .cp-hero {
   position: relative;
   isolation: isolate;
   padding-block: calc(var(--nav-h) + clamp(2.75rem, 6vw, 4.5rem)) clamp(3rem, 6vw, 4.75rem);
-  background: var(--grad-deep);
+  background: linear-gradient(
+    106deg,
+    #091841 0%,
+    #102463 26%,
+    #173a9e 60%,
+    #2358d8 100%
+  );
   color: #fff;
   overflow: hidden;
 }
@@ -38,8 +58,16 @@
   pointer-events: none;
 }
 
+/*
+ * A wide, low-contrast bloom on the right flank.
+ *
+ * The previous one sat at 82% 18% at half opacity, which read as a pale cyan
+ * hot spot in the top-right corner. This one is weaker, sits lower, and spreads
+ * far enough that it lifts the right-hand side rather than lighting one point
+ * on it.
+ */
 .cp-hero::before {
-  background: radial-gradient(115% 90% at 82% 18%, rgba(59, 130, 246, 0.5) 0%, rgba(4, 18, 74, 0) 62%);
+  background: radial-gradient(95% 85% at 88% 58%, rgba(59, 130, 246, 0.32) 0%, rgba(4, 18, 74, 0) 70%);
 }
 
 .cp-hero::after {

@@ -779,6 +779,19 @@
     display: grid;
   }
 
+  /*
+   * The burger goes to the right edge.
+   *
+   * On desktop it is `.nav__links` that holds the row apart — `margin-inline:
+   * auto` centres the links and pushes the actions to the end. Hidden here,
+   * that spacing goes with it, and the actions collapse back against the logo
+   * with only the flex `gap` between them. This restores the push without
+   * touching the desktop row.
+   */
+  .nav__actions {
+    margin-left: auto;
+  }
+
   .nav__bar {
     height: 68px;
     padding-right: 0.5rem;
